@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BombEISTIv2.Environment.Game">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.ClassicGame">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\ClassicGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.HardcoreGame">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\HardcoreGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.CrazyGame">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\CrazyGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Entity">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Environment\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Player">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Box">
+    <Position X="4" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Box.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Bomb">
+    <Position X="2.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Bomb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.HardBlock">
+    <Position X="1.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\HardBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Upgrade">
+    <Position X="3.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Upgrade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Malus">
+    <Position X="4.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Malus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Bonus">
+    <Position X="2.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Bonus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.Grid">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Control.Movement">
+    <Position X="5.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Control.KeyAction">
+    <Position X="8.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\KeyAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Control._Listener">
+    <Position X="7" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\_Listener.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Control.GameListener">
+    <Position X="6" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\GameListener.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Control.MenuListener">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Control\MenuListener.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.Frame" Collapsed="true">
+    <Position X="13.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Frame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.Animation">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.Explosion">
+    <Position X="12" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.PlaySound">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PlaySound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.GameTimer">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\GameTimer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.Texture">
+    <Position X="18" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Texture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.PlayerSkin">
+    <Position X="17.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PlayerSkin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.View.MapSkin">
+    <Position X="19" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MapSkin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Main" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Environment.GameParameters" Collapsed="true">
+    <Position X="10.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Environment\GameParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.Menu">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.MainMenu">
+    <Position X="20.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.OptionMenu">
+    <Position X="22.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\OptionMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.LanMenu">
+    <Position X="24.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LanMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BombEISTIv2.NetMenu">
+    <Position X="26.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\NetMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
