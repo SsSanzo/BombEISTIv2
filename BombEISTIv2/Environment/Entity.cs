@@ -8,10 +8,22 @@ namespace BombEISTIv2.Environment
     {
         private int _x;
         private int _y;
+        private int _percentx;
+        private int _percenty;
 
-        public int X {
+        public Entity(int x, int y)
+        {
+            X = x;
+            Y = y;
+            _percentx = 0;
+            _percenty = 0;
+        }
+
+        public int X
+        {
             get { return _x; }
-            set{
+            set
+            {
                 if (value < 0) throw new Exception("Location Error (x<0) : x=" + value);
                 if (value > Game.Length) throw new Exception("Location Error (x>" + Game.Length + ") : x=" + value);
                 _x = value;
@@ -27,6 +39,11 @@ namespace BombEISTIv2.Environment
                 if (value > Game.Length) throw new Exception("Location Error (y>" + Game.Length + ") : y=" + value);
                 _y = value;
             }
+        }
+
+        public void movingEntity()
+        {
+
         }
     }
 }

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Environment\GameParameters.cs" />
+    <Compile Include="Environment\UpgradeType.cs" />
     <Compile Include="View\LanMenu.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="View\MainMenu.cs" />
@@ -56,7 +57,7 @@
     <Compile Include="View\Animation.cs" />
     <Compile Include="Environment\Bomb.cs" />
     <Compile Include="Environment\Bonus.cs" />
-    <Compile Include="Environment\Box.cs" />
+    <Compile Include="Environment\SoftBlock.cs" />
     <Compile Include="Environment\Entity.cs" />
     <Compile Include="Environment\ClassicGame.cs" />
     <Compile Include="Environment\CrazyGame.cs" />
