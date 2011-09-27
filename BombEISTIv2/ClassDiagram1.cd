@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BombEISTIv2.Environment.Game">
+  <Class Name="BombEISTIv2.Environment.Game" Collapsed="true">
     <Position X="2.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAABAAAAAAAAAA=</HashCode>
@@ -28,7 +28,7 @@
       <FileName>Environment\CrazyGame.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BombEISTIv2.Environment.Entity">
+  <Class Name="BombEISTIv2.Environment.Entity" Collapsed="true">
     <Position X="2.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
@@ -42,43 +42,43 @@
       <FileName>Environment\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BombEISTIv2.Environment.Box">
+  <Class Name="BombEISTIv2.Environment.Bomb">
     <Position X="4" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Environment\Box.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BombEISTIv2.Environment.Bomb">
-    <Position X="2.25" Y="5" Width="1.5" />
+  <Class Name="BombEISTIv2.Environment.SoftBlock">
+    <Position X="2.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Environment\Bomb.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BombEISTIv2.Environment.HardBlock">
-    <Position X="1.25" Y="6.75" Width="1.5" />
+    <Position X="0.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Environment\HardBlock.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BombEISTIv2.Environment.Upgrade">
-    <Position X="3.25" Y="6.75" Width="1.5" />
+    <Position X="4" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Environment\Upgrade.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BombEISTIv2.Environment.Malus">
-    <Position X="4.25" Y="8.25" Width="1.5" />
+    <Position X="5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Environment\Malus.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BombEISTIv2.Environment.Bonus">
-    <Position X="2.25" Y="8.25" Width="1.5" />
+    <Position X="3" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Environment\Bonus.cs</FileName>
@@ -129,7 +129,7 @@
   <Class Name="BombEISTIv2.View.Frame" Collapsed="true">
     <Position X="13.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAQACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\Frame.cs</FileName>
     </TypeIdentifier>
   </Class>

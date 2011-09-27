@@ -1,6 +1,6 @@
 ﻿namespace BombEISTIv2.Environment
 {
-    public class Box : Entity
+    public class Bomb : Entity
     {
     }
 }
