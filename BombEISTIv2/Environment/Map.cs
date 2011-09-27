@@ -39,14 +39,11 @@ namespace BombEISTIv2.Environment
 
         public void setHardBlockOnMap()
         {
-            for(var i = 0;i<Game.Length;i++)
+            for(var i = 1;i<Game.Length;i=i+2)
             {
-                for(var j = 0;i<Game.Length;j++)
+                for(var j = 1;i<Game.Length;j=j+2)
                 {
-                    if(i%2 == 1 && j%2 == 1)
-                    {
-                        ListOfHardBlock.Add(new HardBlock(i,j));
-                    }
+                    ListOfHardBlock.Add(new HardBlock(i,j));
                 }
             }
         }
