@@ -63,7 +63,7 @@
     <Compile Include="Environment\CrazyGame.cs" />
     <Compile Include="Environment\Game.cs" />
     <Compile Include="Environment\HardcoreGame.cs" />
-    <Compile Include="Environment\Grid.cs" />
+    <Compile Include="Environment\Map.cs" />
     <Compile Include="Environment\HardBlock.cs" />
     <Compile Include="Environment\Malus.cs" />
     <Compile Include="Environment\Player.cs" />
