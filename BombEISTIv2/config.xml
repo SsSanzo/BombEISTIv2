@@ -1,39 +1,41 @@
-<Game type="Classic">
-	<Bonus>UpgradeType.Kick</Bonus>
-	<Bonus>UpgradeType.PowerUp</Bonus>
-	<Bonus>UpgradeType.SpeedUp</Bonus>
-	<Bonus>UpgradeType.PowerMax</Bonus>
-	<Bonus>UpgradeType.BombUp</Bonus>
-	<Malus>UpgradeType.BombDown</Malus>
-	<Malus>UpgradeType.PowerDown</Malus>
-	<Malus>UpgradeType.SpeedDown</Malus>
-	<Malus>UpgradeType.ChangeDirection</Malus>
-	<Malus>UpgradeType.Teleport</Malus>
-	<Malus>UpgradeType.SpeedMax</Malus>
-</Game>
-<Game type="Hardcore">
-	<Bonus>UpgradeType.Kick</Bonus>
-	<Bonus>UpgradeType.PowerUp</Bonus>
-	<Bonus>UpgradeType.SpeedUp</Bonus>
-	<Bonus>UpgradeType.PowerMax</Bonus>
-	<Bonus>UpgradeType.BombUp</Bonus>
-	<Malus>UpgradeType.BombDown</Malus>
-	<Malus>UpgradeType.PowerDown</Malus>
-	<Malus>UpgradeType.SpeedDown</Malus>
-	<Malus>UpgradeType.ChangeDirection</Malus>
-	<Malus>UpgradeType.Teleport</Malus>
-	<Malus>UpgradeType.SpeedMax</Malus>
-</Game>
-<Game type="Crazy">
-	<Bonus>UpgradeType.Kick</Bonus>
-	<Bonus>UpgradeType.PowerUp</Bonus>
-	<Bonus>UpgradeType.SpeedUp</Bonus>
-	<Bonus>UpgradeType.PowerMax</Bonus>
-	<Bonus>UpgradeType.BombUp</Bonus>
-	<Malus>UpgradeType.BombDown</Malus>
-	<Malus>UpgradeType.PowerDown</Malus>
-	<Malus>UpgradeType.SpeedDown</Malus>
-	<Malus>UpgradeType.ChangeDirection</Malus>
-	<Malus>UpgradeType.Teleport</Malus>
-	<Malus>UpgradeType.SpeedMax</Malus>
-</Game>
+<GameParameters>
+	<Game type="Classic">
+		<Bonus defaultFreq="3">UpgradeType.Kick</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.PowerUp</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.SpeedUp</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.PowerMax</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.BombUp</Bonus>
+		<Malus defaultFreq="3">UpgradeType.BombDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.PowerDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.SpeedDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.ChangeDirection</Malus>
+		<Malus defaultFreq="3">UpgradeType.Teleport</Malus>
+		<Malus defaultFreq="3">UpgradeType.SpeedMax</Malus>
+	</Game>
+	<Game type="Hardcore">
+		<Bonus defaultFreq="3">UpgradeType.Kick</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.PowerUp</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.SpeedUp</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.PowerMax</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.BombUp</Bonus>
+		<Malus defaultFreq="3">UpgradeType.BombDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.PowerDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.SpeedDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.ChangeDirection</Malus>
+		<Malus defaultFreq="3">UpgradeType.Teleport</Malus>
+		<Malus defaultFreq="3">UpgradeType.SpeedMax</Malus>
+	</Game>
+	<Game type="Crazy">
+		<Bonus defaultFreq="3">UpgradeType.Kick</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.PowerUp</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.SpeedUp</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.PowerMax</Bonus>
+		<Bonus defaultFreq="3">UpgradeType.BombUp</Bonus>
+		<Malus defaultFreq="3">UpgradeType.BombDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.PowerDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.SpeedDown</Malus>
+		<Malus defaultFreq="3">UpgradeType.ChangeDirection</Malus>
+		<Malus defaultFreq="3">UpgradeType.Teleport</Malus>
+		<Malus defaultFreq="3">UpgradeType.SpeedMax</Malus>
+	</Game>
+</GameParameters>
