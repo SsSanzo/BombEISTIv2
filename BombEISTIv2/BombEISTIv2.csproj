@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Environment\GameParameters.cs" />
+    <Compile Include="Environment\Score.cs" />
     <Compile Include="Environment\UpgradeType.cs" />
     <Compile Include="View\LanMenu.cs" />
     <Compile Include="Main.cs" />

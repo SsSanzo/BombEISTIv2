@@ -91,15 +91,16 @@ namespace BombEISTIv2.Environment
             }
         }
 
-        public void SetPlaceEntity(int x, int y)
+        public Entity SetPlaceEntity(int x, int y)
         {
             X = x;
             Y = y;
             Percentx = 0;
             Percenty = 0;
+            return this;
         }
 
-        public void movingEntityByPixel(Direction d)
+        public Entity MoveEntityByPixel(Direction d)
         {
             switch (d)
             {
@@ -116,7 +117,7 @@ namespace BombEISTIv2.Environment
                     Percentx++;
                     break;
             }
-
+            return this;
         }
     }
 
