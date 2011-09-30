@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Resources;
 using BombEISTIv2.Properties;
 
@@ -118,6 +120,26 @@ namespace BombEISTIv2.Environment
                     break;
             }
             return this;
+        }
+
+        public Entity GiveTheFirstRight(IEnumerable<Entity> l)
+        {
+            return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y > this.Y).Min(e => e.Y));
+        }
+
+        public Entity GiveTheFirstLeft(IEnumerable<Entity> l)
+        {
+            return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y < this.Y).Max(e => e.Y));
+        }
+
+        public Entity GiveTheFirstUp(IEnumerable<Entity> l)
+        {
+            return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X > this.X).Min(e => e.X));
+        }
+
+        public Entity GiveTheFirstDown(IEnumerable<Entity> l)
+        {
+            return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X < this.X).Max(e => e.X));
         }
     }
 

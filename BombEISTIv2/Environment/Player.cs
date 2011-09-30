@@ -198,5 +198,10 @@ namespace BombEISTIv2.Environment
             }
             return b;
         }
+
+        public void Die(Map m)
+        {
+            
+        }
     }
 }

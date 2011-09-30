@@ -14,6 +14,11 @@
         {
             get { return _type; }
         }
+
+        public void Burn()
+        {
+            
+        }
     }
 
 

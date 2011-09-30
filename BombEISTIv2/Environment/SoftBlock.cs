@@ -15,6 +15,11 @@
         {
             get { return _myUpgrade; }
         }
+
+        public void Destroy(Map m)
+        {
+            m.ListOfUpgrade.Add(MyUpgrade);
+        }
     }
 
     public class Class1
