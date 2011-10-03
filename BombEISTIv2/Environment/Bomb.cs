@@ -39,59 +39,45 @@ namespace BombEISTIv2.Environment
             }
         }
 
-        public void Explode(Map m)
+        public void Explode(Map m, Game g)
         {
-            var toBeDestroy = new List<Entity>();
+            var toBeDestroyed = new List<Entity>();
             var thecompletelist = m.GetCompleteList();
             m.ListOfBomb.Remove(this);
             var l = thecompletelist.Where(c => c.X == this.X || c.Y == this.Y);
-            var theRightDestroyed = this.GiveTheFirstRight(l);
-            if(theRightDestroyed != null)
+            var theRightDestroyed = this.GiveTheFirst(l, Direction.Right);
+            if (theRightDestroyed != null && !g.ToDelete.Contains(theRightDestroyed))
             {
-                toBeDestroy.Add(theRightDestroyed);
+                toBeDestroyed.Add(theRightDestroyed);
             }
-            var theLeftDestroyed = this.GiveTheFirstLeft(l);
-            if(theLeftDestroyed != null)
+            var theLeftDestroyed = this.GiveTheFirst(l, Direction.Left);
+            if (theLeftDestroyed != null && !g.ToDelete.Contains(theLeftDestroyed))
             {
-                toBeDestroy.Add(theLeftDestroyed);
+                toBeDestroyed.Add(theLeftDestroyed);
             }
-            var theUpDestroyed = this.GiveTheFirstUp(l);
-            if(theUpDestroyed != null)
+            var theUpDestroyed = this.GiveTheFirst(l, Direction.Up);
+            if (theUpDestroyed != null && !g.ToDelete.Contains(theUpDestroyed))
             {
-                toBeDestroy.Add(theUpDestroyed);
+                toBeDestroyed.Add(theUpDestroyed);
             }
-            var theDownDestroyed = this.GiveTheFirstDown(l);
-            if(theDownDestroyed != null)
+            var theDownDestroyed = this.GiveTheFirst(l, Direction.Down);
+            if (theDownDestroyed != null && !g.ToDelete.Contains(theDownDestroyed))
             {
-                toBeDestroy.Add(theDownDestroyed);
+                toBeDestroyed.Add(theDownDestroyed);
             }
-            foreach (var e in toBeDestroy)
+
+            foreach (var e in toBeDestroyed)
             {
-                if (e is SoftBlock)
-                {
-                    Entity e1 = e;
-                    var theSoftBlock = m.ListOfSoftBlock.First(c => c.X == e1.X && c.Y == e1.Y);
-                    theSoftBlock.Destroy(m);
-                    m.ListOfSoftBlock.Remove(theSoftBlock);
-                }
-                else if (e is Upgrade)
-                {
-                    var theUpgrade = m.ListOfUpgrade.First(c => c.X == e.X && c.Y == e.Y);
-                    theUpgrade.Burn();
-                    m.ListOfUpgrade.Remove(theUpgrade);
-                }
-                else if (e is Bomb)
+                if (e is Bomb)
                 {
                     var theBomb = m.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
-                    theBomb.Explode(m);
-                    m.ListOfBomb.Remove(theBomb);
+                    theBomb.Explode(m, g);
                 }
-                else if (e is Player)
-                {
-                    var thePlayer = m.ListOfPlayer.First(c => c.X == e.X && c.Y == e.Y);
-                    thePlayer.Die();
-                    m.ListOfPlayer.Remove(thePlayer);
-                }
+            }
+            g.ToDelete.AddRange(toBeDestroyed);
+            if (!g.ToDelete.Contains(this))
+            {
+                g.ToDelete.Add(this);
             }
             Owner.BombExploded(this);
         }

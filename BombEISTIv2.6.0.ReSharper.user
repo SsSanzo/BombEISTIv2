@@ -1,8 +1,6 @@
 <Configuration>
   <RecentFiles>
     <RecentFiles>
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:CrazyGame.cs" caret="17" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="18" fromTop="0" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:MenuListener.cs" caret="15" fromTop="0" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:KeyAction.cs" caret="14" fromTop="0" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:GameListener.cs" caret="19" fromTop="0" />
@@ -16,53 +14,55 @@
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:Texture.cs" caret="14" fromTop="0" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:Animation.cs" caret="16" fromTop="0" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Program.cs" caret="460" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="0" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:Frame.Designer.cs" caret="2014" fromTop="24" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Malus.cs" caret="155" fromTop="5" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:UpgradeType.cs" caret="323" fromTop="13" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:Main.cs" caret="146" fromTop="9" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bonus.cs" caret="670" fromTop="24" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="260" fromTop="12" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Score.cs" caret="433" fromTop="21" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:HardBlock.cs" caret="247" fromTop="10" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:SoftBlock.cs" caret="560" fromTop="15" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Upgrade.cs" caret="500" fromTop="15" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="2020" fromTop="21" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="195" fromTop="9" />
       <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="3612" fromTop="13" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="6803" fromTop="23" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:Frame.Designer.cs" caret="2057" fromTop="26" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:UpgradeType.cs" caret="0" fromTop="0" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Upgrade.cs" caret="0" fromTop="0" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="0" fromTop="0" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bonus.cs" caret="0" fromTop="0" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="1165" fromTop="20" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1520" fromTop="3" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="1885" fromTop="16" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="346" fromTop="13" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="1660" fromTop="14" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="1558" fromTop="27" />
     </RecentFiles>
     <RecentEdits>
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2509" fromTop="14" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2509" fromTop="4" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2509" fromTop="26" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2509" fromTop="28" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2509" fromTop="30" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="6814" fromTop="9" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="3279" fromTop="32" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="286" fromTop="12" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="2236" fromTop="23" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="1305" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="2133" fromTop="32" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="2425" fromTop="24" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="3253" fromTop="32" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="1642" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="1452" fromTop="10" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="1759" fromTop="19" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="1948" fromTop="24" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="2762" fromTop="26" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="2572" fromTop="20" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="2879" fromTop="26" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="3068" fromTop="31" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2635" fromTop="10" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2733" fromTop="13" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="3177" fromTop="23" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="195" fromTop="9" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="3698" fromTop="24" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="3797" fromTop="28" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="3930" fromTop="30" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="3612" fromTop="19" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="7025" fromTop="30" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1337" fromTop="25" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1520" fromTop="33" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1097" fromTop="13" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="3938" fromTop="5" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="3938" fromTop="17" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="3938" fromTop="33" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="3938" fromTop="21" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="3938" fromTop="28" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="3938" fromTop="37" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1494" fromTop="17" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1857" fromTop="26" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="2542" fromTop="36" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="2355" fromTop="32" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="132" fromTop="4" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="1088" fromTop="19" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="1421" fromTop="25" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="2663" fromTop="41" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="2847" fromTop="49" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="605" fromTop="20" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="306" fromTop="8" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="886" fromTop="11" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="2619" fromTop="49" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="1163" fromTop="14" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="106" fromTop="4" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="334" fromTop="10" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="1660" fromTop="31" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="1660" fromTop="14" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="1556" fromTop="19" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="1711" fromTop="43" />
+      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="1556" fromTop="26" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -87,17 +87,17 @@
   <CompletionStatisticsManager>
     <ItemStatistics item="CSharpCodeCompletionContext">
       <Item value="Frame" priority="29" />
-      <Item value="private" priority="958" />
-      <Item value="int" priority="1247" />
-      <Item value="public" priority="1022" />
+      <Item value="private" priority="1214" />
+      <Item value="int" priority="1471" />
+      <Item value="public" priority="1597" />
       <Item value="GetType`0" priority="31" />
-      <Item value="return" priority="1119" />
+      <Item value="return" priority="1471" />
       <Item value="_x" priority="95" />
-      <Item value="value" priority="671" />
+      <Item value="value" priority="735" />
       <Item value="X" priority="351" />
-      <Item value="if" priority="1084" />
+      <Item value="if" priority="1212" />
       <Item value="throw" priority="31" />
-      <Item value="new" priority="382" />
+      <Item value="new" priority="510" />
       <Item value="Exception" priority="28" />
       <Item value="using" priority="61" />
       <Item value="System" priority="61" />
@@ -105,17 +105,17 @@
       <Item value="ResXResourceReader`0" priority="31" />
       <Item value="Console`0" priority="31" />
       <Item value="_length" priority="63" />
-      <Item value="Convert`0" priority="31" />
-      <Item value="Game`0" priority="254" />
-      <Item value="x" priority="352" />
+      <Item value="Convert`0" priority="95" />
+      <Item value="Game`0" priority="286" />
+      <Item value="x" priority="384" />
       <Item value="Y" priority="223" />
-      <Item value="y" priority="159" />
-      <Item value="void" priority="287" />
-      <Item value="enum" priority="30" />
+      <Item value="y" priority="191" />
+      <Item value="void" priority="479" />
+      <Item value="enum" priority="61" />
       <Item value="Direction`0" priority="415" />
       <Item value="d" priority="255" />
       <Item value="Right" priority="84" />
-      <Item value="var" priority="543" />
+      <Item value="var" priority="831" />
       <Item value="switch" priority="223" />
       <Item value="case" priority="863" />
       <Item value="Down" priority="67" />
@@ -127,7 +127,7 @@
       <Item value="Percentx" priority="223" />
       <Item value="Percenty" priority="95" />
       <Item value="_percentx" priority="159" />
-      <Item value="else" priority="157" />
+      <Item value="else" priority="253" />
       <Item value="Player`0" priority="351" />
       <Item value="Kick" priority="50" />
       <Item value="BombUp" priority="33" />
@@ -140,24 +140,24 @@
       <Item value="p" priority="63" />
       <Item value="PowerUpPower`0" priority="31" />
       <Item value="SpeedUpPower`0" priority="31" />
-      <Item value="HardBlock`0" priority="31" />
-      <Item value="List" priority="217" />
-      <Item value="SoftBlock`0" priority="62" />
+      <Item value="HardBlock`0" priority="63" />
+      <Item value="List" priority="340" />
+      <Item value="SoftBlock`0" priority="94" />
       <Item value="listOfHardBlock" priority="31" />
       <Item value="List&lt;HardBlock&gt;" priority="28" />
       <Item value="for" priority="95" />
       <Item value="i" priority="319" />
       <Item value="j" priority="95" />
-      <Item value="ListOfHardBlock" priority="63" />
+      <Item value="ListOfHardBlock" priority="95" />
       <Item value="HardBlock" priority="28" />
-      <Item value="Upgrade`0" priority="189" />
+      <Item value="Upgrade`0" priority="317" />
       <Item value="_upgrades" priority="63" />
       <Item value="List&lt;Upgrade&gt;" priority="57" />
-      <Item value="this" priority="671" />
+      <Item value="this" priority="703" />
       <Item value="_speed" priority="159" />
       <Item value="ApplyUpgrade`0" priority="31" />
-      <Item value="u" priority="190" />
-      <Item value="UpgradeType`0" priority="95" />
+      <Item value="u" priority="286" />
+      <Item value="UpgradeType`0" priority="287" />
       <Item value="type" priority="31" />
       <Item value="ChangeDirection" priority="16" />
       <Item value="PowerDown" priority="16" />
@@ -172,9 +172,9 @@
       <Item value="initSkills`0" priority="31" />
       <Item value="_bombPower" priority="31" />
       <Item value="_canKick" priority="127" />
-      <Item value="false" priority="222" />
+      <Item value="false" priority="286" />
       <Item value="_invertedDirections" priority="95" />
-      <Item value="true" priority="126" />
+      <Item value="true" priority="190" />
       <Item value="_availableBombCount" priority="95" />
       <Item value="AvailableBombCount" priority="127" />
       <Item value="InvertedDirections" priority="127" />
@@ -188,7 +188,7 @@
       <Item value="power" priority="31" />
       <Item value="Owner" priority="127" />
       <Item value="owner" priority="31" />
-      <Item value="readonly" priority="95" />
+      <Item value="readonly" priority="159" />
       <Item value="Score`0" priority="63" />
       <Item value="score" priority="160" />
       <Item value="_score" priority="127" />
@@ -196,20 +196,20 @@
       <Item value="_id" priority="63" />
       <Item value="id" priority="95" />
       <Item value="_scoreMap" priority="63" />
-      <Item value="foreach" priority="159" />
+      <Item value="foreach" priority="255" />
       <Item value="m" priority="350" />
       <Item value="Entity`0" priority="221" />
       <Item value="Map`0" priority="287" />
       <Item value="Entity" priority="29" />
       <Item value="l" priority="159" />
-      <Item value="IEnumerable" priority="95" />
-      <Item value="string" priority="31" />
+      <Item value="IEnumerable" priority="127" />
+      <Item value="string" priority="255" />
       <Item value="List&lt;string&gt;" priority="28" />
       <Item value="kdf" priority="31" />
       <Item value="entity" priority="159" />
       <Item value="thePoint" priority="63" />
       <Item value="Resources`0" priority="31" />
-      <Item value="e" priority="477" />
+      <Item value="e" priority="701" />
       <Item value="List&lt;Entity&gt;" priority="28" />
       <Item value="thecompletelist" priority="287" />
       <Item value="theRightDestroyed" priority="63" />
@@ -217,24 +217,48 @@
       <Item value="theLeftDestroyed" priority="63" />
       <Item value="theUpDestroyed" priority="63" />
       <Item value="Linq" priority="26" />
-      <Item value="c" priority="191" />
+      <Item value="c" priority="383" />
       <Item value="theDownDestroyed" priority="63" />
-      <Item value="is" priority="125" />
+      <Item value="is" priority="221" />
       <Item value="thePlayer" priority="62" />
       <Item value="isExplosing" priority="61" />
       <Item value="_listOfUpgrade" priority="30" />
       <Item value="MyUpgrade" priority="31" />
       <Item value="IsHardBloc`0" priority="31" />
       <Item value="GetCompleteList`0" priority="31" />
-      <Item value="list" priority="31" />
+      <Item value="list" priority="95" />
       <Item value="abstract" priority="31" />
       <Item value="Move`0" priority="31" />
       <Item value="map" priority="64" />
-      <Item value="_map" priority="95" />
+      <Item value="_map" priority="127" />
       <Item value="protected" priority="127" />
       <Item value="None" priority="16" />
       <Item value="mbox" priority="31" />
-      <Item value="CanKick" priority="31" />
+      <Item value="CanKick" priority="63" />
+      <Item value="upgrade" priority="64" />
+      <Item value="ListOfUpgrade" priority="95" />
+      <Item value="static" priority="95" />
+      <Item value="GameParameters`0" priority="127" />
+      <Item value="_gameParameters" priority="128" />
+      <Item value="GameParameters" priority="28" />
+      <Item value="GameType`0" priority="63" />
+      <Item value="_selectedTypeGame" priority="95" />
+      <Item value="_parameterPath" priority="31" />
+      <Item value="_xmlDoc" priority="95" />
+      <Item value="XElement`0" priority="127" />
+      <Item value="Classic" priority="16" />
+      <Item value="_root" priority="127" />
+      <Item value="Type" priority="31" />
+      <Item value="element" priority="191" />
+      <Item value="Dictionary" priority="90" />
+      <Item value="upgrades" priority="159" />
+      <Item value="ut" priority="63" />
+      <Item value="ParameterPath" priority="31" />
+      <Item value="Save`0" priority="31" />
+      <Item value="_theme" priority="127" />
+      <Item value="String`0" priority="63" />
+      <Item value="freq" priority="31" />
+      <Item value="data" priority="31" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
       <Item value="WriteLine`0" priority="26" />
@@ -243,26 +267,31 @@
       <Item value="MapLength" priority="53" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Convert">
-      <Item value="ToInt32`0" priority="26" />
+      <Item value="ToInt32`0" priority="80" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@BombEISTIv2.Environment.Game">
       <Item value="Length" priority="215" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
-      <Item value="Add`0" priority="188" />
+      <Item value="Add`0" priority="215" />
       <Item value="Indexer" priority="26" />
       <Item value="AddRange`0" priority="134" />
-      <Item value="Find`0" priority="26" />
+      <Item value="Find`0" priority="53" />
       <Item value="First`1" priority="26" />
-      <Item value="Remove`0" priority="53" />
+      <Item value="Remove`0" priority="107" />
       <Item value="Where`1" priority="26" />
+      <Item value="FirstOrDefault`1" priority="26" />
+      <Item value="RemoveAll`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEISTIv2.Environment.Upgrade">
       <Item value="GetType`0" priority="53" />
       <Item value="Type" priority="26" />
+      <Item value="X" priority="26" />
+      <Item value="Y" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@BombEISTIv2.Environment.UpgradeType">
       <Item value="Kick" priority="26" />
+      <Item value="TryParse`1" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@BombEISTIv2.Environment.Direction">
       <Item value="Down" priority="107" />
@@ -276,6 +305,7 @@
       <Item value="Y" priority="26" />
       <Item value="BombExploded`0" priority="26" />
       <Item value="GetDirectionTo`0" priority="53" />
+      <Item value="AddAndApplyUpgrade`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEISTIv2.Environment.Bomb">
       <Item value="Owner" priority="26" />
@@ -289,7 +319,11 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.Dictionary`2">
       <Item value="GetEnumerator`0" priority="26" />
-      <Item value="Indexer" priority="26" />
+      <Item value="Indexer" priority="53" />
+      <Item value="Concat`1" priority="26" />
+      <Item value="Contains`1" priority="26" />
+      <Item value="ContainsKey`0" priority="26" />
+      <Item value="Add`0" priority="53" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair`2">
       <Item value="Value" priority="26" />
@@ -300,8 +334,12 @@
       <Item value="Y" priority="352" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
-      <Item value="FirstOrDefault`1" priority="80" />
+      <Item value="FirstOrDefault`1" priority="242" />
       <Item value="Min`1" priority="26" />
+      <Item value="Elements`1" priority="53" />
+      <Item value="Descendants`1" priority="134" />
+      <Item value="Where`1" priority="80" />
+      <Item value="DescendantsAndSelf`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEISTIv2.Environment.Map">
       <Item value="ListOfBomb" priority="26" />
@@ -311,6 +349,29 @@
       <Item value="ListOfUpgrade" priority="53" />
       <Item value="GetCompleteList`0" priority="26" />
       <Item value="GetEntity`0" priority="26" />
+      <Item value="PickupUpgrade`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Linq.XDocument">
+      <Item value="Descendants`0" priority="26" />
+      <Item value="Save`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Linq.XElement">
+      <Item value="Attribute`0" priority="242" />
+      <Item value="Value" priority="107" />
+      <Item value="Element`0" priority="26" />
+      <Item value="Descendants`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Compare`0" priority="80" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Linq.XAttribute">
+      <Item value="Value" priority="242" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BombEISTIv2.Environment.GameType">
+      <Item value="ToString`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BombEISTIv2.Environment.UpgradeType">
+      <Item value="ToString`0" priority="26" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

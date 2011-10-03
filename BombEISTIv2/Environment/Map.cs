@@ -56,6 +56,12 @@ namespace BombEISTIv2.Environment
             }
         }
 
+        public void SetSoftBlockOnMap()
+        {
+            var NumberOfCaseEmpty = (Game.Length*Game.Length) - ListOfHardBlock.Count;
+
+        }
+
         public Upgrade PickupUpgrade(int x, int y)
         {
             var u = ListOfUpgrade.FirstOrDefault(c => c.X == x && c.Y == y);
