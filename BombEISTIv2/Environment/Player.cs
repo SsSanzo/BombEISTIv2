@@ -245,12 +245,28 @@ namespace BombEISTIv2.Environment
         protected override bool Move(int x, int y)
         {
             var e = _map.GetEntity(x, y);
-            if(CanKick && e is Bomb)
+            if(e is Bomb)
             {
-                var b = (Bomb)e;
-                b.Move(this.GetDirectionTo(x,y));
+                if (CanKick)
+                {
+                    var b = (Bomb)e;
+                    b.Move(this.GetDirectionTo(x, y));
+                    return true;
+                }
+                else return false;
+            }
+            else if(e is HardBlock || e is SoftBlock)
+            {
+                return false;
+            }
+            else if(e is Upgrade)
+            {
+                var u = (Upgrade) e;
+                _map.PickupUpgrade(u);
+                AddAndApplyUpgrade(u);
                 return true;
             }
+            return true;
         }
     }
 }

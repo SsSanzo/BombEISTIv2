@@ -56,6 +56,18 @@ namespace BombEISTIv2.Environment
             }
         }
 
+        public Upgrade PickupUpgrade(int x, int y)
+        {
+            var u = ListOfUpgrade.FirstOrDefault(c => c.X == x && c.Y == y);
+            ListOfUpgrade.Remove(u);
+            return u;
+        }
+
+        public bool PickupUpgrade(Upgrade upgrade)
+        {
+            return ListOfUpgrade.Remove(upgrade);
+        }
+
         public List<Entity> GetCompleteList()
         {
             var thecompletelist = new List<Entity>();
