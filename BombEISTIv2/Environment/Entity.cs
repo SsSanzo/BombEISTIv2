@@ -6,14 +6,14 @@ using BombEISTIv2.Properties;
 
 namespace BombEISTIv2.Environment
 {
-    public class Entity
+    public abstract class Entity
     {
         private int _x;
         private int _y;
-        private int _percentx;
-        private int _percenty;
+        protected int _percentx;
+        protected int _percenty;
 
-        public Entity(int x, int y)
+        protected Entity(int x, int y)
         {
             X = x;
             Y = y;
@@ -26,9 +26,7 @@ namespace BombEISTIv2.Environment
             get { return _x; }
             set
             {
-                if (value < 0) throw new Exception("Location Error (x<0) : x=" + value);
-                if (value > Game.Length) throw new Exception("Location Error (x>" + Game.Length + ") : x=" + value);
-                _x = value;
+                if (value >= 0 && value < Game.Length) _x = value;
             }
         }
 
@@ -37,9 +35,7 @@ namespace BombEISTIv2.Environment
             get { return _y; }
             set
             {
-                if (value < 0) throw new Exception("Location Error (y<0) : y=" + value);
-                if (value > Game.Length) throw new Exception("Location Error (y>" + Game.Length + ") : y=" + value);
-                _y = value;
+                if (value >= 0 && value < Game.Length) _y = value;
             }
         }
 
@@ -78,7 +74,8 @@ namespace BombEISTIv2.Environment
                     if (value > 50)
                     {
                         _percenty = -49;
-                        Y++;
+                        var y = Y + 1;
+                        if (Move(X, y)) Y=y;
                     }
                     else if (value <= -50)
                     {
@@ -102,49 +99,46 @@ namespace BombEISTIv2.Environment
             return this;
         }
 
-        public Entity MoveEntityByPixel(Direction d)
+        public Entity GiveTheFirst(IEnumerable<Entity> l, Direction d)
         {
+            if (l == null) return null;
             switch (d)
             {
-                    case Direction.Down:
-                    Percenty--;
-                    break;
-                    case Direction.Up:
-                    Percenty++;
-                    break;
-                    case Direction.Left:
-                    Percentx--;
-                    break;
-                    case Direction.Right:
-                    Percentx++;
-                    break;
+                case Direction.Left: return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X < this.X).Max(e => e.X));
+                case Direction.Right: return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X > this.X).Min(e => e.X));
+                case Direction.Down: return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y < this.Y).Max(e => e.Y));
+                case Direction.Up: return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y > this.Y).Min(e => e.Y));
+                case Direction.None: return l.FirstOrDefault(c => c.X == this.X && c.Y == this.Y);
             }
-            return this;
+            return null;
+        }
+        
+        public Direction GetDirectionTo(int x, int y)
+        {
+            if(X < x)
+            {
+                return Direction.Left;
+            }
+            else if (x < X)
+            {
+                return Direction.Right;
+            }
+            else if (y < Y)
+            {
+                return Direction.Down;
+            }
+            else if (Y < y)
+            {
+                return Direction.Up;
+            }
+            return Direction.None;
         }
 
-        public Entity GiveTheFirstRight(IEnumerable<Entity> l)
-        {
-            return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y > this.Y).Min(e => e.Y));
-        }
-
-        public Entity GiveTheFirstLeft(IEnumerable<Entity> l)
-        {
-            return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y < this.Y).Max(e => e.Y));
-        }
-
-        public Entity GiveTheFirstUp(IEnumerable<Entity> l)
-        {
-            return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X > this.X).Min(e => e.X));
-        }
-
-        public Entity GiveTheFirstDown(IEnumerable<Entity> l)
-        {
-            return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X < this.X).Max(e => e.X));
-        }
+        protected abstract bool Move(int x,int y);
     }
 
     public enum Direction
     {
-        Right, Left, Up, Down
+        Right, Left, Up, Down, None
     }
 }

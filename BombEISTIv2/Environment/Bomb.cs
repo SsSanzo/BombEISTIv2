@@ -42,13 +42,8 @@ namespace BombEISTIv2.Environment
         public void Explode(Map m)
         {
             var toBeDestroy = new List<Entity>();
-            var thecompletelist = new List<Entity>();
+            var thecompletelist = m.GetCompleteList();
             m.ListOfBomb.Remove(this);
-            thecompletelist.AddRange(m.ListOfBomb);
-            thecompletelist.AddRange(m.ListOfHardBlock);
-            thecompletelist.AddRange(m.ListOfPlayer);
-            thecompletelist.AddRange(m.ListOfSoftBlock);
-            thecompletelist.AddRange(m.ListOfUpgrade);
             var l = thecompletelist.Where(c => c.X == this.X || c.Y == this.Y);
             var theRightDestroyed = this.GiveTheFirstRight(l);
             if(theRightDestroyed != null)
@@ -98,8 +93,17 @@ namespace BombEISTIv2.Environment
                     m.ListOfPlayer.Remove(thePlayer);
                 }
             }
+            Owner.BombExploded(this);
         }
 
-        
+        public void Move(Direction d)
+        {
+            
+        }
+
+        protected override bool Move(int x, int y)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -20,10 +20,10 @@
         {
             m.ListOfUpgrade.Add(MyUpgrade);
         }
-    }
 
-    public class Class1
-    {
+        protected override bool Move(int x, int y)
+        {
+            return false;
+        }
     }
-
 }

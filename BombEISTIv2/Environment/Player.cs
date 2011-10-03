@@ -13,8 +13,9 @@ namespace BombEISTIv2.Environment
         private int _bombPower;
         private bool _invertedDirections;
         private readonly Score _score;
+        private readonly Map _map;
 
-        public Player(int id, int x, int y,Score score = null) : base(x, y)
+        public Player(int id, int x, int y, Map map, Score score = null) : base(x, y)
         {
             _id = id;
             if(score == null)
@@ -22,6 +23,7 @@ namespace BombEISTIv2.Environment
                 _score = new Score(id);
             }
             _upgrades = new List<Upgrade>();
+            _map = map;
             InitSkills();
         }
 
@@ -33,6 +35,80 @@ namespace BombEISTIv2.Environment
             CanKick = false;
             InvertedDirections = false;
             AvailableBombCount = 1;
+        }
+
+        public new int Percentx
+        {
+            set
+            {
+                if(InvertedDirections)
+                {
+                    var d = value - _percentx;
+                    value = _percentx - d;
+                }
+                if (!((value < 0 && X == 0) || (value > 0 && X == Game.Length - 1)))
+                {
+                    if (value > 50)
+                    {
+                        var x = X + 1;
+                        if (Move(x, Y))
+                        {
+                            X = x;
+                            _percentx = -49;
+                        }
+                    }
+                    else if (value <= -50)
+                    {
+                        var x = X - 1;
+                        if (Move(x, Y))
+                        {
+                            X = x;
+                            _percentx = 50;
+                        }
+                    }
+                    else
+                    {
+                        _percentx = value;
+                    }
+                }
+            }
+        }
+
+        public new int Percenty
+        {
+            set
+            {
+                if(InvertedDirections)
+                {
+                    var d = value - _percenty;
+                    value = _percenty - d;
+                }
+                if (!((value < 0 && Y == 0) || (value > 0 && Y == Game.Length - 1)))
+                {
+                    if (value > 50)
+                    {
+                        var y = Y + 1;
+                        if (Move(X, y))
+                        {
+                            Y = y;
+                            _percenty = -49;
+                        }
+                    }
+                    else if (value <= -50)
+                    {
+                        var y = Y - 1;
+                        if (Move(X, y))
+                        {
+                            Y = y;
+                            _percenty = 50;
+                        }
+                    }
+                    else
+                    {
+                        _percentx = value;
+                    }
+                }
+            }
         }
 
         public Score Score
@@ -142,44 +218,6 @@ namespace BombEISTIv2.Environment
             return this;
         }
 
-        public Player Move(Direction d)
-        {
-            if(InvertedDirections)
-            {
-                switch (d)
-                {
-                    case Direction.Down:
-                        d = Direction.Up;
-                        break;
-                    case Direction.Up:
-                        d = Direction.Down;
-                        break;
-                    case Direction.Left:
-                        d = Direction.Right;
-                        break;
-                    case Direction.Right:
-                        d = Direction.Left;
-                        break;
-                }
-            }
-            switch (d)
-            {
-                case Direction.Down:
-                    Percenty -=_speed;
-                    break;
-                case Direction.Up:
-                    Percenty += _speed;
-                    break;
-                case Direction.Left:
-                    Percentx -= _speed;
-                    break;
-                case Direction.Right:
-                    Percentx += _speed;
-                    break;
-            }
-            return this;
-        }
-
         public Player BombExploded(Bomb b)
         {
             if(b.Owner == this)
@@ -199,9 +237,20 @@ namespace BombEISTIv2.Environment
             return b;
         }
 
-        public void Die(Map m)
+        public void Die()
         {
             
+        }
+
+        protected override bool Move(int x, int y)
+        {
+            var e = _map.GetEntity(x, y);
+            if(CanKick && e is Bomb)
+            {
+                var b = (Bomb)e;
+                b.Move(this.GetDirectionTo(x,y));
+                return true;
+            }
         }
     }
 }

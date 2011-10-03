@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BombEISTIv2.Environment
 {
@@ -46,13 +47,32 @@ namespace BombEISTIv2.Environment
 
         public void SetHardBlockOnMap()
         {
-            for(var i = 1;i<Game.Length;i=i+2)
+            for(var i = 1;i<Game.Length;i+=2)
             {
-                for(var j = 1;i<Game.Length;j=j+2)
+                for(var j = 1;i<Game.Length;j+=2)
                 {
                     ListOfHardBlock.Add(new HardBlock(i,j));
                 }
             }
         }
+
+        public List<Entity> GetCompleteList()
+        {
+            var thecompletelist = new List<Entity>();
+            thecompletelist.AddRange(ListOfHardBlock);
+            thecompletelist.AddRange(ListOfSoftBlock);
+            thecompletelist.AddRange(ListOfBomb);
+            thecompletelist.AddRange(ListOfUpgrade);
+            thecompletelist.AddRange(ListOfPlayer);
+            return thecompletelist;
+        }
+
+        public Entity GetEntity(int x,int y)
+        {
+            var list = GetCompleteList();
+            return list.FirstOrDefault(c => c.X == x && c.Y == y);
+        }
+
+
     }
 }

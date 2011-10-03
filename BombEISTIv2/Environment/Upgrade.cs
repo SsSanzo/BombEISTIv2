@@ -19,6 +19,11 @@
         {
             
         }
+
+        protected override bool Move(int x, int y)
+        {
+            return false;
+        }
     }
 
 
