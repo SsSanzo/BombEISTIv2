@@ -2,7 +2,7 @@
 <GameParameters>
   <CommonParameter>
     <Themes>
-      <Theme name="Basic" folder="Theme\basic">
+      <Theme name="Basic" folder="Resources\Theme\Basic">
         <Texture object="SoftBloc" source="SoftBloc.png"/>
         <Texture object="HardBloc" source="HardBloc.png"/>
         <Texture object="Bomb" source="Bomb.png"/>
@@ -26,6 +26,10 @@
         <Music object="Explosion" source="explosion.wav" />
       </Theme>
     </Themes>
+    <Menu folder="Resources\Menu">
+      <Texture object="Background" source="background.png"/>
+      <Texture object="Selector" source="selector.png"/>
+    </Menu>
     <SoftBlock count="49"/>
   </CommonParameter>
 	<Game type="Classic">

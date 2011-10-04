@@ -7,7 +7,7 @@ namespace BombEISTIv2.Environment
     {
 
         private GameParameters gp;
-        private Timer timer;
+        private Timer _timer;
 
         public ClassicGame()
         {
@@ -17,30 +17,30 @@ namespace BombEISTIv2.Environment
             TheCurrentMap.SetHardBlockOnMap();
             TheCurrentMap.SetSoftBlockOnMap(gp);
             InitPlayers(gp.NumberOfPlayer);
-            timer = new Timer();
-            timer.Elapsed += HurryUp;
-            timer.AutoReset = false;
-            timer.Interval = gp.GameTime - 30000;
+            _timer = new Timer();
+            _timer.Elapsed += HurryUp;
+            _timer.AutoReset = false;
+            _timer.Interval = gp.GameTime - 30000;
             Start();
         }
 
 
         public void Start()
         {
-            timer.Start();
+            _timer.Start();
         }
 
         public void HurryUp(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            timer.Stop();
-            timer.Elapsed += EndOfTheGame;
-            timer.Interval = 30000;
-            timer.Start();
+            _timer.Stop();
+            _timer.Elapsed += EndOfTheGame;
+            _timer.Interval = 30000;
+            _timer.Start();
         }
 
         public void EndOfTheGame(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            timer.Stop();
+            _timer.Stop();
         }
     }
 }

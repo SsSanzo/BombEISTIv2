@@ -15,20 +15,48 @@ namespace BombEISTIv2.Environment
         
         private static GameParameters _gameParameters;
 
-        public int NumberOfPlayer;
+        private int _numberOfPlayer; // Entre 2 et 4
+        private int _gameTime; // en secondes
 
-        public int GameTime;
 
         private GameParameters()
         {
             _xmlDoc = XDocument.Load(ParameterPath);
             _root = _xmlDoc.Descendants("GameParameter");
             Type = GameType.Classic;
+            GameTime = 300;
+            Network = Network.Local;
         }
 
         public static GameParameters Parameters
         {
             get { return _gameParameters ?? (_gameParameters = new GameParameters()); }
+        }
+
+        public Network Network { get; set; }
+
+        public int GameTime
+        {
+            get { return _gameTime; }
+            set
+            {
+                if(0 < value && value < 600)
+                {
+                    _gameTime = value;
+                }
+            }
+        }
+
+        public int NumberOfPlayer
+        {
+            get { return _numberOfPlayer; }
+            set
+            {
+                if (1 < value && value <5)
+                {
+                    _numberOfPlayer = value;
+                }
+            }
         }
 
         public GameType Type { get; set; }
@@ -73,6 +101,7 @@ namespace BombEISTIv2.Environment
             {
                 data.Add(element.Attribute("object").Value,folder + @"\" + element.Attribute("source").Value);
             }
+            return data;
         }
 
         public List<string> GetThemes()
@@ -129,5 +158,10 @@ namespace BombEISTIv2.Environment
     public enum GameType
     {
         Crazy, Hardcore, Classic
+    }
+
+    public enum Network
+    {
+        Local, Lan, Internet
     }
 }

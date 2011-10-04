@@ -2,3 +2,7 @@ C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv
 C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv2\obj\x86\Debug\BombEISTIv2.Properties.Resources.resources
 C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv2\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv2\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv2\bin\Debug\BombEISTIv2.exe
+C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv2\bin\Debug\BombEISTIv2.pdb
+C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv2\obj\x86\Debug\BombEISTIv2.exe
+C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEISTIv2\obj\x86\Debug\BombEISTIv2.pdb

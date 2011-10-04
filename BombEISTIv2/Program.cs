@@ -14,7 +14,7 @@ namespace BombEISTIv2.Environment
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frame());
+            //Application.Run(new Frame());
         }
     }
 }
