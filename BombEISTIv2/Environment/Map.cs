@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BombEISTIv2.Environment
@@ -56,11 +57,57 @@ namespace BombEISTIv2.Environment
             }
         }
 
-        public void SetSoftBlockOnMap()
+        public void SetSoftBlockOnMap(GameParameters gp)
         {
-            var NumberOfCaseEmpty = (Game.Length*Game.Length) - ListOfHardBlock.Count;
+            var numberOfCaseEmpty = (Game.Length*Game.Length) - ListOfHardBlock.Count;
+            if(numberOfCaseEmpty < 0)
+            {
+                throw new Exception("Empty case are negative");
+            }
+            var allupgrades = gp.GetAllUpgrades();
+            if(allupgrades.Count > gp.SoftBlocCount)
+            {
+                throw new Exception("Too much upgrades");
+            }
+            var theListOfEntityEmptry = new List<Entity>();
+            for(var i = 0;i<Game.Length;i++)
+            {
+                for(var j=0;j<Game.Length;j++)
+                {
+                   if(!(((i <= 1 || i >= Game.Length - 2) && (j <= 1 || j >= Game.Length - 2))))
+                   {
+                       theListOfEntityEmptry.Add(new HardBlock(i,j));
+                   }
+                }
+            }
 
+            for (var i = numberOfCaseEmpty; i > 0; i--)
+            {
+                var rand = new Random();
+                var selectionPick = rand.Next(theListOfEntityEmptry.Count);
+                var thePick = theListOfEntityEmptry.ElementAt(selectionPick);
+                if(allupgrades.Count > 0)
+                {
+                    var selectionUp = rand.Next(allupgrades.Count);
+                    var theUp = allupgrades.ElementAt(selectionUp);
+                    ListOfSoftBlock.Add(new SoftBlock(thePick.X, thePick.Y, new Upgrade(thePick.X, thePick.Y, theUp.Key)));
+                    var key = theUp.Key;
+                    var value = theUp.Value - 1;
+                    allupgrades.Remove(key);
+                    if(value != 0)
+                    {
+                        allupgrades.Add(key, value);
+                    }
+                }else
+                {
+                    ListOfSoftBlock.Add(new SoftBlock(thePick.X, thePick.Y));
+                }
+                theListOfEntityEmptry.RemoveAt(selectionPick);
+                
+            }
         }
+
+        
 
         public Upgrade PickupUpgrade(int x, int y)
         {

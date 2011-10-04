@@ -35,7 +35,7 @@ namespace BombEISTIv2.Environment
             {
                 if (numberOPlayer > 0)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(1, 0, 0, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(1, 0, Length - 1, TheCurrentMap));
                 }
                 if (numberOPlayer > 1)
                 {
@@ -43,11 +43,11 @@ namespace BombEISTIv2.Environment
                 }
                 if (numberOPlayer > 2)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(3, 0, Length - 1, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(3, 0, 0, TheCurrentMap));
                 }
                 if (numberOPlayer > 3)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(4, Length, Length, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(4, Length - 1, Length - 1, TheCurrentMap));
                 }
             }
             else

@@ -48,13 +48,20 @@ namespace BombEISTIv2.Environment
                 {
                     if (value > 50)
                     {
-                        _percentx = -49;
-                        X++;
+                        
+                        var x = X + 1;
+                        if (Move(x, Y))
+                        {
+                            X = x;
+                            _percentx = -49;
+                        }
+                         
                     }
                     else if (value <= -50)
                     {
-                        _percentx = 50;
-                        X--;
+                        
+                        var x = X - 1;
+                        if (Move(x, Y)){ X = x; _percentx = 50;}
                     }
                     else
                     {
@@ -73,14 +80,15 @@ namespace BombEISTIv2.Environment
                 {
                     if (value > 50)
                     {
-                        _percenty = -49;
+                        
                         var y = Y + 1;
-                        if (Move(X, y)) Y=y;
+                        if (Move(X, y)){ Y = y; _percenty = -49;}
                     }
                     else if (value <= -50)
                     {
-                        _percenty = 50;
-                        Y--;
+                        
+                        var y = Y - 1;
+                        if (Move(X, y)){ Y = y; _percenty = 50;}
                     }
                     else
                     {

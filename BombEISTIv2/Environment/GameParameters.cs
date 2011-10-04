@@ -5,15 +5,19 @@ using System.Xml.Linq;
 
 namespace BombEISTIv2.Environment
 {
-    class GameParameters
+    public class GameParameters
     {
-        private const string ParameterPath = "conf.xml";
+        private const string ParameterPath = "config.xml";
         private readonly XDocument _xmlDoc;
         private readonly IEnumerable<XElement> _root;
 
         private XElement _theme;
         
         private static GameParameters _gameParameters;
+
+        public int NumberOfPlayer;
+
+        public int GameTime;
 
         private GameParameters()
         {
@@ -22,7 +26,7 @@ namespace BombEISTIv2.Environment
             Type = GameType.Classic;
         }
 
-        public GameParameters Parameters
+        public static GameParameters Parameters
         {
             get { return _gameParameters ?? (_gameParameters = new GameParameters()); }
         }
