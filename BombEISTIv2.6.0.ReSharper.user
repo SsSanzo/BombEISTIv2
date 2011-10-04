@@ -1,7 +1,32 @@
 <Configuration>
   <RecentFiles>
-    <RecentFiles />
-    <RecentEdits />
+    <RecentFiles>
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="198" fromTop="9" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="1970" fromTop="0" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="886" fromTop="20" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:config.xml" caret="1617" fromTop="30" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="481" fromTop="14" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="459" fromTop="15" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="1272" fromTop="16" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="2387" fromTop="11" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="3531" fromTop="22" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="2345" fromTop="8" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="1616" fromTop="11" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="1970" fromTop="13" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="219" fromTop="2" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="754" fromTop="16" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="70" fromTop="2" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="712" fromTop="22" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="176" fromTop="5" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="886" fromTop="24" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="680" fromTop="27" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="488" fromTop="14" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="396" fromTop="17" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="678" fromTop="29" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="236" fromTop="11" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -25,17 +50,17 @@
   <CompletionStatisticsManager>
     <ItemStatistics item="CSharpCodeCompletionContext">
       <Item value="Frame" priority="29" />
-      <Item value="private" priority="1438" />
-      <Item value="int" priority="1695" />
-      <Item value="public" priority="1884" />
+      <Item value="private" priority="1598" />
+      <Item value="int" priority="1727" />
+      <Item value="public" priority="2012" />
       <Item value="GetType`0" priority="31" />
-      <Item value="return" priority="1567" />
+      <Item value="return" priority="1663" />
       <Item value="_x" priority="95" />
       <Item value="value" priority="831" />
       <Item value="X" priority="351" />
-      <Item value="if" priority="1532" />
+      <Item value="if" priority="1596" />
       <Item value="throw" priority="95" />
-      <Item value="new" priority="1022" />
+      <Item value="new" priority="1150" />
       <Item value="Exception" priority="86" />
       <Item value="using" priority="61" />
       <Item value="System" priority="61" />
@@ -48,12 +73,12 @@
       <Item value="x" priority="480" />
       <Item value="Y" priority="223" />
       <Item value="y" priority="223" />
-      <Item value="void" priority="511" />
+      <Item value="void" priority="543" />
       <Item value="enum" priority="92" />
       <Item value="Direction`0" priority="415" />
       <Item value="d" priority="255" />
       <Item value="Right" priority="84" />
-      <Item value="var" priority="1247" />
+      <Item value="var" priority="1343" />
       <Item value="switch" priority="223" />
       <Item value="case" priority="863" />
       <Item value="Down" priority="67" />
@@ -79,7 +104,7 @@
       <Item value="PowerUpPower`0" priority="31" />
       <Item value="SpeedUpPower`0" priority="31" />
       <Item value="HardBlock`0" priority="63" />
-      <Item value="List" priority="369" />
+      <Item value="List" priority="433" />
       <Item value="SoftBlock`0" priority="94" />
       <Item value="listOfHardBlock" priority="31" />
       <Item value="List&lt;HardBlock&gt;" priority="28" />
@@ -137,11 +162,11 @@
       <Item value="foreach" priority="255" />
       <Item value="m" priority="350" />
       <Item value="Entity`0" priority="221" />
-      <Item value="Map`0" priority="287" />
+      <Item value="Map`0" priority="351" />
       <Item value="Entity" priority="29" />
       <Item value="l" priority="159" />
       <Item value="IEnumerable" priority="127" />
-      <Item value="string" priority="255" />
+      <Item value="string" priority="319" />
       <Item value="List&lt;string&gt;" priority="28" />
       <Item value="kdf" priority="31" />
       <Item value="entity" priority="159" />
@@ -155,7 +180,7 @@
       <Item value="theLeftDestroyed" priority="63" />
       <Item value="theUpDestroyed" priority="63" />
       <Item value="Linq" priority="26" />
-      <Item value="c" priority="383" />
+      <Item value="c" priority="415" />
       <Item value="theDownDestroyed" priority="63" />
       <Item value="is" priority="221" />
       <Item value="thePlayer" priority="62" />
@@ -168,15 +193,15 @@
       <Item value="abstract" priority="31" />
       <Item value="Move`0" priority="31" />
       <Item value="map" priority="64" />
-      <Item value="_map" priority="127" />
+      <Item value="_map" priority="192" />
       <Item value="protected" priority="127" />
       <Item value="None" priority="16" />
       <Item value="mbox" priority="31" />
       <Item value="CanKick" priority="63" />
       <Item value="upgrade" priority="64" />
       <Item value="ListOfUpgrade" priority="95" />
-      <Item value="static" priority="95" />
-      <Item value="GameParameters`0" priority="255" />
+      <Item value="static" priority="127" />
+      <Item value="GameParameters`0" priority="287" />
       <Item value="_gameParameters" priority="160" />
       <Item value="GameParameters" priority="28" />
       <Item value="GameType`0" priority="63" />
@@ -185,16 +210,16 @@
       <Item value="_xmlDoc" priority="95" />
       <Item value="XElement`0" priority="127" />
       <Item value="Classic" priority="33" />
-      <Item value="_root" priority="127" />
+      <Item value="_root" priority="159" />
       <Item value="Type" priority="31" />
       <Item value="element" priority="191" />
-      <Item value="Dictionary" priority="90" />
+      <Item value="Dictionary" priority="151" />
       <Item value="upgrades" priority="159" />
       <Item value="ut" priority="63" />
       <Item value="ParameterPath" priority="31" />
       <Item value="Save`0" priority="31" />
       <Item value="_theme" priority="127" />
-      <Item value="String`0" priority="63" />
+      <Item value="String`0" priority="95" />
       <Item value="freq" priority="31" />
       <Item value="data" priority="63" />
       <Item value="gp" priority="255" />
@@ -216,7 +241,7 @@
       <Item value="ParameterizedThreadStart`0" priority="31" />
       <Item value="Start`0" priority="31" />
       <Item value="timer" priority="671" />
-      <Item value="Timer" priority="115" />
+      <Item value="Timer" priority="144" />
       <Item value="TimerCallback" priority="28" />
       <Item value="state" priority="63" />
       <Item value="EndOfTheGame`0" priority="64" />
@@ -230,6 +255,15 @@
       <Item value="_network" priority="31" />
       <Item value="Local" priority="16" />
       <Item value="Network" priority="64" />
+      <Item value="TimerManager`0" priority="95" />
+      <Item value="_timers" priority="63" />
+      <Item value="List&lt;Timer&gt;" priority="28" />
+      <Item value="_AppDomain`0" priority="31" />
+      <Item value="TimerManager" priority="28" />
+      <Item value="_this" priority="31" />
+      <Item value="Timer`0" priority="31" />
+      <Item value="t" priority="31" />
+      <Item value="lastId" priority="63" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
       <Item value="WriteLine`0" priority="26" />
@@ -244,7 +278,7 @@
       <Item value="Length" priority="431" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
-      <Item value="Add`0" priority="269" />
+      <Item value="Add`0" priority="296" />
       <Item value="Indexer" priority="26" />
       <Item value="AddRange`0" priority="134" />
       <Item value="Find`0" priority="53" />
@@ -311,9 +345,9 @@
       <Item value="Y" priority="406" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
-      <Item value="FirstOrDefault`1" priority="242" />
+      <Item value="FirstOrDefault`1" priority="296" />
       <Item value="Min`1" priority="26" />
-      <Item value="Elements`1" priority="53" />
+      <Item value="Elements`1" priority="80" />
       <Item value="Descendants`1" priority="134" />
       <Item value="Where`1" priority="80" />
       <Item value="DescendantsAndSelf`0" priority="26" />
@@ -337,9 +371,10 @@
       <Item value="Value" priority="107" />
       <Item value="Element`0" priority="26" />
       <Item value="Descendants`0" priority="26" />
+      <Item value="Name" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.String">
-      <Item value="Compare`0" priority="80" />
+      <Item value="Compare`0" priority="107" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Xml.Linq.XAttribute">
       <Item value="Value" priority="242" />
@@ -379,6 +414,18 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Timers.ElapsedEventArgs">
       <Item value="SignalTime" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Linq.XName">
+      <Item value="LocalName" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@BombEistiv2WPF.Environment.GameParameters">
+      <Item value="Parameters" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@BombEistiv2WPF.TimerManager">
+      <Item value="_" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BombEistiv2WPF.TimerManager">
+      <Item value="GetNewTimer`0" priority="26" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

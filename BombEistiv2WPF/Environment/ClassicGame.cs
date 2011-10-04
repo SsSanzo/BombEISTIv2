@@ -15,7 +15,7 @@ namespace BombEistiv2WPF.Environment
             Map.SetHardBlockOnMap();
             Map.SetSoftBlockOnMap();
             InitPlayers(GameParameters._.PlayerCount);
-            _timer = new Timer();
+            _timer = TimerManager._.GetNewTimer();
             _timer.Elapsed += HurryUp;
             _timer.AutoReset = false;
             _timer.Interval = GameParameters._.GameTime - 30000;
