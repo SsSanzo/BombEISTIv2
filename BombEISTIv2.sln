@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombEISTIv2", "BombEISTIv2\BombEISTIv2.csproj", "{710A9068-63CA-4EE5-87AE-0F045D9B0DB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombEISTIv1.9", "BombEISTIv2\BombEISTIv1.9.csproj", "{710A9068-63CA-4EE5-87AE-0F045D9B0DB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombEistiv2WPF", "BombEistiv2WPF\BombEistiv2WPF.csproj", "{C33B1AB2-ABE1-4DA4-BE04-6101453942A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{710A9068-63CA-4EE5-87AE-0F045D9B0DB0}.Debug|x86.Build.0 = Debug|x86
 		{710A9068-63CA-4EE5-87AE-0F045D9B0DB0}.Release|x86.ActiveCfg = Release|x86
 		{710A9068-63CA-4EE5-87AE-0F045D9B0DB0}.Release|x86.Build.0 = Release|x86
+		{C33B1AB2-ABE1-4DA4-BE04-6101453942A3}.Debug|x86.ActiveCfg = Debug|x86
+		{C33B1AB2-ABE1-4DA4-BE04-6101453942A3}.Debug|x86.Build.0 = Debug|x86
+		{C33B1AB2-ABE1-4DA4-BE04-6101453942A3}.Release|x86.ActiveCfg = Release|x86
+		{C33B1AB2-ABE1-4DA4-BE04-6101453942A3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
