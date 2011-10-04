@@ -10,19 +10,19 @@ namespace BombEistiv2WPF.Environment
 
         public ClassicGame()
         {
-            gp = GameParameters.Parameters;
-            gp.Type = GameType.Classic;
-            TheCurrentMap = new Map();
-            TheCurrentMap.SetHardBlockOnMap();
-            TheCurrentMap.SetSoftBlockOnMap(gp);
-            InitPlayers(gp.NumberOfPlayer);
+            GameParameters._.Type = GameType.Classic;
+            Map = new Map();
+            Map.SetHardBlockOnMap();
+            Map.SetSoftBlockOnMap();
+            InitPlayers(GameParameters._.PlayerCount);
             _timer = new Timer();
             _timer.Elapsed += HurryUp;
             _timer.AutoReset = false;
-            _timer.Interval = gp.GameTime - 30000;
+            _timer.Interval = GameParameters._.GameTime - 30000;
             Start();
         }
 
+        public Map Map { get; private set; }
 
         public void Start()
         {

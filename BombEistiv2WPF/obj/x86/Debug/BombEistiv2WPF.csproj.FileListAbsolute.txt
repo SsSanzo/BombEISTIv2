@@ -11,3 +11,5 @@ D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\GenerateResource.read.1
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\GenerateResource.write.1.tlog
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.exe
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.pdb
+C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.exe
+C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.pdb

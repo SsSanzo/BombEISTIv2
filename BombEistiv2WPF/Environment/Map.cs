@@ -57,15 +57,15 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
-        public void SetSoftBlockOnMap(GameParameters gp)
+        public void SetSoftBlockOnMap()
         {
             var numberOfCaseEmpty = (Game.Length*Game.Length) - ListOfHardBlock.Count;
             if(numberOfCaseEmpty < 0)
             {
                 throw new Exception("Empty case are negative");
             }
-            var allupgrades = gp.GetAllUpgrades();
-            if(allupgrades.Count > gp.SoftBlocCount)
+            var allupgrades = GameParameters._.GetAllUpgrades();
+            if (allupgrades.Count > GameParameters._.SoftBlocCount)
             {
                 throw new Exception("Too much upgrades");
             }

@@ -1,68 +1,7 @@
 <Configuration>
   <RecentFiles>
-    <RecentFiles>
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:MenuListener.cs" caret="15" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:KeyAction.cs" caret="14" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:GameListener.cs" caret="19" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:Movement.cs" caret="13" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Control/f:_Listener.cs" caret="14" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:PlaySound.cs" caret="16" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:PlayerSkin.cs" caret="16" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:MapSkin.cs" caret="16" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:GameTimer.cs" caret="16" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:Explosion.cs" caret="16" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:Texture.cs" caret="14" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:View/f:Animation.cs" caret="16" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Malus.cs" caret="155" fromTop="5" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:Main.cs" caret="146" fromTop="9" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Score.cs" caret="433" fromTop="21" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:SoftBlock.cs" caret="560" fromTop="15" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:UpgradeType.cs" caret="0" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Upgrade.cs" caret="0" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bonus.cs" caret="0" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Game.cs" caret="933" fromTop="18" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="3123" fromTop="7" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Bomb.cs" caret="125" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Player.cs" caret="754" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2151" fromTop="11" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:HardBlock.cs" caret="0" fromTop="0" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:Program.cs" caret="433" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="1050" fromTop="14" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="516" fromTop="15" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="142" fromTop="4" />
-    </RecentFiles>
-    <RecentEdits>
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="344" fromTop="3" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="2041" fromTop="18" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="3524" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="2767" fromTop="14" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="3588" fromTop="21" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="3366" fromTop="21" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="3260" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="3568" fromTop="24" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Map.cs" caret="1677" fromTop="2" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="1171" fromTop="17" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="1361" fromTop="22" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="1613" fromTop="18" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2207" fromTop="12" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:Entity.cs" caret="2430" fromTop="18" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="35" fromTop="1" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="1175" fromTop="24" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="573" fromTop="4" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="1039" fromTop="17" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="972" fromTop="11" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1567" fromTop="32" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1436" fromTop="27" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="5248" fromTop="26" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="1023" fromTop="19" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="787" fromTop="11" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="537" fromTop="1" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:GameParameters.cs" caret="3402" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/d:Environment/f:ClassicGame.cs" caret="198" fromTop="3" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:Program.cs" caret="433" fromTop="16" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="144" fromTop="4" />
-      <File id="710A9068-63CA-4EE5-87AE-0F045D9B0DB0/f:config.xml" caret="1626" fromTop="30" />
-    </RecentEdits>
+    <RecentFiles />
+    <RecentEdits />
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />

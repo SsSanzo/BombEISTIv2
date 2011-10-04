@@ -13,9 +13,9 @@ namespace BombEistiv2WPF.Environment
 
         private XElement _theme;
         
-        private static GameParameters _gameParameters;
+        private static GameParameters _this;
 
-        private int _numberOfPlayer; // Entre 2 et 4
+        private int _playerCount; // Entre 2 et 4
         private int _gameTime; // en secondes
 
 
@@ -28,9 +28,9 @@ namespace BombEistiv2WPF.Environment
             Network = Network.Local;
         }
 
-        public static GameParameters Parameters
+        public static GameParameters _
         {
-            get { return _gameParameters ?? (_gameParameters = new GameParameters()); }
+            get { return _this ?? (_this = new GameParameters()); }
         }
 
         public Network Network { get; set; }
@@ -47,14 +47,14 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
-        public int NumberOfPlayer
+        public int PlayerCount
         {
-            get { return _numberOfPlayer; }
+            get { return _playerCount; }
             set
             {
                 if (1 < value && value <5)
                 {
-                    _numberOfPlayer = value;
+                    _playerCount = value;
                 }
             }
         }
@@ -77,6 +77,16 @@ namespace BombEistiv2WPF.Environment
             return upgrades;
         }
 
+        public Dictionary<string,string> GetMenuTemplate()
+        {
+            var d = new Dictionary<string, string>();
+            var menu = _root.Elements("Menu").FirstOrDefault();
+            var e = menu.Descendants();
+            var folder = menu.Attribute("folder");
+            return e.ToDictionary(element => element.Attribute("object").Value, element => folder + @"\" + element.Attribute("source").Value);
+
+        }
+
         public void ResetUpgradeFrequence()
         {
             var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");
@@ -96,12 +106,7 @@ namespace BombEistiv2WPF.Environment
         {
             var e = _theme.Descendants();
             var folder = _theme.Attribute("folder");
-            var data = new Dictionary<string, string>();
-            foreach (var element in e)
-            {
-                data.Add(element.Attribute("object").Value,folder + @"\" + element.Attribute("source").Value);
-            }
-            return data;
+            return e.ToDictionary(element => element.Attribute("object").Value, element => folder + @"\" + element.Attribute("source").Value);
         }
 
         public List<string> GetThemes()
