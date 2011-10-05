@@ -5,7 +5,6 @@ namespace BombEistiv2WPF.Environment
     public class ClassicGame : Game
     {
 
-        private GameParameters gp;
         private Timer _timer;
 
         public ClassicGame()
@@ -15,7 +14,7 @@ namespace BombEistiv2WPF.Environment
             Map.SetHardBlockOnMap();
             Map.SetSoftBlockOnMap();
             InitPlayers(GameParameters._.PlayerCount);
-            _timer = TimerManager._.GetNewTimer();
+            _timer = new Timer();//TimerManager._.GetNewTimer();
             _timer.Elapsed += HurryUp;
             _timer.AutoReset = false;
             _timer.Interval = GameParameters._.GameTime - 30000;
