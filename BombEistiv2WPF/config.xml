@@ -24,6 +24,10 @@
         <Music object="Win" source="win.wav" />
         <Music object="Draw" source="win.wav" />
         <Music object="Explosion" source="explosion.wav" />
+        <Player id="1" direction="up" source="player1_up.png"/>
+        <Player id="1" direction="down" source="player1_down.png"/>
+        <Player id="1" direction="left" source="player1_left.png"/>
+        <Player id="1" direction="right" source="player1_right.png"/>
       </Theme>
     </Themes>
     <Menu folder="Resources\Menu">

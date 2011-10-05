@@ -13,6 +13,7 @@ namespace BombEistiv2WPF.Environment
         {
             Power = power;
             Owner = owner;
+            TimerManager._.GetNewTimer(false,GameParameters._.ExplosionDelay)
         }
 
         public Player Owner
@@ -84,7 +85,7 @@ namespace BombEistiv2WPF.Environment
 
         public void Move(Direction d)
         {
-            
+            // =>
         }
 
         protected override bool Move(int x, int y)

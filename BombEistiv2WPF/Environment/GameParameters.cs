@@ -17,6 +17,7 @@ namespace BombEistiv2WPF.Environment
 
         private int _playerCount; // Entre 2 et 4
         private int _gameTime; // en secondes
+        private int _explosionDelay;
 
 
         private GameParameters()
@@ -34,6 +35,18 @@ namespace BombEistiv2WPF.Environment
         }
 
         public Network Network { get; set; }
+
+        public int ExplosionDelay
+        {
+            get { return _explosionDelay; }
+            set
+            {
+                if(0 < value && value < 6)
+                {
+                    _explosionDelay = value;
+                }
+            }
+        }
 
         public int GameTime
         {
