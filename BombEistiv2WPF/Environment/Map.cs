@@ -50,7 +50,7 @@ namespace BombEistiv2WPF.Environment
         {
             for(var i = 1;i<Game.Length;i+=2)
             {
-                for(var j = 1;i<Game.Length;j+=2)
+                for(var j = 1;j<Game.Length;j+=2)
                 {
                     ListOfHardBlock.Add(new HardBlock(i,j));
                 }

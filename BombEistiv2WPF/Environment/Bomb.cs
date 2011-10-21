@@ -13,7 +13,7 @@ namespace BombEistiv2WPF.Environment
         {
             Power = power;
             Owner = owner;
-            TimerManager._.GetNewTimer(false,GameParameters._.ExplosionDelay)
+            //TimerManager._.GetNewTimer(false, GameParameters._.ExplosionDelay);
         }
 
         public Player Owner

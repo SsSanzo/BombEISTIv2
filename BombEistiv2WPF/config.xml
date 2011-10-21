@@ -2,9 +2,9 @@
 <GameParameters>
   <CommonParameter>
     <Themes>
-      <Theme name="Basic" folder="Resources\Theme\Basic">
-        <Texture object="SoftBloc" source="SoftBloc.png"/>
-        <Texture object="HardBloc" source="HardBloc.png"/>
+      <Theme name="Basic" folder="Resources\Theme\">
+        <Texture object="SoftBloc" source="SoftBlock.png"/>
+        <Texture object="HardBloc" source="HardBlock.png"/>
         <Texture object="Bomb" source="Bomb.png"/>
         <Texture object="Upgrade.Kick" source="Kick.png"/>
         <Texture object="Upgrade.PowerUp" source="PowerUp.png"/>
@@ -17,17 +17,44 @@
         <Texture object="Upgrade.ChangeDirection" source="ChangeDirection.png"/>
         <Texture object="Upgrade.Teleport" source="Teleport.png"/>
         <Texture object="Upgrade.SpeedMax" source="SpeedMax.png"/>
+        <Texture object="Upgrade.Life" source="Life.png"/>
         <Music object="Menu" source="menu.wav" />
         <Music object="Game" source="game1.wav" />
-        <Music object="Game" source="game2.wav" />
-        <Music object="Game" source="game3.wav" />
         <Music object="Win" source="win.wav" />
         <Music object="Draw" source="win.wav" />
         <Music object="Explosion" source="explosion.wav" />
-        <Player id="1" direction="up" source="player1_up.png"/>
-        <Player id="1" direction="down" source="player1_down.png"/>
-        <Player id="1" direction="left" source="player1_left.png"/>
-        <Player id="1" direction="right" source="player1_right.png"/>
+        <Player object="Player_1_up" source="player_1_up.png"/>
+        <Player object="Player_1_down" source="player_1_down.png"/>
+        <Player object="Player_1_left" source="player_1_left.png"/>
+        <Player object="Player_1_right" source="player_1_right.png"/>
+        <Player object="Player_2_up" source="player_2_up.png"/>
+        <Player object="Player_2_down" source="player_2_down.png"/>
+        <Player object="Player_2_left" source="player_2_left.png"/>
+        <Player object="Player_2_right" source="player_2_right.png"/>
+        <Player object="Player_3_up" source="player_3_up.png"/>
+        <Player object="Player_3_down" source="player_3_down.png"/>
+        <Player object="Player_3_left" source="player_3_left.png"/>
+        <Player object="Player_3_right" source="player_3_right.png"/>
+        <Player object="Player_4_up" source="player_4_up.png"/>
+        <Player object="Player_4_down" source="player_4_down.png"/>
+        <Player object="Player_4_left" source="player_4_left.png"/>
+        <Player object="Player_4_right" source="player_4_right.png"/>
+        <Player object="Player_5_up" source="player_5_up.png"/>
+        <Player object="Player_5_down" source="player_5_down.png"/>
+        <Player object="Player_5_left" source="player_5_left.png"/>
+        <Player object="Player_5_right" source="player_5_right.png"/>
+        <Player object="Player_6_up" source="player_6_up.png"/>
+        <Player object="Player_6_down" source="player_6_down.png"/>
+        <Player object="Player_6_left" source="player_6_left.png"/>
+        <Player object="Player_6_right" source="player_6_right.png"/>
+        <Player object="Player_7_up" source="player_7_up.png"/>
+        <Player object="Player_7_down" source="player_7_down.png"/>
+        <Player object="Player_7_left" source="player_7_left.png"/>
+        <Player object="Player_7_right" source="player_7_right.png"/>
+        <Player object="Player_8_up" source="player_8_up.png"/>
+        <Player object="Player_8_down" source="player_8_down.png"/>
+        <Player object="Player_8_left" source="player_8_left.png"/>
+        <Player object="Player_8_right" source="player_8_right.png"/>
       </Theme>
     </Themes>
     <Menu folder="Resources\Menu">
@@ -50,6 +77,7 @@
 		  <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="1" currentFreq="1">Life</Upgrade>
     </Upgrades>
 	</Game>
 	<Game type="Hardcore">
@@ -66,6 +94,7 @@
 		  <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="1" currentFreq="1">Life</Upgrade>
     </Updrades>
 	</Game>
 	<Game type="Crazy">
@@ -82,6 +111,7 @@
 		  <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="1" currentFreq="1">Life</Upgrade>
     </Upgrades>
 	</Game>
 </GameParameters>

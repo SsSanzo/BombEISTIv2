@@ -3,7 +3,7 @@
     public enum UpgradeType
     {
         //bonus
-        Kick, PowerUp, SpeedUp, PowerMax, BombUp,
+        Kick, PowerUp, SpeedUp, PowerMax, BombUp, Life,
         //malus
         PowerDown, SpeedDown, ChangeDirection, Teleport, SpeedMax
     }

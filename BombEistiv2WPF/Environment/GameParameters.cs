@@ -7,7 +7,7 @@ namespace BombEistiv2WPF.Environment
 {
     public class GameParameters
     {
-        private const string ParameterPath = "config.xml";
+        private const string ParameterPath = "../../config.xml";
         private readonly XDocument _xmlDoc;
         private readonly IEnumerable<XElement> _root;
 
@@ -23,10 +23,11 @@ namespace BombEistiv2WPF.Environment
         private GameParameters()
         {
             _xmlDoc = XDocument.Load(ParameterPath);
-            _root = _xmlDoc.Descendants("GameParameter");
+            _root = _xmlDoc.Descendants("GameParameters");
             Type = GameType.Classic;
             GameTime = 300;
             Network = Network.Local;
+            Theme = "Basic";
         }
 
         public static GameParameters _
@@ -77,7 +78,7 @@ namespace BombEistiv2WPF.Environment
         public Dictionary<UpgradeType,int> GetAllUpgrades()
         {
             var upgrades = new Dictionary<UpgradeType,int>();
-            var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");
+            var e = _root.Where(c => String.Compare(Type.ToString(), c.Element("Game").Attribute("type").Value) == 0).Descendants("Upgrades");
             foreach (var element in e)
             {
                 UpgradeType ut;
@@ -115,11 +116,11 @@ namespace BombEistiv2WPF.Environment
             e.Attribute("currentFreq").Value = freq + "";
         }
 
-        public Dictionary<string,string> GetThemeData()
+        public Dictionary<string,string> GetThemeData(string Theme)
         {
             var e = _theme.Descendants();
-            var folder = _theme.Attribute("folder");
-            return e.ToDictionary(element => element.Attribute("object").Value, element => folder + @"\" + element.Attribute("source").Value);
+            var folder = _theme.Attribute("folder").Value;
+            return e.ToDictionary(element => element.Attribute("object").Value, element => folder + Theme + @"\" + element.Attribute("source").Value);
         }
 
         public List<string> GetThemes()
@@ -138,7 +139,7 @@ namespace BombEistiv2WPF.Environment
             set
             {
                 var e =
-                    _root.Descendants("Themes").Where(c => String.Compare(value, c.Attribute("name").Value) == 0).
+                    _root.Descendants("Themes").Elements("Theme").Where(c => String.Compare(value, c.Attribute("name").Value) == 0).
                         FirstOrDefault();
                 _theme = e;
             }
@@ -148,12 +149,12 @@ namespace BombEistiv2WPF.Environment
         {
             get
             {
-                var e = _root.Descendants("CommonParameter").Elements("SoftBloc").FirstOrDefault();
+                var e = _root.Descendants("CommonParameter").Elements("SoftBlock").FirstOrDefault();
                 return Convert.ToInt32(e.Attribute("count").Value);
             }
             set
             {
-                var e = _root.Descendants("CommonParameter").Elements("SoftBloc").FirstOrDefault();
+                var e = _root.Descendants("CommonParameter").Elements("SoftBlock").FirstOrDefault();
                 e.Attribute("count").Value = value+"";
             }
         }

@@ -11,6 +11,7 @@ namespace BombEistiv2WPF.Environment
         private int _bombCount;
         private int _availableBombCount;
         private int _bombPower;
+        private int _lives;
         private readonly Score _score;
         private readonly Map _map;
 
@@ -34,6 +35,7 @@ namespace BombEistiv2WPF.Environment
             CanKick = false;
             InvertedDirections = false;
             AvailableBombCount = 1;
+            Lives = 1;
         }
 
         public new int Percentx
@@ -156,6 +158,15 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
+        public int Lives
+        {
+            get { return _lives; }
+            private set
+            {
+                _lives = value;
+            }
+        }
+
         public bool CanKick { get; private set; }
 
         private bool InvertedDirections { get; set; }
@@ -213,6 +224,10 @@ namespace BombEistiv2WPF.Environment
                     case UpgradeType.Teleport:
                         //Managed by the Game class
                         break;
+                    case UpgradeType.Life:
+                        Lives++;
+                        break;
+
             }
             return this;
         }

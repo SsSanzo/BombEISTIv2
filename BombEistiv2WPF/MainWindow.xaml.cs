@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BombEistiv2WPF.Environment;
+using BombEistiv2WPF.View;
 
 namespace BombEistiv2WPF
 {
@@ -21,11 +22,11 @@ namespace BombEistiv2WPF
     public partial class MainWindow : Window
     {
         private Game _gameInProgress;
+        private Texture texture;
 
         public MainWindow()
         {
             InitializeComponent();
-            _gameInProgress = new ClassicGame();
         }
 
         public Game GameInProgress
@@ -33,9 +34,23 @@ namespace BombEistiv2WPF
             get { return _gameInProgress; }
         }
 
+        public void InitTexture()
+        {
+            texture.LoadAllTextures();
+            texture.LoadTextureList(GameInProgress.TheCurrentMap.GetCompleteList());
+            foreach (var tl in texture.TextureList)
+            {
+                MainGrid.Children.Add(tl.Value);
+            }
+            
+        }
+
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            var b = new Button {Margin = new Thickness(180, 150, 0, 0), Width = 75, Height = 23};
+            _gameInProgress = new ClassicGame();
+            texture = new Texture(GameParameters._.GetThemeData("Basic"));
+            InitTexture();
+
         }
     }
 }
