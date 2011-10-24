@@ -9,19 +9,22 @@ namespace BombEistiv2WPF.Environment
         private Player _owner;
         private int _power;
 
-        public Bomb(int x, int y, int power, Player owner) : base(x, y)
+
+        public Bomb(int x, int y, int power, Player owner)
+            : base(x, y)
         {
             Power = power;
             Owner = owner;
-            //TimerManager._.GetNewTimer(false, GameParameters._.ExplosionDelay);
+            TimerManager._.GetNewTimer(false, GameParameters._.ExplosionDelay, true, new TimerEvent { InvolvedObject = this, Type = EventType.BombExplode });
         }
+
 
         public Player Owner
         {
             get { return _owner; }
             private set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _owner = value;
                 }
@@ -33,7 +36,7 @@ namespace BombEistiv2WPF.Environment
             get { return _power; }
             private set
             {
-                if (value >=1 && value <= Game.Length)
+                if (value >= 1 && value <= Game.Length)
                 {
                     _power = value;
                 }

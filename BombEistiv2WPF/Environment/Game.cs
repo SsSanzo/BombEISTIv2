@@ -15,14 +15,25 @@ namespace BombEistiv2WPF.Environment
         {
             get
             {
-                if(_length == 0)
+                if (_length == 0)
                 {
                     _length = Convert.ToInt32(Resources.MapLength);
                 }
                 return _length;
             }
         }
-        
+
+        public void EventManager(TimerEvent timerEvent)
+        {
+            switch (timerEvent.Type)
+            {
+                case EventType.BombExplode:
+                    var b = (Bomb)timerEvent.InvolvedObject;
+                    b.Explode(TheCurrentMap, this);
+                    break;
+            }
+        }
+
         public List<Entity> ToDelete
         {
             set { _toDelete = value; }
