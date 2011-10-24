@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace BombEistiv2WPF.Environment
 {
-    public abstract class Entity
+    public abstract class Entity : Image
     {
         private int _x;
         private int _y;
         protected int _percentx;
         protected int _percenty;
+        private Thickness tick;
 
         protected Entity(int x, int y)
         {
@@ -16,6 +20,16 @@ namespace BombEistiv2WPF.Environment
             Y = y;
             Percentx = 0;
             Percenty = 0;
+            HorizontalAlignment = HorizontalAlignment.Left;
+            VerticalAlignment = VerticalAlignment.Top;
+            tick = new Thickness
+                       {
+                           Left = (X * 40) + (40 * ((double)Percentx / 100.0)),
+                           Top = (Y*40) + (40*((double) Percenty/100.0)),
+                           Right = 0.0,
+                           Bottom = 0.0
+                       };
+            Margin = tick;
         }
 
         public int X
@@ -23,7 +37,11 @@ namespace BombEistiv2WPF.Environment
             get { return _x; }
             set
             {
-                if (value >= 0 && value < Game.Length) _x = value;
+                if (value >= 0 && value < Game.Length)
+                {
+                    _x = value;
+                    reloadTickLeft();
+                }
             }
         }
 
@@ -32,7 +50,11 @@ namespace BombEistiv2WPF.Environment
             get { return _y; }
             set
             {
-                if (value >= 0 && value < Game.Length) _y = value;
+                if (value >= 0 && value < Game.Length)
+                {
+                    _y = value;
+                    reloadTickTop();
+                }
             }
         }
 
@@ -64,6 +86,7 @@ namespace BombEistiv2WPF.Environment
                     {
                         _percentx = value;
                     }
+                    reloadTickLeft();
                 }
             }
         }
@@ -91,6 +114,7 @@ namespace BombEistiv2WPF.Environment
                     {
                         _percentx = value;
                     }
+                    reloadTickTop();
                 }
             }
         }
@@ -101,6 +125,8 @@ namespace BombEistiv2WPF.Environment
             Y = y;
             Percentx = 0;
             Percenty = 0;
+            reloadTickLeft();
+            reloadTickTop();
             return this;
         }
 
@@ -137,6 +163,18 @@ namespace BombEistiv2WPF.Environment
                 return Direction.Up;
             }
             return Direction.None;
+        }
+
+        public void reloadTickLeft()
+        {
+            tick.Left = (X * 40) + (40 * ((double)Percentx / 100.0));
+            Margin = tick;
+        }
+
+        public void reloadTickTop()
+        {
+            tick.Top = (Y * 40) + (40 * ((double)Percenty / 100.0));
+            Margin = tick;
         }
 
         protected abstract bool Move(int x,int y);

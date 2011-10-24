@@ -120,7 +120,7 @@ namespace BombEistiv2WPF.Environment
         {
             var e = _theme.Descendants();
             var folder = _theme.Attribute("folder").Value;
-            return e.ToDictionary(element => element.Attribute("object").Value, element => folder + Theme + @"\" + element.Attribute("source").Value);
+            return e.ToDictionary(element => element.Attribute("object").Value, element => @"\" + folder + Theme + @"\" + element.Attribute("source").Value);
         }
 
         public List<string> GetThemes()

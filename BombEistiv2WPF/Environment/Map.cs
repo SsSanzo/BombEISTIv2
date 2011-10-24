@@ -74,16 +74,21 @@ namespace BombEistiv2WPF.Environment
             {
                 for(var j=0;j<Game.Length;j++)
                 {
-                   if(!(((i <= 1 || i >= Game.Length - 2) && (j <= 1 || j >= Game.Length - 2))))
+                   if (!(((i <= 1 || i >= Game.Length - 2) && (j <= 1 || j >= Game.Length - 2))))
                    {
-                       theListOfEntityEmptry.Add(new HardBlock(i,j));
+                       if((i%2 == 0) || (j%2 == 0))
+                       {
+                           theListOfEntityEmptry.Add(new HardBlock(i,j));
+                       }
+                       
                    }
                 }
             }
 
-            for (var i = numberOfCaseEmpty; i > 0; i--)
+            var rand = new Random();
+            for (var i = GameParameters._.SoftBlocCount; i > 0; i--)
             {
-                var rand = new Random();
+                
                 var selectionPick = rand.Next(theListOfEntityEmptry.Count);
                 var thePick = theListOfEntityEmptry.ElementAt(selectionPick);
                 if(allupgrades.Count > 0)

@@ -71,15 +71,18 @@ namespace BombEistiv2WPF.Environment
                     {
                         _percentx = value;
                     }
+                    reloadTickLeft();
                 }
             }
+
+            get { return _percentx; }
         }
 
         public new int Percenty
         {
             set
             {
-                if(InvertedDirections)
+                if (InvertedDirections)
                 {
                     var d = value - _percenty;
                     value = _percenty - d;
@@ -106,10 +109,13 @@ namespace BombEistiv2WPF.Environment
                     }
                     else
                     {
-                        _percentx = value;
+                        _percenty = value;
                     }
+                    reloadTickTop();
                 }
             }
+
+            get { return _percenty; }
         }
 
         public Score Score

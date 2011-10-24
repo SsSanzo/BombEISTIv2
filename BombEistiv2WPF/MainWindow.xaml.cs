@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BombEistiv2WPF.Environment;
 using BombEistiv2WPF.View;
 
@@ -23,10 +13,13 @@ namespace BombEistiv2WPF
     {
         private Game _gameInProgress;
         private Texture texture;
+        private Timer time;
 
         public MainWindow()
         {
             InitializeComponent();
+            time = new Timer(16);
+            time.Elapsed += moving;
         }
 
         public Game GameInProgress
@@ -34,14 +27,30 @@ namespace BombEistiv2WPF
             get { return _gameInProgress; }
         }
 
+        public void moving(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(reload));
+
+        }
+
+        public void reload()
+        {
+            _gameInProgress.TheCurrentMap.ListOfPlayer[0].Percenty--;
+            _gameInProgress.TheCurrentMap.ListOfPlayer[1].Percenty++;
+            _gameInProgress.TheCurrentMap.ListOfPlayer[2].Percentx++;
+            _gameInProgress.TheCurrentMap.ListOfPlayer[3].Percentx--;
+        }
+
         public void InitTexture()
         {
             texture.LoadAllTextures();
-            texture.LoadTextureList(GameInProgress.TheCurrentMap.GetCompleteList());
-            foreach (var tl in texture.TextureList)
+            var l = texture.LoadBackground();
+            foreach (var tl in l)
             {
-                MainGrid.Children.Add(tl.Value);
+                MainGrid.Children.Add(tl);
             }
+            texture.LoadTextureList(GameInProgress.TheCurrentMap.GetCompleteList(), this);
             
         }
 
@@ -50,7 +59,7 @@ namespace BombEistiv2WPF
             _gameInProgress = new ClassicGame();
             texture = new Texture(GameParameters._.GetThemeData("Basic"));
             InitTexture();
-
+            time.Start();
         }
     }
 }

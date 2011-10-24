@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BombEistiv2WPF.Environment;
 
@@ -12,12 +11,10 @@ namespace BombEistiv2WPF.View
     {
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
-        private Dictionary<Entity, System.Windows.Controls.Image> _textureList; 
 
         public Texture(Dictionary<string, string> themeData)
         {
             _themeData = themeData;
-            _textureList = new Dictionary<Entity, Image>();
             _typetextureList = new Dictionary<string, BitmapImage>();
         }
 
@@ -26,27 +23,53 @@ namespace BombEistiv2WPF.View
             get { return _themeData; }
         }
 
-        public Dictionary<Entity, System.Windows.Controls.Image> TextureList
-        {
-            get { return _textureList; }
-        }
-
         public Dictionary<string, BitmapImage> TypetextureList
         {
             get { return _typetextureList; }
         }
 
-        public void LoadTextureList(List<Entity> l)
+        public void LoadTextureList(List<Entity> l , MainWindow w)
         {
-            foreach (var entity in l)
+                foreach (var entity in l)
+                {
+                    entity.Source = TypetextureList[GetTextureKey(entity)];
+                    entity.Width = 40;
+                    entity.Height = 40;
+                    w.MainGrid.Children.Add(entity);
+                }
+        }
+
+        public void BindTextureEntity(Entity entity, MainWindow w)
+        {
+            entity.Source = TypetextureList[GetTextureKey(entity)];
+            entity.Width = 40;
+            entity.Height = 40;
+            w.MainGrid.Children.Insert(w.MainGrid.Children.Count - 1 - GameParameters._.PlayerCount, entity);
+        }
+
+        public void DeleteTextureEntity(Entity entity, MainWindow w)
+        {
+            
+        }
+
+        public List<Image> LoadBackground()
+        {
+            var l = new List<Image>();
+            for(var i=0;i<Game.Length;i++)
             {
-                var i = new Image();
-                i.Source = TypetextureList[GetTextureKey(entity)];
-                i.HorizontalAlignment = HorizontalAlignment.Left;
-                i.VerticalAlignment = VerticalAlignment.Bottom;
-                i.Margin = new Thickness(entity.X + (30 * ((double)entity.Percentx / 100.0)), 0.0, 0.0, entity.Y + (30 * ((double)entity.Percenty / 100.0)));
-                TextureList.Add(entity,i);
+                for(var j=0;j<Game.Length;j++)
+                {
+                    var g = new Image();
+                    g.Source = TypetextureList["Background"];
+                    g.HorizontalAlignment = HorizontalAlignment.Left;
+                    g.VerticalAlignment = VerticalAlignment.Top;
+                    g.Width = 40;
+                    g.Height = 40;
+                    g.Margin = new Thickness((i* 40), (j * 40), 0.0, 0.0);
+                    l.Add(g);
+                }
             }
+            return l;
         }
 
         public string GetTextureKey(Entity e)
@@ -68,7 +91,11 @@ namespace BombEistiv2WPF.View
             {
                 return "Bomb";
             }
-            return "Player_1_up";
+            if(e is Player)
+            {
+                return "Player_1_down";
+            }
+            return "Background";
 
         }
 
@@ -76,8 +103,16 @@ namespace BombEistiv2WPF.View
         {
             foreach (var td in ThemeData)
             {
-                var u = new Uri(td.Value, UriKind.Relative);
-                TypetextureList.Add(td.Key, new BitmapImage(u));
+                if(td.Value.EndsWith(".png"))
+                {
+                    var u = new Uri(@"D:\My Documents\BombEISTIv2\BombEISTIv2" + td.Value);
+                    var bitmanimg = new BitmapImage();
+                    bitmanimg.BeginInit();
+                    bitmanimg.UriSource = u;
+                    bitmanimg.EndInit();
+                    TypetextureList.Add(td.Key, bitmanimg);
+                }
+                
             }
         }
         
