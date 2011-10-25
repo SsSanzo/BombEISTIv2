@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,7 +41,7 @@ namespace BombEistiv2WPF.Environment
                 if (value >= 0 && value < Game.Length)
                 {
                     _x = value;
-                    reloadTickLeft();
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickLeft)));
                 }
             }
         }
@@ -53,7 +54,7 @@ namespace BombEistiv2WPF.Environment
                 if (value >= 0 && value < Game.Length)
                 {
                     _y = value;
-                    reloadTickTop();
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickTop)));
                 }
             }
         }
@@ -86,7 +87,7 @@ namespace BombEistiv2WPF.Environment
                     {
                         _percentx = value;
                     }
-                    reloadTickLeft();
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickLeft)));
                 }
             }
         }
@@ -114,7 +115,7 @@ namespace BombEistiv2WPF.Environment
                     {
                         _percentx = value;
                     }
-                    reloadTickTop();
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickTop)));
                 }
             }
         }

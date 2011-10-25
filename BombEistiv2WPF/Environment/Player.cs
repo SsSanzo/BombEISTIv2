@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Media.Imaging;
 
 namespace BombEistiv2WPF.Environment
 {
@@ -38,7 +40,7 @@ namespace BombEistiv2WPF.Environment
 
         private void InitSkills()
         {
-            Speed = 1;
+            Speed = 3;
             BombCount = 1;
             BombPower = 1;
             CanKick = false;
@@ -81,7 +83,7 @@ namespace BombEistiv2WPF.Environment
                     {
                         _percentx = value;
                     }
-                    reloadTickLeft();
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickLeft)));
                 }
             }
 
@@ -121,7 +123,7 @@ namespace BombEistiv2WPF.Environment
                     {
                         _percenty = value;
                     }
-                    reloadTickTop();
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickTop)));
                 }
             }
 
@@ -303,6 +305,11 @@ namespace BombEistiv2WPF.Environment
                 return true;
             }
             return true;
+        }
+
+        public void changeFace(BitmapImage bi)
+        {
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => Source = bi));
         }
     }
 }

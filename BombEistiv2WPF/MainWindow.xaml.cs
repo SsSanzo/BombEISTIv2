@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
 using BombEistiv2WPF.View;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using Menu = BombEistiv2WPF.View.Menu;
 using Timer = System.Timers.Timer;
 
@@ -24,13 +23,11 @@ namespace BombEistiv2WPF
         private Timer time;
         private Action action;
         private bool triggerOk;
-        private int test;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            test = 0;
             time = new Timer(16);
             time.Elapsed += moving;
         }
@@ -146,18 +143,19 @@ namespace BombEistiv2WPF
             _gameInProgress = new ClassicGame();
             listener.GameInProgress = _gameInProgress;
             InitTextureGame();
-            time.Start();
+            listener.ModeMenu = false;
+            listener.StartTimers();
+            //time.Start();
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs keyEventArgs)
         {
-            
-            //listener.EventKey((Keys) e.Key);
+            listener.EventKey(keyEventArgs.Key);
         }
 
-        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyUp(object sender, KeyEventArgs keyEventArgs)
         {
-            //listener.ReleaseKey((Keys) e.Key);
+            listener.ReleaseKey(keyEventArgs.Key);
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Timers;
-using System.Windows.Forms;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Threading;
 using BombEistiv2WPF.Environment;
 using Timer = System.Timers.Timer;
-using System.Xml.Linq;
+
 
 namespace BombEistiv2WPF.Control
 {
@@ -14,20 +16,42 @@ namespace BombEistiv2WPF.Control
         private bool modeMenu;
         private bool stop;
         private static Listener _this;
+        private List<string> incoming;
         private List<string> pushed;
+        private List<string> pulled; 
         private Game _gameInProgress;
+        private bool isrefreshing;
 
         private Listener(bool ModeMenu)
         {
             ka = KeyAction._;
             modeMenu = ModeMenu;
             stop = false;
+            incoming = new List<string>();
             pushed = new List<string>();
+            pulled = new List<string>();
+            isrefreshing = false;
+        }
+
+        public List<string> Incoming
+        {
+            get { return incoming; }
         }
 
         public List<string> Pushed
         {
             get { return pushed; }
+        }
+
+        public List<string> Pulled
+        {
+            get { return pulled; }
+        }
+
+        public bool ModeMenu
+        {
+            get { return modeMenu; }
+            set { modeMenu = value;  }
         }
 
         public Game GameInProgress
@@ -52,39 +76,76 @@ namespace BombEistiv2WPF.Control
         }
 
 
-        public void Move(object sender, ElapsedEventArgs elapsedEventArgs)
+        private void Move(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            if(stop || GameInProgress == null)
-            {
-                var t = (Timer) sender;
-                t.Dispose();
-            }else
-            {
-                foreach (var s in Pushed)
+                if (stop)
                 {
-                    var splitted = s.Split('_');
-                    var thePlayer = GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(splitted[0]));
-                    Movement.Move(splitted[1], thePlayer);
+                    var t = (Timer) sender;
+                    t.Dispose();
                 }
-            }
+                else
+                {
+                    if (Incoming.Count != 0)
+                    {
+                        foreach (var i in Incoming)
+                        {
+                            Pushed.Add(i);
+                        }
+                        Incoming.Clear();
+                    }
+                    var l = new List<string>();
+                    l.AddRange(Pushed);
+                    foreach (var s in l)
+                    {
+                        var splitted = s.Split('_');
+                        var thePlayer =
+                            GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(splitted[0]));
+                        Movement.Move(splitted[1], thePlayer);
+                    }
+                    if (Pulled.Count != 0)
+                    {
+                        foreach (var p in Pulled)
+                        {
+                            Pushed.Remove(p);
+                        }
+                        Pulled.Clear();
+                    }
+                }
+            
         }
 
-        public void EventKey(Keys k)
+        public void EventKey(Key k)
         {
             if(modeMenu)
             {
                 // ?
             }else
             {
-                var id = ka.KeysPlayer[k].Split('_')[0];
-                Pushed.RemoveAll(t => t.StartsWith(id));
-                Pushed.Add(ka.KeysPlayer[k]);
+                if (ka.KeysPlayer.ContainsKey(k) && !Pushed.Contains(ka.KeysPlayer[k]))
+                {
+                    var id = ka.KeysPlayer[k].Split('_')[0];
+                    //Pulled.AddRange(Pushed.FindAll(t => t.StartsWith(id)));
+                    //Pulled.AddRange(Incoming.FindAll(t => t.StartsWith(id)));
+                    Incoming.Add(ka.KeysPlayer[k]);
+                }
+                
             }
         }
 
-        public void ReleaseKey(Keys k)
+        public void ReleaseKey(Key k)
         {
-            Pushed.Remove(ka.KeysPlayer[k]);
+            if (modeMenu)
+            {
+                // ?
+            }
+            else
+            {
+                if (ka.KeysPlayer.ContainsKey(k))
+                {
+                    Pulled.Add(ka.KeysPlayer[k]);
+                }
+            }
+
         }
     }
 }
