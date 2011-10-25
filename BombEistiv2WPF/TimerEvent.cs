@@ -1,4 +1,5 @@
-﻿using System.Timers;
+﻿using System;
+using System.Timers;
 
 namespace BombEistiv2WPF
 {
@@ -9,5 +10,11 @@ namespace BombEistiv2WPF
         public EventType Type { get; set; }
 
         public Timer Timer { get; set; }
+
+        public bool ReinitInterval { get; set; }
+
+        public DateTime StartTime { get; set; }
+
+        public int Interval { get; set; }
     }
 }

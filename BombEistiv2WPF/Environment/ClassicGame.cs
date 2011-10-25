@@ -11,28 +11,24 @@ namespace BombEistiv2WPF.Environment
             TheCurrentMap = new Map();
             TheCurrentMap.SetHardBlockOnMap();
             TheCurrentMap.SetSoftBlockOnMap();
-            GameParameters._.PlayerCount = 4;
             InitPlayers(GameParameters._.PlayerCount);
-            //var timer = TimerManager._.GetNewTimer(false, GameParameters._.GameTime - 30000);
-            //TimerManager._.GetTimer(timer).Elapsed += HurryUp;
+            TimerManager._.AddNewTimer(false, GameParameters._.GameTime*1000 - 30000, false, null, HurryUp);
             Start();
         }
 
-
         public void Start()
         {
-            //TimerManager._.Start();
+            TimerManager._.Start();
         }
 
         public void HurryUp(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            //var e = TimerManager._.GetNewTimer(false, 30000, true);
-            //TimerManager._.GetTimer(e).Elapsed += EndOfTheGame;
+            TimerManager._.AddNewTimer(false, 30000, true, null, EndOfTheGame);
         }
 
         public void EndOfTheGame(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            //TimerManager._.Stop();
+            TimerManager._.Stop();
         }
     }
 }

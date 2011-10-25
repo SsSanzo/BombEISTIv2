@@ -13,15 +13,28 @@ namespace BombEistiv2WPF.View
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
 
-        public Texture(string Theme)
+        private static Texture _this;
+
+        private Texture()
         {
-            _themeData = GameParameters._.GetThemeData(Theme);
+            _themeData = GameParameters._.GetThemeData("Basic");
             _typetextureList = new Dictionary<string, BitmapImage>();
+        }
+
+
+        public static Texture _
+        {
+            get { return _this ?? (_this = new Texture()); }
         }
 
         public Dictionary<string, string> ThemeData
         {
             get { return _themeData; }
+        }
+
+        public void SetTheme(string s)
+        {
+            _themeData = GameParameters._.GetThemeData(s);
         }
 
         public Dictionary<string, BitmapImage> TypetextureList
@@ -47,11 +60,6 @@ namespace BombEistiv2WPF.View
             entity.Width = 40;
             entity.Height = 40;
             w.MainGrid.Children.Insert(w.MainGrid.Children.Count - 1 - GameParameters._.PlayerCount, entity);
-        }
-
-        public void DeleteTextureEntity(Entity entity, MainWindow w)
-        {
-            
         }
 
         public List<Image> LoadBackground()

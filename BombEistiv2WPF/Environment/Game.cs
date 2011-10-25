@@ -46,19 +46,19 @@ namespace BombEistiv2WPF.Environment
             {
                 if (numberOPlayer > 0)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(1, 1, 0, Length - 1, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(1,1, 0, 0, TheCurrentMap));
                 }
                 if (numberOPlayer > 1)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(2, 2, Length - 1, 0, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(2,2, Length - 1, 0, TheCurrentMap));
                 }
                 if (numberOPlayer > 2)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(3, 3, 0, 0, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(3, 3, 0, Length - 1, TheCurrentMap));
                 }
                 if (numberOPlayer > 3)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(4, 4, Length - 1, Length - 1, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(4,4, Length - 1, Length - 1, TheCurrentMap));
                 }
             }
             else

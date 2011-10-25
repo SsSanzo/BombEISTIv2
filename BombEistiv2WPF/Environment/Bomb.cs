@@ -15,7 +15,7 @@ namespace BombEistiv2WPF.Environment
         {
             Power = power;
             Owner = owner;
-            TimerManager._.GetNewTimer(false, GameParameters._.ExplosionDelay, true, new TimerEvent { InvolvedObject = this, Type = EventType.BombExplode });
+            TimerManager._.AddNewTimer(false, GameParameters._.ExplosionDelay, true, new TimerEvent { InvolvedObject = this, Type = EventType.BombExplode });
         }
 
 

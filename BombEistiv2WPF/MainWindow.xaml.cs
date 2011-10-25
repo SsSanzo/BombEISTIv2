@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
+using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
 using BombEistiv2WPF.View;
 using Menu = BombEistiv2WPF.View.Menu;
+using Timer = System.Timers.Timer;
 
 namespace BombEistiv2WPF
 {
@@ -17,13 +20,17 @@ namespace BombEistiv2WPF
         private Game _gameInProgress;
         private Texture texture;
         private Menu menu;
+        private Listener listener;
         private Timer time;
         private Action action;
         private bool triggerOk;
+        private int test;
+
 
         public MainWindow()
         {
             InitializeComponent();
+            test = 0;
             time = new Timer(16);
             time.Elapsed += moving;
         }
@@ -51,9 +58,9 @@ namespace BombEistiv2WPF
 
         public void reload()
         {
-            _gameInProgress.TheCurrentMap.ListOfPlayer[0].Percenty--;
+            _gameInProgress.TheCurrentMap.ListOfPlayer[0].Percentx++;
             _gameInProgress.TheCurrentMap.ListOfPlayer[1].Percenty++;
-            _gameInProgress.TheCurrentMap.ListOfPlayer[2].Percentx++;
+            _gameInProgress.TheCurrentMap.ListOfPlayer[2].Percenty--;
             _gameInProgress.TheCurrentMap.ListOfPlayer[3].Percentx--;
         }
 
@@ -131,10 +138,26 @@ namespace BombEistiv2WPF
             //InitTextureSystem();
             //DevelopperScreen();
             //time.Start();
-            texture = new Texture("Basic");
+
+            listener = Listener._;
+            texture = Texture._;
+            texture.SetTheme("Basic");
+            GameParameters._.PlayerCount = 4;
             _gameInProgress = new ClassicGame();
+            listener.GameInProgress = _gameInProgress;
             InitTextureGame();
             time.Start();
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            
+            //listener.EventKey((Keys) e.Key);
+        }
+
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            //listener.ReleaseKey((Keys) e.Key);
         }
     }
 }
