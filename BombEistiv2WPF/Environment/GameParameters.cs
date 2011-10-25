@@ -93,11 +93,10 @@ namespace BombEistiv2WPF.Environment
 
         public Dictionary<string,string> GetMenuTemplate()
         {
-            var d = new Dictionary<string, string>();
-            var menu = _root.Elements("Menu").FirstOrDefault();
+            var menu = _root.Descendants("CommonParameter").Elements("Menu").FirstOrDefault();
             var e = menu.Descendants();
-            var folder = menu.Attribute("folder");
-            return e.ToDictionary(element => element.Attribute("object").Value, element => folder + @"\" + element.Attribute("source").Value);
+            var folder = menu.Attribute("folder").Value;
+            return e.ToDictionary(element => element.Attribute("object").Value, element => @"\" + folder + element.Attribute("source").Value);
 
         }
 

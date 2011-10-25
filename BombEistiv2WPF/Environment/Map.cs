@@ -126,14 +126,14 @@ namespace BombEistiv2WPF.Environment
             return ListOfUpgrade.Remove(upgrade);
         }
 
-        public List<Entity> GetCompleteList()
+        public List<Entity> GetCompleteList(bool withoutplayer = false)
         {
             var thecompletelist = new List<Entity>();
             thecompletelist.AddRange(ListOfHardBlock);
             thecompletelist.AddRange(ListOfSoftBlock);
             thecompletelist.AddRange(ListOfBomb);
             thecompletelist.AddRange(ListOfUpgrade);
-            thecompletelist.AddRange(ListOfPlayer);
+            if(!withoutplayer){thecompletelist.AddRange(ListOfPlayer);}
             return thecompletelist;
         }
 

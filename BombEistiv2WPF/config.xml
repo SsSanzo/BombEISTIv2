@@ -58,9 +58,8 @@
         <Player object="Player_8_right" source="Player_8_right.png"/>
       </Theme>
     </Themes>
-    <Menu folder="Resources\Menu">
-      <Texture object="Background" source="background.png"/>
-      <Texture object="Selector" source="selector.png"/>
+    <Menu folder="System\">
+      <Texture object="Teamblui" source="teamBlui.png"/>
     </Menu>
     <SoftBlock count="120"/>
   </CommonParameter>

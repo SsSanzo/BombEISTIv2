@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -12,9 +13,9 @@ namespace BombEistiv2WPF.View
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
 
-        public Texture(Dictionary<string, string> themeData)
+        public Texture(string Theme)
         {
-            _themeData = themeData;
+            _themeData = GameParameters._.GetThemeData(Theme);
             _typetextureList = new Dictionary<string, BitmapImage>();
         }
 
@@ -30,6 +31,7 @@ namespace BombEistiv2WPF.View
 
         public void LoadTextureList(List<Entity> l , MainWindow w)
         {
+            
                 foreach (var entity in l)
                 {
                     entity.Source = TypetextureList[GetTextureKey(entity)];
@@ -39,7 +41,7 @@ namespace BombEistiv2WPF.View
                 }
         }
 
-        public void BindTextureEntity(Entity entity, MainWindow w)
+        public void InsertTextureEntity(Entity entity, MainWindow w)
         {
             entity.Source = TypetextureList[GetTextureKey(entity)];
             entity.Width = 40;
@@ -93,7 +95,8 @@ namespace BombEistiv2WPF.View
             }
             if(e is Player)
             {
-                return "Player_1_down";
+                var p = (Player) e;
+                return "Player_" + p.Skinid + "_" + p.Sens.ToString().ToLower();
             }
             return "Background";
 
@@ -105,7 +108,7 @@ namespace BombEistiv2WPF.View
             {
                 if(td.Value.EndsWith(".png"))
                 {
-                    var u = new Uri(@"D:\My Documents\BombEISTIv2\BombEISTIv2" + td.Value);
+                    var u = new Uri(@"D:\My Documents\BombEISTIv2\BombEISTIv2WPF" + td.Value);
                     var bitmanimg = new BitmapImage();
                     bitmanimg.BeginInit();
                     bitmanimg.UriSource = u;

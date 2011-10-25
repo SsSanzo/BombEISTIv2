@@ -7,6 +7,7 @@ namespace BombEistiv2WPF.Environment
 
         private readonly int _id;
         private readonly List<Upgrade> _upgrades;
+        private int _skinid;
         private int _speed;
         private int _bombCount;
         private int _availableBombCount;
@@ -14,10 +15,12 @@ namespace BombEistiv2WPF.Environment
         private int _lives;
         private readonly Score _score;
         private readonly Map _map;
+        private Direction sens;
 
-        public Player(int id, int x, int y, Map map, Score score = null) : base(x, y)
+        public Player(int id, int skinid, int x, int y, Map map, Score score = null) : base(x, y)
         {
             _id = id;
+            _skinid = skinid;
             if(score == null)
             {
                 _score = new Score(id);
@@ -25,6 +28,12 @@ namespace BombEistiv2WPF.Environment
             _upgrades = new List<Upgrade>();
             _map = map;
             InitSkills();
+        }
+
+        public int Skinid
+        {
+            get { return _skinid; }
+            set { if (value >= 1 && value <= 8) _skinid = value; }
         }
 
         private void InitSkills()
@@ -36,6 +45,7 @@ namespace BombEistiv2WPF.Environment
             InvertedDirections = false;
             AvailableBombCount = 1;
             Lives = 1;
+            sens = Direction.Down;
         }
 
         public new int Percentx
@@ -171,6 +181,12 @@ namespace BombEistiv2WPF.Environment
             {
                 _lives = value;
             }
+        }
+
+        public Direction Sens
+        {
+            get { return sens; }
+            set { if(value != Direction.None) sens = value; }
         }
 
         public bool CanKick { get; private set; }
