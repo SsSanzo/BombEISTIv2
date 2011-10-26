@@ -18,7 +18,7 @@ namespace BombEistiv2WPF.Control
         private static Listener _this;
         private List<string> incoming;
         private List<string> pushed;
-        private List<string> pulled; 
+        private List<string> pulled;
         private Game _gameInProgress;
 
         private Listener(bool ModeMenu)
@@ -100,6 +100,7 @@ namespace BombEistiv2WPF.Control
                             GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(splitted[0]));
                         Movement.Move(splitted[1], thePlayer);
                     }
+                    Movement.ChangeFace(GameInProgress.TheCurrentMap.ListOfPlayer);
                     if (Pulled.Count != 0)
                     {
                         foreach (var p in Pulled)

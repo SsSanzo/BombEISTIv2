@@ -18,6 +18,7 @@ namespace BombEistiv2WPF.Environment
         private readonly Score _score;
         private readonly Map _map;
         private Direction sens;
+        private Direction newsens;
 
         public Player(int id, int skinid, int x, int y, Map map, Score score = null) : base(x, y)
         {
@@ -48,6 +49,7 @@ namespace BombEistiv2WPF.Environment
             AvailableBombCount = 1;
             Lives = 1;
             sens = Direction.Down;
+            newsens = Direction.Down;
         }
 
         public new int Percentx
@@ -61,22 +63,37 @@ namespace BombEistiv2WPF.Environment
                 }
                 if (!((value < 0 && X == 0) || (value > 0 && X == Game.Length - 1)))
                 {
-                    if (value > 50)
+                    if (value > 0 && ((value - Percentx) > 0))
                     {
                         var x = X + 1;
                         if (Move(x, Y))
                         {
-                            X = x;
-                            _percentx = -49;
+                            if (value > 50)
+                            {
+                                X = x;
+                                _percentx = -49;
+                            }
+                            else
+                            {
+                                _percentx = value;
+                            }
                         }
                     }
-                    else if (value <= -50)
+                    else if (value < 0 && ((value - Percentx) < 0))
                     {
                         var x = X - 1;
                         if (Move(x, Y))
                         {
-                            X = x;
-                            _percentx = 50;
+                            if (value <= -50)
+                            {
+                                X = x;
+                                _percentx = 50;
+                            }
+                            else
+                            {
+                                _percentx = value;
+                            }
+
                         }
                     }
                     else
@@ -101,22 +118,38 @@ namespace BombEistiv2WPF.Environment
                 }
                 if (!((value < 0 && Y == 0) || (value > 0 && Y == Game.Length - 1)))
                 {
-                    if (value > 50)
+                    if (value > 0 && ((value - Percenty) > 0))
                     {
                         var y = Y + 1;
                         if (Move(X, y))
                         {
-                            Y = y;
-                            _percenty = -49;
+                            if (value > 50)
+                            {
+                                Y = y;
+                                _percenty = -49;
+                            }
+                            else
+                            {
+                                _percenty = value;
+                            }
                         }
                     }
-                    else if (value <= -50)
+                    else if (value < 0 && ((value - Percenty) < 0))
                     {
+
                         var y = Y - 1;
                         if (Move(X, y))
                         {
-                            Y = y;
-                            _percenty = 50;
+                            if (value <= -50)
+                            {
+                                Y = y;
+                                _percenty = 50;
+                            }
+                            else
+                            {
+                                _percenty = value;
+                            }
+
                         }
                     }
                     else
@@ -189,6 +222,12 @@ namespace BombEistiv2WPF.Environment
         {
             get { return sens; }
             set { if(value != Direction.None) sens = value; }
+        }
+
+        public Direction NewSens
+        {
+            get { return newsens; }
+            set { if (value != Direction.None) newsens = value; }
         }
 
         public bool CanKick { get; private set; }

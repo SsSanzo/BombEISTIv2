@@ -66,22 +66,39 @@ namespace BombEistiv2WPF.Environment
             {
                 if (!((value < 0 && X == 0) || (value > 0 && X == Game.Length - 1)))
                 {
-                    if (value > 50)
+                    if (value > 0)
                     {
-                        
                         var x = X + 1;
                         if (Move(x, Y))
                         {
-                            X = x;
-                            _percentx = -49;
+                            if (value > 50)
+                            {
+                                X = x;
+                                _percentx = -49;
+                            }
+                            else
+                            {
+                                _percentx = value;
+                            }
                         }
-                         
                     }
-                    else if (value <= -50)
+                    else if (value < 0)
                     {
-                        
+
                         var x = X - 1;
-                        if (Move(x, Y)){ X = x; _percentx = 50;}
+                        if (Move(x, Y))
+                        {
+                            if (value <= -50)
+                            {
+                                X = x;
+                                _percentx = 50;
+                            }
+                            else
+                            {
+                                _percentx = value;
+                            }
+
+                        }
                     }
                     else
                     {
@@ -99,21 +116,41 @@ namespace BombEistiv2WPF.Environment
             {
                 if (!((value < 0 && Y == 0) || (value > 0 && Y == Game.Length - 1)))
                 {
-                    if (value > 50)
+                    if(value > 0)
                     {
-                        
                         var y = Y + 1;
-                        if (Move(X, y)){ Y = y; _percenty = -49;}
+                        if (Move(X, y))
+                        {
+                            if (value > 50)
+                            {
+                                Y = y;
+                                _percenty = -49;
+                            }else
+                            {
+                                _percenty = value;
+                            }
+                        }
                     }
-                    else if (value <= -50)
+                    else if(value < 0)
                     {
                         
                         var y = Y - 1;
-                        if (Move(X, y)){ Y = y; _percenty = 50;}
+                        if (Move(X, y))
+                        {
+                            if (value <= -50)
+                            {
+                                Y = y; 
+                                _percenty = 50;
+                            }else
+                            {
+                                _percenty = value;
+                            }
+                            
+                        }
                     }
                     else
                     {
-                        _percentx = value;
+                        _percenty = value;
                     }
                     Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickTop)));
                 }

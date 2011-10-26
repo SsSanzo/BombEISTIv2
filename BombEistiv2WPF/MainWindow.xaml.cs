@@ -137,12 +137,11 @@ namespace BombEistiv2WPF
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            
             //menu = new Menu();
             //InitTextureSystem();
             //DevelopperScreen();
             //time.Start();
-            //ResetAllImages();
+            MainGrid.Children.RemoveAt(0);
             listener = Listener._;
             texture = Texture._;
             texture.SetTheme("Basic");
