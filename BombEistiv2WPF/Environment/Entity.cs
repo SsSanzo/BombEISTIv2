@@ -66,7 +66,7 @@ namespace BombEistiv2WPF.Environment
             {
                 if (!((value < 0 && X == 0) || (value > 0 && X == Game.Length - 1)))
                 {
-                    if (value > 0)
+                    if (value > 0 && ((value - Percentx) > 0))
                     {
                         var x = X + 1;
                         if (Move(x, Y))
@@ -82,7 +82,7 @@ namespace BombEistiv2WPF.Environment
                             }
                         }
                     }
-                    else if (value < 0)
+                    else if (value < 0 && ((value - Percentx) < 0))
                     {
 
                         var x = X - 1;
@@ -116,7 +116,7 @@ namespace BombEistiv2WPF.Environment
             {
                 if (!((value < 0 && Y == 0) || (value > 0 && Y == Game.Length - 1)))
                 {
-                    if(value > 0)
+                    if (value > 0 && ((value - Percenty) > 0))
                     {
                         var y = Y + 1;
                         if (Move(X, y))
@@ -131,7 +131,7 @@ namespace BombEistiv2WPF.Environment
                             }
                         }
                     }
-                    else if(value < 0)
+                    else if (value < 0 && ((value - Percenty) < 0))
                     {
                         
                         var y = Y - 1;
