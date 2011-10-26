@@ -26,11 +26,13 @@ namespace BombEistiv2WPF
         private bool triggerOk;
         private Key lastKey;
         private Key lastReleaseKey;
+        private int test;
 
 
         public MainWindow()
         {
             InitializeComponent();
+            test = 0;
             time = new Timer(16);
             time.Elapsed += moving;
             lastKey = Key.None;
@@ -126,10 +128,10 @@ namespace BombEistiv2WPF
                     if (!(MainGrid.Children[i] is MediaElement))
                     {
                         MainGrid.Children.RemoveAt(i);
-                        menu.MenuDataList.Clear();
                     }
                 }
             }
+            menu.MenuDataList.Clear();
             
         }
 
@@ -140,7 +142,7 @@ namespace BombEistiv2WPF
             //InitTextureSystem();
             //DevelopperScreen();
             //time.Start();
-
+            //ResetAllImages();
             listener = Listener._;
             texture = Texture._;
             texture.SetTheme("Basic");
@@ -157,6 +159,7 @@ namespace BombEistiv2WPF
         {
             if (keyEventArgs.Key != lastKey || (keyEventArgs.Key == lastKey && keyEventArgs.Key == lastReleaseKey))
             {
+                test++;
                 lastKey = keyEventArgs.Key;
                 listener.EventKey(keyEventArgs.Key);
             }
@@ -165,6 +168,7 @@ namespace BombEistiv2WPF
 
         private void Window_KeyUp(object sender, KeyEventArgs keyEventArgs)
         {
+            
             lastReleaseKey = keyEventArgs.Key;
             listener.ReleaseKey(keyEventArgs.Key);
         }

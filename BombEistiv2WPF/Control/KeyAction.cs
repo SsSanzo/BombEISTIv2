@@ -41,6 +41,10 @@ namespace BombEistiv2WPF.Control
             KeysPlayer.Add(Key.Right, "1_Right");
             KeysPlayer.Add(Key.Down, "1_Down");
             KeysPlayer.Add(Key.Left, "1_Left");
+            //KeysPlayer.Add(Key.F, "1_Up");
+            //KeysPlayer.Add(Key.V, "1_Right");
+            //KeysPlayer.Add(Key.C, "1_Down");
+            //KeysPlayer.Add(Key.X, "1_Left");
             KeysPlayer.Add(Key.RightShift, "1_None");
             KeysPlayer.Add(Key.Z, "2_Up");
             KeysPlayer.Add(Key.D, "2_Right");
