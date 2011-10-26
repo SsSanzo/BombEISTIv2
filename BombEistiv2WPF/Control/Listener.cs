@@ -20,7 +20,6 @@ namespace BombEistiv2WPF.Control
         private List<string> pushed;
         private List<string> pulled; 
         private Game _gameInProgress;
-        private bool isrefreshing;
 
         private Listener(bool ModeMenu)
         {
@@ -30,7 +29,6 @@ namespace BombEistiv2WPF.Control
             incoming = new List<string>();
             pushed = new List<string>();
             pulled = new List<string>();
-            isrefreshing = false;
         }
 
         public List<string> Incoming
@@ -85,14 +83,14 @@ namespace BombEistiv2WPF.Control
                 }
                 else
                 {
-                    if (Incoming.Count != 0)
-                    {
-                        foreach (var i in Incoming)
-                        {
-                            Pushed.Add(i);
-                        }
-                        Incoming.Clear();
-                    }
+                    //if (Incoming.Count != 0)
+                    //{
+                    //    foreach (var i in Incoming)
+                    //    {
+                    //        Pushed.Add(i);
+                    //    }
+                    //    Incoming.Clear();
+                    //}
                     var l = new List<string>();
                     l.AddRange(Pushed);
                     foreach (var s in l)
@@ -123,10 +121,11 @@ namespace BombEistiv2WPF.Control
             {
                 if (ka.KeysPlayer.ContainsKey(k) && !Pushed.Contains(ka.KeysPlayer[k]))
                 {
-                    var id = ka.KeysPlayer[k].Split('_')[0];
+                    //var id = ka.KeysPlayer[k].Split('_')[0];
                     //Pulled.AddRange(Pushed.FindAll(t => t.StartsWith(id)));
                     //Pulled.AddRange(Incoming.FindAll(t => t.StartsWith(id)));
-                    Incoming.Add(ka.KeysPlayer[k]);
+                    //Incoming.Add(ka.KeysPlayer[k]);
+                    Pushed.Add(ka.KeysPlayer[k]);
                 }
                 
             }
@@ -143,6 +142,7 @@ namespace BombEistiv2WPF.Control
                 if (ka.KeysPlayer.ContainsKey(k))
                 {
                     Pulled.Add(ka.KeysPlayer[k]);
+                    //Pushed.Add(ka.KeysPlayer[k]);
                 }
             }
 

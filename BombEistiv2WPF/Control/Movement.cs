@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Threading;
 using BombEistiv2WPF.Environment;
 using BombEistiv2WPF.View;
@@ -10,28 +11,32 @@ namespace BombEistiv2WPF.Control
 
         public static void Move(string direction, Player p)
         {
-            var d = Dispatcher.CurrentDispatcher;
-
+            var previousd = p.Sens;
+            Direction nextdirect = Direction.None;
             if(direction == Direction.Up.ToString())
             {
                 p.Percenty -= p.Speed;
-                p.Sens = Direction.Up;
+                nextdirect = Direction.Up;
             }else if(direction == Direction.Down.ToString())
             {
                 p.Percenty += p.Speed;
-                p.Sens = Direction.Down;
+                nextdirect = Direction.Down;
             }
             else if (direction == Direction.Right.ToString())
             {
                 p.Percentx += p.Speed;
-                p.Sens = Direction.Right;
+                nextdirect = Direction.Right;
             }
             else if (direction == Direction.Left.ToString())
             {
                 p.Percentx -= p.Speed;
-                p.Sens = Direction.Left;
+                nextdirect = Direction.Left;
             }
-            p.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(p)]);
+            if (nextdirect != previousd)
+            {
+                p.Sens = nextdirect;
+                p.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(p)]);
+            }
         }
     }
 }

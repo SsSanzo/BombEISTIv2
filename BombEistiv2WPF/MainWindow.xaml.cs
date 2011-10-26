@@ -2,6 +2,7 @@
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
 using BombEistiv2WPF.View;
@@ -23,6 +24,7 @@ namespace BombEistiv2WPF
         private Timer time;
         private Action action;
         private bool triggerOk;
+        private Key lastKey;
 
 
         public MainWindow()
@@ -30,6 +32,7 @@ namespace BombEistiv2WPF
             InitializeComponent();
             time = new Timer(16);
             time.Elapsed += moving;
+            lastKey = Key.None;
         }
 
         public Game GameInProgress
@@ -150,7 +153,12 @@ namespace BombEistiv2WPF
 
         private void Window_KeyDown(object sender, KeyEventArgs keyEventArgs)
         {
-            listener.EventKey(keyEventArgs.Key);
+            if(keyEventArgs.Key != lastKey)
+            {
+                lastKey = keyEventArgs.Key;
+                listener.EventKey(keyEventArgs.Key);
+            }
+            
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs keyEventArgs)
