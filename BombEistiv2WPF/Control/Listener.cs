@@ -65,7 +65,7 @@ namespace BombEistiv2WPF.Control
 
         public void StartTimers()
         {
-            TimerManager._.AddNewTimer(true,15,true,null,Move);
+            TimerManager._.AddNewTimer(true,1,true,null,Move);
         }
 
         public void StopTimers()

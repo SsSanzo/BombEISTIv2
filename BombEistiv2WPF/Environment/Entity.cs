@@ -41,7 +41,7 @@ namespace BombEistiv2WPF.Environment
                 if (value >= 0 && value < Game.Length)
                 {
                     _x = value;
-                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickLeft)));
+                    //Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickLeft)));
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace BombEistiv2WPF.Environment
                 if (value >= 0 && value < Game.Length)
                 {
                     _y = value;
-                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickTop)));
+                    //Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickTop)));
                 }
             }
         }

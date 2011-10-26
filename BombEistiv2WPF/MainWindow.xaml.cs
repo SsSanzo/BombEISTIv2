@@ -25,6 +25,7 @@ namespace BombEistiv2WPF
         private Action action;
         private bool triggerOk;
         private Key lastKey;
+        private Key lastReleaseKey;
 
 
         public MainWindow()
@@ -33,6 +34,7 @@ namespace BombEistiv2WPF
             time = new Timer(16);
             time.Elapsed += moving;
             lastKey = Key.None;
+            lastReleaseKey = Key.None;
         }
 
         public Game GameInProgress
@@ -153,7 +155,7 @@ namespace BombEistiv2WPF
 
         private void Window_KeyDown(object sender, KeyEventArgs keyEventArgs)
         {
-            if(keyEventArgs.Key != lastKey)
+            if (keyEventArgs.Key != lastKey || (keyEventArgs.Key == lastKey && keyEventArgs.Key == lastReleaseKey))
             {
                 lastKey = keyEventArgs.Key;
                 listener.EventKey(keyEventArgs.Key);
@@ -163,6 +165,7 @@ namespace BombEistiv2WPF
 
         private void Window_KeyUp(object sender, KeyEventArgs keyEventArgs)
         {
+            lastReleaseKey = keyEventArgs.Key;
             listener.ReleaseKey(keyEventArgs.Key);
         }
     }
