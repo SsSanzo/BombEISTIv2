@@ -16,7 +16,7 @@ namespace BombEistiv2WPF.Control
         private bool modeMenu;
         private bool stop;
         private static Listener _this;
-        private List<string> incoming;
+        //private List<string> incoming;
         private List<string> pushed;
         private List<string> pulled;
         private Game _gameInProgress;
@@ -26,15 +26,15 @@ namespace BombEistiv2WPF.Control
             ka = KeyAction._;
             modeMenu = ModeMenu;
             stop = false;
-            incoming = new List<string>();
+            //incoming = new List<string>();
             pushed = new List<string>();
             pulled = new List<string>();
         }
 
-        public List<string> Incoming
-        {
-            get { return incoming; }
-        }
+        //public List<string> Incoming
+        //{
+        //    get { return incoming; }
+        //}
 
         public List<string> Pushed
         {
@@ -65,7 +65,7 @@ namespace BombEistiv2WPF.Control
 
         public void StartTimers()
         {
-            TimerManager._.AddNewTimer(true,1,true,null,Move);
+            TimerManager._.AddNewTimer(true,15,true,null,Move);
         }
 
         public void StopTimers()

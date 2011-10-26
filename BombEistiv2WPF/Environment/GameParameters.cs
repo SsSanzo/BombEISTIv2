@@ -7,12 +7,17 @@ namespace BombEistiv2WPF.Environment
 {
     public class GameParameters
     {
+        //Path Clement
+        //public static string Path = @"C:\Users\auffraycle\Documents\Visual Studio 2010\Projects\BombEISTIv2\BombEISTIv2\BombEistiv2WPF";
+        //Path Benou
+        public static string Path = @"D:\My Documents\BombEISTIv2\BombEistiv2WPF";
+
         private const string ParameterPath = "../../config.xml";
         private readonly XDocument _xmlDoc;
         private readonly IEnumerable<XElement> _root;
 
         private XElement _theme;
-        
+
         private static GameParameters _this;
 
         private int _playerCount; // Entre 2 et 4
@@ -42,7 +47,7 @@ namespace BombEistiv2WPF.Environment
             get { return _explosionDelay; }
             set
             {
-                if(0 < value && value < 6)
+                if (0 < value && value < 6)
                 {
                     _explosionDelay = value;
                 }
@@ -54,7 +59,7 @@ namespace BombEistiv2WPF.Environment
             get { return _gameTime; }
             set
             {
-                if(0 < value && value < 600)
+                if (0 < value && value < 600)
                 {
                     _gameTime = value;
                 }
@@ -66,7 +71,7 @@ namespace BombEistiv2WPF.Environment
             get { return _playerCount; }
             set
             {
-                if (1 < value && value <5)
+                if (1 < value && value < 5)
                 {
                     _playerCount = value;
                 }
@@ -75,14 +80,14 @@ namespace BombEistiv2WPF.Environment
 
         public GameType Type { get; set; }
 
-        public Dictionary<UpgradeType,int> GetAllUpgrades()
+        public Dictionary<UpgradeType, int> GetAllUpgrades()
         {
-            var upgrades = new Dictionary<UpgradeType,int>();
+            var upgrades = new Dictionary<UpgradeType, int>();
             var e = _root.Where(c => String.Compare(Type.ToString(), c.Element("Game").Attribute("type").Value) == 0).Descendants("Upgrades");
             foreach (var element in e)
             {
                 UpgradeType ut;
-                if(Enum.TryParse(element.Value, out ut))
+                if (Enum.TryParse(element.Value, out ut))
                 {
                     var i = Convert.ToInt32(element.Attribute("currentFreq"));
                     upgrades.Add(ut, i);
@@ -91,7 +96,7 @@ namespace BombEistiv2WPF.Environment
             return upgrades;
         }
 
-        public Dictionary<string,string> GetMenuTemplate()
+        public Dictionary<string, string> GetMenuTemplate()
         {
             var menu = _root.Descendants("CommonParameter").Elements("Menu").FirstOrDefault();
             var e = menu.Descendants();
@@ -111,11 +116,11 @@ namespace BombEistiv2WPF.Environment
 
         public void ChangeUpgradeFrequence(UpgradeType ut, int freq)
         {
-            var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades").FirstOrDefault(c => String.Compare(ut.ToString(),c.Element("Upgrade").Value) == 0);
+            var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades").FirstOrDefault(c => String.Compare(ut.ToString(), c.Element("Upgrade").Value) == 0);
             e.Attribute("currentFreq").Value = freq + "";
         }
 
-        public Dictionary<string,string> GetThemeData(string Theme)
+        public Dictionary<string, string> GetThemeData(string Theme)
         {
             var e = _theme.Descendants();
             var folder = _theme.Attribute("folder").Value;
@@ -154,7 +159,7 @@ namespace BombEistiv2WPF.Environment
             set
             {
                 var e = _root.Descendants("CommonParameter").Elements("SoftBlock").FirstOrDefault();
-                e.Attribute("count").Value = value+"";
+                e.Attribute("count").Value = value + "";
             }
         }
 

@@ -57,7 +57,7 @@ namespace BombEistiv2WPF.View
             {
                 if (td.Value.EndsWith(".png"))
                 {
-                    var u = new Uri(@"D:\My Documents\BombEISTIv2\BombEistiv2WPF" + td.Value);
+                    var u = new Uri(GameParameters.Path + td.Value);
                     var bitmanimg = new BitmapImage();
                     bitmanimg.BeginInit();
                     bitmanimg.UriSource = u;

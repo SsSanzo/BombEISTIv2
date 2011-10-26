@@ -97,7 +97,6 @@ namespace BombEistiv2WPF.Environment
                             {
                                 _percentx = value;
                             }
-
                         }
                     }
                     else
@@ -145,7 +144,6 @@ namespace BombEistiv2WPF.Environment
                             {
                                 _percenty = value;
                             }
-                            
                         }
                     }
                     else
