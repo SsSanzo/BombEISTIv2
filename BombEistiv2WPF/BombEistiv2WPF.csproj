@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\Wizard.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="TimerEvent.cs" />
     <Compile Include="TimerManager.cs" />
@@ -81,7 +82,7 @@
     </Compile>
     <Compile Include="Control\KeyAction.cs" />
     <Compile Include="Control\Movement.cs" />
-    <Compile Include="Control\Listener.cs" />
+    <Compile Include="Control\ListenerGame.cs" />
     <Compile Include="Environment\Bomb.cs" />
     <Compile Include="Environment\Bonus.cs" />
     <Compile Include="Environment\ClassicGame.cs" />

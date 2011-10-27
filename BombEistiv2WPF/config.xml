@@ -60,6 +60,12 @@
     </Themes>
     <Menu folder="System\">
       <Texture object="Teamblui" source="teamBlui.png"/>
+      <Texture object="Sky" source="Sky.png"/>
+      <Texture object="Bomb" source="Bomb.png"/>
+      <Texture object="Eisti" source="Eisti.png"/>
+      <Texture object="2" source="2.png"/>
+      <Texture object="PressStart" source="PressStart.png"/>
+      <Texture object="White" source="white.png"/>
     </Menu>
     <SoftBlock count="120"/>
   </CommonParameter>

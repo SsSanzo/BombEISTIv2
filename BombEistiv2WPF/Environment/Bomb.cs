@@ -43,11 +43,11 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
-        public void Explode(Map m, Game g)
+        public void Explode(Game g)
         {
             var toBeDestroyed = new List<Entity>();
-            var thecompletelist = m.GetCompleteList();
-            m.ListOfBomb.Remove(this);
+            var thecompletelist = g.TheCurrentMap.GetCompleteList();
+            g.TheCurrentMap.ListOfBomb.Remove(this);
             var l = thecompletelist.Where(c => c.X == this.X || c.Y == this.Y);
             var theRightDestroyed = this.GiveTheFirst(l, Direction.Right);
             if (theRightDestroyed != null && !g.ToDelete.Contains(theRightDestroyed))
@@ -74,8 +74,8 @@ namespace BombEistiv2WPF.Environment
             {
                 if (e is Bomb)
                 {
-                    var theBomb = m.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
-                    theBomb.Explode(m, g);
+                    var theBomb = g.TheCurrentMap.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
+                    theBomb.Explode(g);
                 }
             }
             g.ToDelete.AddRange(toBeDestroyed);

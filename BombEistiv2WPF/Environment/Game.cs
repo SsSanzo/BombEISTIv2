@@ -29,7 +29,7 @@ namespace BombEistiv2WPF.Environment
             {
                 case EventType.BombExplode:
                     var b = (Bomb)timerEvent.InvolvedObject;
-                    b.Explode(TheCurrentMap, this);
+                    b.Explode(this);
                     break;
             }
         }

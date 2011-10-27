@@ -10,21 +10,19 @@ using Timer = System.Timers.Timer;
 
 namespace BombEistiv2WPF.Control
 {
-    public class Listener
+    public class ListenerGame
     {
         private KeyAction ka;
-        private bool modeMenu;
         private bool stop;
-        private static Listener _this;
+        private static ListenerGame _this;
         //private List<string> incoming;
         private List<string> pushed;
         private List<string> pulled;
         private Game _gameInProgress;
 
-        private Listener(bool ModeMenu)
+        private ListenerGame()
         {
             ka = KeyAction._;
-            modeMenu = ModeMenu;
             stop = false;
             //incoming = new List<string>();
             pushed = new List<string>();
@@ -46,11 +44,6 @@ namespace BombEistiv2WPF.Control
             get { return pulled; }
         }
 
-        public bool ModeMenu
-        {
-            get { return modeMenu; }
-            set { modeMenu = value;  }
-        }
 
         public Game GameInProgress
         {
@@ -58,9 +51,9 @@ namespace BombEistiv2WPF.Control
             set { _gameInProgress = value; }
         }
 
-        public static Listener _
+        public static ListenerGame _
         {
-            get { return _this ?? (_this = new Listener(true)); }
+            get { return _this ?? (_this = new ListenerGame()); }
         }
 
         public void StartTimers()
@@ -115,11 +108,6 @@ namespace BombEistiv2WPF.Control
 
         public void EventKey(Key k)
         {
-            if(modeMenu)
-            {
-                // ?
-            }else
-            {
                 if (ka.KeysPlayer.ContainsKey(k) && !Pushed.Contains(ka.KeysPlayer[k]))
                 {
                     //var id = ka.KeysPlayer[k].Split('_')[0];
@@ -129,23 +117,18 @@ namespace BombEistiv2WPF.Control
                     Pushed.Add(ka.KeysPlayer[k]);
                 }
                 
-            }
+            
         }
 
         public void ReleaseKey(Key k)
         {
-            if (modeMenu)
-            {
-                // ?
-            }
-            else
-            {
+
                 if (ka.KeysPlayer.ContainsKey(k))
                 {
                     Pulled.Add(ka.KeysPlayer[k]);
                     //Pushed.Add(ka.KeysPlayer[k]);
                 }
-            }
+            
 
         }
     }

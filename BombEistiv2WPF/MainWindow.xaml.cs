@@ -20,19 +20,19 @@ namespace BombEistiv2WPF
         private Game _gameInProgress;
         private Texture texture;
         private Menu menu;
-        private Listener listener;
+        private ListenerGame listener;
         private Timer time;
+        private Timer timeSky;
         private Action action;
         private bool triggerOk;
         private Key lastKey;
         private Key lastReleaseKey;
-        private int test;
+        private Wizard thewizard;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            test = 0;
             time = new Timer(16);
             time.Elapsed += moving;
             lastKey = Key.None;
@@ -52,6 +52,11 @@ namespace BombEistiv2WPF
         public void InvokeThread()
         {
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, action);
+        }
+
+        public void InvokeThread(Action a)
+        {
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, a);
         }
 
         public void moving(object sender, ElapsedEventArgs elapsedEventArgs)
@@ -88,11 +93,105 @@ namespace BombEistiv2WPF
         {
             ResetAllImages();
             menu.LoadTeamBlui();
-            MainGrid.Children.Add(menu.MenuDataList["Teamblui"]);
+            MenuGrid.Children.Add(menu.MenuDataList["Teamblui"]);
             time = new Timer(28);
             action = FonduDevScreen;
             time.Elapsed += InvokeThread;
             triggerOk = false;
+            time.Start();
+        }
+
+        public void PressStartScreen()
+        {
+            ResetAllImages();
+            menu.LoadPressStart(this);
+            foreach (var mdt in menu.MenuDataList)
+            {
+                MenuGrid.Children.Add(mdt.Value);
+            }
+            time = new Timer(10);
+            timeSky = new Timer(10);
+            action = bombIncoming;
+            time.Elapsed += InvokeThread;
+            timeSky.Elapsed += ActionDefil;
+            triggerOk = false;
+            time.Start();
+            timeSky.Start();
+        }
+
+        private void ActionDefil(object sender, ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(defileSky));
+        }
+
+        public void defileSky()
+        {
+            if (menu.MenuDataList["Sky"].Margin.Left == -(menu.MenuDataList["Sky"].Width/2.0))
+            {
+                menu.MenuDataList["Sky"].Margin = new Thickness(0.0, 0.0, 0.0, 0.0);
+            }
+            menu.MenuDataList["Sky"].Margin = new Thickness(menu.MenuDataList["Sky"].Margin.Left - 1, 0.0, 0.0, 0.0);
+
+        }
+
+        public void bombIncoming()
+        {
+            if (menu.MenuDataList["Bomb"].Margin.Left > -100)
+            {
+                menu.MenuDataList["Bomb"].Margin = new Thickness(menu.MenuDataList["Bomb"].Margin.Left - 15, 0.0, 0.0, 0.0);
+            }else
+            {
+                action = eistiIncoming;
+            }
+        }
+
+        public void eistiIncoming()
+        {
+            if (menu.MenuDataList["Eisti"].Margin.Top <= 120)
+            {
+                menu.MenuDataList["Eisti"].Margin = new Thickness(100, menu.MenuDataList["Eisti"].Margin.Top + 10, 0.0, 0.0);
+            }
+            else
+            {
+                menu.MenuDataList["White"].Opacity = 1;
+                menu.MenuDataList["2"].Opacity = 1;
+                time.Interval = 50;
+                action = flash;
+            }
+        }
+
+        public void flash()
+        {
+            if(menu.MenuDataList["White"].Opacity > 0)
+            {
+                menu.MenuDataList["White"].Opacity -= 0.02;
+            }else
+            {
+                menu.MenuDataList["PressStart"].Opacity = 0.20;
+                time.Interval = 10;
+                action = PressStartCling;
+            }
+        }
+
+        public void PressStartCling()
+        {
+            if (menu.MenuDataList["PressStart"].Opacity >= 1 && !triggerOk)
+            {
+                time.Interval = 1500;
+                triggerOk = true;
+            }else if(menu.MenuDataList["PressStart"].Opacity <= 0 && triggerOk)
+            {
+                time.Interval = 200;
+                triggerOk = false;
+            }else if (!triggerOk)
+            {
+                time.Interval = 15;
+                menu.MenuDataList["PressStart"].Opacity += 0.05;
+            }else if(triggerOk)
+            {
+                time.Interval = 15;
+                menu.MenuDataList["PressStart"].Opacity -= 0.05;
+            }
         }
 
         public void FonduDevScreen()
@@ -115,19 +214,21 @@ namespace BombEistiv2WPF
             {
                 time.Stop();
                 time.Close();
+                PressStartScreen();
+                
             }
-            
+
         }
 
         public void ResetAllImages()
         {
-            if(MainGrid.Children.Count > 0)
+            if(MenuGrid.Children.Count > 0)
             {
-                for (int i = MainGrid.Children.Count - 1; i > -1; i--)
+                for (int i = MenuGrid.Children.Count - 1; i > -1; i--)
                 {
-                    if (!(MainGrid.Children[i] is MediaElement))
+                    if (!(MenuGrid.Children[i] is Grid))
                     {
-                        MainGrid.Children.RemoveAt(i);
+                        MenuGrid.Children.RemoveAt(i);
                     }
                 }
             }
@@ -137,20 +238,33 @@ namespace BombEistiv2WPF
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            //menu = new Menu();
-            //InitTextureSystem();
-            //DevelopperScreen();
-            //time.Start();
+            //button relou
             MainGrid.Children.RemoveAt(0);
-            listener = Listener._;
-            texture = Texture._;
-            texture.SetTheme("Basic");
+
+            menu = new Menu();
+            InitTextureSystem();
+            DevelopperScreen();
+
+           
+            
+
+
+            //thewizard = new Wizard(this);
+            //thewizard.Init();
+            //texture = Texture._;
+            //texture.SetTheme("Basic");
+
+            //a modif ?
+            //listener = ListenerGame._;
+
+            //testing
+            /*
             GameParameters._.PlayerCount = 4;
             _gameInProgress = new ClassicGame();
             listener.GameInProgress = _gameInProgress;
             InitTextureGame();
-            listener.ModeMenu = false;
             listener.StartTimers();
+            */
             //time.Start();
         }
 
@@ -158,7 +272,6 @@ namespace BombEistiv2WPF
         {
             if (keyEventArgs.Key != lastKey || (keyEventArgs.Key == lastKey && keyEventArgs.Key == lastReleaseKey))
             {
-                test++;
                 lastKey = keyEventArgs.Key;
                 listener.EventKey(keyEventArgs.Key);
             }
@@ -167,7 +280,6 @@ namespace BombEistiv2WPF
 
         private void Window_KeyUp(object sender, KeyEventArgs keyEventArgs)
         {
-            
             lastReleaseKey = keyEventArgs.Key;
             listener.ReleaseKey(keyEventArgs.Key);
         }

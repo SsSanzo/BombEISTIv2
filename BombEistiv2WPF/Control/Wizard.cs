@@ -8,7 +8,7 @@ namespace BombEistiv2WPF.Control
     {
         private Screen _currentScreen;
         private Game _currentGame;
-        private Listener _currentKeyListener;
+        private ListenerGame _currentKeyListener;
         private MainWindow _theWindow;
 
         public Wizard(MainWindow mw)

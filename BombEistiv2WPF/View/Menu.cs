@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BombEistiv2WPF.Environment;
 
@@ -40,15 +41,84 @@ namespace BombEistiv2WPF.View
 
         public void LoadTeamBlui()
         {
-            var g = new Image();
-            g.Source = MenutextureList["Teamblui"];
-            g.HorizontalAlignment = HorizontalAlignment.Center;
-            g.VerticalAlignment = VerticalAlignment.Center;
-            g.Margin = new Thickness(0.0, 0.0, 0.0, 0.0);
-            g.Opacity = 0.0;
-            g.Width = 400;
-            g.Height = 400;
+            var g = new Image
+                        {
+                            Source = MenutextureList["Teamblui"],
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            VerticalAlignment = VerticalAlignment.Center,
+                            Margin = new Thickness(0.0, 0.0, 0.0, 0.0),
+                            Opacity = 0.0,
+                            Width = 400,
+                            Height = 400
+                        };
             MenuDataList.Add("Teamblui", g);
+        }
+
+        public void LoadPressStart(MainWindow mw)
+        {
+            var g = new Image
+                        {
+                            Source = MenutextureList["Sky"],
+                            HorizontalAlignment = HorizontalAlignment.Left,
+                            VerticalAlignment = VerticalAlignment.Stretch,
+                            Margin = new Thickness(0.0, 0.0, 0.0, 0.0),
+                            Height = 1000,
+                            Width = mw.Width*2
+                        };
+            MenuDataList.Add("Sky", g);
+            var g2 = new Image
+                         {
+                             Source = MenutextureList["Bomb"],
+                             HorizontalAlignment = HorizontalAlignment.Left,
+                             VerticalAlignment = VerticalAlignment.Top,
+                             Margin = new Thickness(mw.Height, 200, 0.0, 0.0),
+                             Width = 600,
+                             Height = 200
+                         };
+            MenuDataList.Add("Bomb", g2);
+            var g3 = new Image
+                         {
+                             Source = MenutextureList["Eisti"],
+                             HorizontalAlignment = HorizontalAlignment.Left,
+                             VerticalAlignment = VerticalAlignment.Top,
+                             Margin = new Thickness(100, -300, 0.0, 0.0),
+                             Width = 600,
+                             Height = 200
+                         };
+            MenuDataList.Add("Eisti", g3);
+            var g4 = new Image
+                         {
+                             Source = MenutextureList["2"],
+                             HorizontalAlignment = HorizontalAlignment.Left,
+                             VerticalAlignment = VerticalAlignment.Top,
+                             Margin = new Thickness(30, 200, 0.0, 0.0),
+                             Width = 300,
+                             Height = 300,
+                             Opacity = 0
+                         };
+            MenuDataList.Add("2", g4);
+            var g5 = new Image
+                         {
+                             Source = MenutextureList["PressStart"],
+                             HorizontalAlignment = HorizontalAlignment.Center,
+                             VerticalAlignment = VerticalAlignment.Bottom,
+                             Margin = new Thickness(0.0, 0.0, 0.0, 0.0),
+                             Width = 300,
+                             Height = 100,
+                             Opacity = 0
+                         };
+            MenuDataList.Add("PressStart", g5);
+            var g6 = new Image
+                         {
+                             Source = MenutextureList["White"],
+                             HorizontalAlignment = HorizontalAlignment.Stretch,
+                             VerticalAlignment = VerticalAlignment.Top,
+                             Margin = new Thickness(0.0, 0.0, 0.0, 0.0),
+                             Opacity = 0,
+                             Width = 2000,
+                             Height = 2000
+                         };
+            MenuDataList.Add("White", g6);
         }
 
         public void LoadAllSystemResources()
