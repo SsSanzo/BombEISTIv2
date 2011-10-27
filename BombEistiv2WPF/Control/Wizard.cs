@@ -10,10 +10,14 @@ namespace BombEistiv2WPF.Control
         private Game _currentGame;
         private ListenerGame _currentKeyListener;
         private MainWindow _theWindow;
+        private Key lastKey;
+        private Key lastReleaseKey;
 
         public Wizard(MainWindow mw)
         {
             if (mw != null) _theWindow = mw;
+            lastKey = Key.None;
+            lastReleaseKey = Key.None;
         }
 
         public Screen Screen
@@ -30,9 +34,10 @@ namespace BombEistiv2WPF.Control
         public void Init()
         {
             _currentScreen = Screen.DevScreen;
+            _currentGame = _theWindow.GameInProgress;
             _currentKeyListener = null;
-            _theWindow.KeyDown += WindowKeyDown;
-            _theWindow.KeyUp += WindowKeyUp;
+            _theWindow.KeyDown += WindowKeyDownGame;
+            _theWindow.KeyUp += WindowKeyUpGame;
         }
 
         public void LaunchScreen()
@@ -40,15 +45,33 @@ namespace BombEistiv2WPF.Control
 
         }
 
-        public void WindowKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        public void WindowKeyUpMenu(object sender, System.Windows.Input.KeyEventArgs e)
         {
             _currentKeyListener.EventKey(e.Key);
         }
 
-        public void WindowKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        public void WindowKeyDownMenu(object sender, System.Windows.Input.KeyEventArgs e)
         {
             _currentKeyListener.ReleaseKey(e.Key);
         }
+
+
+
+        public void WindowKeyUpGame(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key != lastKey || (e.Key == lastKey && e.Key == lastReleaseKey))
+            {
+                lastKey = e.Key;
+                _currentKeyListener.EventKey(e.Key);
+            }
+        }
+
+        public void WindowKeyDownGame(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            lastReleaseKey = e.Key;
+            _currentKeyListener.ReleaseKey(e.Key);
+        }
+
         public void FadeIn()
         {
 

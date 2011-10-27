@@ -71,10 +71,13 @@ namespace BombEistiv2WPF.View
                              Source = MenutextureList["Bomb"],
                              HorizontalAlignment = HorizontalAlignment.Left,
                              VerticalAlignment = VerticalAlignment.Top,
-                             Margin = new Thickness(mw.Height, 200, 0.0, 0.0),
+                             Margin = new Thickness(mw.Height, -70, 0.0, 0.0),
                              Width = 600,
                              Height = 200
                          };
+            var lt = new RotateTransform();
+            lt.Angle = -15;
+            g2.LayoutTransform = lt;
             MenuDataList.Add("Bomb", g2);
             var g3 = new Image
                          {

@@ -3,6 +3,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
 using BombEistiv2WPF.View;
@@ -136,9 +137,9 @@ namespace BombEistiv2WPF
 
         public void bombIncoming()
         {
-            if (menu.MenuDataList["Bomb"].Margin.Left > -100)
+            if (menu.MenuDataList["Bomb"].Margin.Left > -120)
             {
-                menu.MenuDataList["Bomb"].Margin = new Thickness(menu.MenuDataList["Bomb"].Margin.Left - 15, 0.0, 0.0, 0.0);
+                menu.MenuDataList["Bomb"].Margin = new Thickness(menu.MenuDataList["Bomb"].Margin.Left - 15, -70, 0.0, 0.0);
             }else
             {
                 action = eistiIncoming;
