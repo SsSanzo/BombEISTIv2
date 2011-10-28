@@ -125,6 +125,7 @@ namespace BombEistiv2WPF.Control
                             var e = Movement.PutABomb(thePlayer);
                             if(e != null)
                             {
+                                GameInProgress.TheCurrentMap.ListOfBomb.Add(e);
                                 Texture._.InsertTextureEntity(e);
                             }
                         }

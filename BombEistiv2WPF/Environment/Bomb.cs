@@ -47,8 +47,8 @@ namespace BombEistiv2WPF.Environment
         public void Explode(Game g)
         {
             var toBeDestroyed = new List<Entity>();
-            var thecompletelist = g.TheCurrentMap.GetCompleteList();
             g.TheCurrentMap.ListOfBomb.Remove(this);
+            var thecompletelist = g.TheCurrentMap.GetCompleteList();
             Texture._.DeleteTextureEntity(this);
             var l = thecompletelist.Where(c => (this.Y == c.Y && (c.X <= (this.X + this.Power) && (c.X >= (this.X - this.Power)))) || (this.X == c.X && (c.Y <= (this.Y + this.Power) && (c.Y >= (this.Y - this.Power)))));
             var theRightDestroyed = this.GiveTheFirst(l, Direction.Right);
@@ -71,6 +71,12 @@ namespace BombEistiv2WPF.Environment
             {
                 toBeDestroyed.Add(theDownDestroyed);
             }
+            var theNoneDestroyed = this.GiveTheFirst(l, Direction.None);
+            if (theNoneDestroyed != null && !g.ToDelete.Contains(theNoneDestroyed))
+            {
+                toBeDestroyed.Add(theNoneDestroyed);
+            }
+            
 
             foreach (var e in toBeDestroyed)
             {
@@ -78,14 +84,16 @@ namespace BombEistiv2WPF.Environment
                 {
                     var theBomb = g.TheCurrentMap.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
                     theBomb.Explode(g);
+                }else if(!g.ToDelete.Contains(e))
+                {
+                    g.ToDelete.Add(e);
                 }
-
             }
-            g.ToDelete.AddRange(toBeDestroyed);
-            if (!g.ToDelete.Contains(this))
-            {
-                g.ToDelete.Add(this);
-            }
+            //g.ToDelete.AddRange(toBeDestroyed.FindAll(e => !(e is Bomb)));
+            //if (!g.ToDelete.Contains(this))
+            //{
+            //    g.ToDelete.Add(this);
+            //}
             Owner.BombExploded(this);
         }
 

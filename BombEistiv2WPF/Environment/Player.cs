@@ -259,6 +259,7 @@ namespace BombEistiv2WPF.Environment
             {
                     case UpgradeType.BombUp:
                         BombCount++;
+                        AvailableBombCount++;
                         break;
                     case UpgradeType.ChangeDirection:
                         InvertedDirections = true;
@@ -307,7 +308,7 @@ namespace BombEistiv2WPF.Environment
         public Bomb PutABomb()
         {
             Bomb b = null;
-            if(AvailableBombCount >= 1){
+            if(AvailableBombCount >= 1 && _map.GetBomb(X,Y) == null){
                 b = new Bomb(X,Y,BombPower,this);
                 AvailableBombCount--;
             }

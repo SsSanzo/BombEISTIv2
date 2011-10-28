@@ -11,6 +11,7 @@ namespace BombEistiv2WPF.Environment
         private static int _length = 0;
         private List<Entity> _toDelete;
         public Map TheCurrentMap;
+        private int test;
 
         public static int Length
         {
@@ -30,8 +31,11 @@ namespace BombEistiv2WPF.Environment
             {
                 case EventType.BombExplode:
                     var b = (Bomb)timerEvent.InvolvedObject;
-                    b.Explode(this);
-                    EmptyTheTrash(TheCurrentMap);
+                    if(TheCurrentMap.GetBomb(b.X,b.Y) != null)
+                    {
+                        b.Explode(this);
+                        EmptyTheTrash(TheCurrentMap);
+                    }
                     break;
             }
         }
@@ -44,6 +48,7 @@ namespace BombEistiv2WPF.Environment
 
         public void InitPlayers(int numberOPlayer)
         {
+            test = 0;
             if (TheCurrentMap != null)
             {
                 if (numberOPlayer > 0)
@@ -81,7 +86,7 @@ namespace BombEistiv2WPF.Environment
                     
                 //}
                 //else
-                    if (e is Player)
+                if (e is Player)
                 {
                     var thePlayer = m.ListOfPlayer.First(c => c.X == e.X && c.Y == e.Y);
                     if(thePlayer.Die())

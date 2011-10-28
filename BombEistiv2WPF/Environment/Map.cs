@@ -143,6 +143,11 @@ namespace BombEistiv2WPF.Environment
             return list.FirstOrDefault(c => c.X == x && c.Y == y);
         }
 
+        public Entity GetBomb(int x, int y)
+        {
+            return ListOfBomb.FirstOrDefault(c => c.X == x && c.Y == y);
+        }
+
 
     }
 }

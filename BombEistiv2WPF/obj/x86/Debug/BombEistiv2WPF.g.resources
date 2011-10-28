@@ -76,7 +76,7 @@
 		  <Upgrade defaultFreq="3" currentFreq="3">PowerUp</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
+		  <Upgrade defaultFreq="3" currentFreq="9">BombUp</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>
