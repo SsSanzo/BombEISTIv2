@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BombEistiv2WPF.Properties;
+using BombEistiv2WPF.View;
 
 namespace BombEistiv2WPF.Environment
 {
@@ -30,6 +31,7 @@ namespace BombEistiv2WPF.Environment
                 case EventType.BombExplode:
                     var b = (Bomb)timerEvent.InvolvedObject;
                     b.Explode(this);
+                    EmptyTheTrash(TheCurrentMap);
                     break;
             }
         }
@@ -37,7 +39,7 @@ namespace BombEistiv2WPF.Environment
         public List<Entity> ToDelete
         {
             set { _toDelete = value; }
-            get { return _toDelete; }
+            get { return _toDelete ?? (_toDelete = new List<Entity>()); }
         }
 
         public void InitPlayers(int numberOPlayer)
@@ -72,30 +74,35 @@ namespace BombEistiv2WPF.Environment
         {
             foreach (var e in ToDelete)
             {
-                if (e is Bomb)
-                {
-                    var theBomb = m.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
-                    m.ListOfBomb.Remove(theBomb);
-
-                }
-                else if (e is Player)
+                //if (e is Bomb)
+                //{
+                //    var theBomb = m.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
+                //    m.ListOfBomb.Remove(theBomb);
+                    
+                //}
+                //else
+                    if (e is Player)
                 {
                     var thePlayer = m.ListOfPlayer.First(c => c.X == e.X && c.Y == e.Y);
                     thePlayer.Die();
                     m.ListOfPlayer.Remove(thePlayer);
+                    Texture._.DeleteTextureEntity(e);
                 }
                 else if (e is SoftBlock)
                 {
                     var theSoftBlock = m.ListOfSoftBlock.First(c => c.X == e.X && c.Y == e.Y);
                     theSoftBlock.Destroy(m);
                     m.ListOfSoftBlock.Remove(theSoftBlock);
+                    Texture._.DeleteTextureEntity(e);
                 }
                 else if (e is Upgrade)
                 {
                     var theUpgrade = m.ListOfUpgrade.First(c => c.X == e.X && c.Y == e.Y);
                     theUpgrade.Burn();
                     m.ListOfUpgrade.Remove(theUpgrade);
+                    Texture._.DeleteTextureEntity(e);
                 }
+                
             }
             ToDelete.Clear();
         }

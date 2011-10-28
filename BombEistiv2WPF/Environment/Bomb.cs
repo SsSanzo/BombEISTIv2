@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BombEistiv2WPF.View;
 
 namespace BombEistiv2WPF.Environment
 {
@@ -15,7 +16,7 @@ namespace BombEistiv2WPF.Environment
         {
             Power = power;
             Owner = owner;
-            TimerManager._.AddNewTimer(false, GameParameters._.ExplosionDelay, true, new TimerEvent { InvolvedObject = this, Type = EventType.BombExplode });
+            TimerManager._.AddNewTimer(false, GameParameters._.ExplosionDelay*1000, true, new TimerEvent { InvolvedObject = this, Type = EventType.BombExplode });
         }
 
 
@@ -48,6 +49,7 @@ namespace BombEistiv2WPF.Environment
             var toBeDestroyed = new List<Entity>();
             var thecompletelist = g.TheCurrentMap.GetCompleteList();
             g.TheCurrentMap.ListOfBomb.Remove(this);
+            Texture._.DeleteTextureEntity(this);
             var l = thecompletelist.Where(c => c.X == this.X || c.Y == this.Y);
             var theRightDestroyed = this.GiveTheFirst(l, Direction.Right);
             if (theRightDestroyed != null && !g.ToDelete.Contains(theRightDestroyed))
@@ -77,6 +79,7 @@ namespace BombEistiv2WPF.Environment
                     var theBomb = g.TheCurrentMap.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
                     theBomb.Explode(g);
                 }
+
             }
             g.ToDelete.AddRange(toBeDestroyed);
             if (!g.ToDelete.Contains(this))

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
 using BombEistiv2WPF.View;
@@ -38,6 +39,11 @@ namespace BombEistiv2WPF
             time.Elapsed += moving;
             lastKey = Key.None;
             lastReleaseKey = Key.None;
+        }
+
+        public Menu Menu
+        {
+            get { return menu; }
         }
 
         public Game GameInProgress
@@ -242,30 +248,32 @@ namespace BombEistiv2WPF
             //button relou
             MainGrid.Children.RemoveAt(0);
 
-            menu = new Menu();
-            InitTextureSystem();
-            DevelopperScreen();
+            //Menu
+            //menu = new Menu();
+            //InitTextureSystem();
+            //DevelopperScreen();
 
-           
-            
+
+
 
 
             //thewizard = new Wizard(this);
             //thewizard.Init();
-            //texture = Texture._;
-            //texture.SetTheme("Basic");
+            texture = Texture._;
+            texture.SetTheme("Basic");
 
             //a modif ?
-            //listener = ListenerGame._;
+            listener = ListenerGame._;
 
             //testing
-            /*
+            GameParameters._.ExplosionDelay = 3;
             GameParameters._.PlayerCount = 4;
             _gameInProgress = new ClassicGame();
+            TimerManager._.Game = _gameInProgress;
             listener.GameInProgress = _gameInProgress;
             InitTextureGame();
             listener.StartTimers();
-            */
+            
             //time.Start();
         }
 
@@ -283,6 +291,11 @@ namespace BombEistiv2WPF
         {
             lastReleaseKey = keyEventArgs.Key;
             listener.ReleaseKey(keyEventArgs.Key);
+        }
+
+        public void RemoveEntity(Entity entity)
+        {
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => MainGrid.Children.Remove(entity)));
         }
     }
 }

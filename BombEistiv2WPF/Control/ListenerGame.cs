@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using BombEistiv2WPF.Environment;
+using BombEistiv2WPF.View;
 using Timer = System.Timers.Timer;
 
 
@@ -92,6 +93,7 @@ namespace BombEistiv2WPF.Control
                         var thePlayer =
                             GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(splitted[0]));
                         Movement.Move(splitted[1], thePlayer);
+                        
                     }
                     Movement.ChangeFace(GameInProgress.TheCurrentMap.ListOfPlayer);
                     if (Pulled.Count != 0)
@@ -114,7 +116,17 @@ namespace BombEistiv2WPF.Control
                     //Pulled.AddRange(Pushed.FindAll(t => t.StartsWith(id)));
                     //Pulled.AddRange(Incoming.FindAll(t => t.StartsWith(id)));
                     //Incoming.Add(ka.KeysPlayer[k]);
-                    Pushed.Add(ka.KeysPlayer[k]);
+                    if (ka.KeysPlayer[k].Split('_')[1] != "None") { Pushed.Add(ka.KeysPlayer[k]); }
+                    else
+                    {
+                        var thePlayer =
+                            GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(ka.KeysPlayer[k].Split('_')[0]));
+                        var e = Movement.PutABomb(thePlayer);
+                        if(e != null)
+                        {
+                            Texture._.InsertTextureEntity(e);
+                        }
+                    }
                 }
                 
             

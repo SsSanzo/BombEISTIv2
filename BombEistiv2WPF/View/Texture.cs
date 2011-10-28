@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using BombEistiv2WPF.Environment;
 
 namespace BombEistiv2WPF.View
@@ -12,6 +13,7 @@ namespace BombEistiv2WPF.View
     {
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
+        private MainWindow mw;
 
         private static Texture _this;
 
@@ -21,6 +23,11 @@ namespace BombEistiv2WPF.View
             _typetextureList = new Dictionary<string, BitmapImage>();
         }
 
+        public MainWindow Mw
+        {
+            get { return mw; }
+            set { mw = value; }
+        }
 
         public static Texture _
         {
@@ -44,22 +51,27 @@ namespace BombEistiv2WPF.View
 
         public void LoadTextureList(List<Entity> l , MainWindow w)
         {
-            
+                Mw = w;
                 foreach (var entity in l)
                 {
                     entity.Source = TypetextureList[GetTextureKey(entity)];
                     entity.Width = 40;
                     entity.Height = 40;
-                    w.MainGrid.Children.Add(entity);
+                    Mw.MainGrid.Children.Add(entity);
                 }
         }
 
-        public void InsertTextureEntity(Entity entity, MainWindow w)
+        public void InsertTextureEntity(Entity entity)
         {
             entity.Source = TypetextureList[GetTextureKey(entity)];
             entity.Width = 40;
             entity.Height = 40;
-            w.MainGrid.Children.Insert(w.MainGrid.Children.Count - 1 - GameParameters._.PlayerCount, entity);
+            Mw.MainGrid.Children.Insert(Mw.MainGrid.Children.Count - 1 - GameParameters._.PlayerCount, entity);
+        }
+
+        public void DeleteTextureEntity(Entity entity)
+        {
+            Mw.RemoveEntity(entity);
         }
 
         public List<Image> LoadBackground()

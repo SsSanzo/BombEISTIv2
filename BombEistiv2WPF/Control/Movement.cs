@@ -76,5 +76,10 @@ namespace BombEistiv2WPF.Control
             }
             
         }
+
+        public static Bomb PutABomb(Player p)
+        {
+            return p.PutABomb();
+        }
     }
 }

@@ -171,10 +171,10 @@ namespace BombEistiv2WPF.Environment
             if (l == null) return null;
             switch (d)
             {
-                case Direction.Left: return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X < this.X).Max(e => e.X));
-                case Direction.Right: return l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X > this.X).Min(e => e.X));
-                case Direction.Down: return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y < this.Y).Max(e => e.Y));
-                case Direction.Up: return l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y > this.Y).Min(e => e.Y));
+                case Direction.Left: return l.Where(e => e.Y == this.Y && e.X < this.X).Count() != 0 ? l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X < this.X).Max(e => e.X)) : null;
+                case Direction.Right: return l.Where(e => e.Y == this.Y && e.X > this.X).Count() != 0 ? l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X > this.X).Min(e => e.X)) : null;
+                case Direction.Down: return l.Where(e => e.X == this.X && e.Y < this.Y).Count() != 0 ? l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y < this.Y).Max(e => e.Y)) : null;
+                case Direction.Up: return l.Where(e => e.X == this.X && e.Y > this.Y).Count() != 0 ? l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y > this.Y).Min(e => e.Y)) : null;
                 case Direction.None: return l.FirstOrDefault(c => c.X == this.X && c.Y == this.Y);
             }
             return null;
