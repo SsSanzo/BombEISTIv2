@@ -43,7 +43,7 @@ namespace BombEistiv2WPF.Environment
         {
             Speed = 3;
             BombCount = 1;
-            BombPower = 1;
+            BombPower = 2;
             CanKick = false;
             InvertedDirections = false;
             AvailableBombCount = 1;

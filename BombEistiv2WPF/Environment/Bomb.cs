@@ -50,7 +50,7 @@ namespace BombEistiv2WPF.Environment
             var thecompletelist = g.TheCurrentMap.GetCompleteList();
             g.TheCurrentMap.ListOfBomb.Remove(this);
             Texture._.DeleteTextureEntity(this);
-            var l = thecompletelist.Where(c => c.X == this.X || c.Y == this.Y);
+            var l = thecompletelist.Where(c => (this.Y == c.Y && (c.X <= (this.X + this.Power) && (c.X >= (this.X - this.Power)))) || (this.X == c.X && (c.Y <= (this.Y + this.Power) && (c.Y >= (this.Y - this.Power)))));
             var theRightDestroyed = this.GiveTheFirst(l, Direction.Right);
             if (theRightDestroyed != null && !g.ToDelete.Contains(theRightDestroyed))
             {

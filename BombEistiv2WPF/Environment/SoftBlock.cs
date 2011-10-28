@@ -18,7 +18,10 @@
 
         public void Destroy(Map m)
         {
-            m.ListOfUpgrade.Add(MyUpgrade);
+            if(MyUpgrade != null)
+            {
+                m.ListOfUpgrade.Add(MyUpgrade);
+            }
         }
 
         protected override bool Move(int x, int y)
