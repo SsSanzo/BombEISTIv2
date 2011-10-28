@@ -9,6 +9,7 @@ namespace BombEistiv2WPF.Environment
 
         private Player _owner;
         private int _power;
+        private Direction directionMoving;
 
 
         public Bomb(int x, int y, int power, Player owner)
@@ -16,9 +17,16 @@ namespace BombEistiv2WPF.Environment
         {
             Power = power;
             Owner = owner;
+            directionMoving = Direction.None;
             TimerManager._.AddNewTimer(false, GameParameters._.ExplosionDelay*1000, true, new TimerEvent { InvolvedObject = this, Type = EventType.BombExplode });
         }
 
+
+        public Direction DirectionMoving
+        {
+            get { return directionMoving; }
+            set { directionMoving = value;  }
+        }
 
         public Player Owner
         {
@@ -99,12 +107,35 @@ namespace BombEistiv2WPF.Environment
 
         public void Move(Direction d)
         {
-            // =>
+            directionMoving = d;
+            TimerManager._.AddNewTimer(true, 15, true, new TimerEvent { InvolvedObject = this, Type = EventType.BombMove });
+        }
+
+        public bool Move()
+        {
+            var oldposperx = Percentx;
+            var oldpospery = Percenty;
+            switch (directionMoving)
+            {
+                case Direction.Left:
+                    Percentx++;
+                    break;
+                case Direction.Right:
+                    Percentx--;
+                    break;
+                case Direction.Up:
+                    Percenty--;
+                    break;
+                case Direction.Down:
+                    Percenty++;
+                    break;
+            }
+            return (oldposperx == Percentx) && (oldpospery == Percenty);
         }
 
         protected override bool Move(int x, int y)
         {
-            throw new System.NotImplementedException();
+            return Owner.Map.GetEntity(x, y) == null;
         }
     }
 }

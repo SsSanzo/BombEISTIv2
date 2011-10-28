@@ -141,6 +141,7 @@ namespace BombEistiv2WPF
     public enum EventType
     {
         None,
-        BombExplode
+        BombExplode,
+        BombMove
     }
 }

@@ -168,6 +168,11 @@ namespace BombEistiv2WPF.Environment
             get { return _score; }
         }
 
+        public Map Map
+        {
+            get { return _map; }
+        }
+
         public int Id
         {
             get { return _id; }

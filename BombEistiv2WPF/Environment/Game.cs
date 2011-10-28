@@ -27,14 +27,21 @@ namespace BombEistiv2WPF.Environment
 
         public void EventManager(TimerEvent timerEvent)
         {
+            var b = (Bomb)timerEvent.InvolvedObject;
             switch (timerEvent.Type)
             {
                 case EventType.BombExplode:
-                    var b = (Bomb)timerEvent.InvolvedObject;
+                    
                     if(TheCurrentMap.GetBomb(b.X,b.Y) != null)
                     {
                         b.Explode(this);
                         EmptyTheTrash(TheCurrentMap);
+                    }
+                    break;
+                case EventType.BombMove:
+                    if(!b.Move())
+                    {
+                        timerEvent.Timer.Stop();
                     }
                     break;
             }
