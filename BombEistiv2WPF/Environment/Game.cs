@@ -11,7 +11,6 @@ namespace BombEistiv2WPF.Environment
         private static int _length = 0;
         private List<Entity> _toDelete;
         public Map TheCurrentMap;
-        private int test;
 
         public static int Length
         {
@@ -55,7 +54,6 @@ namespace BombEistiv2WPF.Environment
 
         public void InitPlayers(int numberOPlayer)
         {
-            test = 0;
             if (TheCurrentMap != null)
             {
                 if (numberOPlayer > 0)

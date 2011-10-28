@@ -339,10 +339,13 @@ namespace BombEistiv2WPF.Environment
                 if (CanKick)
                 {
                     var b = (Bomb)e;
-                    b.Move(this.GetDirectionTo(x, y));
-                    return true;
+                    //b.Move(this.GetDirectionTo(x, y));
+                    if(b.DirectionMoving == Direction.None)
+                    {
+                        b.Move(this.Sens);
+                    }
                 }
-                else return false;
+                return false;
             }
             else if(e is HardBlock || e is SoftBlock)
             {

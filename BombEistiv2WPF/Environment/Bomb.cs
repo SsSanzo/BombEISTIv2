@@ -118,19 +118,24 @@ namespace BombEistiv2WPF.Environment
             switch (directionMoving)
             {
                 case Direction.Left:
-                    Percentx++;
+                    Percentx += 5;
                     break;
                 case Direction.Right:
-                    Percentx--;
+                    Percentx -= 5;
                     break;
                 case Direction.Up:
-                    Percenty--;
+                    Percenty -= 5;
                     break;
                 case Direction.Down:
-                    Percenty++;
+                    Percenty += 5;
                     break;
             }
-            return (oldposperx == Percentx) && (oldpospery == Percenty);
+            if ((oldposperx == Percentx) && (oldpospery == Percenty))
+            {
+                directionMoving = Direction.None;
+                return false;
+            }
+            return true;
         }
 
         protected override bool Move(int x, int y)
