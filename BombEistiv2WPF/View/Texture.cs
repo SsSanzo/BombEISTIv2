@@ -63,10 +63,7 @@ namespace BombEistiv2WPF.View
 
         public void InsertTextureEntity(Entity entity)
         {
-            entity.Source = TypetextureList[GetTextureKey(entity)];
-            entity.Width = 40;
-            entity.Height = 40;
-            Mw.MainGrid.Children.Insert(Mw.MainGrid.Children.Count - 1 - GameParameters._.PlayerCount, entity);
+            Mw.InsertEntity(entity);
         }
 
         public void DeleteTextureEntity(Entity entity)
@@ -107,7 +104,7 @@ namespace BombEistiv2WPF.View
             if(e is Upgrade)
             {
                 var u = (Upgrade) e;
-                return u.Type.ToString();
+                return "Upgrade." + u.Type.ToString();
             }
             if(e is Bomb)
             {

@@ -84,9 +84,11 @@ namespace BombEistiv2WPF.Environment
                     if (e is Player)
                 {
                     var thePlayer = m.ListOfPlayer.First(c => c.X == e.X && c.Y == e.Y);
-                    thePlayer.Die();
-                    m.ListOfPlayer.Remove(thePlayer);
-                    Texture._.DeleteTextureEntity(e);
+                    if(thePlayer.Die())
+                    {
+                        m.ListOfPlayer.Remove(thePlayer);
+                        Texture._.DeleteTextureEntity(e);
+                    }
                 }
                 else if (e is SoftBlock)
                 {

@@ -41,6 +41,7 @@ namespace BombEistiv2WPF.Control
 
         public static void Move(string direction, Player p)
         {
+
             if (direction == Direction.Up.ToString())
             {
                 p.Percenty -= p.Speed;

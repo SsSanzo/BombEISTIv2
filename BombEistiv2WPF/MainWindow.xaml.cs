@@ -297,5 +297,18 @@ namespace BombEistiv2WPF
         {
             Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => MainGrid.Children.Remove(entity)));
         }
+
+        public void InsertEntity(Entity entity)
+        {
+            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => InsertEntityDispatched(entity)));
+        }
+
+        public void InsertEntityDispatched(Entity entity)
+        {
+            entity.Source = Texture._.TypetextureList[Texture._.GetTextureKey(entity)];
+            entity.Width = 40;
+            entity.Height = 40;
+            MainGrid.Children.Insert(MainGrid.Children.Count - 1 - GameParameters._.PlayerCount, entity);
+        }
     }
 }

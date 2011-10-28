@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace BombEistiv2WPF.Environment
@@ -83,13 +84,14 @@ namespace BombEistiv2WPF.Environment
         public Dictionary<UpgradeType, int> GetAllUpgrades()
         {
             var upgrades = new Dictionary<UpgradeType, int>();
-            var e = _root.Where(c => String.Compare(Type.ToString(), c.Element("Game").Attribute("type").Value) == 0).Descendants("Upgrades");
+            var d = _root.Descendants("Game").Where(c => c.Attribute("type").Value == Type.ToString());
+            var e = d.Descendants("Upgrades").Elements("Upgrade");
             foreach (var element in e)
             {
                 UpgradeType ut;
                 if (Enum.TryParse(element.Value, out ut))
                 {
-                    var i = Convert.ToInt32(element.Attribute("currentFreq"));
+                    var i = Convert.ToInt32(element.Attribute("currentFreq").Value);
                     upgrades.Add(ut, i);
                 }
             }

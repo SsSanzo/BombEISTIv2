@@ -314,9 +314,15 @@ namespace BombEistiv2WPF.Environment
             return b;
         }
 
-        public void Die()
+        public bool Die()
         {
-            
+            this.Lives--;
+            return Lives <= 0;
+        }
+
+        public bool IsDead()
+        {
+            return Lives <= 0;
         }
 
         protected override bool Move(int x, int y)
@@ -341,6 +347,7 @@ namespace BombEistiv2WPF.Environment
                 var u = (Upgrade) e;
                 _map.PickupUpgrade(u);
                 AddAndApplyUpgrade(u);
+                u.Burn();
                 return true;
             }
             return true;

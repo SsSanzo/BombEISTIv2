@@ -1,4 +1,6 @@
-﻿namespace BombEistiv2WPF.Environment
+﻿using BombEistiv2WPF.View;
+
+namespace BombEistiv2WPF.Environment
 {
     public class Upgrade : Entity
     {
@@ -17,7 +19,7 @@
 
         public void Burn()
         {
-            
+            Texture._.DeleteTextureEntity(this);
         }
 
         protected override bool Move(int x, int y)

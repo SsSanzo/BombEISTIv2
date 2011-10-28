@@ -1,4 +1,6 @@
-﻿namespace BombEistiv2WPF.Environment
+﻿using BombEistiv2WPF.View;
+
+namespace BombEistiv2WPF.Environment
 {
     public class SoftBlock : Entity
     {
@@ -21,6 +23,7 @@
             if(MyUpgrade != null)
             {
                 m.ListOfUpgrade.Add(MyUpgrade);
+                Texture._.InsertTextureEntity(MyUpgrade);
             }
         }
 
