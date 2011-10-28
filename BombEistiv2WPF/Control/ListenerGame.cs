@@ -120,10 +120,13 @@ namespace BombEistiv2WPF.Control
                     {
                         var thePlayer =
                             GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(ka.KeysPlayer[k].Split('_')[0]));
-                        var e = Movement.PutABomb(thePlayer);
-                        if(e != null)
+                        if(thePlayer != null)
                         {
-                            Texture._.InsertTextureEntity(e);
+                            var e = Movement.PutABomb(thePlayer);
+                            if(e != null)
+                            {
+                                Texture._.InsertTextureEntity(e);
+                            }
                         }
                     }
                 }
