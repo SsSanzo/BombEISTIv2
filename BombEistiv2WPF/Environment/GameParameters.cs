@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 
 namespace BombEistiv2WPF.Environment
@@ -25,6 +26,7 @@ namespace BombEistiv2WPF.Environment
         private int _gameTime; // en secondes
         private int _explosionDelay;
 
+        private Dictionary<string, BitmapImage> _menutextureList;
 
         private GameParameters()
         {
@@ -34,6 +36,8 @@ namespace BombEistiv2WPF.Environment
             GameTime = 300;
             Network = Network.Local;
             Theme = "Basic";
+            _menutextureList = new Dictionary<string, BitmapImage>();
+            LoadAllSystemResources();
         }
 
         public static GameParameters _
@@ -79,6 +83,11 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
+        public Dictionary<string, BitmapImage> MenutextureList
+        {
+            get { return _menutextureList; }
+        }
+
         public GameType Type { get; set; }
 
         public Dictionary<UpgradeType, int> GetAllUpgrades()
@@ -105,6 +114,22 @@ namespace BombEistiv2WPF.Environment
             var folder = menu.Attribute("folder").Value;
             return e.ToDictionary(element => element.Attribute("object").Value, element => @"\" + folder + element.Attribute("source").Value);
 
+        }
+
+        public void LoadAllSystemResources()
+        {
+            foreach (var td in GetMenuTemplate())
+            {
+                if (td.Value.EndsWith(".png"))
+                {
+                    var u = new Uri(Path + td.Value);
+                    var bitmanimg = new BitmapImage();
+                    bitmanimg.BeginInit();
+                    bitmanimg.UriSource = u;
+                    bitmanimg.EndInit();
+                    MenutextureList.Add(td.Key, bitmanimg);
+                }
+            }
         }
 
         public void ResetUpgradeFrequence()

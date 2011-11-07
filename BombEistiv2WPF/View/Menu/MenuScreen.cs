@@ -27,13 +27,13 @@ namespace BombEistiv2WPF.View.Menu
             get { return _menuDataList; }
         }
 
-        public override void Show(Control.Wizard w)
+        public override void Show(Control.Wizard w, Screenv2 screen)
         {
             _wizard = w;
             if(_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
-                Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
             }
             foreach (var img in MenuDataList)
             {
@@ -127,13 +127,13 @@ namespace BombEistiv2WPF.View.Menu
 
         private void ActionDefil(object sender, ElapsedEventArgs e)
         {
-            Dispatcher.CurrentDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(defileSky));
+            _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(defileSky));
         }
 
         private void ActionPressStart(object sender, ElapsedEventArgs e)
         {
             if (time == null) {time = (Timer) sender;}
-            Dispatcher.CurrentDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+            _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                 new Action(_actionInProgress));
         }
 

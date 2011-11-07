@@ -1,17 +1,24 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Timers;
+using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Threading;
 using BombEistiv2WPF.Environment;
+using BombEistiv2WPF.View.Menu;
+using Screen = BombEistiv2WPF.View.Menu.Screenv2;
 
 namespace BombEistiv2WPF.Control
 {
     public class Wizard
     {
-        private Screen _currentScreen;
+        private ScreenType _currentScreenType;
+        private Screenv2 _currentScreen;
         private Game _currentGame;
-        private ListenerGame _currentKeyListener;
         private MainWindow _theWindow;
         private Key lastKey;
         private Key lastReleaseKey;
+        private bool _fading = false;
 
         public Wizard(MainWindow mw)
         {
@@ -20,70 +27,75 @@ namespace BombEistiv2WPF.Control
             lastReleaseKey = Key.None;
         }
 
-        public Screen Screen
+        public Grid Grid
         {
-            get { return _currentScreen; }
-            set
-            {
-                //fadeout
-                _currentScreen = value;
-                //fadein
-            }
+            get { return _theWindow.MenuGrid; }
+        }
+
+        public Dispatcher WindowDispatcher
+        {
+            get { return _theWindow.Dispatcher; } 
+        }
+
+        public ScreenType Screen
+        {
+            get { return _currentScreenType; }
+            set { _currentScreenType = value; }
         }
 
         public void Init()
         {
-            _currentScreen = Screen.DevScreen;
             _currentGame = _theWindow.GameInProgress;
-            _currentKeyListener = null;
-            _theWindow.KeyDown += WindowKeyDownGame;
-            _theWindow.KeyUp += WindowKeyUpGame;
+            _currentScreen = null;
+            _theWindow.KeyDown += KeyDown;
+            _theWindow.KeyUp += KeyUp;
         }
 
         public void LaunchScreen()
         {
-
+            NextScreen(ScreenType.DevScreen);
         }
 
-        public void WindowKeyUpMenu(object sender, System.Windows.Input.KeyEventArgs e)
+
+        public void KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            _currentKeyListener.EventKey(e.Key);
+            lastReleaseKey = e.Key;
+            _currentScreen.KeyUp(e.Key);
         }
 
-        public void WindowKeyDownMenu(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            _currentKeyListener.ReleaseKey(e.Key);
-        }
-
-
-
-        public void WindowKeyUpGame(object sender, System.Windows.Input.KeyEventArgs e)
+        public void KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key != lastKey || (e.Key == lastKey && e.Key == lastReleaseKey))
             {
                 lastKey = e.Key;
-                _currentKeyListener.EventKey(e.Key);
+                _currentScreen.KeyDown(e.Key);
             }
+            
         }
 
-        public void WindowKeyDownGame(object sender, System.Windows.Input.KeyEventArgs e)
+        
+
+        public void NextScreen(ScreenType screen)
         {
-            lastReleaseKey = e.Key;
-            _currentKeyListener.ReleaseKey(e.Key);
-        }
-
-        public void FadeIn()
-        {
-
-        }
-
-        public void FadeOut()
-        {
-
+            switch (screen)
+            {
+                case ScreenType.DevScreen:
+                    var s = new DevScreen();
+                    s.setImage("Teamblui");
+                    s.Show(this, _currentScreen);
+                    _currentScreen = s;
+                    break;
+                case ScreenType.PressStart:
+                    var m = new MenuScreen();
+                    m.Show(this, _currentScreen);
+                    _currentScreen = m;
+                    break;
+            }
+            //FadeIn();
         }
     }
 
-    public enum Screen
+    public enum ScreenType
     {
         DevScreen,
         PressStart,

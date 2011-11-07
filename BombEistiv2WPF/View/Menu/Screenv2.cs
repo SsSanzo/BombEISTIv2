@@ -11,7 +11,7 @@ namespace BombEistiv2WPF.View.Menu
 {
     public abstract class Screenv2
     {
-        public abstract void Show(Wizard w);
+        public abstract void Show(Wizard w, Screenv2 screen);
 
         public abstract void KeyUp(Key k);
 

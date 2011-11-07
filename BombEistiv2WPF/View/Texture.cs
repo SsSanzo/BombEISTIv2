@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
 
 namespace BombEistiv2WPF.View
@@ -21,6 +22,7 @@ namespace BombEistiv2WPF.View
         {
             _themeData = GameParameters._.GetThemeData("Basic");
             _typetextureList = new Dictionary<string, BitmapImage>();
+            
         }
 
         public MainWindow Mw
@@ -71,6 +73,18 @@ namespace BombEistiv2WPF.View
             Mw.RemoveEntity(entity);
         }
 
+        public void Explosion(Bomb b)
+        {
+            var g = new GifImage(TypetextureList["Explosion"].UriSource, Mw);
+
+            g.HorizontalAlignment = HorizontalAlignment.Left;
+            g.VerticalAlignment = VerticalAlignment.Top;
+            g.Width = 40;
+            g.Height = 40;
+            g.Margin = new Thickness(b.X * 40, b.Y * 40, 0.0, 0.0);
+            Mw.explosion(b, g);
+        }
+
         public List<Image> LoadBackground()
         {
             var l = new List<Image>();
@@ -116,14 +130,14 @@ namespace BombEistiv2WPF.View
                 return "Player_" + p.Skinid + "_" + p.Sens.ToString().ToLower();
             }
             return "Background";
-
         }
+
 
         public void LoadAllTextures()
         {
             foreach (var td in ThemeData)
             {
-                if(td.Value.EndsWith(".png"))
+                if (td.Value.EndsWith(".png") || td.Value.EndsWith(".gif"))
                 {
                     var u = new Uri(GameParameters.Path + td.Value);
                     var bitmanimg = new BitmapImage();

@@ -19,11 +19,12 @@ namespace BombEistiv2WPF.View.Menu
         private Wizard _wizard;
         private Image img;
 
-        public override void Show(Control.Wizard w)
+        public override void Show(Control.Wizard w, Screenv2 screen)
         {
             _wizard = w;
             _wizard.Grid.Children.Add(img);
-            TimerManager._.AddNewTimer(false, 4000, true, null, HideTimerEvent);
+            TimerManager._.AddNewTimer(false, 4000, true,null, HideTimerEvent);
+            TimerManager._.AddNewTimer(true, 28, true, null, FadingIn);
         }
 
         public override void KeyUp(Key k) { }
@@ -32,7 +33,7 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Hide()
         {
-            _wizard.NextScreen(ScreenType.PressStart);
+            TimerManager._.AddNewTimer(true, 28, true, null, FadingOut);
         }
 
         public Image Img
@@ -56,7 +57,45 @@ namespace BombEistiv2WPF.View.Menu
 
         public void HideTimerEvent(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            Dispatcher.CurrentDispatcher.Invoke((Action) Hide, DispatcherPriority.Normal);
+            _wizard.WindowDispatcher.Invoke((Action) Hide, DispatcherPriority.Normal);
+        }
+
+        public void FadingIn(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => FadeIn(sender)));
+        }
+
+        public void FadingOut(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            _wizard.WindowDispatcher.Invoke((Action)(() => FadeOut(sender)), DispatcherPriority.Normal);
+        }
+
+        public void FadeIn(object sender)
+        {
+            if (Img.Opacity < 1.0)
+            {
+                Img.Opacity += 0.02;
+            }
+            else
+            {
+                var s = (System.Timers.Timer)sender;
+                s.AutoReset = false;
+
+            }
+        }
+
+        public void FadeOut(object sender)
+        {
+            if (Img.Opacity > 0.0)
+            {
+                Img.Opacity -= 0.02;
+            }
+            else
+            {
+                var s = (System.Timers.Timer)sender;
+                s.AutoReset = false;
+                _wizard.NextScreen(ScreenType.PressStart);
+            }
         }
     }
 }

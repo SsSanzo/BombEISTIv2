@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\GifImage.cs" />
     <Compile Include="Control\ListenerMenu.cs" />
     <Compile Include="Control\Wizard.cs" />
     <Compile Include="Main.cs" />
@@ -64,12 +65,11 @@
     <Compile Include="View\Animation.cs" />
     <Compile Include="View\Explosion.cs" />
     <Compile Include="View\GameTimer.cs" />
-    <Compile Include="View\LanMenu.cs" />
-    <Compile Include="View\MainMenu.cs" />
     <Compile Include="View\MapSkin.cs" />
-    <Compile Include="View\Menu.cs" />
-    <Compile Include="View\NetMenu.cs" />
-    <Compile Include="View\OptionMenu.cs" />
+    <Compile Include="View\Menu\DevScreen.cs" />
+    <Compile Include="View\Menu\MenuScreen.cs" />
+    <Compile Include="View\Menu\Screen.cs" />
+    <Compile Include="View\Menu\Screenv2.cs" />
     <Compile Include="View\PlayerSkin.cs" />
     <Compile Include="View\PlaySound.cs" />
     <Compile Include="View\Texture.cs" />

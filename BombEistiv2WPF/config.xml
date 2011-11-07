@@ -19,11 +19,12 @@
         <Texture object="Upgrade.Teleport" source="Teleport.png"/>
         <Texture object="Upgrade.SpeedMax" source="SpeedMax.png"/>
         <Texture object="Upgrade.Life" source="Life.png"/>
+        <Texture object="Explosion" source="explosion.gif"/>
         <Music object="Menu" source="menu.wav" />
         <Music object="Game" source="game1.wav" />
         <Music object="Win" source="win.wav" />
         <Music object="Draw" source="win.wav" />
-        <Music object="Explosion" source="explosion.wav" />
+        <Music object="Explosionwav" source="explosion.wav" />
         <Player object="Player_1_up" source="Player_1_up.png"/>
         <Player object="Player_1_down" source="Player_1_down.png"/>
         <Player object="Player_1_left" source="Player_1_left.png"/>
