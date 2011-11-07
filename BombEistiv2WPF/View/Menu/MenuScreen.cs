@@ -30,6 +30,7 @@ namespace BombEistiv2WPF.View.Menu
         public override void Show(Control.Wizard w, Screenv2 screen)
         {
             _wizard = w;
+            _wizard.Grid.Children.RemoveRange(0, _wizard.Grid.Children.Count);
             if(_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
@@ -47,7 +48,13 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyUp(Key k) { }
 
-        public override void KeyDown(Key k) { }
+        public override void KeyDown(Key k)
+        {
+            if(KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
+            {
+                Hide();
+            }
+        }
 
         public override void Hide()
         {

@@ -22,9 +22,9 @@ namespace BombEistiv2WPF.Control
         }
 
 
-        public void EventKey(Key k)
+        public void EventPressStart(Key k)
         {
-            keypressed = k;
+            
         }
 
         public void ReleaseKey(Key k)

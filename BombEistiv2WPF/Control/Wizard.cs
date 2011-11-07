@@ -18,7 +18,6 @@ namespace BombEistiv2WPF.Control
         private MainWindow _theWindow;
         private Key lastKey;
         private Key lastReleaseKey;
-        private bool _fading = false;
 
         public Wizard(MainWindow mw)
         {
@@ -72,8 +71,6 @@ namespace BombEistiv2WPF.Control
             }
             
         }
-
-        
 
         public void NextScreen(ScreenType screen)
         {
