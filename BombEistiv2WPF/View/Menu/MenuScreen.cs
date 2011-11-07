@@ -21,6 +21,7 @@ namespace BombEistiv2WPF.View.Menu
         private Action _actionInProgress;
         private Timer time;
         private bool triggerOk;
+        private bool thisIsTheEnd;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -29,6 +30,7 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 screen)
         {
+            thisIsTheEnd = false;
             _wizard = w;
             _wizard.Grid.Children.RemoveRange(0, _wizard.Grid.Children.Count);
             if(_menuDataList == null)
@@ -58,7 +60,16 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Hide()
         {
-            _wizard.NextScreen(ScreenType.PressStart);
+            if (_actionInProgress == PressStartCling || (_actionInProgress == flash && time.Interval == 15))
+            {
+                thisIsTheEnd = true;
+                MenuDataList["White"].Opacity = 1;
+                //_wizard.NextScreen(ScreenType.PressStart);
+            }else
+            {
+                SetFinalState();
+            }
+            
         }
 
         public void LoadMenuImage()
@@ -135,6 +146,11 @@ namespace BombEistiv2WPF.View.Menu
         private void ActionDefil(object sender, ElapsedEventArgs e)
         {
             _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(defileSky));
+            if(thisIsTheEnd)
+            {
+                var t = (Timer) sender;
+                t.AutoReset = false;
+            }
         }
 
         private void ActionPressStart(object sender, ElapsedEventArgs e)
@@ -142,6 +158,11 @@ namespace BombEistiv2WPF.View.Menu
             if (time == null) {time = (Timer) sender;}
             _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                 new Action(_actionInProgress));
+            if (thisIsTheEnd)
+            {
+                var t = (Timer)sender;
+                t.AutoReset = false;
+            }
         }
 
         public void defileSky()
@@ -160,7 +181,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 MenuDataList["Bomb"].Margin = new Thickness(MenuDataList["Bomb"].Margin.Left - 15, -70, 0.0, 0.0);
             }
-            else
+            else if (_actionInProgress != flash && _actionInProgress != PressStartCling)
             {
                 _actionInProgress = eistiIncoming;
             }
@@ -172,7 +193,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 MenuDataList["Eisti"].Margin = new Thickness(100, MenuDataList["Eisti"].Margin.Top + 10, 0.0, 0.0);
             }
-            else
+            else if (_actionInProgress != flash && _actionInProgress != PressStartCling)
             {
                 MenuDataList["White"].Opacity = 1;
                 MenuDataList["2"].Opacity = 1;
@@ -217,6 +238,18 @@ namespace BombEistiv2WPF.View.Menu
                 time.Interval = 15;
                 MenuDataList["PressStart"].Opacity -= 0.05;
             }
+        }
+
+        public void SetFinalState()
+        {
+            time.Interval = 15;
+            MenuDataList["White"].Opacity = 1;
+            _actionInProgress = flash;
+            MenuDataList["Bomb"].Margin = new Thickness(-130, -70, 0.0, 0.0);
+            MenuDataList["Eisti"].Margin = new Thickness(100, 120 + 10, 0.0, 0.0);
+            MenuDataList["2"].Opacity = 1;
+            
+            
         }
     }
 }

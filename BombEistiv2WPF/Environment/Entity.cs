@@ -38,11 +38,11 @@ namespace BombEistiv2WPF.Environment
             get { return _x; }
             set
             {
-                if (value >= 0 && value < Game.Length)
-                {
+                //if (value >= 0 && value < Game.Length)
+                //{
                     _x = value;
                     //Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickLeft)));
-                }
+                //}
             }
         }
 
@@ -51,11 +51,11 @@ namespace BombEistiv2WPF.Environment
             get { return _y; }
             set
             {
-                if (value >= 0 && value < Game.Length)
-                {
+                //if (value >= 0 && value < Game.Length)
+                //{
                     _y = value;
                     //Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action((reloadTickTop)));
-                }
+                //}
             }
         }
 
@@ -173,8 +173,8 @@ namespace BombEistiv2WPF.Environment
             {
                 case Direction.Left: return l.Where(e => e.Y == this.Y && e.X < this.X).Count() != 0 ? l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X < this.X).Max(e => e.X)) : null;
                 case Direction.Right: return l.Where(e => e.Y == this.Y && e.X > this.X).Count() != 0 ? l.FirstOrDefault(c => c.Y == this.Y && c.X == l.Where(e => e.Y == this.Y && e.X > this.X).Min(e => e.X)) : null;
-                case Direction.Down: return l.Where(e => e.X == this.X && e.Y < this.Y).Count() != 0 ? l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y < this.Y).Max(e => e.Y)) : null;
-                case Direction.Up: return l.Where(e => e.X == this.X && e.Y > this.Y).Count() != 0 ? l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y > this.Y).Min(e => e.Y)) : null;
+                case Direction.Up: return l.Where(e => e.X == this.X && e.Y < this.Y).Count() != 0 ? l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y < this.Y).Max(e => e.Y)) : null;
+                case Direction.Down: return l.Where(e => e.X == this.X && e.Y > this.Y).Count() != 0 ? l.FirstOrDefault(c => c.X == this.X && c.Y == l.Where(e => e.X == this.X && e.Y > this.Y).Min(e => e.Y)) : null;
                 case Direction.None: return l.FirstOrDefault(c => c.X == this.X && c.Y == this.Y);
             }
             return null;

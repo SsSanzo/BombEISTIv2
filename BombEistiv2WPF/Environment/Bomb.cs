@@ -59,7 +59,7 @@ namespace BombEistiv2WPF.Environment
             g.TheCurrentMap.ListOfBomb.Remove(this);
             var thecompletelist = g.TheCurrentMap.GetCompleteList();
             Texture._.DeleteTextureEntity(this);
-            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>Texture._.Explosion(this)));
+            
             var l = thecompletelist.Where(c => (this.Y == c.Y && (c.X <= (this.X + this.Power) && (c.X >= (this.X - this.Power)))) || (this.X == c.X && (c.Y <= (this.Y + this.Power) && (c.Y >= (this.Y - this.Power)))));
             var theRightDestroyed = this.GiveTheFirst(l, Direction.Right);
             if (theRightDestroyed != null && !g.ToDelete.Contains(theRightDestroyed))
@@ -86,7 +86,7 @@ namespace BombEistiv2WPF.Environment
             {
                 toBeDestroyed.Add(theNoneDestroyed);
             }
-            
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => Texture._.Explosion(this, theLeftDestroyed, theUpDestroyed, theRightDestroyed, theDownDestroyed)));
 
             foreach (var e in toBeDestroyed)
             {

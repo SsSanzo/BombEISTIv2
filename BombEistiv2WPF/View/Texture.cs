@@ -15,6 +15,7 @@ namespace BombEistiv2WPF.View
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
         private MainWindow mw;
+        private int offsetglobal = 20;
 
         private static Texture _this;
 
@@ -73,7 +74,7 @@ namespace BombEistiv2WPF.View
             Mw.RemoveEntity(entity);
         }
 
-        public void Explosion(Bomb b)
+        public GifImage newgif()
         {
             var g = new GifImage(TypetextureList["Explosion"].UriSource, Mw);
 
@@ -81,8 +82,99 @@ namespace BombEistiv2WPF.View
             g.VerticalAlignment = VerticalAlignment.Top;
             g.Width = 40;
             g.Height = 40;
+            return g;
+        }
+
+        public void Explosion(Bomb b, Entity Left, Entity Up, Entity Right, Entity Down)
+        {
+            var g = newgif();
             g.Margin = new Thickness(b.X * 40, b.Y * 40, 0.0, 0.0);
-            Mw.explosion(b, g);
+            Mw.explosion(g);
+            //var g2 = newgif();
+            //g2.Margin = new Thickness((b.X + 1) * 40, (b.Y + 1) * 40, 0.0, 0.0);
+            //Mw.explosion(g2);
+            //var g3 = newgif();
+            //g3.Margin = new Thickness((b.X) * 40, (b.Y + 1) * 40, 0.0, 0.0);
+            //Mw.explosion(g3);
+            //var g4 = newgif();
+            //g4.Margin = new Thickness((b.X + 1) * 40, (b.Y) * 40, 0.0, 0.0);
+            //Mw.explosion(g4);
+            if (Left == null)
+            {
+                Left = new HardBlock(b.X - b.Power, 0);
+            }
+            if (Right == null)
+            {
+                Right = new HardBlock(b.X + b.Power, 0);
+            }
+            if (Down == null)
+            {
+                Down = new HardBlock(0, b.Y + b.Power);
+            }
+            if (Up == null)
+            {
+                Up = new HardBlock(0, b.Y - b.Power);
+            }
+            if (b.X != Left.X + 1)
+            {
+                Explosion(b, Left, Direction.Left, offsetglobal);
+            }
+            if (b.X != Right.X - 1)
+            {
+                Explosion(b, Right, Direction.Right, offsetglobal);
+            }
+            if (b.Y != Up.Y + 1)
+            {
+                Explosion(b, Up, Direction.Up, offsetglobal);
+            }
+            if (b.Y != Down.Y - 1)
+            {
+                Explosion(b, Down, Direction.Down, offsetglobal);
+            }
+        }
+
+        public void Explosion(Bomb b, Entity e, Direction d, int offset)
+        {
+            var g = newgif();
+            
+            switch(d)
+            {
+                case Direction.Left:
+                    g.Margin = new Thickness(b.X * 40 - offset, b.Y * 40, 0.0, 0.0);
+                    Mw.explosion(g);
+                    if (offset%40 != 0 || ((b.X - offset/40) != e.X))
+                    {
+                        Explosion(b, e, d, offset + offsetglobal);
+                    }
+                    break;
+                case Direction.Right:
+                    g.Margin = new Thickness(b.X * 40 + offset, b.Y * 40, 0.0, 0.0);
+                    Mw.explosion(g);
+                    if (offset % 40 != 0 || ((b.X + offset / 40) != e.X))
+                    {
+                        Explosion(b, e, d, offset + offsetglobal);
+                    }
+                    break;
+                case Direction.Up:
+                    g.Margin = new Thickness(b.X * 40, b.Y * 40 - offset, 0.0, 0.0);
+                    Mw.explosion(g);
+                    if (offset % 40 != 0 || ((b.Y - offset / 40) != e.Y))
+                    {
+                        Explosion(b, e, d, offset + offsetglobal);
+                    }
+                    break;
+                case Direction.Down:
+                    g.Margin = new Thickness(b.X * 40, b.Y * 40 + offset, 0.0, 0.0);
+                    Mw.explosion(g);
+                    if (offset % 40 != 0 || ((b.Y + offset / 40) != e.Y))
+                    {
+                        Explosion(b, e, d, offset + offsetglobal);
+                    }
+                    break;
+            }
+            
+            
+            
         }
 
         public List<Image> LoadBackground()
