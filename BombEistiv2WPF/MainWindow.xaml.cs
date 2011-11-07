@@ -109,9 +109,9 @@ namespace BombEistiv2WPF
         {
             //button relou
             MainGrid.Children.RemoveAt(0);
-            //var w = new Wizard(this);
-            //w.Init();
-            //w.LaunchScreen();
+            var w = new Wizard(this);
+            w.Init();
+            w.LaunchScreen();
             //Menu
             //menu = new Menu();
             //InitTextureSystem();
@@ -120,22 +120,22 @@ namespace BombEistiv2WPF
 
             //thewizard = new Wizard(this);
             //thewizard.Init();
-            texture = Texture._;
-            texture.SetTheme("Basic");
+            //texture = Texture._;
+            //texture.SetTheme("Basic");
 
-            //a modif ?
-            listener = ListenerGame._;
-            this.KeyDown += Window_KeyDown;
-            this.KeyUp += Window_KeyUp;
+            ////a modif ?
+            //listener = ListenerGame._;
+            //this.KeyDown += Window_KeyDown;
+            //this.KeyUp += Window_KeyUp;
 
-            //testing
-            GameParameters._.ExplosionDelay = 3;
-            GameParameters._.PlayerCount = 4;
-            _gameInProgress = new ClassicGame();
-            TimerManager._.Game = _gameInProgress;
-            listener.GameInProgress = _gameInProgress;
-            InitTextureGame();
-            listener.StartTimers();
+            ////testing
+            //GameParameters._.ExplosionDelay = 3;
+            //GameParameters._.PlayerCount = 4;
+            //_gameInProgress = new ClassicGame();
+            //TimerManager._.Game = _gameInProgress;
+            //listener.GameInProgress = _gameInProgress;
+            //InitTextureGame();
+            //listener.StartTimers();
 
             //time.Start();
         }

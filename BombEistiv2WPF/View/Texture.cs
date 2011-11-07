@@ -101,33 +101,60 @@ namespace BombEistiv2WPF.View
             //Mw.explosion(g4);
             if (Left == null)
             {
-                Left = new HardBlock(b.X - b.Power, 0);
+                if(b.X - b.Power < 0)
+                {
+                    Left = new HardBlock( -1  , 0);
+                }else
+                {
+                    Left = new SoftBlock(b.X - b.Power, 0);
+                } 
             }
             if (Right == null)
             {
-                Right = new HardBlock(b.X + b.Power, 0);
+                if(b.X + b.Power >= Game.Length)
+                {
+                    Right = new HardBlock(Game.Length, 0);
+                }else
+                {
+                    Right = new SoftBlock(b.X + b.Power, 0);
+                }
+                
             }
             if (Down == null)
             {
-                Down = new HardBlock(0, b.Y + b.Power);
+                if(b.Y + b.Power >= Game.Length)
+                {
+                    Down = new HardBlock(0, Game.Length);
+                }else
+                {
+                    Down = new SoftBlock(0, b.Y + b.Power);
+                }
+                
             }
             if (Up == null)
             {
-                Up = new HardBlock(0, b.Y - b.Power);
+                if(b.Y - b.Power < 0)
+                {
+                    Up = new HardBlock(0, -1);
+                }else
+                {
+                    Up = new SoftBlock(0, b.Y - b.Power);
+                }
+                
             }
-            if (b.X != Left.X + 1)
+            if (!(Left is HardBlock && b.X == Left.X + 1))
             {
                 Explosion(b, Left, Direction.Left, offsetglobal);
             }
-            if (b.X != Right.X - 1)
+            if (!(Right is HardBlock && b.X == Right.X - 1))
             {
                 Explosion(b, Right, Direction.Right, offsetglobal);
             }
-            if (b.Y != Up.Y + 1)
+            if (!(Up is HardBlock && b.Y == Up.Y + 1))
             {
                 Explosion(b, Up, Direction.Up, offsetglobal);
             }
-            if (b.Y != Down.Y - 1)
+            if (!(Down is HardBlock && b.Y == Down.Y - 1))
             {
                 Explosion(b, Down, Direction.Down, offsetglobal);
             }
@@ -142,33 +169,70 @@ namespace BombEistiv2WPF.View
                 case Direction.Left:
                     g.Margin = new Thickness(b.X * 40 - offset, b.Y * 40, 0.0, 0.0);
                     Mw.explosion(g);
-                    if (offset%40 != 0 || ((b.X - offset/40) != e.X))
+                    if(e is HardBlock)
                     {
-                        Explosion(b, e, d, offset + offsetglobal);
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X + 1)))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
+                    }else
+                    {
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X)))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
                     }
+                    
                     break;
                 case Direction.Right:
                     g.Margin = new Thickness(b.X * 40 + offset, b.Y * 40, 0.0, 0.0);
                     Mw.explosion(g);
-                    if (offset % 40 != 0 || ((b.X + offset / 40) != e.X))
+                    if(e is HardBlock)
                     {
-                        Explosion(b, e, d, offset + offsetglobal);
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)(e.X - 1)))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
+                    }else
+                    {
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)e.X))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
                     }
                     break;
                 case Direction.Up:
                     g.Margin = new Thickness(b.X * 40, b.Y * 40 - offset, 0.0, 0.0);
                     Mw.explosion(g);
-                    if (offset % 40 != 0 || ((b.Y - offset / 40) != e.Y))
+                    if(e is HardBlock)
                     {
-                        Explosion(b, e, d, offset + offsetglobal);
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y + 1)))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
+                    }else
+                    {
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y)))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
                     }
                     break;
                 case Direction.Down:
                     g.Margin = new Thickness(b.X * 40, b.Y * 40 + offset, 0.0, 0.0);
                     Mw.explosion(g);
-                    if (offset % 40 != 0 || ((b.Y + offset / 40) != e.Y))
+                    if (e is HardBlock)
                     {
-                        Explosion(b, e, d, offset + offsetglobal);
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)(e.Y - 1)))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
+                    }else
+                    {
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)e.Y))
+                        {
+                            Explosion(b, e, d, offset + offsetglobal);
+                        }
                     }
                     break;
             }
