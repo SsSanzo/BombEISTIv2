@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Media.Imaging;
+using BombEistiv2WPF.View;
 
 namespace BombEistiv2WPF.Environment
 {
@@ -71,6 +73,7 @@ namespace BombEistiv2WPF.Environment
                             if (value > 50)
                             {
                                 X = x;
+                                HaveToDie(X,Y);
                                 _percentx = -49;
                             }
                             else
@@ -87,6 +90,7 @@ namespace BombEistiv2WPF.Environment
                             if (value <= -50)
                             {
                                 X = x;
+                                HaveToDie(X, Y);
                                 _percentx = 50;
                             }
                             else
@@ -126,6 +130,7 @@ namespace BombEistiv2WPF.Environment
                             if (value > 50)
                             {
                                 Y = y;
+                                HaveToDie(X, Y);
                                 _percenty = -49;
                             }
                             else
@@ -143,6 +148,7 @@ namespace BombEistiv2WPF.Environment
                             if (value <= -50)
                             {
                                 Y = y;
+                                HaveToDie(X, Y);
                                 _percenty = 50;
                             }
                             else
@@ -323,6 +329,14 @@ namespace BombEistiv2WPF.Environment
         public bool Die()
         {
             this.Lives--;
+            InGameMenu._.changeLabel(Id,Lives);
+            return Lives <= 0;
+        }
+
+        public bool DieFinal()
+        {
+            this.Lives = 0;
+            InGameMenu._.changeLabel(Id, 0);
             return Lives <= 0;
         }
 
@@ -346,6 +360,9 @@ namespace BombEistiv2WPF.Environment
                     }
                 }
                 return false;
+            }else if(e is EntityOfDeath)
+            {
+                return true;
             }
             else if(e is HardBlock || e is SoftBlock)
             {
@@ -360,6 +377,20 @@ namespace BombEistiv2WPF.Environment
                 return true;
             }
             return true;
+        }
+
+        protected void HaveToDie(int x, int y)
+        {
+            var e = _map.GetEntityOfDeath(x, y);
+            if(e != null)
+            {
+                if (Die())
+                {
+                    var thePlayer = _map.ListOfPlayer.First(c => c.X == this.X && c.Y == this.Y);
+                    _map.ListOfPlayer.Remove(thePlayer);
+                    Texture._.DeleteTextureEntity(thePlayer);
+                }
+            }
         }
 
         public void changeFace(BitmapImage bi)

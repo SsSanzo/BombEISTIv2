@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BombEistiv2WPF.View;
 
 namespace BombEistiv2WPF.Environment
 {
@@ -11,6 +12,7 @@ namespace BombEistiv2WPF.Environment
         private readonly List<Player> _listOfPlayer;
         private readonly List<Bomb> _listOfBomb;
         private readonly List<Upgrade> _listOfUpgrade;
+        private readonly List<EntityOfDeath> _listOfEntityOfDeath;
 
         public Map()
         {
@@ -19,6 +21,7 @@ namespace BombEistiv2WPF.Environment
             _listOfPlayer = new List<Player>();
             _listOfBomb = new List<Bomb>();
             _listOfUpgrade = new List<Upgrade>();
+            _listOfEntityOfDeath = new List<EntityOfDeath>();
         }
 
         public List<Upgrade> ListOfUpgrade
@@ -44,6 +47,11 @@ namespace BombEistiv2WPF.Environment
         public List<HardBlock> ListOfHardBlock
         {
             get { return _listOfHardBlock; }
+        }
+
+        public List<EntityOfDeath> ListOfEntityOfDeath
+        {
+            get { return _listOfEntityOfDeath; }
         }
 
         public void SetHardBlockOnMap()
@@ -143,9 +151,51 @@ namespace BombEistiv2WPF.Environment
             return list.FirstOrDefault(c => c.X == x && c.Y == y);
         }
 
+        public EntityOfDeath GetEntityOfDeath(int x, int y)
+        {
+            var list = ListOfEntityOfDeath;
+            return list.FirstOrDefault(c => c.X == x && c.Y == y);
+        }
+
         public Entity GetBomb(int x, int y)
         {
             return ListOfBomb.FirstOrDefault(c => c.X == x && c.Y == y);
+        }
+
+        public void DestroyEverythingHere(int x, int y)
+        {
+            var p = new List<Player>();
+            p.AddRange(ListOfPlayer.Where(c => c.X == x && c.Y == y));
+            if (p.Count != 0)
+            {
+                foreach (var player in p)
+                {
+                    player.DieFinal();
+                    Texture._.DeleteTextureEntity(player);
+                    ListOfPlayer.Remove(player);
+                }
+            }
+            var b = ListOfBomb.FirstOrDefault(c => c.X == x && c.Y == y);
+            if(b != null)
+            {
+                b.Explode(Texture._.Mw.GameInProgress);
+                ListOfBomb.Remove(b);
+            }
+            var h = ListOfHardBlock.FirstOrDefault(c => c.X == x && c.Y == y);
+            if (h != null)
+            {
+                ListOfHardBlock.Remove(h);
+            }
+            var s = ListOfSoftBlock.FirstOrDefault(c => c.X == x && c.Y == y);
+            if (s != null)
+            {
+                ListOfSoftBlock.Remove(s);
+            }
+            var u = ListOfUpgrade.FirstOrDefault(c => c.X == x && c.Y == y);
+            if (u != null)
+            {
+                ListOfUpgrade.Remove(u);
+            }
         }
 
 

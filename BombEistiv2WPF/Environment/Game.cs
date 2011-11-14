@@ -9,7 +9,7 @@ namespace BombEistiv2WPF.Environment
     public class Game
     {
         private static int _length = 0;
-        private List<Entity> _toDelete;
+        //private List<Entity> _toDelete;
         public Map TheCurrentMap;
 
         public static int Length
@@ -34,7 +34,7 @@ namespace BombEistiv2WPF.Environment
                     if(TheCurrentMap.GetBomb(b.X,b.Y) != null)
                     {
                         b.Explode(this);
-                        EmptyTheTrash(TheCurrentMap);
+                        //EmptyTheTrash(TheCurrentMap);
                     }
                     break;
                 case EventType.BombMove:
@@ -46,11 +46,11 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
-        public List<Entity> ToDelete
-        {
-            set { _toDelete = value; }
-            get { return _toDelete ?? (_toDelete = new List<Entity>()); }
-        }
+        //public List<Entity> ToDelete
+        //{
+        //    set { _toDelete = value; }
+        //    get { return _toDelete ?? (_toDelete = new List<Entity>()); }
+        //}
 
         public void InitPlayers(int numberOPlayer)
         {
@@ -80,43 +80,44 @@ namespace BombEistiv2WPF.Environment
 
         }
 
-        public void EmptyTheTrash(Map m)
-        {
-            foreach (var e in ToDelete)
-            {
-                //if (e is Bomb)
-                //{
-                //    var theBomb = m.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
-                //    m.ListOfBomb.Remove(theBomb);
+        //public void EmptyTheTrash(Map m)
+        //{
+        //    foreach (var e in ToDelete)
+        //    {
+        //        //if (e is Bomb)
+        //        //{
+        //        //    var theBomb = m.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
+        //        //    m.ListOfBomb.Remove(theBomb);
                     
-                //}
-                //else
-                if (e is Player)
-                {
-                    var thePlayer = m.ListOfPlayer.First(c => c.X == e.X && c.Y == e.Y);
-                    if(thePlayer.Die())
-                    {
-                        m.ListOfPlayer.Remove(thePlayer);
-                        Texture._.DeleteTextureEntity(e);
-                    }
-                }
-                else if (e is SoftBlock)
-                {
-                    var theSoftBlock = m.ListOfSoftBlock.First(c => c.X == e.X && c.Y == e.Y);
-                    theSoftBlock.Destroy(m);
-                    m.ListOfSoftBlock.Remove(theSoftBlock);
-                    Texture._.DeleteTextureEntity(e);
-                }
-                else if (e is Upgrade)
-                {
-                    var theUpgrade = m.ListOfUpgrade.First(c => c.X == e.X && c.Y == e.Y);
-                    theUpgrade.Burn();
-                    m.ListOfUpgrade.Remove(theUpgrade);
-                    Texture._.DeleteTextureEntity(e);
-                }
+        //        //}
+        //        //else
+        //        //if (e is Player)
+        //        //{
+        //        //    var thePlayer = m.ListOfPlayer.First(c => c.X == e.X && c.Y == e.Y);
+        //        //    if (thePlayer.Die())
+        //        //    {
+        //        //        m.ListOfPlayer.Remove(thePlayer);
+        //        //        Texture._.DeleteTextureEntity(e);
+        //        //    }
+        //        //}
+        //        //else 
+        //        if (e is SoftBlock)
+        //        {
+        //            var theSoftBlock = m.ListOfSoftBlock.First(c => c.X == e.X && c.Y == e.Y);
+        //            theSoftBlock.Destroy(m);
+        //            m.ListOfSoftBlock.Remove(theSoftBlock);
+        //            Texture._.DeleteTextureEntity(e);
+        //        }
+        //        else if (e is Upgrade)
+        //        {
+        //            var theUpgrade = m.ListOfUpgrade.First(c => c.X == e.X && c.Y == e.Y);
+        //            theUpgrade.Burn();
+        //            m.ListOfUpgrade.Remove(theUpgrade);
+        //            Texture._.DeleteTextureEntity(e);
+        //        }
                 
-            }
-            ToDelete.Clear();
-        }
+        //    }
+        //    ToDelete.Clear();
+        //}
     }
 }

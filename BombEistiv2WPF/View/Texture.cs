@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -16,6 +17,7 @@ namespace BombEistiv2WPF.View
         private Dictionary<string, BitmapImage> _typetextureList;
         private MainWindow mw;
         private int offsetglobal = 20;
+        private int timeoffset = 20;
 
         private static Texture _this;
 
@@ -85,20 +87,13 @@ namespace BombEistiv2WPF.View
             return g;
         }
 
-        public void Explosion(Bomb b, Entity Left, Entity Up, Entity Right, Entity Down)
+        public void Explosion(Bomb b2, Game game, Entity Left, Entity Up, Entity Right, Entity Down, Entity None)
         {
+            var b = new Bomb(b2.X, b2.Y, b2.Power, b2.Owner, false);
             var g = newgif();
             g.Margin = new Thickness(b.X * 40, b.Y * 40, 0.0, 0.0);
             Mw.explosion(g);
-            //var g2 = newgif();
-            //g2.Margin = new Thickness((b.X + 1) * 40, (b.Y + 1) * 40, 0.0, 0.0);
-            //Mw.explosion(g2);
-            //var g3 = newgif();
-            //g3.Margin = new Thickness((b.X) * 40, (b.Y + 1) * 40, 0.0, 0.0);
-            //Mw.explosion(g3);
-            //var g4 = newgif();
-            //g4.Margin = new Thickness((b.X + 1) * 40, (b.Y) * 40, 0.0, 0.0);
-            //Mw.explosion(g4);
+            new EntityOfDeath(b.X, b.Y, game, true);
             if (Left == null)
             {
                 if(b.X - b.Power < 0)
@@ -144,23 +139,50 @@ namespace BombEistiv2WPF.View
             }
             if (!(Left is HardBlock && b.X == Left.X + 1))
             {
-                Explosion(b, Left, Direction.Left, offsetglobal);
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                                                {
+                                                    Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => 
+                                                        Explosion(b, game, Left, Direction.Left, offsetglobal
+                                                        )));
+                                                });
+                 
             }
             if (!(Right is HardBlock && b.X == Right.X - 1))
             {
-                Explosion(b, Right, Direction.Right, offsetglobal);
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                    {
+                        Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                            Explosion(b, game, Right, Direction.Right, offsetglobal
+                            )));
+                    });
+                
             }
             if (!(Up is HardBlock && b.Y == Up.Y + 1))
             {
-                Explosion(b, Up, Direction.Up, offsetglobal);
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             Explosion(b, game, Up, Direction.Up, offsetglobal
+                             )));
+                     });
+                
             }
             if (!(Down is HardBlock && b.Y == Down.Y - 1))
             {
-                Explosion(b, Down, Direction.Down, offsetglobal);
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             Explosion(b, game, Down, Direction.Down, offsetglobal
+                             )));
+                     });
             }
         }
 
-        public void Explosion(Bomb b, Entity e, Direction d, int offset)
+        public void Explosion(Bomb b, Game game, Entity e, Direction d, int offset)
         {
             var g = newgif();
             
@@ -168,70 +190,135 @@ namespace BombEistiv2WPF.View
             {
                 case Direction.Left:
                     g.Margin = new Thickness(b.X * 40 - offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        new EntityOfDeath(b.X - offset/40, b.Y, game);
+                    }
                     Mw.explosion(g);
                     if(e is HardBlock)
                     {
                         if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X + 1)))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
                         }
                     }else
                     {
                         if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X)))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                            
                         }
                     }
                     
                     break;
                 case Direction.Right:
                     g.Margin = new Thickness(b.X * 40 + offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        new EntityOfDeath(b.X + offset / 40, b.Y, game);
+                    }
                     Mw.explosion(g);
                     if(e is HardBlock)
                     {
                         if (!(((double)b.X + ((double)offset) / 40.0) >= (double)(e.X - 1)))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
                         }
                     }else
                     {
                         if (!(((double)b.X + ((double)offset) / 40.0) >= (double)e.X))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
                         }
                     }
                     break;
                 case Direction.Up:
                     g.Margin = new Thickness(b.X * 40, b.Y * 40 - offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        new EntityOfDeath(b.X, b.Y - offset / 40, game);
+                    }
                     Mw.explosion(g);
                     if(e is HardBlock)
                     {
                         if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y + 1)))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
                         }
                     }else
                     {
                         if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y)))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
                         }
                     }
                     break;
                 case Direction.Down:
                     g.Margin = new Thickness(b.X * 40, b.Y * 40 + offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        new EntityOfDeath(b.X, b.Y + offset / 40, game);
+                    }
                     Mw.explosion(g);
                     if (e is HardBlock)
                     {
                         if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)(e.Y - 1)))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
                         }
                     }else
                     {
                         if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)e.Y))
                         {
-                            Explosion(b, e, d, offset + offsetglobal);
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     Explosion(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
                         }
                     }
                     break;

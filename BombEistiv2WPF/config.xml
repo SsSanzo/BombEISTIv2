@@ -19,6 +19,7 @@
         <Texture object="Upgrade.Teleport" source="Teleport.png"/>
         <Texture object="Upgrade.SpeedMax" source="SpeedMax.png"/>
         <Texture object="Upgrade.Life" source="Life.png"/>
+        <Texture object="EndBlock" source="Metal.png"/>
         <Texture object="Explosion" source="explosion.gif"/>
         <Music object="Menu" source="menu.wav" />
         <Music object="Game" source="game1.wav" />
@@ -73,11 +74,11 @@
 	<Game type="Classic">
     <Player lives="1"/>
     <Upgrades>
-		  <Upgrade defaultFreq="3" currentFreq="30">Kick</Upgrade>
+		  <Upgrade defaultFreq="3" currentFreq="3">Kick</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">PowerUp</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
+		  <Upgrade defaultFreq="3" currentFreq="30">BombUp</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
 		  <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>

@@ -1,25 +1,15 @@
 <Configuration>
   <RecentFiles>
     <RecentFiles>
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:UpgradeType.cs" caret="149" fromTop="5" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:GameTimer.cs" caret="0" fromTop="0" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="688" fromTop="17" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerEvent.cs" caret="85" fromTop="5" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Animation.cs" caret="3880" fromTop="8" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Explosion.cs" caret="72" fromTop="2" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:SoftBlock.cs" caret="513" fromTop="16" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="4937" fromTop="20" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Game.cs" caret="1121" fromTop="12" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Upgrade.cs" caret="375" fromTop="17" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:config.xml" caret="775" fromTop="11" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Player.cs" caret="391" fromTop="0" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:HardBlock.cs" caret="100" fromTop="4" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="86" fromTop="3" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="2423" fromTop="9" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:GifImage.cs" caret="1397" fromTop="9" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:Movement.cs" caret="282" fromTop="0" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MenuScreen.cs" caret="8630" fromTop="14" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:Wizard.cs" caret="1969" fromTop="3" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:DevScreen.cs" caret="859" fromTop="6" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="0" fromTop="0" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:KeyAction.cs" caret="2233" fromTop="11" />
@@ -27,42 +17,52 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="1351" fromTop="19" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:Screen.cs" caret="1854" fromTop="20" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:Screenv2.cs" caret="369" fromTop="5" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Entity.cs" caret="1549" fromTop="17" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml" caret="277" fromTop="3" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="3944" fromTop="3" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="3183" fromTop="11" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:config.xml" caret="4228" fromTop="21" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:Wizard.cs" caret="2167" fromTop="73" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="1111" fromTop="16" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Player.cs" caret="9525" fromTop="12" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Game.cs" caret="1310" fromTop="4" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="5115" fromTop="18" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="6068" fromTop="3" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Entity.cs" caret="2323" fromTop="0" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:GifImage.cs" caret="1397" fromTop="9" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="3113" fromTop="39" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:Movement.cs" caret="2591" fromTop="80" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3292" fromTop="14" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="6259" fromTop="6" />
     </RecentFiles>
     <RecentEdits>
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="858" fromTop="16" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1011" fromTop="22" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="3807" fromTop="19" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="4922" fromTop="15" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="4616" fromTop="15" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="3040" fromTop="16" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="3038" fromTop="16" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Entity.cs" caret="6245" fromTop="17" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Entity.cs" caret="1386" fromTop="11" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Entity.cs" caret="1767" fromTop="21" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="520" fromTop="14" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="5860" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="7114" fromTop="16" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="4481" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="4639" fromTop="16" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="4790" fromTop="20" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="7709" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="7979" fromTop="18" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="7216" fromTop="7" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="6946" fromTop="4" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="6458" fromTop="5" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="6188" fromTop="5" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="5673" fromTop="2" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="5403" fromTop="5" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="3300" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="3489" fromTop="13" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="3929" fromTop="18" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="4232" fromTop="23" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="4172" fromTop="23" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="3361" fromTop="17" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="4997" fromTop="12" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="5071" fromTop="14" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="4779" fromTop="8" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="5597" fromTop="15" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="2881" fromTop="15" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="2881" fromTop="10" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="2881" fromTop="19" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="2881" fromTop="17" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3141" fromTop="20" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3156" fromTop="4" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="396" fromTop="17" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="5098" fromTop="18" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="6519" fromTop="12" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="8191" fromTop="12" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="9806" fromTop="18" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="11425" fromTop="9" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="2802" fromTop="13" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="4427" fromTop="10" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="7102" fromTop="179" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="1483" fromTop="19" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="496" fromTop="0" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="381" fromTop="0" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="2613" fromTop="12" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Entity.cs" caret="2323" fromTop="15" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="1109" fromTop="16" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="6068" fromTop="6" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="747" fromTop="21" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="550" fromTop="19" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3024" fromTop="22" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="2749" fromTop="14" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -87,17 +87,17 @@
   <CompletionStatisticsManager>
     <ItemStatistics item="CSharpCodeCompletionContext">
       <Item value="Frame" priority="29" />
-      <Item value="private" priority="3902" />
-      <Item value="int" priority="2047" />
-      <Item value="public" priority="4060" />
+      <Item value="private" priority="4062" />
+      <Item value="int" priority="2143" />
+      <Item value="public" priority="4220" />
       <Item value="GetType`0" priority="31" />
-      <Item value="return" priority="2719" />
+      <Item value="return" priority="2847" />
       <Item value="_x" priority="95" />
-      <Item value="value" priority="1183" />
-      <Item value="X" priority="481" />
-      <Item value="if" priority="4412" />
+      <Item value="value" priority="1215" />
+      <Item value="X" priority="513" />
+      <Item value="if" priority="4764" />
       <Item value="throw" priority="95" />
-      <Item value="new" priority="2815" />
+      <Item value="new" priority="3007" />
       <Item value="Exception" priority="86" />
       <Item value="using" priority="123" />
       <Item value="System" priority="252" />
@@ -106,16 +106,16 @@
       <Item value="Console`0" priority="31" />
       <Item value="_length" priority="63" />
       <Item value="Convert`0" priority="95" />
-      <Item value="Game`0" priority="955" />
-      <Item value="x" priority="480" />
+      <Item value="Game`0" priority="1115" />
+      <Item value="x" priority="576" />
       <Item value="Y" priority="319" />
       <Item value="y" priority="223" />
-      <Item value="void" priority="2111" />
+      <Item value="void" priority="2207" />
       <Item value="enum" priority="92" />
       <Item value="Direction`0" priority="895" />
       <Item value="d" priority="607" />
       <Item value="Right" priority="165" />
-      <Item value="var" priority="2847" />
+      <Item value="var" priority="2911" />
       <Item value="switch" priority="447" />
       <Item value="case" priority="1407" />
       <Item value="Down" priority="167" />
@@ -127,7 +127,7 @@
       <Item value="Percentx" priority="384" />
       <Item value="Percenty" priority="255" />
       <Item value="_percentx" priority="191" />
-      <Item value="else" priority="1661" />
+      <Item value="else" priority="1757" />
       <Item value="Player`0" priority="543" />
       <Item value="Kick" priority="67" />
       <Item value="BombUp" priority="50" />
@@ -141,7 +141,7 @@
       <Item value="PowerUpPower`0" priority="31" />
       <Item value="SpeedUpPower`0" priority="31" />
       <Item value="HardBlock`0" priority="159" />
-      <Item value="List" priority="904" />
+      <Item value="List" priority="965" />
       <Item value="SoftBlock`0" priority="158" />
       <Item value="listOfHardBlock" priority="31" />
       <Item value="List&lt;HardBlock&gt;" priority="28" />
@@ -149,11 +149,11 @@
       <Item value="i" priority="1409" />
       <Item value="j" priority="481" />
       <Item value="ListOfHardBlock" priority="95" />
-      <Item value="HardBlock" priority="87" />
+      <Item value="HardBlock" priority="117" />
       <Item value="Upgrade`0" priority="445" />
       <Item value="_upgrades" priority="63" />
       <Item value="List&lt;Upgrade&gt;" priority="57" />
-      <Item value="this" priority="1023" />
+      <Item value="this" priority="1247" />
       <Item value="_speed" priority="159" />
       <Item value="ApplyUpgrade`0" priority="31" />
       <Item value="u" priority="446" />
@@ -168,27 +168,27 @@
       <Item value="BombCount" priority="95" />
       <Item value="BombPower" priority="159" />
       <Item value="Speed" priority="159" />
-      <Item value="bool" priority="638" />
+      <Item value="bool" priority="766" />
       <Item value="initSkills`0" priority="31" />
       <Item value="_bombPower" priority="31" />
       <Item value="_canKick" priority="127" />
-      <Item value="false" priority="734" />
+      <Item value="false" priority="862" />
       <Item value="_invertedDirections" priority="95" />
-      <Item value="true" priority="798" />
+      <Item value="true" priority="926" />
       <Item value="_availableBombCount" priority="95" />
       <Item value="AvailableBombCount" priority="159" />
       <Item value="InvertedDirections" priority="127" />
       <Item value="Bomb`0" priority="383" />
-      <Item value="Bomb" priority="28" />
-      <Item value="b" priority="671" />
+      <Item value="Bomb" priority="57" />
+      <Item value="b" priority="863" />
       <Item value="_owner" priority="191" />
-      <Item value="null" priority="704" />
+      <Item value="null" priority="896" />
       <Item value="_power" priority="31" />
       <Item value="Power" priority="31" />
       <Item value="power" priority="31" />
-      <Item value="Owner" priority="159" />
+      <Item value="Owner" priority="223" />
       <Item value="owner" priority="31" />
-      <Item value="readonly" priority="159" />
+      <Item value="readonly" priority="191" />
       <Item value="Score`0" priority="63" />
       <Item value="score" priority="160" />
       <Item value="_score" priority="127" />
@@ -196,10 +196,10 @@
       <Item value="_id" priority="63" />
       <Item value="id" priority="127" />
       <Item value="_scoreMap" priority="63" />
-      <Item value="foreach" priority="895" />
-      <Item value="m" priority="350" />
-      <Item value="Entity`0" priority="637" />
-      <Item value="Map`0" priority="415" />
+      <Item value="foreach" priority="927" />
+      <Item value="m" priority="446" />
+      <Item value="Entity`0" priority="701" />
+      <Item value="Map`0" priority="479" />
       <Item value="Entity" priority="29" />
       <Item value="l" priority="319" />
       <Item value="IEnumerable" priority="127" />
@@ -209,17 +209,17 @@
       <Item value="entity" priority="351" />
       <Item value="thePoint" priority="63" />
       <Item value="Resources`0" priority="31" />
-      <Item value="e" priority="1628" />
+      <Item value="e" priority="1820" />
       <Item value="List&lt;Entity&gt;" priority="57" />
-      <Item value="thecompletelist" priority="287" />
+      <Item value="thecompletelist" priority="319" />
       <Item value="theRightDestroyed" priority="95" />
       <Item value="toBeDestroy" priority="159" />
       <Item value="theLeftDestroyed" priority="95" />
       <Item value="theUpDestroyed" priority="95" />
       <Item value="Linq" priority="26" />
-      <Item value="c" priority="543" />
+      <Item value="c" priority="639" />
       <Item value="theDownDestroyed" priority="95" />
-      <Item value="is" priority="669" />
+      <Item value="is" priority="893" />
       <Item value="thePlayer" priority="126" />
       <Item value="isExplosing" priority="61" />
       <Item value="_listOfUpgrade" priority="30" />
@@ -238,7 +238,7 @@
       <Item value="upgrade" priority="64" />
       <Item value="ListOfUpgrade" priority="95" />
       <Item value="static" priority="351" />
-      <Item value="GameParameters`0" priority="543" />
+      <Item value="GameParameters`0" priority="575" />
       <Item value="_gameParameters" priority="160" />
       <Item value="GameParameters" priority="28" />
       <Item value="GameType`0" priority="95" />
@@ -292,7 +292,7 @@
       <Item value="_network" priority="31" />
       <Item value="Local" priority="16" />
       <Item value="Network" priority="64" />
-      <Item value="TimerManager`0" priority="351" />
+      <Item value="TimerManager`0" priority="479" />
       <Item value="_timers" priority="63" />
       <Item value="List&lt;Timer&gt;" priority="28" />
       <Item value="_AppDomain`0" priority="31" />
@@ -343,11 +343,11 @@
       <Item value="GetTextureKey`0" priority="31" />
       <Item value="HorizontalAlignment`0" priority="26" />
       <Item value="VerticalAlignment`0" priority="31" />
-      <Item value="Lives" priority="95" />
+      <Item value="Lives" priority="127" />
       <Item value="bitmanimg" priority="127" />
       <Item value="UIElement`0" priority="31" />
       <Item value="Math`0" priority="32" />
-      <Item value="g" priority="639" />
+      <Item value="g" priority="671" />
       <Item value="numberOfCaseEmpty" priority="31" />
       <Item value="time" priority="543" />
       <Item value="_percenty" priority="31" />
@@ -430,7 +430,7 @@
       <Item value="Movement`0" priority="223" />
       <Item value="splitted" priority="127" />
       <Item value="test" priority="191" />
-      <Item value="Effect" priority="31" />
+      <Item value="Effect" priority="63" />
       <Item value="keyEventArgs" priority="287" />
       <Item value="KeyEventArgs" priority="95" />
       <Item value="Forms" priority="53" />
@@ -485,8 +485,8 @@
       <Item value="keypressed" priority="63" />
       <Item value="Animation`0" priority="63" />
       <Item value="Mw" priority="127" />
-      <Item value="_game" priority="31" />
-      <Item value="DispatcherPriority`0" priority="58" />
+      <Item value="_game" priority="127" />
+      <Item value="DispatcherPriority`0" priority="90" />
       <Item value="_toDelete" priority="31" />
       <Item value="theBomb" priority="31" />
       <Item value="EmptyTheTrash`0" priority="31" />
@@ -533,13 +533,33 @@
       <Item value="PressStartCling`0" priority="65" />
       <Item value="petitflash`0" priority="98" />
       <Item value="flash`0" priority="98" />
-      <Item value="newgif`0" priority="31" />
+      <Item value="newgif`0" priority="63" />
       <Item value="Explosion`0" priority="63" />
-      <Item value="offset" priority="159" />
+      <Item value="offset" priority="191" />
       <Item value="Window_KeyDown`0" priority="32" />
       <Item value="GetWindow`0" priority="32" />
       <Item value="Window_KeyUp`0" priority="32" />
       <Item value="double" priority="32" />
+      <Item value="timeoffset" priority="31" />
+      <Item value="b2" priority="127" />
+      <Item value="EntityOfDeath`0" priority="95" />
+      <Item value="_listOfEntityOfDeath" priority="31" />
+      <Item value="List&lt;EntityOfDeath&gt;" priority="28" />
+      <Item value="Die`0" priority="31" />
+      <Item value="HaveToDie`0" priority="31" />
+      <Item value="play" priority="95" />
+      <Item value="M" priority="95" />
+      <Item value="long" priority="31" />
+      <Item value="listPlay" priority="63" />
+      <Item value="Supress`0" priority="32" />
+      <Item value="game" priority="255" />
+      <Item value="EntityOfDeath" priority="28" />
+      <Item value="ListOfEntityOfDeath" priority="31" />
+      <Item value="theNoneDestroyed" priority="31" />
+      <Item value="G" priority="95" />
+      <Item value="blocus" priority="63" />
+      <Item value="Blocus" priority="31" />
+      <Item value="Game" priority="31" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
       <Item value="WriteLine`0" priority="26" />
@@ -554,13 +574,13 @@
       <Item value="Length" priority="431" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
-      <Item value="Add`0" priority="486" />
+      <Item value="Add`0" priority="541" />
       <Item value="Indexer" priority="26" />
-      <Item value="AddRange`0" priority="188" />
+      <Item value="AddRange`0" priority="215" />
       <Item value="Find`0" priority="80" />
-      <Item value="First`1" priority="26" />
-      <Item value="Remove`0" priority="161" />
-      <Item value="Where`1" priority="26" />
+      <Item value="First`1" priority="53" />
+      <Item value="Remove`0" priority="188" />
+      <Item value="Where`1" priority="53" />
       <Item value="FirstOrDefault`1" priority="26" />
       <Item value="RemoveAll`0" priority="53" />
       <Item value="Count" priority="107" />
@@ -707,15 +727,15 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@BombEistiv2WPF.Environment.GameParameters">
       <Item value="Parameters" priority="26" />
-      <Item value="_" priority="271" />
+      <Item value="_" priority="298" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@BombEistiv2WPF.TimerManager">
-      <Item value="_" priority="215" />
+      <Item value="_" priority="323" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEistiv2WPF.TimerManager">
       <Item value="GetNewTimer`0" priority="53" />
-      <Item value="AddNewTimer`0" priority="134" />
-      <Item value="Game" priority="26" />
+      <Item value="AddNewTimer`0" priority="215" />
+      <Item value="Game" priority="53" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Controls.Button">
       <Item value="Margin" priority="26" />
@@ -749,7 +769,7 @@
       <Item value="GameInProgress" priority="26" />
       <Item value="DeleteExplosion`0" priority="26" />
       <Item value="explosion`0" priority="26" />
-      <Item value="Dispatcher" priority="26" />
+      <Item value="Dispatcher" priority="53" />
       <Item value="KeyDown" priority="26" />
       <Item value="KeyUp" priority="26" />
     </ItemStatistics>
@@ -804,17 +824,19 @@
       <Item value="Explosion`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEistiv2WPF.Environment.Game">
-      <Item value="TheCurrentMap" priority="161" />
+      <Item value="TheCurrentMap" priority="296" />
       <Item value="ToDelete" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEistiv2WPF.Environment.Map">
       <Item value="ListOfBomb" priority="80" />
       <Item value="ListOfHardBlock" priority="26" />
-      <Item value="ListOfPlayer" priority="134" />
-      <Item value="GetCompleteList`0" priority="53" />
+      <Item value="ListOfPlayer" priority="188" />
+      <Item value="GetCompleteList`0" priority="80" />
       <Item value="ListOfSoftBlock" priority="26" />
       <Item value="GetEntity`0" priority="26" />
       <Item value="GetBomb`0" priority="26" />
+      <Item value="ListOfEntityOfDeath" priority="107" />
+      <Item value="GetEntityOfDeath`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.MessageBox">
       <Item value="Show`0" priority="26" />
@@ -850,7 +872,10 @@
       <Item value="BombCount" priority="26" />
       <Item value="AvailableBombCount" priority="26" />
       <Item value="Lives" priority="134" />
-      <Item value="Map" priority="26" />
+      <Item value="Map" priority="80" />
+      <Item value="X" priority="26" />
+      <Item value="Y" priority="26" />
+      <Item value="Die`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.HorizontalAlignment">
       <Item value="Left" priority="137" />
@@ -885,7 +910,7 @@
       <Item value="ToString`0" priority="80" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Threading.Dispatcher">
-      <Item value="Invoke`0" priority="189" />
+      <Item value="Invoke`0" priority="216" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Thickness">
       <Item value="Right" priority="53" />
@@ -895,7 +920,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.Threading.DispatcherPriority">
       <Item value="Loaded" priority="26" />
-      <Item value="Normal" priority="107" />
+      <Item value="Normal" priority="134" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.Media.Effects.Effect">
       <Item value="ImplicitInput" priority="26" />
@@ -1024,12 +1049,14 @@
       <Item value="CenterX" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEistiv2WPF.Environment.Bomb">
-      <Item value="X" priority="243" />
-      <Item value="Power" priority="53" />
-      <Item value="Y" priority="53" />
+      <Item value="X" priority="324" />
+      <Item value="Power" priority="80" />
+      <Item value="Y" priority="134" />
       <Item value="Move`0" priority="53" />
       <Item value="directionMoving" priority="26" />
       <Item value="DirectionMoving" priority="26" />
+      <Item value="Owner" priority="26" />
+      <Item value="Explode`0" priority="53" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.Forms.MessageBox">
       <Item value="Show`0" priority="26" />
@@ -1066,6 +1093,12 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEistiv2WPF.View.Menu.MenuScreen">
       <Item value="Show`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BombEistiv2WPF.Environment.EntityOfDeath">
+      <Item value="Blocus" priority="80" />
+      <Item value="X" priority="26" />
+      <Item value="Y" priority="26" />
+      <Item value="blocus" priority="26" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <Bookmarks>

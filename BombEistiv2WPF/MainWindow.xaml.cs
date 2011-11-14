@@ -27,6 +27,7 @@ namespace BombEistiv2WPF
         private Action action;
         private Key lastKey;
         private Key lastReleaseKey;
+        private Label thedisplayedTime;
 
 
         public MainWindow()
@@ -72,6 +73,21 @@ namespace BombEistiv2WPF
             texture.LoadTextureList(GameInProgress.TheCurrentMap.GetCompleteList(), this);
         }
 
+        public void InitInGameMenu()
+        {
+            InGameMenu._.InitInGameMenu(_gameInProgress);
+            foreach (var lab in InGameMenu._.AllTheLabel())
+            {
+                MenuGrid.Children.Add(lab);
+            }
+            foreach (var face in InGameMenu._.AllTheFace(_gameInProgress))
+            {
+                MenuGrid.Children.Add(face);
+            }
+        }
+
+        
+
         public void InitTextureSystem()
         {
             menu.LoadAllSystemResources();
@@ -109,33 +125,31 @@ namespace BombEistiv2WPF
         {
             //button relou
             MainGrid.Children.RemoveAt(0);
-            var w = new Wizard(this);
-            w.Init();
-            w.LaunchScreen();
-            //Menu
-            //menu = new Menu();
-            //InitTextureSystem();
-            //DevelopperScreen();
-
+            //var w = new Wizard(this);
+            //w.Init();
+            //w.LaunchScreen();
 
             //thewizard = new Wizard(this);
             //thewizard.Init();
-            //texture = Texture._;
-            //texture.SetTheme("Basic");
 
-            ////a modif ?
-            //listener = ListenerGame._;
-            //this.KeyDown += Window_KeyDown;
-            //this.KeyUp += Window_KeyUp;
 
-            ////testing
-            //GameParameters._.ExplosionDelay = 3;
-            //GameParameters._.PlayerCount = 4;
-            //_gameInProgress = new ClassicGame();
-            //TimerManager._.Game = _gameInProgress;
-            //listener.GameInProgress = _gameInProgress;
-            //InitTextureGame();
-            //listener.StartTimers();
+            texture = Texture._;
+            texture.SetTheme("Basic");
+
+            //a modif ?
+            listener = ListenerGame._;
+            this.KeyDown += Window_KeyDown;
+            this.KeyUp += Window_KeyUp;
+
+            //testing
+            GameParameters._.ExplosionDelay = 3;
+            GameParameters._.PlayerCount = 4;
+            _gameInProgress = new ClassicGame();
+            TimerManager._.Game = _gameInProgress;
+            listener.GameInProgress = _gameInProgress;
+            InitTextureGame();
+            InitInGameMenu();
+            listener.StartTimers();
 
             //time.Start();
         }

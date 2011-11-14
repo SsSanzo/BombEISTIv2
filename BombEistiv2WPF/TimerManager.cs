@@ -37,6 +37,8 @@ namespace BombEistiv2WPF
                 }
                 _game = value;
             }
+
+            get { return _game; }
         }
 
         public bool Pause

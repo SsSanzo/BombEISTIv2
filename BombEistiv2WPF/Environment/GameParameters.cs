@@ -33,7 +33,7 @@ namespace BombEistiv2WPF.Environment
             _xmlDoc = XDocument.Load(ParameterPath);
             _root = _xmlDoc.Descendants("GameParameters");
             Type = GameType.Classic;
-            GameTime = 300;
+            GameTime = 48;
             Network = Network.Local;
             Theme = "Basic";
             _menutextureList = new Dictionary<string, BitmapImage>();

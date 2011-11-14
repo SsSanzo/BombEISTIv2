@@ -59,12 +59,14 @@
     <Compile Include="Control\GifImage.cs" />
     <Compile Include="Control\ListenerMenu.cs" />
     <Compile Include="Control\Wizard.cs" />
+    <Compile Include="Environment\EntityOfDeath.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="TimerEvent.cs" />
     <Compile Include="TimerManager.cs" />
     <Compile Include="View\Animation.cs" />
     <Compile Include="View\Explosion.cs" />
     <Compile Include="View\GameTimer.cs" />
+    <Compile Include="View\InGameMenu.cs" />
     <Compile Include="View\MapSkin.cs" />
     <Compile Include="View\Menu\DevScreen.cs" />
     <Compile Include="View\Menu\MenuScreen.cs" />
