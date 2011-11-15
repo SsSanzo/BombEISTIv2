@@ -54,11 +54,14 @@ namespace BombEistiv2WPF.Environment
                         else if (e is Player)
                         {
                             var play = (Player)e;
-                            if (play.Die())
+                            if ((play.Clingnotement == 0 || play.Clingnotement > 19) && play.Die())
                             {
                                 var thePlayer = G.TheCurrentMap.ListOfPlayer.First(c => c.X == play.X && c.Y == play.Y);
                                 G.TheCurrentMap.ListOfPlayer.Remove(thePlayer);
                                 Texture._.DeleteTextureEntity(thePlayer);
+                            }else
+                            {
+                                play.cling();
                             }
                         }
                 }

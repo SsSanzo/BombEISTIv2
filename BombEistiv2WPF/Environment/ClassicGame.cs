@@ -43,7 +43,6 @@ namespace BombEistiv2WPF.Environment
                 TheCurrentMap.DestroyEverythingHere(entity.X,entity.Y);
             }else
             {
-                
                 if (hb.Y == tour && hb.X != Length - 1 - tour)
                 {
                     entity = new HardBlock(hb.X + 1, hb.Y);

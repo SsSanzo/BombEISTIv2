@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using System.Windows.Media.Imaging;
 using BombEistiv2WPF.View;
 
@@ -21,6 +22,7 @@ namespace BombEistiv2WPF.Environment
         private readonly Map _map;
         private Direction sens;
         private Direction newsens;
+        private int clingnotement;
 
         public Player(int id, int skinid, int x, int y, Map map, Score score = null) : base(x, y)
         {
@@ -49,7 +51,7 @@ namespace BombEistiv2WPF.Environment
             CanKick = false;
             InvertedDirections = false;
             AvailableBombCount = 1;
-            Lives = 1;
+            Lives = 2;
             sens = Direction.Down;
             newsens = Direction.Down;
         }
@@ -184,6 +186,11 @@ namespace BombEistiv2WPF.Environment
             get { return _id; }
         }
 
+        public int Clingnotement
+        {
+            get { return clingnotement; }
+        }
+
         public int Speed
         {
             get { return _speed; }
@@ -291,7 +298,7 @@ namespace BombEistiv2WPF.Environment
                         Speed--;
                         break;
                     case UpgradeType.SpeedMax:
-                        //TODO: choose a maximum speed
+                        Speed = 9;
                         break;
                     case UpgradeType.SpeedUp:
                         Speed++;
@@ -301,8 +308,8 @@ namespace BombEistiv2WPF.Environment
                         break;
                     case UpgradeType.Life:
                         Lives++;
+                        InGameMenu._.changeLabel(Id, Lives);
                         break;
-
             }
             return this;
         }
@@ -381,14 +388,17 @@ namespace BombEistiv2WPF.Environment
 
         protected void HaveToDie(int x, int y)
         {
-            var e = _map.GetEntityOfDeath(x, y);
-            if(e != null)
+            if(clingnotement == 0 || clingnotement > 19)
             {
-                if (Die())
+                var e = _map.GetEntityOfDeath(x, y);
+                if (e != null)
                 {
-                    var thePlayer = _map.ListOfPlayer.First(c => c.X == this.X && c.Y == this.Y);
-                    _map.ListOfPlayer.Remove(thePlayer);
-                    Texture._.DeleteTextureEntity(thePlayer);
+                    if (Die())
+                    {
+                        var thePlayer = _map.ListOfPlayer.First(c => c.X == this.X && c.Y == this.Y);
+                        _map.ListOfPlayer.Remove(thePlayer);
+                        Texture._.DeleteTextureEntity(thePlayer);
+                    }
                 }
             }
         }
@@ -396,6 +406,37 @@ namespace BombEistiv2WPF.Environment
         public void changeFace(BitmapImage bi)
         {
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => Source = bi));
+        }
+
+        public void cling()
+        {
+            clingnotement = 0;
+            TimerManager._.AddNewTimer(true,100,true,null,theclingthread);
+        }
+
+        public void theclingthread(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            if(clingnotement <= 19)
+            {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(thecling));
+            }else
+            {
+                var t = (Timer) sender;
+                t.AutoReset = false;
+            }
+            
+        }
+
+        public void thecling()
+        {
+            if(clingnotement%2 == 1)
+            {
+                Opacity = 1;
+            }else
+            {
+                Opacity = 0;
+            }
+            clingnotement++;
         }
     }
 }
