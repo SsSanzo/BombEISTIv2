@@ -31,6 +31,11 @@ namespace BombEistiv2WPF.Control
             get { return _theWindow.MenuGrid; }
         }
 
+        public MainWindow TheWindow
+        {
+            get { return _theWindow; }
+        }
+
         public Dispatcher WindowDispatcher
         {
             get { return _theWindow.Dispatcher; } 
@@ -86,6 +91,11 @@ namespace BombEistiv2WPF.Control
                     var m = new MenuScreen();
                     m.Show(this, _currentScreen);
                     _currentScreen = m;
+                    break;
+                case ScreenType.MainMenu:
+                    var mm = new MainMenuScreen();
+                    mm.Show(this, _currentScreen);
+                    _currentScreen = mm;
                     break;
             }
             //FadeIn();

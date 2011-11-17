@@ -22,7 +22,13 @@ namespace BombEistiv2WPF.View.Menu
         public override void Show(Control.Wizard w, Screenv2 screen)
         {
             _wizard = w;
-            _wizard.Grid.Children.RemoveRange(0,_wizard.Grid.Children.Count);
+            for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+            {
+                if (!(w.Grid.Children[i] is Grid))
+                {
+                    w.Grid.Children.RemoveAt(i);
+                }
+            }
             _wizard.Grid.Children.Add(img);
             TimerManager._.AddNewTimer(false, 4000, true,null, HideTimerEvent);
             TimerManager._.AddNewTimer(true, 28, true, null, FadingIn);

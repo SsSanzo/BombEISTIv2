@@ -21,13 +21,10 @@ namespace BombEistiv2WPF
     public partial class MainWindow : Window
     {
         private Game _gameInProgress;
-        private Texture texture;
         private Screen menu;
-        private ListenerGame listener;
         private Action action;
         private Key lastKey;
         private Key lastReleaseKey;
-        private Label thedisplayedTime;
 
 
         public MainWindow()
@@ -64,13 +61,13 @@ namespace BombEistiv2WPF
 
         public void InitTextureGame()
         {
-            texture.LoadAllTextures();
-            var l = texture.LoadBackground();
+            Texture._.LoadAllTextures();
+            var l = Texture._.LoadBackground();
             foreach (var tl in l)
             {
                 MainGrid.Children.Add(tl);
             }
-            texture.LoadTextureList(GameInProgress.TheCurrentMap.GetCompleteList(), this);
+            Texture._.LoadTextureList(GameInProgress.TheCurrentMap.GetCompleteList(), this);
         }
 
         public void InitInGameMenu()
@@ -125,42 +122,41 @@ namespace BombEistiv2WPF
         {
             //button relou
             MainGrid.Children.RemoveAt(0);
-            //var w = new Wizard(this);
-            //w.Init();
-            //w.LaunchScreen();
-
-            //thewizard = new Wizard(this);
-            //thewizard.Init();
+            var w = new Wizard(this);
+            w.Init();
+            w.LaunchScreen();
 
 
-            texture = Texture._;
-            texture.SetTheme("Basic");
+        }
+
+
+        // TEMPORAIRE
+        public void LaunchGame()
+        {
+            Texture._.SetTheme("Basic");
 
             //a modif ?
-            listener = ListenerGame._;
-            this.KeyDown += Window_KeyDown;
-            this.KeyUp += Window_KeyUp;
+            //listener = ListenerGame._;
+            KeyDown += Window_KeyDown;
+            KeyUp += Window_KeyUp;
 
             //testing
             GameParameters._.ExplosionDelay = 3;
             GameParameters._.PlayerCount = 4;
             _gameInProgress = new ClassicGame();
             TimerManager._.Game = _gameInProgress;
-            listener.GameInProgress = _gameInProgress;
+            ListenerGame._.GameInProgress = _gameInProgress;
             InitTextureGame();
             InitInGameMenu();
-            listener.StartTimers();
-
-            //time.Start();
+            ListenerGame._.StartTimers();
         }
-
 
         private void Window_KeyDown(object sender, KeyEventArgs keyEventArgs)
         {
             if (keyEventArgs.Key != lastKey || (keyEventArgs.Key == lastKey && keyEventArgs.Key == lastReleaseKey))
             {
                 lastKey = keyEventArgs.Key;
-                listener.EventKey(keyEventArgs.Key);
+                ListenerGame._.EventKey(keyEventArgs.Key);
             }
 
         }
@@ -168,7 +164,7 @@ namespace BombEistiv2WPF
         private void Window_KeyUp(object sender, KeyEventArgs keyEventArgs)
         {
             lastReleaseKey = keyEventArgs.Key;
-            listener.ReleaseKey(keyEventArgs.Key);
+            ListenerGame._.ReleaseKey(keyEventArgs.Key);
         }
 
 

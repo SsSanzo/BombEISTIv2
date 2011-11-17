@@ -68,6 +68,8 @@
       <Texture object="2" source="2.png"/>
       <Texture object="PressStart" source="PressStart.png"/>
       <Texture object="White" source="white.png"/>
+      <Texture object="Black" source="Black.png"/>
+      <Texture object="Box" source="box.png"/>
     </Menu>
     <SoftBlock count="120"/>
   </CommonParameter>

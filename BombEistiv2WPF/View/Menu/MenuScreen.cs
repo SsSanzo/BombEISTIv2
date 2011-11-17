@@ -32,7 +32,13 @@ namespace BombEistiv2WPF.View.Menu
         {
             thisIsTheEnd = false;
             _wizard = w;
-            _wizard.Grid.Children.RemoveRange(0, _wizard.Grid.Children.Count);
+            for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+            {
+                if (!(w.Grid.Children[i] is Grid))
+                {
+                    w.Grid.Children.RemoveAt(i);
+                }
+            }
             if(_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
@@ -62,11 +68,15 @@ namespace BombEistiv2WPF.View.Menu
         {
             if (_actionInProgress == PressStartCling || (_actionInProgress == flash && time.Interval == 15))
             {
-                thisIsTheEnd = true;
-                MenuDataList["White"].Opacity = 1;
-                //_wizard.NextScreen(ScreenType.PressStart);
+                //thisIsTheEnd = true;
+                time.Interval = 16;
+                MenuDataList["White"].Opacity = 0;
+                MenuDataList["PressStart"].Opacity = 0;
+                _actionInProgress = slideonthetop;
+                //MenuDataList["White"].Opacity = 1;
             }else
             {
+                if(_actionInProgress != slideonthetop)
                 SetFinalState();
             }
             
@@ -248,8 +258,28 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList["Bomb"].Margin = new Thickness(-130, -70, 0.0, 0.0);
             MenuDataList["Eisti"].Margin = new Thickness(100, 120 + 10, 0.0, 0.0);
             MenuDataList["2"].Opacity = 1;
-            
-            
+        }
+
+        public void slideonthetop()
+        {
+            if (MenuDataList["2"].Height > 80)
+            {
+                MenuDataList["Bomb"].Margin = new Thickness(MenuDataList["Bomb"].Margin.Left + (70.0 / 31.25), MenuDataList["Bomb"].Margin.Top + (35.0 / 31.25), 0.0, 0.0);
+                MenuDataList["Eisti"].Margin = new Thickness(MenuDataList["Eisti"].Margin.Left - (40.0 / 31.25), MenuDataList["Eisti"].Margin.Top - (65.0 / 31.25), 0.0, 0.0);
+                MenuDataList["2"].Margin = new Thickness(MenuDataList["2"].Margin.Left + (205.0 / 31.25), MenuDataList["2"].Margin.Top - (160.0 / 31.25), 0.0, 0.0);
+
+                MenuDataList["Bomb"].Height = MenuDataList["Bomb"].Height - (100.0 / 31.25);
+
+                MenuDataList["Eisti"].Height = MenuDataList["Eisti"].Height - (120.0 / 31.25);
+
+                MenuDataList["2"].Height = MenuDataList["2"].Height - (220.0 / 31.25);
+            }else if(!thisIsTheEnd)
+            {
+                thisIsTheEnd = true;
+                _wizard.NextScreen(ScreenType.MainMenu);
+                
+                
+            }
         }
     }
 }
