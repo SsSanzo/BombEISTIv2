@@ -1,4 +1,8 @@
-﻿using System;
+﻿
+
+
+
+using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -83,7 +87,7 @@ namespace BombEistiv2WPF
             }
         }
 
-        
+
 
         public void InitTextureSystem()
         {
@@ -141,7 +145,6 @@ namespace BombEistiv2WPF
             KeyUp += Window_KeyUp;
 
             //testing
-            GameParameters._.ExplosionDelay = 3;
             GameParameters._.PlayerCount = 4;
             _gameInProgress = new ClassicGame();
             TimerManager._.Game = _gameInProgress;
@@ -208,7 +211,7 @@ namespace BombEistiv2WPF
         //}
 
 
-        
+
 
         //private void ActionDefil(object sender, ElapsedEventArgs e)
         //{
@@ -306,7 +309,7 @@ namespace BombEistiv2WPF
         //        time.Stop();
         //        time.Close();
         //        PressStartScreen();
-                
+
         //    }
 
         //}
@@ -326,10 +329,10 @@ namespace BombEistiv2WPF
         //    menu.MenuDataList.Clear();
         //}
 
-        
 
-        
 
-        
+
+
+
     }
 }

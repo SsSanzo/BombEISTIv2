@@ -97,6 +97,26 @@ namespace BombEistiv2WPF.Control
                     mm.Show(this, _currentScreen);
                     _currentScreen = mm;
                     break;
+                case ScreenType.Options:
+                    var m2 = new OptionMenu();
+                    m2.Show(this, _currentScreen);
+                    _currentScreen = m2;
+                    break;
+                case ScreenType.GeneralOptions:
+                    var m3 = new GeneralOptionMenu();
+                    m3.Show(this, _currentScreen);
+                    _currentScreen = m3;
+                    break;
+                case ScreenType.KeyConfig:
+                    var m4 = new KeyConfigMenu();
+                    m4.Show(this, _currentScreen);
+                    _currentScreen = m4;
+                    break;
+                case ScreenType.Themes:
+                    var m5 = new ThemeMenu();
+                    m5.Show(this, _currentScreen);
+                    _currentScreen = m5;
+                    break;
             }
             //FadeIn();
         }

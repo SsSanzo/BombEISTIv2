@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿
+
+
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -37,30 +41,34 @@ namespace BombEistiv2WPF.Control
 
         public void InitDefaultKeys()
         {
-            KeysPlayer.Add(Key.Up, "1_Up");
-            KeysPlayer.Add(Key.Right, "1_Right");
-            KeysPlayer.Add(Key.Down, "1_Down");
-            KeysPlayer.Add(Key.Left, "1_Left");
+            _keysPlayer = GameParameters._.GetGameKeyMap();
+
+            //KeysPlayer.Add(Key.Up, "1_Up");
+            //KeysPlayer.Add(Key.Right, "1_Right");
+            //KeysPlayer.Add(Key.Down, "1_Down");
+            //KeysPlayer.Add(Key.Left, "1_Left");
+
             //KeysPlayer.Add(Key.F, "1_Up");
             //KeysPlayer.Add(Key.V, "1_Right");
             //KeysPlayer.Add(Key.C, "1_Down");
             //KeysPlayer.Add(Key.X, "1_Left");
-            KeysPlayer.Add(Key.RightShift, "1_None");
-            KeysPlayer.Add(Key.Z, "2_Up");
-            KeysPlayer.Add(Key.D, "2_Right");
-            KeysPlayer.Add(Key.S, "2_Down");
-            KeysPlayer.Add(Key.Q, "2_Left");
-            KeysPlayer.Add(Key.A, "2_None");
-            KeysPlayer.Add(Key.O, "3_Up");
-            KeysPlayer.Add(Key.M, "3_Right");
-            KeysPlayer.Add(Key.L, "3_Down");
-            KeysPlayer.Add(Key.K, "3_Left");
-            KeysPlayer.Add(Key.I, "3_None");
-            KeysPlayer.Add(Key.Y, "4_Up");
-            KeysPlayer.Add(Key.J, "4_Right");
-            KeysPlayer.Add(Key.H, "4_Down");
-            KeysPlayer.Add(Key.G, "4_Left");
-            KeysPlayer.Add(Key.T, "4_None");
+
+            //KeysPlayer.Add(Key.RightShift, "1_None");
+            //KeysPlayer.Add(Key.Z, "2_Up");
+            //KeysPlayer.Add(Key.D, "2_Right");
+            //KeysPlayer.Add(Key.S, "2_Down");
+            //KeysPlayer.Add(Key.Q, "2_Left");
+            //KeysPlayer.Add(Key.A, "2_None");
+            //KeysPlayer.Add(Key.O, "3_Up");
+            //KeysPlayer.Add(Key.M, "3_Right");
+            //KeysPlayer.Add(Key.L, "3_Down");
+            //KeysPlayer.Add(Key.K, "3_Left");
+            //KeysPlayer.Add(Key.I, "3_None");
+            //KeysPlayer.Add(Key.Y, "4_Up");
+            //KeysPlayer.Add(Key.J, "4_Right");
+            //KeysPlayer.Add(Key.H, "4_Down");
+            //KeysPlayer.Add(Key.G, "4_Left");
+            //KeysPlayer.Add(Key.T, "4_None");
             KeysMenu.Add(Key.Enter, "Enter");
             KeysMenu.Add(Key.Up, "Up");
             KeysMenu.Add(Key.Right, "Right");
@@ -81,6 +89,9 @@ namespace BombEistiv2WPF.Control
             return KeysPlayer.FirstOrDefault(keys => keys.Value == p.Id + "_" + d.ToString()).Key; ;
         }
 
-        
+        public void SaveKey()
+        {
+            GameParameters._.SaveGameKeyMap(KeysPlayer);
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace BombEistiv2WPF.Environment
             CanKick = false;
             InvertedDirections = false;
             AvailableBombCount = 1;
-            Lives = 2;
+            Lives = GameParameters._.LivesCount;
             sens = Direction.Down;
             newsens = Direction.Down;
         }

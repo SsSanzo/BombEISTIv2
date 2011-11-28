@@ -5,6 +5,6 @@
         //bonus
         Kick, PowerUp, SpeedUp, PowerMax, BombUp, Life,
         //malus
-        PowerDown, SpeedDown, ChangeDirection, Teleport, SpeedMax
+        PowerDown, SpeedDown, ChangeDirection, Teleport, SpeedMax, BombDown
     }
 }

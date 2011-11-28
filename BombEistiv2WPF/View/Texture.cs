@@ -15,6 +15,7 @@ namespace BombEistiv2WPF.View
     {
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
+        private Dictionary<string, BitmapImage> _typebonusList;
         private MainWindow mw;
         private int offsetglobal = 20;
         private int timeoffset = 20;
@@ -25,7 +26,7 @@ namespace BombEistiv2WPF.View
         {
             _themeData = GameParameters._.GetThemeData("Basic");
             _typetextureList = new Dictionary<string, BitmapImage>();
-            
+            _typebonusList = new Dictionary<string, BitmapImage>();
         }
 
         public MainWindow Mw
@@ -52,6 +53,11 @@ namespace BombEistiv2WPF.View
         public Dictionary<string, BitmapImage> TypetextureList
         {
             get { return _typetextureList; }
+        }
+
+        public Dictionary<string, BitmapImage> TypebonusList
+        {
+            get { return _typebonusList; }
         }
 
         public void LoadTextureList(List<Entity> l , MainWindow w)
@@ -378,6 +384,7 @@ namespace BombEistiv2WPF.View
 
         public void LoadAllTextures()
         {
+            TypetextureList.Clear();
             foreach (var td in ThemeData)
             {
                 if (td.Value.EndsWith(".png") || td.Value.EndsWith(".gif"))
@@ -390,6 +397,24 @@ namespace BombEistiv2WPF.View
                     TypetextureList.Add(td.Key, bitmanimg);
                 }
                 
+            }
+        }
+
+        public void LoadBonusTextures()
+        {
+            TypebonusList.Clear();
+            foreach (var td in ThemeData)
+            {
+                if (td.Value.EndsWith(".png") || td.Value.EndsWith(".gif") || td.Key.StartsWith("Upgrade"))
+                {
+                    var u = new Uri(GameParameters.Path + td.Value);
+                    var bitmanimg = new BitmapImage();
+                    bitmanimg.BeginInit();
+                    bitmanimg.UriSource = u;
+                    bitmanimg.EndInit();
+                    TypebonusList.Add(td.Key, bitmanimg);
+                }
+
             }
         }
         

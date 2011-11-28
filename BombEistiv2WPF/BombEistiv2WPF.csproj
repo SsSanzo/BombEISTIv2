@@ -69,10 +69,14 @@
     <Compile Include="View\InGameMenu.cs" />
     <Compile Include="View\MapSkin.cs" />
     <Compile Include="View\Menu\DevScreen.cs" />
+    <Compile Include="View\Menu\GeneralOptionMenu.cs" />
+    <Compile Include="View\Menu\KeyConfigMenu.cs" />
     <Compile Include="View\Menu\MainMenuScreen.cs" />
     <Compile Include="View\Menu\MenuScreen.cs" />
+    <Compile Include="View\Menu\OptionMenu.cs" />
     <Compile Include="View\Menu\Screen.cs" />
     <Compile Include="View\Menu\Screenv2.cs" />
+    <Compile Include="View\Menu\ThemeMenu.cs" />
     <Compile Include="View\PlayerSkin.cs" />
     <Compile Include="View\PlaySound.cs" />
     <Compile Include="View\Texture.cs" />

@@ -1,7 +1,12 @@
-﻿using System;
+﻿
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 
@@ -37,6 +42,7 @@ namespace BombEistiv2WPF.Environment
             Network = Network.Local;
             Theme = "Basic";
             _menutextureList = new Dictionary<string, BitmapImage>();
+            ExplosionDelay = Convert.ToInt32(_root.Elements("CommonParameter").Elements("ExplosionDelay").FirstOrDefault().Attribute("count").Value);
             LoadAllSystemResources();
         }
 
@@ -81,6 +87,35 @@ namespace BombEistiv2WPF.Environment
                     _playerCount = value;
                 }
             }
+        }
+
+        public Dictionary<Key, string> GetGameKeyMap()
+        {
+            var d = new Dictionary<Key, string>();
+            var e = _root.Descendants("keysMap");
+            foreach (var x in e.Elements("Map"))
+            {
+                Key k;
+                Key.TryParse(x.Attribute("key").Value, true, out k);
+                d.Add(k, x.Attribute("player").Value + "_" + x.Attribute("action").Value);
+            }
+            return d;
+        }
+
+        public void SaveGameKeyMap(Dictionary<Key, string> keyMap)
+        {
+            var e = _root.Descendants("keysMap");
+            foreach (var x in e)
+            {
+                foreach (var i in keyMap)
+                {
+                    if (i.Value == x.Attribute("player") + "_" + x.Attribute("action"))
+                    {
+                        x.Attribute("key").Value = i.Key.ToString();
+                    }
+                }
+            }
+            Save();
         }
 
         public Dictionary<string, BitmapImage> MenutextureList
@@ -194,13 +229,13 @@ namespace BombEistiv2WPF.Environment
         {
             get
             {
-                var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).DescendantsAndSelf().FirstOrDefault();
-                return Convert.ToInt32(e.Attribute("lives").Value);
+                var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).DescendantsAndSelf().FirstOrDefault();
+                return Convert.ToInt32(e.Element("Player").Attribute("lives").Value);
             }
             set
             {
-                var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).DescendantsAndSelf().FirstOrDefault();
-                e.Attribute("lives").Value = value + "";
+                var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).DescendantsAndSelf().FirstOrDefault();
+                e.Element("Player").Attribute("lives").Value = value + "";
             }
         }
     }

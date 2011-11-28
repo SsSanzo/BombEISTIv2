@@ -133,7 +133,8 @@ namespace BombEistiv2WPF
             else
             {
                 Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Normal,
-                                                    (Action)(() => _timers.RemoveAll(c => c.Timer == s)));
+                                                    (Action) (() => _timers.RemoveAll(c => c != null && c.Timer == s)));
+            
                 s.Stop();
                 s.Close();
             }
