@@ -386,11 +386,11 @@ namespace BombEistiv2WPF.View.Menu
 
         public void LoadMenuLabel()
         {
-            var l = new Label { Content = "Paramètres", FontSize = 30, Foreground = new SolidColorBrush(Colors.Yellow), Margin = new Thickness(360, 300, 0, 0) };
+            var l = new Label { Content = "Paramètres", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(360, 300, 0, 0) };
             MenuLabelList.Add("BoxGeneral", l);
-            var l2 = new Label { Content = "Commandes", FontSize = 30, Foreground = new SolidColorBrush(Colors.Yellow), Margin = new Thickness(260, 370, 0, 0) };
+            var l2 = new Label { Content = "Commandes", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(260, 370, 0, 0) };
             MenuLabelList.Add("BoxTouche", l2);
-            var l4 = new Label { Content = "Theme", FontSize = 30, Foreground = new SolidColorBrush(Colors.Yellow), Margin = new Thickness(190, 450, 0, 0) };
+            var l4 = new Label { Content = "Theme", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(190, 450, 0, 0) };
             MenuLabelList.Add("BoxTheme", l4);
             var l3 = new Label { Content = "Retour", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(45, 575, 0, 0) };
             MenuLabelList.Add("BoxCancel", l3);
