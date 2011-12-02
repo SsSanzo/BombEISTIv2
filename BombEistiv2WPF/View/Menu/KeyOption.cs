@@ -531,27 +531,30 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxTouche"].Margin = new Thickness(MenuLabelList["BoxTouche"].Margin.Left - 175.0 / 20.0, MenuLabelList["BoxTouche"].Margin.Top - 255.0 / 20.0, 0, 0);
                 MenuLabelList["BoxTouche"].FontSize -= 0.7;
             }
-            else if (!alreadyloaded)
+            else 
             {
                 t.AutoReset = false;
-                alreadyloaded = true;
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if (!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid))
+                    alreadyloaded = true;
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
-                }
-                MenuLabelList.Remove("Loading");
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
+                    MenuLabelList.Remove("Loading");
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
                 }
                 //SwitchOption("1_None");
             }

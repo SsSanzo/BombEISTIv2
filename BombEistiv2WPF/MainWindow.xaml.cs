@@ -137,8 +137,6 @@ namespace BombEistiv2WPF
         // TEMPORAIRE
         public void LaunchGame()
         {
-            Texture._.SetTheme("Basic");
-
             //a modif ?
             //listener = ListenerGame._;
             KeyDown += Window_KeyDown;

@@ -337,20 +337,29 @@ namespace BombEistiv2WPF.View
         public List<Image> LoadBackground()
         {
             var l = new List<Image>();
-            for(var i=0;i<Game.Length;i++)
-            {
-                for(var j=0;j<Game.Length;j++)
-                {
-                    var g = new Image();
-                    g.Source = TypetextureList["Background"];
-                    g.HorizontalAlignment = HorizontalAlignment.Left;
-                    g.VerticalAlignment = VerticalAlignment.Top;
-                    g.Width = 40;
-                    g.Height = 40;
-                    g.Margin = new Thickness((i* 40), (j * 40), 0.0, 0.0);
-                    l.Add(g);
-                }
-            }
+            var g = new Image();
+            g.Source = TypetextureList["Background"];
+            g.HorizontalAlignment = HorizontalAlignment.Left;
+            g.VerticalAlignment = VerticalAlignment.Top;
+            g.Width = 600;
+            g.Height = 600;
+            g.Margin = new Thickness(0.0, 0.0, 0.0, 0.0);
+            l.Add(g);
+            //var l = new List<Image>();
+            //for(var i=0;i<Game.Length;i++)
+            //{
+            //    for(var j=0;j<Game.Length;j++)
+            //    {
+            //        var g = new Image();
+            //        g.Source = TypetextureList["Background"];
+            //        g.HorizontalAlignment = HorizontalAlignment.Left;
+            //        g.VerticalAlignment = VerticalAlignment.Top;
+            //        g.Width = 40;
+            //        g.Height = 40;
+            //        g.Margin = new Thickness((i* 40), (j * 40), 0.0, 0.0);
+            //        l.Add(g);
+            //    }
+            //}
             return l;
         }
 
@@ -416,6 +425,16 @@ namespace BombEistiv2WPF.View
                 }
 
             }
+        }
+
+        public static BitmapImage LoadTheImage(String path)
+        {
+            var u = new Uri(path);
+            var bitmanimg = new BitmapImage();
+            bitmanimg.BeginInit();
+            bitmanimg.UriSource = u;
+            bitmanimg.EndInit();
+            return bitmanimg;
         }
         
     }

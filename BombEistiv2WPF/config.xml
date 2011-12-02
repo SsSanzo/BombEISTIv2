@@ -72,6 +72,8 @@
       <Texture object="Box" source="box.png" />
       <Texture object="Left" source="left.png" />
       <Texture object="Right" source="right.png" />
+      <Texture object="Bigleft" source="bigleft.png" />
+      <Texture object="Bigright" source="bigright.png" />
     </Menu>
     <SoftBlock count="120" />
     <GameTime count="120" />

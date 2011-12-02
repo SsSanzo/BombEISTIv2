@@ -89,10 +89,14 @@ namespace BombEistiv2WPF.Control
                     l.AddRange(Pushed);
                     foreach (var s in l)
                     {
-                        var splitted = s.Split('_');
-                        var thePlayer =
-                            GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(splitted[0]));
-                        if(thePlayer != null){Movement.Move(splitted[1], thePlayer);}
+                        if(s != null)
+                        {
+                            var splitted = s.Split('_');
+                            var thePlayer =
+                                GameInProgress.TheCurrentMap.ListOfPlayer.Find(t => t.Id == Convert.ToInt32(splitted[0]));
+                            if (thePlayer != null) { Movement.Move(splitted[1], thePlayer); }
+                        }
+                        
                     }
                     Movement.ChangeFace(GameInProgress.TheCurrentMap.ListOfPlayer);
                     if (Pulled.Count != 0)

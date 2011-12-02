@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -77,6 +78,8 @@ namespace BombEistiv2WPF.Environment
             }
             return d;
         }
+
+        
 
         public void SaveGameKeyMap(Dictionary<Key, string> keyMap)
         {
@@ -171,7 +174,25 @@ namespace BombEistiv2WPF.Environment
         {
             var e = _theme.Descendants();
             var folder = _theme.Attribute("folder").Value;
-            return e.ToDictionary(element => element.Attribute("object").Value, element => @"\" + folder + Theme + @"\" + element.Attribute("source").Value);
+            var dic = new Dictionary<string, string>();
+            foreach (var element in e)
+            {
+                //File.OpenRead(Path + @"\" + folder + Theme + @"\" + element.Attribute("source").Value);
+                if (File.Exists(Path + @"\" + folder + Theme + @"\" + element.Attribute("source").Value))
+                {
+                    dic.Add(element.Attribute("object").Value, @"\" + folder + Theme + @"\" + element.Attribute("source").Value);
+                }else
+                {
+                    dic.Add(element.Attribute("object").Value, @"\" + folder + "Basic" + @"\" + element.Attribute("source").Value);
+                }
+            }
+            return dic;
+            //return e.ToDictionary(element => element.Attribute("object").Value, element => @"\" + folder + Theme + @"\" + element.Attribute("source").Value);
+        }
+
+        public String GetThemeFolder()
+        {
+            return _theme.Attribute("folder").Value;
         }
 
         public List<string> GetThemes()

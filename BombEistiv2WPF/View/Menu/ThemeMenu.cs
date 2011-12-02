@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Timers;
@@ -19,14 +20,21 @@ namespace BombEistiv2WPF.View.Menu
     {
         private Wizard _wizard;
         private Dictionary<string, Image> _menuDataList;
+        private Dictionary<string, int> _menuOrderDataList;
         private Dictionary<string, Label> _menuLabelList;
-        private String OptionSelected;
-        private Dictionary<String, int> OptionZommed;
+        private String PreviewSelected;
+        private Dictionary<String, String> OptionMoved;
+        private bool alreadyloaded;
         private bool thisistheend;
 
         public Dictionary<string, Image> MenuDataList
         {
             get { return _menuDataList; }
+        }
+
+        public Dictionary<string, int> MenuOrderDataList
+        {
+            get { return _menuOrderDataList; }
         }
 
         public Dictionary<string, Label> MenuLabelList
@@ -39,8 +47,9 @@ namespace BombEistiv2WPF.View.Menu
             thisistheend = false;
             var pressstart = (OptionMenu)oldscreen;
             _wizard = w;
-            OptionZommed = new Dictionary<string, int>();
-            OptionSelected = "BoxGeneral";
+            OptionMoved = new Dictionary<string, string>();
+            _menuOrderDataList = new Dictionary<string, int>();
+            PreviewSelected = "ScreenBasic";
             if (_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
@@ -73,28 +82,45 @@ namespace BombEistiv2WPF.View.Menu
 
         public void SwitchOption(String s)
         {
-            OptionSelected = s;
-            MenuDataList[s].Opacity = 1;
-            Canvas.SetZIndex(MenuDataList[s], 2);
-            Canvas.SetZIndex(MenuLabelList[s], 3);
-            OptionZommed[s] = 1;
+            if (OptionMoved.Where(c => c.Value != "").Count() == 0)
+            {
+                OptionMoved[PreviewSelected] = s;
+                MenuLabelList["LabelScreen"].Content = s.Substring(6);
+                PreviewSelected = s;
+            }
         }
 
         public override void KeyUp(Key k) { }
 
         public override void KeyDown(Key k)
         {
-            if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
+            if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
             {
-
+                if (MenuOrderDataList[PreviewSelected] == MenuOrderDataList.Count - 1)
+                {
+                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == 0).Key);
+                }else
+                {
+                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList[PreviewSelected] + 1).Key);
+                }
+                
             }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
+            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
             {
-
+                if (MenuOrderDataList[PreviewSelected] == 0)
+                {
+                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList.Count - 1).Key);
+                }
+                else
+                {
+                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList[PreviewSelected] - 1).Key);
+                }
             }
             else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
             {
-
+                Texture._.SetTheme(PreviewSelected.Substring(6));
+                thisistheend = true;
+                _wizard.NextScreen(ScreenType.Options);
             }
         }
 
@@ -119,12 +145,83 @@ namespace BombEistiv2WPF.View.Menu
 
         public void LoadMenuImage()
         {
+            var listDir = Directory.EnumerateDirectories(GameParameters.Path + @"\" + GameParameters._.GetThemeFolder());
+            var order = 0;
+            foreach (var dir in listDir)
+            {
+                if(File.Exists(dir + @"\preview.png"))
+                {
+                    var gb = new Image
+                    {
+                        Source = Texture.LoadTheImage(dir + @"\preview.png"),
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Top,
+                        Margin = new Thickness(0.0, 250, 0.0, 0.0),
+                        Opacity = 0,
+                        Width = 337,
+                        Height = 250
+                    };
+                    var lt4 = new ScaleTransform { ScaleX = 0.5, ScaleY = 0.5 };
+                    gb.LayoutTransform = lt4;
+                    MenuDataList.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], gb);
+                    OptionMoved.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], "");
+                    MenuOrderDataList.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], order);
+                    order++;
+                }
+            }
+
+            var thedata = MenuDataList.Where(c => c.Key.StartsWith("Screen"));
+            thedata.ElementAt(0).Value.Margin = new Thickness(0.0, 250, 0.0, 0.0);
+            thedata.ElementAt(0).Value.Opacity = 1;
+            var ltp = (ScaleTransform)thedata.ElementAt(0).Value.LayoutTransform;
+            ltp.ScaleX = 1.0;
+            ltp.ScaleY = 1.0;
+            Canvas.SetZIndex(thedata.ElementAt(0).Value, 1);
+            var lt = (ScaleTransform) thedata.ElementAt(1).Value.LayoutTransform;
+            lt.ScaleX = 0.5;
+            lt.ScaleY = 0.5;
+            thedata.ElementAt(1).Value.Margin = new Thickness(350, 250, 0.0, 0.0);
+            thedata.ElementAt(1).Value.Opacity = 0.5;
+            var lt2 = (ScaleTransform)thedata.ElementAt(thedata.Count() - 1).Value.LayoutTransform;
+            lt2.ScaleX = 0.5;
+            lt2.ScaleY = 0.5;
+            thedata.ElementAt(thedata.Count() - 1).Value.Margin = new Thickness(-350, 250, 0.0, 0.0);
+            thedata.ElementAt(thedata.Count() - 1).Value.Opacity = 0.5;
+
+            var gr = new Image
+            {
+                Source = GameParameters._.MenutextureList["Bigleft"],
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(-200.0, 480, 0.0, 0.0),
+                Opacity = 1,
+                Width = 49,
+                Height = 80
+            };
+            MenuDataList.Add("Bigleft", gr);
+
+            var gl = new Image
+            {
+                Source = GameParameters._.MenutextureList["Bigright"],
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(200.0, 480, 0.0, 0.0),
+                Opacity = 1,
+                Width = 49,
+                Height = 80
+            };
+            MenuDataList.Add("Bigright", gl);
 
         }
 
+        
+
         public void LoadMenuLabel()
         {
-
+            var l = new Label { Content = PreviewSelected.Substring(6), FontSize = 32, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 500, 0, 0) };
+            MenuLabelList.Add("LabelScreen", l);
+            var l2 = new Label { Content = "(Appuyez sur entrée pour valider un thème)", FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 570, 0, 0) };
+            MenuLabelList.Add("LabelInfo", l2);
         }
 
         private void ActionDefil(object sender, ElapsedEventArgs e)
@@ -163,25 +260,29 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxTheme"].Margin = new Thickness(MenuLabelList["BoxTheme"].Margin.Left - 100.0 / 20.0, MenuLabelList["BoxTheme"].Margin.Top - 330.0 / 20.0, 0, 0);
                 MenuLabelList["BoxTheme"].FontSize -= 0.7;
             }
-            else
+            else 
             {
                 t.AutoReset = false;
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if (!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid))
+                    alreadyloaded = true;
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
-                }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
                 }
                 //SwitchOption("BoxGeneral");
             }
@@ -200,42 +301,63 @@ namespace BombEistiv2WPF.View.Menu
 
         public void zoomin()
         {
-
-            var copy = OptionZommed.Where(c => c.Value != 0);
-            for (var i = 0; i < copy.Count(); i++)
+            var copy = OptionMoved.Where(c => c.Value != "");
+            for(var i=0;i<copy.Count();i++)
             {
-                if (copy.ElementAt(i).Value == 1)
+                //init
+                var enavant = MenuDataList[copy.ElementAt(i).Key];
+                var thenext = MenuDataList[copy.ElementAt(i).Value];
+                var sens = 0;
+                if(MenuOrderDataList[copy.ElementAt(i).Key] == 0 && MenuOrderDataList[copy.ElementAt(i).Value] == (MenuOrderDataList.Count - 1))
                 {
-                    var lt = (ScaleTransform)MenuDataList[copy.ElementAt(i).Key].LayoutTransform;
-                    if (((copy.ElementAt(i).Key != "BoxCancel") && lt.ScaleX >= 1.2) || ((copy.ElementAt(i).Key == "BoxCancel") && lt.ScaleX >= 0.9))
-                    {
-                        OptionZommed[copy.ElementAt(i).Key] = 0;
-                    }
-                    else
-                    {
-                        MenuDataList[copy.ElementAt(i).Key].Margin = new Thickness(MenuDataList[copy.ElementAt(i).Key].Margin.Left - 2, MenuDataList[copy.ElementAt(i).Key].Margin.Top - 2, 0, 0);
-                        MenuLabelList[copy.ElementAt(i).Key].FontSize += 1;
-                        MenuLabelList[copy.ElementAt(i).Key].Margin = new Thickness(MenuLabelList[copy.ElementAt(i).Key].Margin.Left - 2, MenuLabelList[copy.ElementAt(i).Key].Margin.Top - 2, 0, 0);
-                        lt.ScaleX += 0.02;
-                        lt.ScaleY += 0.02;
-                    }
-                }
-                else
+                    sens = -1;
+                }else if(MenuOrderDataList[copy.ElementAt(i).Value] == 0 && MenuOrderDataList[copy.ElementAt(i).Key] == (MenuOrderDataList.Count - 1))
                 {
-                    var lt = (ScaleTransform)MenuDataList[copy.ElementAt(i).Key].LayoutTransform;
-                    if (((copy.ElementAt(i).Key != "BoxCancel") && lt.ScaleX <= 1.0) || ((copy.ElementAt(i).Key == "BoxCancel") && lt.ScaleX <= 0.7))
-                    {
-                        OptionZommed[copy.ElementAt(i).Key] = 0;
-                    }
-                    else
-                    {
-                        MenuDataList[copy.ElementAt(i).Key].Margin = new Thickness(MenuDataList[copy.ElementAt(i).Key].Margin.Left + 2, MenuDataList[copy.ElementAt(i).Key].Margin.Top + 2, 0, 0);
-                        MenuLabelList[copy.ElementAt(i).Key].FontSize -= 1;
-                        MenuLabelList[copy.ElementAt(i).Key].Margin = new Thickness(MenuLabelList[copy.ElementAt(i).Key].Margin.Left + 2, MenuLabelList[copy.ElementAt(i).Key].Margin.Top + 2, 0, 0);
-                        lt.ScaleX -= 0.02;
-                        lt.ScaleY -= 0.02;
-                    }
+                    sens = 1;
+                }else
+                {
+                    sens = MenuOrderDataList[copy.ElementAt(i).Value] - MenuOrderDataList[copy.ElementAt(i).Key];
                 }
+                var theexit =
+                    MenuDataList[
+                        MenuOrderDataList.FirstOrDefault(
+                        c => (c.Value == 0 && sens == -1 ? MenuOrderDataList.Count + sens : (c.Value == MenuOrderDataList.Count - 1 && sens == 1 ? - 1 + sens : c.Value + sens)) == MenuOrderDataList[copy.ElementAt(i).Key]).Key];
+                var thenewcomer =
+                    MenuDataList[
+                        MenuOrderDataList.FirstOrDefault(
+                            c => (c.Value == 0 && sens == 1 ? MenuOrderDataList.Count - sens : (c.Value == MenuOrderDataList.Count - 1 && sens == -1 ? -1 - sens : c.Value - sens)) == MenuOrderDataList[copy.ElementAt(i).Value]).Key];
+
+                if(thenewcomer.Opacity == 0 || thenewcomer.Margin.Left == -sens*1000)
+                {
+                    thenewcomer.Margin = new Thickness(sens * 1000, 250, 0.0, 0.0);
+                    thenewcomer.Opacity = 0.5;
+                }
+                
+                
+                Canvas.SetZIndex(thenext, 1);
+                Canvas.SetZIndex(enavant, 0);
+                if(Math.Abs(enavant.Margin.Left + sens*350) <= 0.05)
+                {
+                    OptionMoved[copy.ElementAt(i).Key] = "";
+                }else
+                {
+                    var lt = (ScaleTransform) enavant.LayoutTransform;
+                    enavant.Margin = new Thickness(enavant.Margin.Left - ((sens*350.0)/10.0), 250, 0.0, 0.0);
+                    lt.ScaleX -= 0.05;
+                    lt.ScaleY -= 0.05;
+                    enavant.Opacity -= 0.05;
+
+                    var lt2 = (ScaleTransform)thenext.LayoutTransform;
+                    thenext.Margin = new Thickness(thenext.Margin.Left - ((sens * 350.0) / 10.0), 250, 0.0, 0.0);
+                    lt2.ScaleX += 0.05;
+                    lt2.ScaleY += 0.05;
+                    thenext.Opacity += 0.05;
+
+                    theexit.Margin = new Thickness(theexit.Margin.Left - ((sens * 650.0) / 10.0), 250, 0.0, 0.0);
+                    thenewcomer.Margin = new Thickness(thenewcomer.Margin.Left - ((sens * 650.0) / 10.0), 250, 0.0, 0.0);
+                    
+                }
+                
             }
         }
     }

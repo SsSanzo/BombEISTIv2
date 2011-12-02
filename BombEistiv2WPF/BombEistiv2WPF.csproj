@@ -70,7 +70,6 @@
     <Compile Include="View\MapSkin.cs" />
     <Compile Include="View\Menu\DevScreen.cs" />
     <Compile Include="View\Menu\GeneralOptionMenu.cs" />
-    <Compile Include="View\Menu\KeyConfigMenu.cs" />
     <Compile Include="View\Menu\KeyOption.cs" />
     <Compile Include="View\Menu\MainMenuScreen.cs" />
     <Compile Include="View\Menu\MenuScreen.cs" />
