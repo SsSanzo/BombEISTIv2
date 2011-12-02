@@ -1,150 +1,153 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <GameParameters>
   <CommonParameter>
     <Themes>
       <Theme name="Basic" folder="Resources\Theme\">
-        <Texture object="Background" source="Background.png"/>
-        <Texture object="SoftBloc" source="SoftBlock.png"/>
-        <Texture object="HardBloc" source="HardBlock.png"/>
-        <Texture object="Bomb" source="Bomb.png"/>
-        <Texture object="Upgrade.PowerUp" source="PowerUp.png"/>
-        <Texture object="Upgrade.PowerMax" source="PowerMax.png"/>
-        <Texture object="Upgrade.BombUp" source="BombUp.png"/>
-        <Texture object="Upgrade.Kick" source="Kick.png"/>
-        <Texture object="Upgrade.SpeedUp" source="SpeedUp.png"/>
-        <Texture object="Upgrade.SpeedMax" source="SpeedMax.png"/>
-        <Texture object="Upgrade.Life" source="Life.png"/>
-        <Texture object="Upgrade.Teleport" source="Teleport.png"/>
-        <Texture object="Upgrade.PowerDown" source="PowerDown.png"/>
-        <Texture object="Upgrade.BombDown" source="BombDown.png"/>
-        <Texture object="Upgrade.SpeedDown" source="SpeedDown.png"/>
-        <Texture object="Upgrade.ChangeDirection" source="ChangeDirection.png"/>
-        <Texture object="EndBlock" source="Metal.png"/>
-        <Texture object="Explosion" source="explosion.gif"/>
+        <Texture object="Background" source="Background.png" />
+        <Texture object="SoftBloc" source="SoftBlock.png" />
+        <Texture object="HardBloc" source="HardBlock.png" />
+        <Texture object="Bomb" source="Bomb.png" />
+        <Texture object="Upgrade.PowerUp" source="PowerUp.png" />
+        <Texture object="Upgrade.PowerMax" source="PowerMax.png" />
+        <Texture object="Upgrade.BombUp" source="BombUp.png" />
+        <Texture object="Upgrade.Kick" source="Kick.png" />
+        <Texture object="Upgrade.SpeedUp" source="SpeedUp.png" />
+        <Texture object="Upgrade.SpeedMax" source="SpeedMax.png" />
+        <Texture object="Upgrade.Life" source="Life.png" />
+        <Texture object="Upgrade.Teleport" source="Teleport.png" />
+        <Texture object="Upgrade.PowerDown" source="PowerDown.png" />
+        <Texture object="Upgrade.BombDown" source="BombDown.png" />
+        <Texture object="Upgrade.SpeedDown" source="SpeedDown.png" />
+        <Texture object="Upgrade.ChangeDirection" source="ChangeDirection.png" />
+        <Texture object="EndBlock" source="Metal.png" />
+        <Texture object="Explosion" source="explosion.gif" />
         <Music object="Menu" source="menu.wav" />
         <Music object="Game" source="game1.wav" />
         <Music object="Win" source="win.wav" />
         <Music object="Draw" source="win.wav" />
         <Music object="Explosionwav" source="explosion.wav" />
-        <Player object="Player_1_up" source="Player_1_up.png"/>
-        <Player object="Player_1_down" source="Player_1_down.png"/>
-        <Player object="Player_1_left" source="Player_1_left.png"/>
-        <Player object="Player_1_right" source="Player_1_right.png"/>
-        <Player object="Player_2_up" source="Player_2_up.png"/>
-        <Player object="Player_2_down" source="Player_2_down.png"/>
-        <Player object="Player_2_left" source="Player_2_left.png"/>
-        <Player object="Player_2_right" source="Player_2_right.png"/>
-        <Player object="Player_3_up" source="Player_3_up.png"/>
-        <Player object="Player_3_down" source="Player_3_down.png"/>
-        <Player object="Player_3_left" source="Player_3_left.png"/>
-        <Player object="Player_3_right" source="Player_3_right.png"/>
-        <Player object="Player_4_up" source="Player_4_up.png"/>
-        <Player object="Player_4_down" source="Player_4_down.png"/>
-        <Player object="Player_4_left" source="Player_4_left.png"/>
-        <Player object="Player_4_right" source="Player_4_right.png"/>
-        <Player object="Player_5_up" source="Player_5_up.png"/>
-        <Player object="Player_5_down" source="Player_5_down.png"/>
-        <Player object="Player_5_left" source="Player_5_left.png"/>
-        <Player object="Player_5_right" source="Player_5_right.png"/>
-        <Player object="Player_6_up" source="Player_6_up.png"/>
-        <Player object="Player_6_down" source="Player_6_down.png"/>
-        <Player object="Player_6_left" source="Player_6_left.png"/>
-        <Player object="Player_6_right" source="Player_6_right.png"/>
-        <Player object="Player_7_up" source="Player_7_up.png"/>
-        <Player object="Player_7_down" source="Player_7_down.png"/>
-        <Player object="Player_7_left" source="Player_7_left.png"/>
-        <Player object="Player_7_right" source="Player_7_right.png"/>
-        <Player object="Player_8_up" source="Player_8_up.png"/>
-        <Player object="Player_8_down" source="Player_8_down.png"/>
-        <Player object="Player_8_left" source="Player_8_left.png"/>
-        <Player object="Player_8_right" source="Player_8_right.png"/>
+        <Player object="Player_1_up" source="Player_1_up.png" />
+        <Player object="Player_1_down" source="Player_1_down.png" />
+        <Player object="Player_1_left" source="Player_1_left.png" />
+        <Player object="Player_1_right" source="Player_1_right.png" />
+        <Player object="Player_2_up" source="Player_2_up.png" />
+        <Player object="Player_2_down" source="Player_2_down.png" />
+        <Player object="Player_2_left" source="Player_2_left.png" />
+        <Player object="Player_2_right" source="Player_2_right.png" />
+        <Player object="Player_3_up" source="Player_3_up.png" />
+        <Player object="Player_3_down" source="Player_3_down.png" />
+        <Player object="Player_3_left" source="Player_3_left.png" />
+        <Player object="Player_3_right" source="Player_3_right.png" />
+        <Player object="Player_4_up" source="Player_4_up.png" />
+        <Player object="Player_4_down" source="Player_4_down.png" />
+        <Player object="Player_4_left" source="Player_4_left.png" />
+        <Player object="Player_4_right" source="Player_4_right.png" />
+        <Player object="Player_5_up" source="Player_5_up.png" />
+        <Player object="Player_5_down" source="Player_5_down.png" />
+        <Player object="Player_5_left" source="Player_5_left.png" />
+        <Player object="Player_5_right" source="Player_5_right.png" />
+        <Player object="Player_6_up" source="Player_6_up.png" />
+        <Player object="Player_6_down" source="Player_6_down.png" />
+        <Player object="Player_6_left" source="Player_6_left.png" />
+        <Player object="Player_6_right" source="Player_6_right.png" />
+        <Player object="Player_7_up" source="Player_7_up.png" />
+        <Player object="Player_7_down" source="Player_7_down.png" />
+        <Player object="Player_7_left" source="Player_7_left.png" />
+        <Player object="Player_7_right" source="Player_7_right.png" />
+        <Player object="Player_8_up" source="Player_8_up.png" />
+        <Player object="Player_8_down" source="Player_8_down.png" />
+        <Player object="Player_8_left" source="Player_8_left.png" />
+        <Player object="Player_8_right" source="Player_8_right.png" />
       </Theme>
     </Themes>
     <Menu folder="System\">
-      <Texture object="Teamblui" source="teamBlui.png"/>
-      <Texture object="Sky" source="Sky.png"/>
-      <Texture object="Bomb" source="Bomb.png"/>
-      <Texture object="Eisti" source="Eisti.png"/>
-      <Texture object="2" source="2.png"/>
-      <Texture object="PressStart" source="PressStart.png"/>
-      <Texture object="White" source="white.png"/>
-      <Texture object="Black" source="Black.png"/>
-      <Texture object="Box" source="box.png"/>
+      <Texture object="Teamblui" source="teamBlui.png" />
+      <Texture object="Sky" source="Sky.png" />
+      <Texture object="Bomb" source="Bomb.png" />
+      <Texture object="Eisti" source="Eisti.png" />
+      <Texture object="2" source="2.png" />
+      <Texture object="PressStart" source="PressStart.png" />
+      <Texture object="White" source="white.png" />
+      <Texture object="Black" source="Black.png" />
+      <Texture object="Box" source="box.png" />
+      <Texture object="Left" source="left.png" />
+      <Texture object="Right" source="right.png" />
     </Menu>
-    <SoftBlock count="120"/>
-    <ExplosionDelay count="3"/>
+    <SoftBlock count="120" />
+    <GameTime count="120" />
+    <ExplosionDelay count="3" />
     <keysMap>
-      <Map key="Up" action="Up" player="1"/>
-      <Map key="Down" action="Down" player="1"/>
-      <Map key="Left" action="Left" player="1"/>
-      <Map key="Right" action="Right" player="1"/>
-      <Map key="RightShift" action="None" player="1"/>
-      <Map key="Z" action="Up" player="2"/>
-      <Map key="S" action="Down" player="2"/>
-      <Map key="Q" action="Left" player="2"/>
-      <Map key="D" action="Right" player="2"/>
-      <Map key="A" action="None" player="2"/>
-      <Map key="O" action="Up" player="3"/>
-      <Map key="L" action="Down" player="3"/>
-      <Map key="K" action="Left" player="3"/>
-      <Map key="M" action="Right" player="3"/>
-      <Map key="I" action="None" player="3"/>
-      <Map key="Y" action="Up" player="4"/>
-      <Map key="H" action="Down" player="4"/>
-      <Map key="G" action="Left" player="4"/>
-      <Map key="J" action="Right" player="4"/>
-      <Map key="T" action="None" player="4"/>
+      <Map key="Up" action="Up" player="1" />
+      <Map key="Down" action="Down" player="1" />
+      <Map key="Left" action="Left" player="1" />
+      <Map key="Right" action="Right" player="1" />
+      <Map key="RightShift" action="None" player="1" />
+      <Map key="Z" action="Up" player="2" />
+      <Map key="S" action="Down" player="2" />
+      <Map key="Q" action="Left" player="2" />
+      <Map key="D" action="Right" player="2" />
+      <Map key="A" action="None" player="2" />
+      <Map key="O" action="Up" player="3" />
+      <Map key="L" action="Down" player="3" />
+      <Map key="K" action="Left" player="3" />
+      <Map key="M" action="Right" player="3" />
+      <Map key="I" action="None" player="3" />
+      <Map key="Y" action="Up" player="4" />
+      <Map key="H" action="Down" player="4" />
+      <Map key="G" action="Left" player="4" />
+      <Map key="J" action="Right" player="4" />
+      <Map key="T" action="None" player="4" />
     </keysMap>
   </CommonParameter>
-	<Game type="Classic">
-    <Player lives="1"/>
+  <Game type="Classic">
+    <Player lives="3" />
     <Upgrades>
-      <Upgrade defaultFreq="3" currentFreq="4">PowerUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="4">PowerMax</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="4">BombUp</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="4">Kick</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="4">SpeedUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="4">SpeedMax</Upgrade>
-      <Upgrade defaultFreq="1" currentFreq="4">Life</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="4">Teleport</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="4">PowerDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="4">BombDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="4">SpeedDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="4">ChangeDirection</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">PowerUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">PowerMax</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">BombUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">Kick</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">SpeedUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="1" currentFreq="5">Life</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">Teleport</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">PowerDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">BombDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">SpeedDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">ChangeDirection</Upgrade>
     </Upgrades>
-	</Game>
-	<Game type="Hardcore">
-    <Player lives="1"/>
+  </Game>
+  <Game type="Hardcore">
+    <Player lives="1" />
     <Updrades>
-		  <Upgrade defaultFreq="3" currentFreq="3">Kick</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">PowerUp</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">Kick</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">PowerUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
       <Upgrade defaultFreq="1" currentFreq="1">Life</Upgrade>
     </Updrades>
-	</Game>
-	<Game type="Crazy">
-    <Player lives="7"/>
+  </Game>
+  <Game type="Crazy">
+    <Player lives="7" />
     <Upgrades>
-		  <Upgrade defaultFreq="3" currentFreq="3">Kick</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">PowerUp</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
-		  <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
-      <Upgrade defaultFreq="1" currentFreq="1">Life</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">Kick</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="7">PowerUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="6">PowerMax</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="1" currentFreq="6">Life</Upgrade>
     </Upgrades>
-	</Game>
+  </Game>
 </GameParameters>

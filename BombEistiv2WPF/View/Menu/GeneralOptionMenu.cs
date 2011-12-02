@@ -77,6 +77,7 @@ namespace BombEistiv2WPF.View.Menu
         public void SwitchOption(String s, bool withoutRefresh = false)
         {
             MenuLabelList["Help"].Foreground = new SolidColorBrush(Colors.White);
+            var theaddition = "\n(<Entrée> pour modifier)";
             switch (s)
             {
                 case "Time":
@@ -93,42 +94,60 @@ namespace BombEistiv2WPF.View.Menu
                     break;
                 case "PowerUp":
                     MenuLabelList["Help"].Content = "Augmenter la portée de \nla bombe de 1";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "PowerMax":
                     MenuLabelList["Help"].Content = "Augmente au maximum la \nportée de la bombe";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "BombUp":
                     MenuLabelList["Help"].Content = "Augmente le nombre de \nbombes disponibles de 1";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "Kick":
                     MenuLabelList["Help"].Content = "Permet au joueur de \npousser une bombe";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "SpeedUp":
                     MenuLabelList["Help"].Content = "Le joueur se déplace \nun petit peu plus rapidement";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "SpeedMax":
                     MenuLabelList["Help"].Content = "Le joueur se déplace \nà la vitesse maximum";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "Life":
                     MenuLabelList["Help"].Content = "Le joueur gagne \nune vie";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "Teleport":
                     MenuLabelList["Help"].Content = "Téléporte le joueur à un \nendroit aléatoire sur le \nterrain.";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "PowerDown":
                     MenuLabelList["Help"].Content = "Diminue la portée de \nla bombe de 1";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "BombDown":
                     MenuLabelList["Help"].Content = "Diminue le nombre de \nbombes disponibles de 1";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "SpeedDown":
                     MenuLabelList["Help"].Content = "Le joueur devient \ntrès lent";
+                    MenuLabelList["Help"].Content += theaddition;
                     break;
                 case "ChangeDirection":
                     MenuLabelList["Help"].Content = "Les commandes du joueur \nsont inversés";
+                    MenuLabelList["Help"].Content += theaddition;
+                    break;
+                case "Confirm":
+                    MenuLabelList["Help"].Content = "Confirmez vos changements";
+                    break;
+                case "Quit":
+                    MenuLabelList["Help"].Content = "Revenez aux valeurs \npar défaut";
                     break;
                 default:
-                    MenuLabelList["Help"].Content = "Confirmez ou annulez \nvos changements";
+                    MenuLabelList["Help"].Content = "";
                     break;
             }
             if(OptionMoved.Where(c => c.Value != "").Count() == 0 && !withoutRefresh)
@@ -441,10 +460,22 @@ namespace BombEistiv2WPF.View.Menu
                     if(ItemSelected == "")
                     {
                         ItemSelected = OptionSelected;
+                        MenuDataList["Left"].Opacity = 1;
+                        MenuDataList["Right"].Opacity = 1;
                     }else
                     {
                         ItemSelected = "";
+                        MenuDataList["Left"].Opacity = 0;
+                        MenuDataList["Right"].Opacity = 0;
                     }
+                }else if(OptionSelected == "Quit")
+                {
+                    resetLabel();
+                }else if(OptionSelected == "Confirm")
+                {
+                    validLabel();
+                    thisistheend = true;
+                    _wizard.NextScreen(ScreenType.Options);
                 }
             }
         }
@@ -466,6 +497,8 @@ namespace BombEistiv2WPF.View.Menu
             MenuLabelList.Add("BoxOption", old.MenuLabelList["BoxOption"]);
             MenuDataList.Add("BoxGeneral", old.MenuDataList["BoxGeneral"]);
             MenuLabelList.Add("BoxGeneral", old.MenuLabelList["BoxGeneral"]);
+            var l = new Label { Content = "Chargement...", FontSize = 40, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(150, 500, 0, 0) };
+            MenuLabelList.Add("Loading", l);
             OptionMoved.Add("Time","");
             OptionMoved.Add("Explode", "");
             OptionMoved.Add("Lives", "");
@@ -535,7 +568,7 @@ namespace BombEistiv2WPF.View.Menu
                 Source = GameParameters._.MenutextureList["Box"],
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(220, 200, 0.0, 0.0),
+                Margin = new Thickness(230, 200, 0.0, 0.0),
                 Opacity = 0.7,
                 Width = 268,
                 Height = 100
@@ -543,6 +576,58 @@ namespace BombEistiv2WPF.View.Menu
             var lt4 = new ScaleTransform { ScaleX = 0.25, ScaleY = 0.4, CenterX = 134, CenterY = 50 };
             g4.LayoutTransform = lt4;
             MenuDataList.Add("BoxMovable", g4);
+
+            var g5 = new Image
+            {
+                Source = GameParameters._.MenutextureList["Left"],
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(220, 210, 0.0, 0.0),
+                Opacity = 1,
+                Width = 18,
+                Height = 18
+            };
+            MenuDataList.Add("Left", g5);
+
+            var g6 = new Image
+            {
+                Source = GameParameters._.MenutextureList["Right"],
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(290, 210, 0.0, 0.0),
+                Opacity = 1,
+                Width = 18,
+                Height = 18
+            };
+            MenuDataList.Add("Right", g6);
+        }
+
+        public void resetLabel()
+        {
+            MenuLabelList["ValueTime"].Content = 180;
+            MenuLabelList["ValueExplode"].Content = 3;
+            MenuLabelList["ValueLives"].Content = 2;
+            MenuLabelList["ValueSoft"].Content = 120;
+            GameParameters._.ResetUpgradeFrequence();
+            var dic = GameParameters._.GetAllUpgrades();
+            for (var i = 0; i < dic.Count; i++)
+            {
+                MenuLabelList["Value" + dic.ElementAt(i).Key].Content = dic.ElementAt(i).Value;
+            }
+        }
+
+        public void validLabel()
+        {
+            GameParameters._.GameTime = Convert.ToInt32(MenuLabelList["ValueTime"].Content);
+            GameParameters._.ExplosionDelay = Convert.ToInt32(MenuLabelList["ValueExplode"].Content) ;
+            GameParameters._.LivesCount = Convert.ToInt32(MenuLabelList["ValueLives"].Content) ;
+            GameParameters._.SoftBlocCount = Convert.ToInt32(MenuLabelList["ValueSoft"].Content) ;
+            var dic = GameParameters._.GetAllUpgrades();
+            for (var i = 0; i < dic.Count; i++)
+            {
+                GameParameters._.ChangeUpgradeFrequence(dic.ElementAt(i).Key, Convert.ToInt32(MenuLabelList["Value" + dic.ElementAt(i).Key].Content));
+            }
+            GameParameters._.Save();
         }
 
         public void LoadMenuLabel()
@@ -551,15 +636,15 @@ namespace BombEistiv2WPF.View.Menu
             const int seedtop = 200;
             var l = new Label { Content = "Temps de jeu :", FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft, seedtop, 0, 0) };
             MenuLabelList.Add("LabelTime", l);
-            var l2 = new Label { Content = GameParameters._.GameTime, FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 210, seedtop, 0, 0) };
+            var l2 = new Label { Content = GameParameters._.GameTime, FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 220, seedtop, 0, 0) };
             MenuLabelList.Add("ValueTime", l2);
             var l3 = new Label { Content = "Temps d'explosion :", FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft, seedtop + 30, 0, 0) };
             MenuLabelList.Add("LabelExplode", l3);
-            var l4 = new Label { Content = GameParameters._.ExplosionDelay, FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 210, seedtop + 30, 0, 0) };
+            var l4 = new Label { Content = GameParameters._.ExplosionDelay, FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 220, seedtop + 30, 0, 0) };
             MenuLabelList.Add("ValueExplode", l4);
             var l5 = new Label { Content = "Nombre de vie :", FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft, seedtop + 60, 0, 0) };
             MenuLabelList.Add("LabelLives", l5);
-            var l6 = new Label { Content = GameParameters._.LivesCount, FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 210, seedtop + 60, 0, 0) };
+            var l6 = new Label { Content = GameParameters._.LivesCount, FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 220, seedtop + 60, 0, 0) };
             MenuLabelList.Add("ValueLives", l6);
             var l7 = new Label { Content = "Destructibles restants :", FontSize = 25, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 100, seedtop + 140, 0, 0) };
             MenuLabelList.Add("LabelSoft", l7);
@@ -594,7 +679,7 @@ namespace BombEistiv2WPF.View.Menu
             var conf = new Label { Content = "Confirmer", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(130, 585, 0.0, 0.0) };
             MenuLabelList.Add("ValueConfirm", conf);
 
-            var quit = new Label { Content = "Retour", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(380, 585, 0.0, 0.0) };
+            var quit = new Label { Content = "Par défaut", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(380, 585, 0.0, 0.0) };
             MenuLabelList.Add("ValueQuit", quit);
         }
 
@@ -647,6 +732,7 @@ namespace BombEistiv2WPF.View.Menu
                         _wizard.Grid.Children.RemoveAt(i);
                     }
                 }
+                MenuLabelList.Remove("Loading");
                 foreach (var img in MenuDataList)
                 {
                     _wizard.Grid.Children.Add(img.Value);
@@ -655,7 +741,7 @@ namespace BombEistiv2WPF.View.Menu
                 {
                     _wizard.Grid.Children.Add(lab.Value);
                 }
-                //SwitchOption("BoxGeneral");
+                SwitchOption("Time", true);
             }
 
         }
@@ -678,24 +764,48 @@ namespace BombEistiv2WPF.View.Menu
                 var t1 = MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left - 10;
                 var t2 = MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top;
                 if (Math.Abs((MenuDataList["BoxMovable"].Margin.Left - (MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left - 10))) <= 0.05 && Math.Abs((MenuDataList["BoxMovable"].Margin.Top - MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top)) <= 0.05)
-                    {
+                {
+                        var thecheck = OptionMoved[copy.ElementAt(i).Key].ToString();
                         OptionMoved[copy.ElementAt(i).Key] = "";
+                        MenuDataList["Left"].Margin = new Thickness(MenuDataList["BoxMovable"].Margin.Left - 10, MenuDataList["BoxMovable"].Margin.Top + 10, 0.0, 0.0);
+                        MenuDataList["Right"].Margin = new Thickness(MenuDataList["BoxMovable"].Margin.Left + 60, MenuDataList["BoxMovable"].Margin.Top + 10, 0.0, 0.0);
+                        if (!(thecheck == "PowerUp" || thecheck == "PowerMax" || thecheck == "PowerDown" || thecheck == "BombUp"
+                            || thecheck == "BombDown" || thecheck == "Life" || thecheck == "SpeedUp" || thecheck == "SpeedMax"
+                            || thecheck == "SpeedDown" || thecheck == "Teleport" || thecheck == "ChangeDirection" || thecheck == "Kick"
+                            || thecheck == "Confirm" || thecheck == "Quit"))
+                        {
+                            MenuDataList["Left"].Opacity = 1;
+                            MenuDataList["Right"].Opacity = 1;
+                        }
+                        
                     }
                     else
                 {
-                    //var omg1 = MenuLabelList["Label" + copy.ElementAt(i).Key].Margin.Left;
-                    //var omg2 = MenuLabelList["Label" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left;
-
-                    //var omg3 = MenuLabelList["Label" + copy.ElementAt(i).Key].Margin.Top;
-                    //var omg4 = MenuLabelList["Label" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top;
+                    MenuDataList["Left"].Opacity = 0;
+                    MenuDataList["Right"].Opacity = 0;
                     var thenewleft = MenuDataList["BoxMovable"].Margin.Left -
                                      (((MenuLabelList["Value" + copy.ElementAt(i).Key].Margin.Left) -
                                       MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left)/5.0);
                     var thenewtop = MenuDataList["BoxMovable"].Margin.Top - (
                                      (MenuLabelList["Value" + copy.ElementAt(i).Key].Margin.Top -
                                       MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top)/5.0);
+                    if (OptionMoved[copy.ElementAt(i).Key] == "Confirm" || OptionMoved[copy.ElementAt(i).Key] == "Quit")
+                    {
+                        var lt = (ScaleTransform) MenuDataList["BoxMovable"].LayoutTransform;
+                        if(lt.ScaleX < 0.4)
+                        {
+                            lt.ScaleX += (0.4 - 0.25)/5.0;
+                        }
+                    }else
+                    {
+                        var lt = (ScaleTransform)MenuDataList["BoxMovable"].LayoutTransform;
+                        if (lt.ScaleX > 0.25)
+                        {
+                            lt.ScaleX -= (0.4 - 0.25) / 5.0;
+                        }
+                    }
                     MenuDataList["BoxMovable"].Margin = new Thickness(thenewleft, thenewtop, 0.0, 0.0);
-                }
+                    }
                 
             }
         }

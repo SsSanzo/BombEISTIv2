@@ -108,7 +108,7 @@ namespace BombEistiv2WPF.Control
                     _currentScreen = m3;
                     break;
                 case ScreenType.KeyConfig:
-                    var m4 = new KeyConfigMenu();
+                    var m4 = new KeyOption();
                     m4.Show(this, _currentScreen);
                     _currentScreen = m4;
                     break;

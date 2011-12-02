@@ -122,10 +122,12 @@ namespace BombEistiv2WPF
                     (Action)(() =>
                     {
                         var t = _timers.Find(c => c.Timer == s);
+                        if(t != null){
                         t.StartTime = DateTime.Now;
                         if (!t.ReinitInterval) return;
                         t.Timer.Interval = t.Interval;
                         t.ReinitInterval = false;
+                        }
                     }
                              )
                 );

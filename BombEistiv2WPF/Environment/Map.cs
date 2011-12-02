@@ -154,7 +154,7 @@ namespace BombEistiv2WPF.Environment
         public EntityOfDeath GetEntityOfDeath(int x, int y)
         {
             var list = ListOfEntityOfDeath;
-            return list.FirstOrDefault(c => c.X == x && c.Y == y);
+            return list.FirstOrDefault(c => c != null && c.X == x && c.Y == y);
         }
 
         public Entity GetBomb(int x, int y)

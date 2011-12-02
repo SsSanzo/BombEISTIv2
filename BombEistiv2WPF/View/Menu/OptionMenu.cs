@@ -35,39 +35,113 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
-            thisistheend = false;
-            var pressstart = (MainMenuScreen)oldscreen;
-            _wizard = w;
-            OptionZommed = new Dictionary<string, int>();
-            OptionSelected = "BoxGeneral";
-            if (_menuDataList == null)
+            if(oldscreen is MainMenuScreen)
             {
-                _menuDataList = new Dictionary<string, Image>();
-                _menuLabelList = new Dictionary<string, Label>();
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => LoadMenuImagePrevious(pressstart)));
-                //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-            }
-            for (var i = w.Grid.Children.Count - 1; i > -1; i--)
-            {
-                if (!(w.Grid.Children[i] is Grid))
+                thisistheend = false;
+                var pressstart = (MainMenuScreen)oldscreen;
+                _wizard = w;
+                OptionZommed = new Dictionary<string, int>();
+                OptionSelected = "BoxGeneral";
+                if (_menuDataList == null)
                 {
-                    w.Grid.Children.RemoveAt(i);
+                    _menuDataList = new Dictionary<string, Image>();
+                    _menuLabelList = new Dictionary<string, Label>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => LoadMenuImagePrevious(pressstart)));
+                    //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                 }
-            }
-            foreach (var img in MenuDataList)
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(w.Grid.Children[i] is Grid))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                //var lt = new ScaleTransform { ScaleX = 1.1, ScaleY = 1.1, CenterX = 134, CenterY = 50 };
+                //MenuDataList[OptionSelected].Margin = new Thickness(MenuDataList[OptionSelected].Margin.Left - 10, MenuDataList[OptionSelected].Margin.Top - 10, 0,0);
+                //MenuDataList[OptionSelected].LayoutTransform = lt;
+                //MenuDataList[OptionSelected].Opacity = 1;
+                TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeIn);
+            }else if(oldscreen is GeneralOptionMenu)
             {
-                _wizard.Grid.Children.Add(img.Value);
-            }
-            foreach (var lab in MenuLabelList)
+                thisistheend = false;
+                var pressstart = (GeneralOptionMenu)oldscreen;
+                _wizard = w;
+                OptionZommed = new Dictionary<string, int>();
+                OptionSelected = "BoxGeneral";
+                if (_menuDataList == null)
+                {
+                    _menuDataList = new Dictionary<string, Image>();
+                    _menuLabelList = new Dictionary<string, Label>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => LoadMenuImagePrevious(pressstart)));
+                    //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                }
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(w.Grid.Children[i] is Grid))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                //var lt = new ScaleTransform { ScaleX = 1.1, ScaleY = 1.1, CenterX = 134, CenterY = 50 };
+                //MenuDataList[OptionSelected].Margin = new Thickness(MenuDataList[OptionSelected].Margin.Left - 10, MenuDataList[OptionSelected].Margin.Top - 10, 0,0);
+                //MenuDataList[OptionSelected].LayoutTransform = lt;
+                //MenuDataList[OptionSelected].Opacity = 1;
+                TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeOut);
+            }else if(oldscreen is KeyOption)
             {
-                _wizard.Grid.Children.Add(lab.Value);
+                thisistheend = false;
+                var pressstart = (KeyOption)oldscreen;
+                _wizard = w;
+                OptionZommed = new Dictionary<string, int>();
+                OptionSelected = "BoxGeneral";
+                if (_menuDataList == null)
+                {
+                    _menuDataList = new Dictionary<string, Image>();
+                    _menuLabelList = new Dictionary<string, Label>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => LoadMenuImagePrevious(pressstart)));
+                    //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                }
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(w.Grid.Children[i] is Grid))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                //var lt = new ScaleTransform { ScaleX = 1.1, ScaleY = 1.1, CenterX = 134, CenterY = 50 };
+                //MenuDataList[OptionSelected].Margin = new Thickness(MenuDataList[OptionSelected].Margin.Left - 10, MenuDataList[OptionSelected].Margin.Top - 10, 0,0);
+                //MenuDataList[OptionSelected].LayoutTransform = lt;
+                //MenuDataList[OptionSelected].Opacity = 1;
+                TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeOutTouche);
             }
-            //var lt = new ScaleTransform { ScaleX = 1.1, ScaleY = 1.1, CenterX = 134, CenterY = 50 };
-            //MenuDataList[OptionSelected].Margin = new Thickness(MenuDataList[OptionSelected].Margin.Left - 10, MenuDataList[OptionSelected].Margin.Top - 10, 0,0);
-            //MenuDataList[OptionSelected].LayoutTransform = lt;
-            //MenuDataList[OptionSelected].Opacity = 1;
-            TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
-            TimerManager._.AddNewTimer(true, 15, true, null, FadeIn);
+            
         }
 
         public void SwitchOption(String s)
@@ -163,6 +237,32 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList.Add("2", old.MenuDataList["2"]);
             MenuDataList.Add("BoxOption", old.MenuDataList["BoxOption"]);
             MenuLabelList.Add("BoxOption", old.MenuLabelList["BoxOption"]);
+        }
+
+        public void LoadMenuImagePrevious(GeneralOptionMenu old)
+        {
+            MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
+            MenuDataList.Add("Black", old.MenuDataList["Black"]);
+            MenuDataList.Add("Bomb", old.MenuDataList["Bomb"]);
+            MenuDataList.Add("Eisti", old.MenuDataList["Eisti"]);
+            MenuDataList.Add("2", old.MenuDataList["2"]);
+            MenuDataList.Add("BoxOption", old.MenuDataList["BoxOption"]);
+            MenuLabelList.Add("BoxOption", old.MenuLabelList["BoxOption"]);
+            MenuDataList.Add("BoxGeneral", old.MenuDataList["BoxGeneral"]);
+            MenuLabelList.Add("BoxGeneral", old.MenuLabelList["BoxGeneral"]);
+        }
+
+        public void LoadMenuImagePrevious(KeyOption old)
+        {
+            MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
+            MenuDataList.Add("Black", old.MenuDataList["Black"]);
+            MenuDataList.Add("Bomb", old.MenuDataList["Bomb"]);
+            MenuDataList.Add("Eisti", old.MenuDataList["Eisti"]);
+            MenuDataList.Add("2", old.MenuDataList["2"]);
+            MenuDataList.Add("BoxOption", old.MenuDataList["BoxOption"]);
+            MenuLabelList.Add("BoxOption", old.MenuLabelList["BoxOption"]);
+            MenuDataList.Add("BoxTouche", old.MenuDataList["BoxTouche"]);
+            MenuLabelList.Add("BoxTouche", old.MenuLabelList["BoxTouche"]);
         }
 
         public void LoadMenuImage()
@@ -269,6 +369,18 @@ namespace BombEistiv2WPF.View.Menu
 
         }
 
+        private void FadeOut(object sender, ElapsedEventArgs e)
+        {
+            _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => FadeOutOption((Timer)sender)));
+
+        }
+
+        private void FadeOutTouche(object sender, ElapsedEventArgs e)
+        {
+            _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => FadeOutOptionTouche((Timer)sender)));
+
+        }
+
         public void FadeInOption(Timer t)
         {
             MenuDataList["BoxOption"].Opacity = 1;
@@ -307,6 +419,88 @@ namespace BombEistiv2WPF.View.Menu
                 SwitchOption("BoxGeneral");
             }
             
+        }
+
+        public void FadeOutOption(Timer t)
+        {
+            MenuDataList["BoxGeneral"].Opacity = 1;
+            var lt = (ScaleTransform)MenuDataList["BoxGeneral"].LayoutTransform;
+            if (lt.ScaleX < 1.19)
+            {
+                MenuDataList["BoxGeneral"].Margin = new Thickness(MenuDataList["BoxGeneral"].Margin.Left + 240.0 / 20.0, MenuDataList["BoxGeneral"].Margin.Top + 170.0 / 20.0, 0, 0);
+
+                lt.ScaleX = lt.ScaleX + 0.4 / 20.0;
+                lt.ScaleY = lt.ScaleY + 0.4 / 20.0;
+                MenuLabelList["BoxGeneral"].Margin = new Thickness(MenuLabelList["BoxGeneral"].Margin.Left + 250.0 / 20.0, MenuLabelList["BoxGeneral"].Margin.Top + 180.0 / 20.0, 0, 0);
+                MenuLabelList["BoxGeneral"].FontSize += 0.7;
+            }
+            else //if (!alreadyloaded)
+            {
+                t.AutoReset = false;
+                MenuDataList.Remove("BoxGeneral");
+                MenuLabelList.Remove("BoxGeneral");
+                //alreadyloaded = true;
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(_wizard.Grid.Children[i] is Grid))
+                    {
+                        _wizard.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                SwitchOption("BoxGeneral");
+            }
+
+        }
+
+        public void FadeOutOptionTouche(Timer t)
+        {
+            MenuDataList["BoxTouche"].Opacity = 1;
+            var lt = (ScaleTransform)MenuDataList["BoxTouche"].LayoutTransform;
+            if (lt.ScaleX < 1.19)
+            {
+                MenuDataList["BoxTouche"].Margin = new Thickness(MenuDataList["BoxTouche"].Margin.Left + 165.0 / 20.0, MenuDataList["BoxTouche"].Margin.Top + 245.0 / 20.0, 0, 0);
+
+                lt.ScaleX = lt.ScaleX + 0.4 / 20.0;
+                lt.ScaleY = lt.ScaleY + 0.4 / 20.0;
+                MenuLabelList["BoxTouche"].Margin = new Thickness(MenuLabelList["BoxTouche"].Margin.Left + 175.0 / 20.0, MenuLabelList["BoxTouche"].Margin.Top + 255.0 / 20.0, 0, 0);
+                MenuLabelList["BoxTouche"].FontSize += 0.7;
+            }
+            else //if (!alreadyloaded)
+            {
+                t.AutoReset = false;
+                MenuDataList.Remove("BoxTouche");
+                MenuLabelList.Remove("BoxTouche");
+                //alreadyloaded = true;
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(_wizard.Grid.Children[i] is Grid))
+                    {
+                        _wizard.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                SwitchOption("BoxTouche");
+            }
+
         }
 
 

@@ -38,7 +38,7 @@ namespace BombEistiv2WPF.Environment
             _xmlDoc = XDocument.Load(ParameterPath);
             _root = _xmlDoc.Descendants("GameParameters");
             Type = GameType.Classic;
-            GameTime = 180;
+            GameTime = Convert.ToInt32(_root.Elements("CommonParameter").Elements("GameTime").FirstOrDefault().Attribute("count").Value);
             Network = Network.Local;
             Theme = "Basic";
             _menutextureList = new Dictionary<string, BitmapImage>();
@@ -52,30 +52,6 @@ namespace BombEistiv2WPF.Environment
         }
 
         public Network Network { get; set; }
-
-        public int ExplosionDelay
-        {
-            get { return _explosionDelay; }
-            set
-            {
-                if (0 < value && value < 6)
-                {
-                    _explosionDelay = value;
-                }
-            }
-        }
-
-        public int GameTime
-        {
-            get { return _gameTime; }
-            set
-            {
-                if (0 < value && value < 600)
-                {
-                    _gameTime = value;
-                }
-            }
-        }
 
         public int PlayerCount
         {
@@ -105,11 +81,11 @@ namespace BombEistiv2WPF.Environment
         public void SaveGameKeyMap(Dictionary<Key, string> keyMap)
         {
             var e = _root.Descendants("keysMap");
-            foreach (var x in e)
+            foreach (var x in e.Elements("Map"))
             {
                 foreach (var i in keyMap)
                 {
-                    if (i.Value == x.Attribute("player") + "_" + x.Attribute("action"))
+                    if (i.Value == x.Attribute("player").Value + "_" + x.Attribute("action").Value)
                     {
                         x.Attribute("key").Value = i.Key.ToString();
                     }
@@ -169,8 +145,8 @@ namespace BombEistiv2WPF.Environment
 
         public void ResetUpgradeFrequence()
         {
-            var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");
-            foreach (var element in e)
+            var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");
+            foreach (var element in e.Elements("Upgrade"))
             {
                 element.Attribute("currentFreq").Value = element.Attribute("defaultFreq").Value;
             }
@@ -178,8 +154,17 @@ namespace BombEistiv2WPF.Environment
 
         public void ChangeUpgradeFrequence(UpgradeType ut, int freq)
         {
-            var e = _root.Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades").FirstOrDefault(c => String.Compare(ut.ToString(), c.Element("Upgrade").Value) == 0);
-            e.Attribute("currentFreq").Value = freq + "";
+            var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");//.FirstOrDefault(c => String.Compare(ut.ToString(), c.Element("Upgrade").Value) == 0);
+            XElement theut = null;
+            foreach (var element in e.Elements("Upgrade").Where(element => String.Compare(ut.ToString(), element.Value) == 0))
+            {
+                theut = element;
+            }
+            if(theut != null)
+            {
+                theut.Attribute("currentFreq").Value = freq + "";
+            }
+            
         }
 
         public Dictionary<string, string> GetThemeData(string Theme)
@@ -221,7 +206,7 @@ namespace BombEistiv2WPF.Environment
             set
             {
                 var e = _root.Descendants("CommonParameter").Elements("SoftBlock").FirstOrDefault();
-                e.Attribute("count").Value = value + "";
+                    e.Attribute("count").Value = value + "";
             }
         }
 
@@ -236,6 +221,44 @@ namespace BombEistiv2WPF.Environment
             {
                 var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).DescendantsAndSelf().FirstOrDefault();
                 e.Element("Player").Attribute("lives").Value = value + "";
+            }
+        }
+
+        public int ExplosionDelay
+        {
+            get
+            {
+                var e = _root.Descendants("CommonParameter").Elements("ExplosionDelay").FirstOrDefault();
+                _explosionDelay = Convert.ToInt32(e.Attribute("count").Value); 
+                return _explosionDelay;
+            }
+            set
+            {
+                if (0 < value && value < 6)
+                {
+                    var e = _root.Descendants("CommonParameter").Elements("ExplosionDelay").FirstOrDefault();
+                    e.Attribute("count").Value = value + "";
+                    _explosionDelay = value;
+                }
+            }
+        }
+
+        public int GameTime
+        {
+            get
+            {
+                var e = _root.Descendants("CommonParameter").Elements("GameTime").FirstOrDefault();
+                _gameTime = Convert.ToInt32(e.Attribute("count").Value); 
+                return _gameTime;
+            }
+            set
+            {
+                if (0 < value && value < 600)
+                {
+                    var e = _root.Descendants("CommonParameter").Elements("GameTime").FirstOrDefault();
+                    e.Attribute("count").Value = value + "";
+                    _gameTime = value;
+                }
             }
         }
     }
