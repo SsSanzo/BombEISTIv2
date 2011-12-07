@@ -102,7 +102,39 @@ namespace BombEistiv2WPF.View.Menu
                 TimerManager._.AddNewTimer(true, 15, true, null, FadeOut);
                 //SwitchOption("BoxGame");
             }
-            
+            else if (oldscreen is GameModeMenu)
+            {
+                var pressstart = (GameModeMenu) oldscreen;
+                _wizard = w;
+                OptionZommed = new Dictionary<string, int>();
+                OptionSelected = "BoxGame";
+                if (_menuDataList == null)
+                {
+                    _menuDataList = new Dictionary<string, Image>();
+                    _menuLabelList = new Dictionary<string, Label>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal,
+                                                    new Action(() => LoadMenuImagePrevious(pressstart)));
+                    //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                }
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(w.Grid.Children[i] is Grid))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeOutPlay);
+            }
+
         }
 
         public void SwitchOption(String s)
@@ -167,17 +199,21 @@ namespace BombEistiv2WPF.View.Menu
                 {
                     case "BoxGame":
                         //EN TEST
-                        for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
-                        {
-                            if (!(_wizard.Grid.Children[i] is Grid))
-                            {
-                                _wizard.Grid.Children.RemoveAt(i);
-                            }
-                        }
-                        _wizard.TheWindow.LaunchGame();
+                        //for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                        //{
+                        //    if (!(_wizard.Grid.Children[i] is Grid))
+                        //    {
+                        //        _wizard.Grid.Children.RemoveAt(i);
+                        //    }
+                        //}
+                        //_wizard.TheWindow.LaunchGame();
                         //FIN DU EN TEST
+
+                        thisistheend = true;
+                        _wizard.NextScreen(ScreenType.GameMode);
                         break;
                     case "BoxOption" :
+                        thisistheend = true;
                         _wizard.NextScreen(ScreenType.Options);
                         break;
                     case "BoxQuit":
@@ -282,6 +318,17 @@ namespace BombEistiv2WPF.View.Menu
             MenuLabelList.Add("BoxOption", old.MenuLabelList["BoxOption"]);
         }
 
+        public void LoadMenuImagePrevious(GameModeMenu old)
+        {
+            MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
+            MenuDataList.Add("Black", old.MenuDataList["Black"]);
+            MenuDataList.Add("Bomb", old.MenuDataList["Bomb"]);
+            MenuDataList.Add("Eisti", old.MenuDataList["Eisti"]);
+            MenuDataList.Add("2", old.MenuDataList["2"]);
+            MenuDataList.Add("BoxGame", old.MenuDataList["BoxGame"]);
+            MenuLabelList.Add("BoxGame", old.MenuLabelList["BoxGame"]);
+        }
+
         public void LoadMenuImage()
         {
         var g2 = new Image
@@ -384,6 +431,12 @@ namespace BombEistiv2WPF.View.Menu
 
         }
 
+        private void FadeOutPlay(object sender, ElapsedEventArgs e)
+        {
+            _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => FadeOutPlayed((Timer)sender)));
+
+        }
+
         public void FadeOutOption(Timer t)
         {
             var lt = (ScaleTransform)MenuDataList["BoxOption"].LayoutTransform;
@@ -403,6 +456,47 @@ namespace BombEistiv2WPF.View.Menu
                 t.AutoReset = false;
                 MenuDataList.Remove("BoxOption");
                 MenuLabelList.Remove("BoxOption");
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(_wizard.Grid.Children[i] is Grid))
+                    {
+                        _wizard.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                SwitchOption("BoxGame");
+            }
+
+        }
+
+        public void FadeOutPlayed(Timer t)
+        {
+            var lt = (ScaleTransform)MenuDataList["BoxGame"].LayoutTransform;
+            if (lt.ScaleX < 0.99)
+            {
+                MenuDataList["Bomb"].Margin = new Thickness(MenuDataList["Bomb"].Margin.Left - 270.0 / 20.0, MenuDataList["Bomb"].Margin.Top, 0.0, 0.0);
+                MenuDataList["Eisti"].Margin = new Thickness(MenuDataList["Eisti"].Margin.Left - 270.0 / 20.0, MenuDataList["Eisti"].Margin.Top, 0.0, 0.0);
+                MenuDataList["2"].Margin = new Thickness(MenuDataList["2"].Margin.Left - 270.0 / 20.0, MenuDataList["2"].Margin.Top, 0.0, 0.0);
+                MenuDataList["BoxGame"].Margin = new Thickness(MenuDataList["BoxGame"].Margin.Left + 320.0 / 20.0, MenuDataList["BoxGame"].Margin.Top + 300.0 / 20.0, 0, 0);
+                //MenuDataList["BoxGame"].Opacity -= 0.6 / 20.0;
+                lt.ScaleX = lt.ScaleX + 0.2 / 20.0;
+                lt.ScaleY = lt.ScaleY + 0.2 / 20.0;
+                MenuLabelList["BoxGame"].Margin = new Thickness(MenuLabelList["BoxGame"].Margin.Left + 330.0 / 20.0, MenuLabelList["BoxGame"].Margin.Top + 310.0 / 20.0, 0, 0);
+            }
+            else
+            {
+                t.AutoReset = false;
+                MenuDataList.Remove("BoxGame");
+                MenuLabelList.Remove("BoxGame");
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                 for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)

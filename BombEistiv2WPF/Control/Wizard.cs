@@ -117,6 +117,17 @@ namespace BombEistiv2WPF.Control
                     m5.Show(this, _currentScreen);
                     _currentScreen = m5;
                     break;
+                case ScreenType.GameMode:
+                    var m6 = new GameModeMenu();
+                    m6.Show(this, _currentScreen);
+                    _currentScreen = m6;
+                    break;
+                case ScreenType.PlayerCound:
+                    var m7 = new PlayerSelectMenu();
+                    m7.Show(this, _currentScreen);
+                    _currentScreen = m7;
+                    break;
+
             }
             //FadeIn();
         }

@@ -74,8 +74,18 @@
       <Texture object="Right" source="right.png" />
       <Texture object="Bigleft" source="bigleft.png" />
       <Texture object="Bigright" source="bigright.png" />
+      <Texture object="Crocheleft" source="crochegauche.png" />
+      <Texture object="Crocheright" source="crochedroite.png" />
+      <Texture object="Preview" source="previewdefault.png" />
+      <Texture object="Random" source="random.png" />
+      <Texture object="Classic" source="classic.png" />
+      <Texture object="Crazy" source="crazy.png" />
+      <Texture object="Hardcore" source="hardcore.png" />
+      <Texture object="2P" source="2p.png" />
+      <Texture object="3P" source="3p.png" />
+      <Texture object="4P" source="4p.png" />
     </Menu>
-    <SoftBlock count="120" />
+    <SoftBlock count="110" />
     <GameTime count="120" />
     <ExplosionDelay count="3" />
     <keysMap>
@@ -104,9 +114,9 @@
   <Game type="Classic">
     <Player lives="3" />
     <Upgrades>
-      <Upgrade defaultFreq="3" currentFreq="5">PowerUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="10">PowerUp</Upgrade>
       <Upgrade defaultFreq="3" currentFreq="5">PowerMax</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="5">BombUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="15">BombUp</Upgrade>
       <Upgrade defaultFreq="3" currentFreq="5">Kick</Upgrade>
       <Upgrade defaultFreq="3" currentFreq="5">SpeedUp</Upgrade>
       <Upgrade defaultFreq="3" currentFreq="5">SpeedMax</Upgrade>

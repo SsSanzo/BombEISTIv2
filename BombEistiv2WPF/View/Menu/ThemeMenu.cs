@@ -118,7 +118,16 @@ namespace BombEistiv2WPF.View.Menu
             }
             else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
             {
-                Texture._.SetTheme(PreviewSelected.Substring(6));
+                if (PreviewSelected.Substring(6) == "Random")
+                {
+                    var rand = new Random();
+                    var theint = rand.Next(MenuOrderDataList.Count - 1);
+                    Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key);
+                }else
+                {
+                    Texture._.SetTheme(PreviewSelected.Substring(6));
+                }
+                
                 thisistheend = true;
                 _wizard.NextScreen(ScreenType.Options);
             }
@@ -167,8 +176,42 @@ namespace BombEistiv2WPF.View.Menu
                     OptionMoved.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], "");
                     MenuOrderDataList.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], order);
                     order++;
+                }else
+                {
+                    var gb = new Image
+                    {
+                        Source = GameParameters._.MenutextureList["Preview"],
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Top,
+                        Margin = new Thickness(0.0, 250, 0.0, 0.0),
+                        Opacity = 0,
+                        Width = 337,
+                        Height = 250
+                    };
+                    var lt4 = new ScaleTransform { ScaleX = 0.5, ScaleY = 0.5 };
+                    gb.LayoutTransform = lt4;
+                    MenuDataList.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], gb);
+                    OptionMoved.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], "");
+                    MenuOrderDataList.Add("Screen" + dir.Split('\\')[dir.Split('\\').Length - 1], order);
+                    order++;
                 }
             }
+
+            var grand = new Image
+            {
+                Source = GameParameters._.MenutextureList["Random"],
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(0.0, 250, 0.0, 0.0),
+                Opacity = 0,
+                Width = 337,
+                Height = 250
+            };
+            var ltr = new ScaleTransform { ScaleX = 0.5, ScaleY = 0.5 };
+            grand.LayoutTransform = ltr;
+            MenuDataList.Add("ScreenRandom", grand);
+            OptionMoved.Add("ScreenRandom", "");
+            MenuOrderDataList.Add("ScreenRandom", order);
 
             var thedata = MenuDataList.Where(c => c.Key.StartsWith("Screen"));
             thedata.ElementAt(0).Value.Margin = new Thickness(0.0, 250, 0.0, 0.0);

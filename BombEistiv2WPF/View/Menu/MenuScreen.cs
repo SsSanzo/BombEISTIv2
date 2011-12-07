@@ -72,7 +72,8 @@ namespace BombEistiv2WPF.View.Menu
                 time.Interval = 16;
                 MenuDataList["White"].Opacity = 0;
                 MenuDataList["PressStart"].Opacity = 0;
-                _actionInProgress = slideonthetop;
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeOut);
+                //_actionInProgress = slideonthetop;
                 //MenuDataList["White"].Opacity = 1;
             }else
             {
@@ -159,6 +160,16 @@ namespace BombEistiv2WPF.View.Menu
             if(thisIsTheEnd)
             {
                 var t = (Timer) sender;
+                t.AutoReset = false;
+            }
+        }
+
+        private void FadeOut(object sender, ElapsedEventArgs e)
+        {
+            _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(slideonthetop));
+            if (thisIsTheEnd)
+            {
+                var t = (Timer)sender;
                 t.AutoReset = false;
             }
         }
@@ -277,8 +288,6 @@ namespace BombEistiv2WPF.View.Menu
             {
                 thisIsTheEnd = true;
                 _wizard.NextScreen(ScreenType.MainMenu);
-                
-                
             }
         }
     }
