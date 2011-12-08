@@ -73,6 +73,7 @@ namespace BombEistiv2WPF.View.Menu
                 //MenuDataList[OptionSelected].Opacity = 1;
                 TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
                 TimerManager._.AddNewTimer(true, 15, true, null, FadeIn);
+
             }else if(oldscreen is PlayerSelectMenu)
             {
                 thisistheend = false;
@@ -388,22 +389,26 @@ namespace BombEistiv2WPF.View.Menu
             else
             {
                 t.AutoReset = false;
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if(!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid))
+                    alreadyloaded = true;
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
-                }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
                 }
             }
 

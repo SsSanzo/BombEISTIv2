@@ -49,7 +49,7 @@ namespace BombEistiv2WPF.View.Menu
             _wizard = w;
             OptionMoved = new Dictionary<string, string>();
             _menuOrderDataList = new Dictionary<string, int>();
-            PreviewSelected = "ScreenBasic";
+            PreviewSelected = "Screen" + Texture._.Theme;
             if (_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
@@ -122,7 +122,7 @@ namespace BombEistiv2WPF.View.Menu
                 {
                     var rand = new Random();
                     var theint = rand.Next(MenuOrderDataList.Count - 1);
-                    Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key);
+                    Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
                 }else
                 {
                     Texture._.SetTheme(PreviewSelected.Substring(6));
@@ -213,23 +213,30 @@ namespace BombEistiv2WPF.View.Menu
             OptionMoved.Add("ScreenRandom", "");
             MenuOrderDataList.Add("ScreenRandom", order);
 
+            var zero = MenuOrderDataList["Screen" + Texture._.Theme];
+            var un = MenuOrderDataList["Screen" + Texture._.Theme] == MenuOrderDataList.Count - 1
+                         ? 0
+                         : MenuOrderDataList["Screen" + Texture._.Theme] + 1;
+            var moinsun = MenuOrderDataList["Screen" + Texture._.Theme] == 0
+                         ? MenuOrderDataList.Count - 1
+                         : MenuOrderDataList["Screen" + Texture._.Theme] - 1;
             var thedata = MenuDataList.Where(c => c.Key.StartsWith("Screen"));
-            thedata.ElementAt(0).Value.Margin = new Thickness(0.0, 250, 0.0, 0.0);
-            thedata.ElementAt(0).Value.Opacity = 1;
-            var ltp = (ScaleTransform)thedata.ElementAt(0).Value.LayoutTransform;
+            thedata.ElementAt(zero).Value.Margin = new Thickness(0.0, 250, 0.0, 0.0);
+            thedata.ElementAt(zero).Value.Opacity = 1;
+            var ltp = (ScaleTransform)thedata.ElementAt(zero).Value.LayoutTransform;
             ltp.ScaleX = 1.0;
             ltp.ScaleY = 1.0;
-            Canvas.SetZIndex(thedata.ElementAt(0).Value, 1);
-            var lt = (ScaleTransform) thedata.ElementAt(1).Value.LayoutTransform;
+            Canvas.SetZIndex(thedata.ElementAt(zero).Value, 1);
+            var lt = (ScaleTransform) thedata.ElementAt(un).Value.LayoutTransform;
             lt.ScaleX = 0.5;
             lt.ScaleY = 0.5;
-            thedata.ElementAt(1).Value.Margin = new Thickness(350, 250, 0.0, 0.0);
-            thedata.ElementAt(1).Value.Opacity = 0.5;
-            var lt2 = (ScaleTransform)thedata.ElementAt(thedata.Count() - 1).Value.LayoutTransform;
+            thedata.ElementAt(un).Value.Margin = new Thickness(350, 250, 0.0, 0.0);
+            thedata.ElementAt(un).Value.Opacity = 0.5;
+            var lt2 = (ScaleTransform)thedata.ElementAt(moinsun).Value.LayoutTransform;
             lt2.ScaleX = 0.5;
             lt2.ScaleY = 0.5;
-            thedata.ElementAt(thedata.Count() - 1).Value.Margin = new Thickness(-350, 250, 0.0, 0.0);
-            thedata.ElementAt(thedata.Count() - 1).Value.Opacity = 0.5;
+            thedata.ElementAt(moinsun).Value.Margin = new Thickness(-350, 250, 0.0, 0.0);
+            thedata.ElementAt(moinsun).Value.Opacity = 0.5;
 
             var gr = new Image
             {

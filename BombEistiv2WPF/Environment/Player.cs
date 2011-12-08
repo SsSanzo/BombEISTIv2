@@ -242,6 +242,27 @@ namespace BombEistiv2WPF.Environment
             set { if(value != Direction.None) sens = value; }
         }
 
+        public Direction InvertedSens(Direction d)
+        {
+            if(d == Direction.Up)
+            {
+                return Direction.Down;
+            }
+            if(d == Direction.Down)
+            {
+                return Direction.Up;
+            }
+            if (d == Direction.Left)
+            {
+                return Direction.Right;
+            }
+            if (d == Direction.Right)
+            {
+                return Direction.Left;
+            }
+            return Direction.None;
+        }
+
         public Direction NewSens
         {
             get { return newsens; }
@@ -250,7 +271,7 @@ namespace BombEistiv2WPF.Environment
 
         public bool CanKick { get; private set; }
 
-        private bool InvertedDirections { get; set; }
+        public bool InvertedDirections { get; set; }
 
         public int AvailableBombCount
         {
@@ -281,6 +302,8 @@ namespace BombEistiv2WPF.Environment
                         break;
                     case UpgradeType.ChangeDirection:
                         InvertedDirections = true;
+                        this.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(this)]);
+                        TimerManager._.AddNewTimer(false, 10000, true, new TimerEvent { InvolvedObject = this, Type = EventType.Malediction });
                         break;
                     case UpgradeType.Kick:
                         CanKick = true;
@@ -398,6 +421,9 @@ namespace BombEistiv2WPF.Environment
                         var thePlayer = _map.ListOfPlayer.First(c => c.X == this.X && c.Y == this.Y);
                         _map.ListOfPlayer.Remove(thePlayer);
                         Texture._.DeleteTextureEntity(thePlayer);
+                    }else
+                    {
+                        cling();
                     }
                 }
             }

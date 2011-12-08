@@ -27,15 +27,12 @@ namespace BombEistiv2WPF
         private Game _gameInProgress;
         private Screen menu;
         private Action action;
-        private Key lastKey;
-        private Key lastReleaseKey;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            lastKey = Key.None;
-            lastReleaseKey = Key.None;
+
         }
 
         public Screen Menu
@@ -46,6 +43,7 @@ namespace BombEistiv2WPF
         public Game GameInProgress
         {
             get { return _gameInProgress; }
+            set { _gameInProgress = value; }
         }
 
         public void InvokeThread(object sender, ElapsedEventArgs elapsedEventArgs)
@@ -61,37 +59,6 @@ namespace BombEistiv2WPF
         public void InvokeThread(Action a)
         {
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, a);
-        }
-
-        public void InitTextureGame()
-        {
-            Texture._.LoadAllTextures();
-            var l = Texture._.LoadBackground();
-            foreach (var tl in l)
-            {
-                MainGrid.Children.Add(tl);
-            }
-            Texture._.LoadTextureList(GameInProgress.TheCurrentMap.GetCompleteList(), this);
-        }
-
-        public void InitInGameMenu()
-        {
-            InGameMenu._.InitInGameMenu(_gameInProgress);
-            foreach (var lab in InGameMenu._.AllTheLabel())
-            {
-                MenuGrid.Children.Add(lab);
-            }
-            foreach (var face in InGameMenu._.AllTheFace(_gameInProgress))
-            {
-                MenuGrid.Children.Add(face);
-            }
-        }
-
-
-
-        public void InitTextureSystem()
-        {
-            menu.LoadAllSystemResources();
         }
 
         public void explosion(GifImage g)
@@ -132,205 +99,5 @@ namespace BombEistiv2WPF
 
 
         }
-
-
-        // TEMPORAIRE
-        public void LaunchGame()
-        {
-            //a modif ?
-            //listener = ListenerGame._;
-            KeyDown += Window_KeyDown;
-            KeyUp += Window_KeyUp;
-
-            //testing
-            GameParameters._.PlayerCount = 4;
-            _gameInProgress = new ClassicGame();
-            TimerManager._.Game = _gameInProgress;
-            ListenerGame._.GameInProgress = _gameInProgress;
-            InitTextureGame();
-            InitInGameMenu();
-            ListenerGame._.StartTimers();
-        }
-
-        private void Window_KeyDown(object sender, KeyEventArgs keyEventArgs)
-        {
-            if (keyEventArgs.Key != lastKey || (keyEventArgs.Key == lastKey && keyEventArgs.Key == lastReleaseKey))
-            {
-                lastKey = keyEventArgs.Key;
-                ListenerGame._.EventKey(keyEventArgs.Key);
-            }
-
-        }
-
-        private void Window_KeyUp(object sender, KeyEventArgs keyEventArgs)
-        {
-            lastReleaseKey = keyEventArgs.Key;
-            ListenerGame._.ReleaseKey(keyEventArgs.Key);
-        }
-
-
-
-        // VIEUX CODE : POUBELLE
-
-
-
-
-
-
-
-        //public void DevelopperScreen()
-        //{
-        //    ResetAllImages();
-        //    //menu.LoadTeamBlui();
-        //    MenuGrid.Children.Add(menu.MenuDataList["Teamblui"]);
-        //    time = new Timer(28);
-        //    action = FonduDevScreen;
-        //    time.Elapsed += InvokeThread;
-        //    triggerOk = false;
-        //    time.Start();
-        //}
-
-        //public void PressStartScreen()
-        //{
-        //    ResetAllImages();
-        //    menu.LoadPressStart(this);
-        //    foreach (var mdt in menu.MenuDataList)
-        //    {
-        //        MenuGrid.Children.Add(mdt.Value);
-        //    }
-        //    time = new Timer(10);
-        //    timeSky = new Timer(10);
-        //    action = bombIncoming;
-        //    time.Elapsed += InvokeThread;
-        //    timeSky.Elapsed += ActionDefil;
-        //    triggerOk = false;
-        //    time.Start();
-        //    timeSky.Start();
-        //}
-
-
-
-
-        //private void ActionDefil(object sender, ElapsedEventArgs e)
-        //{
-        //    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(defileSky));
-        //}
-
-        //public void defileSky()
-        //{
-        //    if (menu.MenuDataList["Sky"].Margin.Left == -(menu.MenuDataList["Sky"].Width/2.0))
-        //    {
-        //        menu.MenuDataList["Sky"].Margin = new Thickness(0.0, 0.0, 0.0, 0.0);
-        //    }
-        //    menu.MenuDataList["Sky"].Margin = new Thickness(menu.MenuDataList["Sky"].Margin.Left - 1, 0.0, 0.0, 0.0);
-
-        //}
-
-        //public void bombIncoming()
-        //{
-        //    if (menu.MenuDataList["Bomb"].Margin.Left > -120)
-        //    {
-        //        menu.MenuDataList["Bomb"].Margin = new Thickness(menu.MenuDataList["Bomb"].Margin.Left - 15, -70, 0.0, 0.0);
-        //    }else
-        //    {
-        //        action = eistiIncoming;
-        //    }
-        //}
-
-        //public void eistiIncoming()
-        //{
-        //    if (menu.MenuDataList["Eisti"].Margin.Top <= 120)
-        //    {
-        //        menu.MenuDataList["Eisti"].Margin = new Thickness(100, menu.MenuDataList["Eisti"].Margin.Top + 10, 0.0, 0.0);
-        //    }
-        //    else
-        //    {
-        //        menu.MenuDataList["White"].Opacity = 1;
-        //        menu.MenuDataList["2"].Opacity = 1;
-        //        time.Interval = 50;
-        //        action = flash;
-        //    }
-        //}
-
-        //public void flash()
-        //{
-        //    if(menu.MenuDataList["White"].Opacity > 0)
-        //    {
-        //        menu.MenuDataList["White"].Opacity -= 0.02;
-        //    }else
-        //    {
-        //        menu.MenuDataList["PressStart"].Opacity = 0.20;
-        //        time.Interval = 10;
-        //        action = PressStartCling;
-        //    }
-        //}
-
-        //public void PressStartCling()
-        //{
-        //    if (menu.MenuDataList["PressStart"].Opacity >= 1 && !triggerOk)
-        //    {
-        //        time.Interval = 1500;
-        //        triggerOk = true;
-        //    }else if(menu.MenuDataList["PressStart"].Opacity <= 0 && triggerOk)
-        //    {
-        //        time.Interval = 200;
-        //        triggerOk = false;
-        //    }else if (!triggerOk)
-        //    {
-        //        time.Interval = 15;
-        //        menu.MenuDataList["PressStart"].Opacity += 0.05;
-        //    }else if(triggerOk)
-        //    {
-        //        time.Interval = 15;
-        //        menu.MenuDataList["PressStart"].Opacity -= 0.05;
-        //    }
-        //}
-
-        //public void FonduDevScreen()
-        //{
-        //    if (menu.MenuDataList["Teamblui"].Opacity < 1.0 && !triggerOk)
-        //    {
-        //        menu.MenuDataList["Teamblui"].Opacity += 0.02;
-        //    }
-        //    else if (menu.MenuDataList["Teamblui"].Opacity > 0 && triggerOk)
-        //    {
-        //        time.Interval = 28;
-        //        menu.MenuDataList["Teamblui"].Opacity -= 0.08;
-        //    }
-        //    else if (menu.MenuDataList["Teamblui"].Opacity >= 1.0)
-        //    {
-        //        triggerOk = true;
-        //        time.Interval = 3000;
-        //    }
-        //    else if (menu.MenuDataList["Teamblui"].Opacity <= 0)
-        //    {
-        //        time.Stop();
-        //        time.Close();
-        //        PressStartScreen();
-
-        //    }
-
-        //}
-
-        //public void ResetAllImages()
-        //{
-        //    if(MenuGrid.Children.Count > 0)
-        //    {
-        //        for (int i = MenuGrid.Children.Count - 1; i > -1; i--)
-        //        {
-        //            if (!(MenuGrid.Children[i] is Grid))
-        //            {
-        //                MenuGrid.Children.RemoveAt(i);
-        //            }
-        //        }
-        //    }
-        //    menu.MenuDataList.Clear();
-        //}
-
-
-
-
-
-
     }
 }

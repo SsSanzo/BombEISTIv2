@@ -116,7 +116,7 @@ namespace BombEistiv2WPF.Environment
         {
             g.TheCurrentMap.ListOfBomb.Remove(this);
             var thecompletelist = g.TheCurrentMap.GetCompleteList();
-            thecompletelist.AddRange(g.TheCurrentMap.ListOfEntityOfDeath.Where(c => c.Blocus));
+            thecompletelist.AddRange(g.TheCurrentMap.ListOfEntityOfDeath.Where(c => c != null && c.Blocus));
             Texture._.DeleteTextureEntity(this);
 
             var l = thecompletelist.Where(c => (this.Y == c.Y && (c.X <= (this.X + this.Power) && (c.X >= (this.X - this.Power)))) || (this.X == c.X && (c.Y <= (this.Y + this.Power) && (c.Y >= (this.Y - this.Power)))));

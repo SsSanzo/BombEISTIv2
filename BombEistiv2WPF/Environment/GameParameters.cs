@@ -29,6 +29,7 @@ namespace BombEistiv2WPF.Environment
         private static GameParameters _this;
 
         private int _playerCount; // Entre 2 et 4
+        private Dictionary<int, int> _playerSkin; // Entre 2 et 4
         private int _gameTime; // en secondes
         private int _explosionDelay;
 
@@ -63,6 +64,15 @@ namespace BombEistiv2WPF.Environment
                 {
                     _playerCount = value;
                 }
+            }
+        }
+
+        public Dictionary<int, int> PlayerSkin
+        {
+            get { return _playerSkin; }
+            set
+            {
+                _playerSkin = value;
             }
         }
 

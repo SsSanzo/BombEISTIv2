@@ -127,6 +127,21 @@ namespace BombEistiv2WPF.Control
                     m7.Show(this, _currentScreen);
                     _currentScreen = m7;
                     break;
+                case ScreenType.Characters:
+                    var m8 = new SkinSelectMenu();
+                    m8.Show(this, _currentScreen);
+                    _currentScreen = m8;
+                    break;
+                case ScreenType.PreGame:
+                    var m9 = new PreGame();
+                    m9.Show(this, _currentScreen);
+                    _currentScreen = m9;
+                    break;
+                case ScreenType.Game:
+                    var m10 = new GameScreen();
+                    m10.Show(this, _currentScreen);
+                    _currentScreen = m10;
+                    break;
 
             }
             //FadeIn();
@@ -146,6 +161,7 @@ namespace BombEistiv2WPF.Control
         PlayerCound,
         Characters,
         Game,
-        Results
+        Results,
+        PreGame
     }
 }

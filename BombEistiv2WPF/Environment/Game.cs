@@ -26,11 +26,11 @@ namespace BombEistiv2WPF.Environment
 
         public void EventManager(TimerEvent timerEvent)
         {
-            var b = (Bomb)timerEvent.InvolvedObject;
+            
             switch (timerEvent.Type)
             {
                 case EventType.BombExplode:
-                    
+                    var b = (Bomb)timerEvent.InvolvedObject;
                     if(TheCurrentMap.GetBomb(b.X,b.Y) != null)
                     {
                         b.Explode(this);
@@ -38,10 +38,16 @@ namespace BombEistiv2WPF.Environment
                     }
                     break;
                 case EventType.BombMove:
-                    if(!b.Move())
+                    var be = (Bomb)timerEvent.InvolvedObject;
+                    if(!be.Move())
                     {
                         timerEvent.Timer.Stop();
                     }
+                    break;
+                case EventType.Malediction:
+                    var p = (Player)timerEvent.InvolvedObject;
+                    p.InvertedDirections = false;
+                    p.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(p)]);
                     break;
             }
         }
@@ -52,25 +58,25 @@ namespace BombEistiv2WPF.Environment
         //    get { return _toDelete ?? (_toDelete = new List<Entity>()); }
         //}
 
-        public void InitPlayers(int numberOPlayer)
+        public void InitPlayers()
         {
             if (TheCurrentMap != null)
             {
-                if (numberOPlayer > 0)
+                if (GameParameters._.PlayerCount > 0)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(1,1, 0, 0, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(1,GameParameters._.PlayerSkin[1], 0, 0, TheCurrentMap));
                 }
-                if (numberOPlayer > 1)
+                if (GameParameters._.PlayerCount > 1)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(2,2, Length - 1, 0, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(2, GameParameters._.PlayerSkin[2], Length - 1, 0, TheCurrentMap));
                 }
-                if (numberOPlayer > 2)
+                if (GameParameters._.PlayerCount > 2)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(3, 3, 0, Length - 1, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(3, GameParameters._.PlayerSkin[3], 0, Length - 1, TheCurrentMap));
                 }
-                if (numberOPlayer > 3)
+                if (GameParameters._.PlayerCount > 3)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(4,4, Length - 1, Length - 1, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(4, GameParameters._.PlayerSkin[4], Length - 1, Length - 1, TheCurrentMap));
                 }
             }
             else

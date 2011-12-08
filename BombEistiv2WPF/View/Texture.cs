@@ -16,17 +16,21 @@ namespace BombEistiv2WPF.View
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
         private Dictionary<string, BitmapImage> _typebonusList;
+        private Dictionary<string, BitmapImage> _typeavatarList;
         private MainWindow mw;
         private int offsetglobal = 20;
         private int timeoffset = 20;
+        private String _theme;
 
         private static Texture _this;
 
         private Texture()
         {
             _themeData = GameParameters._.GetThemeData("Basic");
+            _theme = "Basic";
             _typetextureList = new Dictionary<string, BitmapImage>();
             _typebonusList = new Dictionary<string, BitmapImage>();
+            _typeavatarList = new Dictionary<string, BitmapImage>();
         }
 
         public MainWindow Mw
@@ -45,9 +49,15 @@ namespace BombEistiv2WPF.View
             get { return _themeData; }
         }
 
+        public String Theme
+        {
+            get { return _theme; }
+        }
+
         public void SetTheme(string s)
         {
             _themeData = GameParameters._.GetThemeData(s);
+            _theme = s;
         }
 
         public Dictionary<string, BitmapImage> TypetextureList
@@ -58,6 +68,11 @@ namespace BombEistiv2WPF.View
         public Dictionary<string, BitmapImage> TypebonusList
         {
             get { return _typebonusList; }
+        }
+
+        public Dictionary<string, BitmapImage> TypeavatarList
+        {
+            get { return _typeavatarList; }
         }
 
         public void LoadTextureList(List<Entity> l , MainWindow w)
@@ -385,7 +400,11 @@ namespace BombEistiv2WPF.View
             if(e is Player)
             {
                 var p = (Player) e;
-                return "Player_" + p.Skinid + "_" + p.Sens.ToString().ToLower();
+                if(!p.InvertedDirections)
+                {
+                    return "Player_" + p.Skinid + "_" + p.Sens.ToString().ToLower();
+                }
+                return "Player_" + p.Skinid + "_" + p.InvertedSens(p.Sens).ToString().ToLower();
             }
             return "Background";
         }
@@ -422,6 +441,25 @@ namespace BombEistiv2WPF.View
                     bitmanimg.UriSource = u;
                     bitmanimg.EndInit();
                     TypebonusList.Add(td.Key, bitmanimg);
+                }
+
+            }
+        }
+
+
+        public void LoadAvatarTextures()
+        {
+            TypeavatarList.Clear();
+            foreach (var td in ThemeData)
+            {
+                if ((td.Value.EndsWith(".png") || td.Value.EndsWith(".gif")) && td.Key.StartsWith("Player_") && td.Key.EndsWith("_down"))
+                {
+                    var u = new Uri(GameParameters.Path + td.Value);
+                    var bitmanimg = new BitmapImage();
+                    bitmanimg.BeginInit();
+                    bitmanimg.UriSource = u;
+                    bitmanimg.EndInit();
+                    TypeavatarList.Add(td.Key.Substring(0, td.Key.Length - 5), bitmanimg);
                 }
 
             }

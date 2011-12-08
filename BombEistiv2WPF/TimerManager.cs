@@ -147,6 +147,7 @@ namespace BombEistiv2WPF
     {
         None,
         BombExplode,
-        BombMove
+        BombMove,
+        Malediction
     }
 }
