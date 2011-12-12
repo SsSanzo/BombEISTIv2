@@ -18,9 +18,11 @@ namespace BombEistiv2WPF.Environment
         //Path Clement
         //public static string Path = @"C:\Users\auffraycle\Documents\Visual Studio 2010\Projects\BombEISTIv2\BombEISTIv2\BombEistiv2WPF";
         //Path Benou
-        public static string Path = @"D:\My Documents\BombEISTIv2\BombEistiv2WPF";
+        public static string Path;   // = @"D:\My Documents\BombEISTIv2\BombEistiv2WPF";
 
-        private const string ParameterPath = "../../config.xml";
+        //private const string ParameterPath = "../../config.xml";
+
+        private const string ParameterPath = "config.xml";
         private readonly XDocument _xmlDoc;
         private readonly IEnumerable<XElement> _root;
 
@@ -37,6 +39,7 @@ namespace BombEistiv2WPF.Environment
 
         private GameParameters()
         {
+            Path = System.Environment.CurrentDirectory;
             _xmlDoc = XDocument.Load(ParameterPath);
             _root = _xmlDoc.Descendants("GameParameters");
             Type = GameType.Classic;
