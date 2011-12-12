@@ -23,6 +23,7 @@ namespace BombEistiv2WPF.View.Menu
         private Dictionary<String, String> OptionMoved;
         private bool thisistheend;
         private bool alreadyloaded;
+        private bool movelocked;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -39,6 +40,7 @@ namespace BombEistiv2WPF.View.Menu
             if (oldscreen is MainMenuScreen)
             {
                 thisistheend = false;
+                movelocked = true;
                 var pressstart = (MainMenuScreen) oldscreen;
                 _wizard = w;
                 OptionMoved = new Dictionary<string, string>();
@@ -77,6 +79,7 @@ namespace BombEistiv2WPF.View.Menu
             }else if(oldscreen is PlayerSelectMenu)
             {
                 thisistheend = false;
+                movelocked = true;
                 var pressstart = (PlayerSelectMenu)oldscreen;
                 _wizard = w;
                 OptionMoved = new Dictionary<string, string>();
@@ -129,49 +132,52 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyDown(Key k)
         {
-            if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
+            if (!movelocked)
             {
-                switch (OptionSelected)
+                if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                 {
-                    case "Classic":
-                        SwitchOption("Crazy");
-                        break;
-                    case "Crazy":
-                        SwitchOption("Hardcore");
-                        break;
-                    case "Hardcore":
-                        SwitchOption("Classic");
-                        break;
+                    switch (OptionSelected)
+                    {
+                        case "Classic":
+                            SwitchOption("Crazy");
+                            break;
+                        case "Crazy":
+                            SwitchOption("Hardcore");
+                            break;
+                        case "Hardcore":
+                            SwitchOption("Classic");
+                            break;
+                    }
+
                 }
-                
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
-            {
-                switch (OptionSelected)
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
                 {
-                    case "Classic":
-                        SwitchOption("Hardcore");
-                        break;
-                    case "Crazy":
-                        SwitchOption("Classic");
-                        break;
-                    case "Hardcore":
-                        SwitchOption("Crazy");
-                        break;
+                    switch (OptionSelected)
+                    {
+                        case "Classic":
+                            SwitchOption("Hardcore");
+                            break;
+                        case "Crazy":
+                            SwitchOption("Classic");
+                            break;
+                        case "Hardcore":
+                            SwitchOption("Crazy");
+                            break;
+                    }
                 }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
-            {
-                if(OptionSelected == "Classic")
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
+                {
+                    if (OptionSelected == "Classic")
+                    {
+                        thisistheend = true;
+                        _wizard.NextScreen(ScreenType.PlayerCound);
+                    }
+                }
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
                 {
                     thisistheend = true;
-                    _wizard.NextScreen(ScreenType.PlayerCound); 
+                    _wizard.NextScreen(ScreenType.MainMenu);
                 }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
-            {
-                thisistheend = true;
-                _wizard.NextScreen(ScreenType.MainMenu);
             }
         }
 
@@ -409,6 +415,7 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         _wizard.Grid.Children.Add(lab.Value);
                     }
+                    movelocked = false;
                 }
             }
 
@@ -457,6 +464,7 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         _wizard.Grid.Children.Add(lab.Value);
                     }
+                    movelocked = false;
                 }
             }
 

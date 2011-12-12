@@ -21,6 +21,8 @@ namespace BombEistiv2WPF.View.Menu
         private String OptionSelected;
         private Dictionary<String, int> OptionZommed;
         private bool thisistheend;
+        private bool alreadyloaded;
+        private bool movelocked;
         
         public Dictionary<string, Image> MenuDataList
         {
@@ -35,10 +37,11 @@ namespace BombEistiv2WPF.View.Menu
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
             thisistheend = false;
-
+            alreadyloaded = false;
             if(oldscreen is MenuScreen)
             {
                 var pressstart = (MenuScreen)oldscreen;
+                movelocked = true;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
                 OptionSelected = "BoxGame";
@@ -67,6 +70,7 @@ namespace BombEistiv2WPF.View.Menu
                 TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
                 TimerManager._.AddNewTimer(true, 15, true, null, ActionBlack);
                 SwitchOption("BoxGame");
+                movelocked = false;
 
 
 
@@ -74,6 +78,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 var pressstart = (OptionMenu)oldscreen;
                 _wizard = w;
+                movelocked = true;
                 OptionZommed = new Dictionary<string, int>();
                 OptionSelected = "BoxGame";
                 if (_menuDataList == null)
@@ -106,6 +111,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 var pressstart = (GameModeMenu) oldscreen;
                 _wizard = w;
+                movelocked = true;
                 OptionZommed = new Dictionary<string, int>();
                 OptionSelected = "BoxGame";
                 if (_menuDataList == null)
@@ -150,75 +156,69 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyDown(Key k)
         {
-            if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
+            if (!movelocked)
             {
-                OptionZommed[OptionSelected] = -1;
-                Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
-                Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
-                MenuDataList[OptionSelected].Opacity = 0.6;
-                switch (OptionSelected)
+                if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
                 {
-                    case "BoxGame":
-                        SwitchOption("BoxGameLan");
-                        break;
-                    case "BoxGameLan":
-                        SwitchOption("BoxOption");
-                        break;
-                    case "BoxOption":
-                        SwitchOption("BoxQuit");
-                        break;
-                    case "BoxQuit":
-                        SwitchOption("BoxGame");
-                        break;
+                    OptionZommed[OptionSelected] = -1;
+                    Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
+                    Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
+                    MenuDataList[OptionSelected].Opacity = 0.6;
+                    switch (OptionSelected)
+                    {
+                        case "BoxGame":
+                            SwitchOption("BoxGameLan");
+                            break;
+                        case "BoxGameLan":
+                            SwitchOption("BoxOption");
+                            break;
+                        case "BoxOption":
+                            SwitchOption("BoxQuit");
+                            break;
+                        case "BoxQuit":
+                            SwitchOption("BoxGame");
+                            break;
+                    }
                 }
-            }else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
-            {
-                OptionZommed[OptionSelected] = -1;
-                Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
-                Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
-                MenuDataList[OptionSelected].Opacity = 0.6;
-                switch (OptionSelected)
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
                 {
-                    case "BoxGame":
-                        SwitchOption("BoxQuit");
-                        break;
-                    case "BoxGameLan":
-                        SwitchOption("BoxGame");
-                        break;
-                    case "BoxOption":
-                        SwitchOption("BoxGameLan");
-                        break;
-                    case "BoxQuit":
-                        SwitchOption("BoxOption");
-                        break;
+                    OptionZommed[OptionSelected] = -1;
+                    Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
+                    Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
+                    MenuDataList[OptionSelected].Opacity = 0.6;
+                    switch (OptionSelected)
+                    {
+                        case "BoxGame":
+                            SwitchOption("BoxQuit");
+                            break;
+                        case "BoxGameLan":
+                            SwitchOption("BoxGame");
+                            break;
+                        case "BoxOption":
+                            SwitchOption("BoxGameLan");
+                            break;
+                        case "BoxQuit":
+                            SwitchOption("BoxOption");
+                            break;
+                    }
                 }
-            }else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
-            {
-                thisistheend = true;
-                switch (OptionSelected)
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
-                    case "BoxGame":
-                        //EN TEST
-                        //for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
-                        //{
-                        //    if (!(_wizard.Grid.Children[i] is Grid))
-                        //    {
-                        //        _wizard.Grid.Children.RemoveAt(i);
-                        //    }
-                        //}
-                        //_wizard.TheWindow.LaunchGame();
-                        //FIN DU EN TEST
-
-                        thisistheend = true;
-                        _wizard.NextScreen(ScreenType.GameMode);
-                        break;
-                    case "BoxOption" :
-                        thisistheend = true;
-                        _wizard.NextScreen(ScreenType.Options);
-                        break;
-                    case "BoxQuit":
-                        Application.Current.Shutdown();
-                        break;
+                    thisistheend = true;
+                    switch (OptionSelected)
+                    {
+                        case "BoxGame":
+                            thisistheend = true;
+                            _wizard.NextScreen(ScreenType.GameMode);
+                            break;
+                        case "BoxOption":
+                            thisistheend = true;
+                            _wizard.NextScreen(ScreenType.Options);
+                            break;
+                        case "BoxQuit":
+                            Application.Current.Shutdown();
+                            break;
+                    }
                 }
             }
         }
@@ -454,26 +454,31 @@ namespace BombEistiv2WPF.View.Menu
             else
             {
                 t.AutoReset = false;
-                MenuDataList.Remove("BoxOption");
-                MenuLabelList.Remove("BoxOption");
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if (!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid))
+                    alreadyloaded = true;
+                    MenuDataList.Remove("BoxOption");
+                    MenuLabelList.Remove("BoxOption");
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
+                    SwitchOption("BoxGame");
+                    movelocked = false;
                 }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
-                }
-                SwitchOption("BoxGame");
             }
 
         }
@@ -495,26 +500,32 @@ namespace BombEistiv2WPF.View.Menu
             else
             {
                 t.AutoReset = false;
-                MenuDataList.Remove("BoxGame");
-                MenuLabelList.Remove("BoxGame");
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if(!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid))
+                    alreadyloaded = true;
+                    MenuDataList.Remove("BoxGame");
+                    MenuLabelList.Remove("BoxGame");
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
+                    SwitchOption("BoxGame");
+                    movelocked = false;
                 }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
-                }
-                SwitchOption("BoxGame");
+                
             }
 
         }

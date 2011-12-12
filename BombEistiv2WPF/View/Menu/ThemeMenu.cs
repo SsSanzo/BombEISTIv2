@@ -26,6 +26,7 @@ namespace BombEistiv2WPF.View.Menu
         private Dictionary<String, String> OptionMoved;
         private bool alreadyloaded;
         private bool thisistheend;
+        private bool movelocked;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -45,6 +46,7 @@ namespace BombEistiv2WPF.View.Menu
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
             thisistheend = false;
+            movelocked = true;
             var pressstart = (OptionMenu)oldscreen;
             _wizard = w;
             OptionMoved = new Dictionary<string, string>();
@@ -94,43 +96,49 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyDown(Key k)
         {
-            if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
+            if(!movelocked)
             {
-                if (MenuOrderDataList[PreviewSelected] == MenuOrderDataList.Count - 1)
+                if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                 {
-                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == 0).Key);
-                }else
-                {
-                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList[PreviewSelected] + 1).Key);
+                    if (MenuOrderDataList[PreviewSelected] == MenuOrderDataList.Count - 1)
+                    {
+                        SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == 0).Key);
+                    }
+                    else
+                    {
+                        SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList[PreviewSelected] + 1).Key);
+                    }
+
                 }
-                
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
+                {
+                    if (MenuOrderDataList[PreviewSelected] == 0)
+                    {
+                        SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList.Count - 1).Key);
+                    }
+                    else
+                    {
+                        SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList[PreviewSelected] - 1).Key);
+                    }
+                }
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
+                {
+                    if (PreviewSelected.Substring(6) == "Random")
+                    {
+                        var rand = new Random();
+                        var theint = rand.Next(MenuOrderDataList.Count - 1);
+                        Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
+                    }
+                    else
+                    {
+                        Texture._.SetTheme(PreviewSelected.Substring(6));
+                    }
+
+                    thisistheend = true;
+                    _wizard.NextScreen(ScreenType.Options);
+                }
             }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
-            {
-                if (MenuOrderDataList[PreviewSelected] == 0)
-                {
-                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList.Count - 1).Key);
-                }
-                else
-                {
-                    SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList[PreviewSelected] - 1).Key);
-                }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
-            {
-                if (PreviewSelected.Substring(6) == "Random")
-                {
-                    var rand = new Random();
-                    var theint = rand.Next(MenuOrderDataList.Count - 1);
-                    Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
-                }else
-                {
-                    Texture._.SetTheme(PreviewSelected.Substring(6));
-                }
-                
-                thisistheend = true;
-                _wizard.NextScreen(ScreenType.Options);
-            }
+            
         }
 
         public override void Hide()
@@ -334,6 +342,7 @@ namespace BombEistiv2WPF.View.Menu
                         _wizard.Grid.Children.Add(lab.Value);
                     }
                 }
+                movelocked = false;
                 //SwitchOption("BoxGeneral");
             }
 

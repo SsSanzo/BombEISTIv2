@@ -18,7 +18,6 @@ namespace BombEistiv2WPF.Environment
         private int _availableBombCount;
         private int _bombPower;
         private int _lives;
-        private readonly Score _score;
         private readonly Map _map;
         private Direction sens;
         private Direction newsens;
@@ -28,10 +27,6 @@ namespace BombEistiv2WPF.Environment
         {
             _id = id;
             _skinid = skinid;
-            if(score == null)
-            {
-                _score = new Score(id);
-            }
             _upgrades = new List<Upgrade>();
             _map = map;
             InitSkills();
@@ -169,11 +164,6 @@ namespace BombEistiv2WPF.Environment
             }
 
             get { return _percenty; }
-        }
-
-        public Score Score
-        {
-            get { return _score; }
         }
 
         public Map Map
@@ -327,7 +317,7 @@ namespace BombEistiv2WPF.Environment
                         Speed++;
                         break;
                     case UpgradeType.Teleport:
-                        //Managed by the Game class
+                        Map.Teleport(this);
                         break;
                     case UpgradeType.Life:
                         Lives++;
@@ -421,6 +411,8 @@ namespace BombEistiv2WPF.Environment
                         var thePlayer = _map.ListOfPlayer.First(c => c.X == this.X && c.Y == this.Y);
                         _map.ListOfPlayer.Remove(thePlayer);
                         Texture._.DeleteTextureEntity(thePlayer);
+                        Score._.KilledBy(e.Owner, thePlayer);
+                        _map.CheckForAllDead();
                     }else
                     {
                         cling();

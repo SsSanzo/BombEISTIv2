@@ -24,6 +24,7 @@ namespace BombEistiv2WPF.View.Menu
         private bool thisistheend;
         private bool alreadyloaded;
         private String ItemSelected;
+        private bool movelocked;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -39,6 +40,7 @@ namespace BombEistiv2WPF.View.Menu
         {
             thisistheend = false;
             alreadyloaded = false;
+            movelocked = true;
             var pressstart = (OptionMenu)oldscreen;
             _wizard = w;
             OptionMoved = new Dictionary<String, String>();
@@ -87,177 +89,190 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyDown(Key k)
         {
-            if (ItemSelected == "")
+            if (!movelocked)
             {
-                MenuLabelList["LabelInfo"].Foreground = new SolidColorBrush(Colors.White);
-                MenuLabelList["LabelInfo"].Content = "Appuyez sur entrée pour modifier une touche";
-                if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
+                if (ItemSelected == "")
                 {
-                    if (OptionSelected.Split('_').Count() > 1)
+                    MenuLabelList["LabelInfo"].Foreground = new SolidColorBrush(Colors.White);
+                    MenuLabelList["LabelInfo"].Content = "Appuyez sur entrée pour modifier une touche";
+                    if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
                     {
-                        switch (OptionSelected.Split('_')[1])
+                        if (OptionSelected.Split('_').Count() > 1)
                         {
-                            case "None":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_Up");
-                                break;
-                            case "Up":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_Down");
-                                break;
-                            case "Down":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_Right");
-                                break;
-                            case "Right":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_Left");
-                                break;
-                            case "Left":
-                                SwitchOption("Confirm");
-                                break;
-                        }
-                    }
-                }
-
-                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
-                {
-                    if (OptionSelected.Split('_').Count() > 1)
-                    {
-                        switch (OptionSelected.Split('_')[1])
-                        {
-                            case "Up":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_None");
-                                break;
-                            case "Down":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_Up");
-                                break;
-                            case "Right":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_Down");
-                                break;
-                            case "Left":
-                                SwitchOption(OptionSelected.Split('_')[0] + "_Right");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        switch (OptionSelected)
-                        {
-                            case "Confirm":
-                                SwitchOption("1_Left");
-                                break;
-                            case "Quit":
-                                SwitchOption("1_Left");
-                                break;
-                        }
-                    }
-                }
-                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
-                {
-                    if (OptionSelected.Split('_').Count() > 1)
-                    {
-                        switch (OptionSelected.Split('_')[0])
-                        {
-                            case "1":
-                                SwitchOption("2_" + OptionSelected.Split('_')[1]);
-                                break;
-                            case "2":
-                                SwitchOption("3_" + OptionSelected.Split('_')[1]);
-                                break;
-                            case "3":
-                                SwitchOption("4_" + OptionSelected.Split('_')[1]);
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        switch (OptionSelected)
-                        {
-                            case "Confirm":
-                                SwitchOption("Quit");
-                                break;
+                            switch (OptionSelected.Split('_')[1])
+                            {
+                                case "None":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Up");
+                                    break;
+                                case "Up":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Down");
+                                    break;
+                                case "Down":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Right");
+                                    break;
+                                case "Right":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Left");
+                                    break;
+                                case "Left":
+                                    SwitchOption("Confirm");
+                                    break;
+                            }
                         }
                     }
 
-                }
-                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
-                {
-                    if (OptionSelected.Split('_').Count() > 1)
+                    else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
                     {
-                        switch (OptionSelected.Split('_')[0])
+                        if (OptionSelected.Split('_').Count() > 1)
                         {
-                            case "2":
-                                SwitchOption("1_" + OptionSelected.Split('_')[1]);
-                                break;
-                            case "3":
-                                SwitchOption("2_" + OptionSelected.Split('_')[1]);
-                                break;
-                            case "4":
-                                SwitchOption("3_" + OptionSelected.Split('_')[1]);
-                                break;
+                            switch (OptionSelected.Split('_')[1])
+                            {
+                                case "Up":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_None");
+                                    break;
+                                case "Down":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Up");
+                                    break;
+                                case "Right":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Down");
+                                    break;
+                                case "Left":
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Right");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch (OptionSelected)
+                            {
+                                case "Confirm":
+                                    SwitchOption("1_Left");
+                                    break;
+                                case "Quit":
+                                    SwitchOption("1_Left");
+                                    break;
+                            }
                         }
                     }
-                    else
+                    else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                     {
-                        switch (OptionSelected)
+                        if (OptionSelected.Split('_').Count() > 1)
                         {
-                            case "Quit":
-                                SwitchOption("Confirm");
-                                break;
+                            switch (OptionSelected.Split('_')[0])
+                            {
+                                case "1":
+                                    SwitchOption("2_" + OptionSelected.Split('_')[1]);
+                                    break;
+                                case "2":
+                                    SwitchOption("3_" + OptionSelected.Split('_')[1]);
+                                    break;
+                                case "3":
+                                    SwitchOption("4_" + OptionSelected.Split('_')[1]);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch (OptionSelected)
+                            {
+                                case "Confirm":
+                                    SwitchOption("Quit");
+                                    break;
+                            }
+                        }
+
+                    }
+                    else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
+                    {
+                        if (OptionSelected.Split('_').Count() > 1)
+                        {
+                            switch (OptionSelected.Split('_')[0])
+                            {
+                                case "2":
+                                    SwitchOption("1_" + OptionSelected.Split('_')[1]);
+                                    break;
+                                case "3":
+                                    SwitchOption("2_" + OptionSelected.Split('_')[1]);
+                                    break;
+                                case "4":
+                                    SwitchOption("3_" + OptionSelected.Split('_')[1]);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch (OptionSelected)
+                            {
+                                case "Quit":
+                                    SwitchOption("Confirm");
+                                    break;
+                            }
+                        }
+                    }
+                    else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
+                    {
+                        if (OptionSelected == "Quit")
+                        {
+                            resetLabel();
+                        }
+                        else if (OptionSelected == "Confirm")
+                        {
+                            if (KeyAction._.checkAllKeys())
+                            {
+                                validLabel();
+                                thisistheend = true;
+                                _wizard.NextScreen(ScreenType.Options);
+                            }
+                            else
+                            {
+                                MenuLabelList["LabelInfo"].Foreground = new SolidColorBrush(Colors.Red);
+                                MenuLabelList["LabelInfo"].Content = "Impossible : Certaines touches sont vides !!";
+                            }
+
+                        }
+                        else
+                        {
+                            ItemSelected = OptionSelected;
+                            Canvas.SetZIndex(MenuDataList["BlackActive"], 1);
+                            Canvas.SetZIndex(MenuLabelList["LabelActive"], 2);
+                            MenuDataList["BlackActive"].Opacity = 0.75;
+                            MenuLabelList["LabelActive"].Opacity = 1;
                         }
                     }
                 }
-                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
+                else
                 {
-                    if (OptionSelected == "Quit")
+                    if (KeyAction._.KeysPlayer.ContainsKey(k))
                     {
-                        resetLabel();
+                        var theact = KeyAction._.KeysPlayer[k];
+                        KeyAction._.KeysPlayer.Remove(k);
+                        MenuLabelList["Value" + theact].Content = "Vide";
+                        MenuLabelList["Value" + theact].Foreground = new SolidColorBrush(Colors.Red);
                     }
-                    else if (OptionSelected == "Confirm")
+                    KeyAction._.ReplaceKey(ItemSelected, k);
+                    var oldlenght = MenuLabelList["Value" + ItemSelected].Content.ToString().Length;
+                    MenuLabelList["Value" + ItemSelected].Content = k.ToString();
+                    MenuLabelList["Value" + ItemSelected].Foreground = new SolidColorBrush(Colors.White);
+                    if (oldlenght > 5)
                     {
-                        if(KeyAction._.checkAllKeys())
-                        {
-                            validLabel();
-                            thisistheend = true;
-                            _wizard.NextScreen(ScreenType.Options);
-                        }else
-                        {
-                            MenuLabelList["LabelInfo"].Foreground = new SolidColorBrush(Colors.Red);
-                            MenuLabelList["LabelInfo"].Content = "Impossible : Certaines touches sont vides !!";
-                        }
-                        
-                    }else
-                    {
-                        ItemSelected = OptionSelected;
-                        Canvas.SetZIndex(MenuDataList["BlackActive"], 1);
-                        Canvas.SetZIndex(MenuLabelList["LabelActive"], 2);
-                        MenuDataList["BlackActive"].Opacity = 0.75;
-                        MenuLabelList["LabelActive"].Opacity = 1;
+                        MenuLabelList["Value" + ItemSelected].Margin =
+                            new Thickness(MenuLabelList["Value" + ItemSelected].Margin.Left,
+                                          MenuLabelList["Value" + ItemSelected].Margin.Top - (oldlenght - 5), 0.0, 0.0);
                     }
+                    if (MenuLabelList["Value" + ItemSelected].Content.ToString().Length > 5)
+                    {
+                        MenuLabelList["Value" + ItemSelected].FontSize -=
+                            MenuLabelList["Value" + ItemSelected].Content.ToString().Length - 5;
+                        MenuLabelList["Value" + ItemSelected].Margin =
+                            new Thickness(MenuLabelList["Value" + ItemSelected].Margin.Left,
+                                          MenuLabelList["Value" + ItemSelected].Margin.Top +
+                                          (MenuLabelList["Value" + ItemSelected].Content.ToString().Length - 5), 0.0,
+                                          0.0);
+                    }
+
+                    MenuDataList["BlackActive"].Opacity = 0;
+                    MenuLabelList["LabelActive"].Opacity = 0;
+                    ItemSelected = "";
                 }
-            }else
-            {
-                if(KeyAction._.KeysPlayer.ContainsKey(k))
-                {
-                    var theact = KeyAction._.KeysPlayer[k];
-                    KeyAction._.KeysPlayer.Remove(k);
-                    MenuLabelList["Value" + theact].Content = "Vide";
-                    MenuLabelList["Value" + theact].Foreground = new SolidColorBrush(Colors.Red);
-                }
-                KeyAction._.ReplaceKey(ItemSelected, k);
-                var oldlenght = MenuLabelList["Value" + ItemSelected].Content.ToString().Length;
-                MenuLabelList["Value" + ItemSelected].Content = k.ToString();
-                MenuLabelList["Value" + ItemSelected].Foreground = new SolidColorBrush(Colors.White);
-                if (oldlenght > 5)
-                {
-                    MenuLabelList["Value" + ItemSelected].Margin = new Thickness(MenuLabelList["Value" + ItemSelected].Margin.Left, MenuLabelList["Value" + ItemSelected].Margin.Top - (oldlenght - 5), 0.0, 0.0);
-                }
-                if (MenuLabelList["Value" + ItemSelected].Content.ToString().Length > 5)
-                {
-                    MenuLabelList["Value" + ItemSelected].FontSize -= MenuLabelList["Value" + ItemSelected].Content.ToString().Length - 5;
-                    MenuLabelList["Value" + ItemSelected].Margin = new Thickness(MenuLabelList["Value" + ItemSelected].Margin.Left, MenuLabelList["Value" + ItemSelected].Margin.Top + (MenuLabelList["Value" + ItemSelected].Content.ToString().Length - 5), 0.0, 0.0);
-                }
-                
-                MenuDataList["BlackActive"].Opacity = 0;
-                MenuLabelList["LabelActive"].Opacity = 0;
-                ItemSelected = "";
             }
         }
 
@@ -556,6 +571,7 @@ namespace BombEistiv2WPF.View.Menu
                         _wizard.Grid.Children.Add(lab.Value);
                     }
                 }
+                movelocked = false;
                 //SwitchOption("1_None");
             }
 

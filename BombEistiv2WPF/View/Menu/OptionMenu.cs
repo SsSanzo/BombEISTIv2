@@ -22,6 +22,7 @@ namespace BombEistiv2WPF.View.Menu
         private String OptionSelected;
         private Dictionary<String, int> OptionZommed;
         private bool thisistheend;
+        private bool movelocked;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -38,6 +39,7 @@ namespace BombEistiv2WPF.View.Menu
             if(oldscreen is MainMenuScreen)
             {
                 thisistheend = false;
+                movelocked = true;
                 var pressstart = (MainMenuScreen)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -73,6 +75,7 @@ namespace BombEistiv2WPF.View.Menu
             }else if(oldscreen is GeneralOptionMenu)
             {
                 thisistheend = false;
+                movelocked = true;
                 var pressstart = (GeneralOptionMenu)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -108,6 +111,7 @@ namespace BombEistiv2WPF.View.Menu
             }else if(oldscreen is KeyOption)
             {
                 thisistheend = false;
+                movelocked = true;
                 var pressstart = (KeyOption)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -144,6 +148,7 @@ namespace BombEistiv2WPF.View.Menu
             else if (oldscreen is ThemeMenu)
             {
                 thisistheend = false;
+                movelocked = true;
                 var pressstart = (ThemeMenu)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -193,67 +198,70 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyDown(Key k)
         {
-            if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
+            if (!movelocked)
             {
-                OptionZommed[OptionSelected] = -1;
-                Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
-                Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
-                MenuDataList[OptionSelected].Opacity = 0.6;
-                switch (OptionSelected)
+                if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
                 {
-                    case "BoxGeneral":
-                        SwitchOption("BoxTouche");
-                        break;
-                    case "BoxTouche":
-                        SwitchOption("BoxTheme");
-                        break;
-                    case "BoxTheme":
-                        SwitchOption("BoxCancel");
-                        break;
-                    case "BoxCancel":
-                        SwitchOption("BoxGeneral");
-                        break;
+                    OptionZommed[OptionSelected] = -1;
+                    Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
+                    Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
+                    MenuDataList[OptionSelected].Opacity = 0.6;
+                    switch (OptionSelected)
+                    {
+                        case "BoxGeneral":
+                            SwitchOption("BoxTouche");
+                            break;
+                        case "BoxTouche":
+                            SwitchOption("BoxTheme");
+                            break;
+                        case "BoxTheme":
+                            SwitchOption("BoxCancel");
+                            break;
+                        case "BoxCancel":
+                            SwitchOption("BoxGeneral");
+                            break;
+                    }
                 }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
-            {
-                OptionZommed[OptionSelected] = -1;
-                Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
-                Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
-                MenuDataList[OptionSelected].Opacity = 0.6;
-                switch (OptionSelected)
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
                 {
-                    case "BoxGeneral":
-                        SwitchOption("BoxCancel");
-                        break;
-                    case "BoxTouche":
-                        SwitchOption("BoxGeneral");
-                        break;
-                    case "BoxTheme":
-                        SwitchOption("BoxTouche");
-                        break;
-                    case "BoxCancel":
-                        SwitchOption("BoxTheme");
-                        break;
+                    OptionZommed[OptionSelected] = -1;
+                    Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
+                    Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
+                    MenuDataList[OptionSelected].Opacity = 0.6;
+                    switch (OptionSelected)
+                    {
+                        case "BoxGeneral":
+                            SwitchOption("BoxCancel");
+                            break;
+                        case "BoxTouche":
+                            SwitchOption("BoxGeneral");
+                            break;
+                        case "BoxTheme":
+                            SwitchOption("BoxTouche");
+                            break;
+                        case "BoxCancel":
+                            SwitchOption("BoxTheme");
+                            break;
+                    }
                 }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
-            {
-                thisistheend = true;
-                switch (OptionSelected)
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
-                    case "BoxGeneral":
-                        _wizard.NextScreen(ScreenType.GeneralOptions);
-                        break;
-                    case "BoxTouche":
-                        _wizard.NextScreen(ScreenType.KeyConfig);
-                        break;
-                    case "BoxTheme":
-                        _wizard.NextScreen(ScreenType.Themes);
-                        break;
-                    case "BoxCancel":
-                        _wizard.NextScreen(ScreenType.MainMenu);
-                        break;
+                    thisistheend = true;
+                    switch (OptionSelected)
+                    {
+                        case "BoxGeneral":
+                            _wizard.NextScreen(ScreenType.GeneralOptions);
+                            break;
+                        case "BoxTouche":
+                            _wizard.NextScreen(ScreenType.KeyConfig);
+                            break;
+                        case "BoxTheme":
+                            _wizard.NextScreen(ScreenType.Themes);
+                            break;
+                        case "BoxCancel":
+                            _wizard.NextScreen(ScreenType.MainMenu);
+                            break;
+                    }
                 }
             }
         }
@@ -472,6 +480,7 @@ namespace BombEistiv2WPF.View.Menu
                     _wizard.Grid.Children.Add(lab.Value);
                 }
                 SwitchOption("BoxGeneral");
+                movelocked = false;
             }
             
         }
@@ -513,6 +522,7 @@ namespace BombEistiv2WPF.View.Menu
                     _wizard.Grid.Children.Add(lab.Value);
                 }
                 SwitchOption("BoxGeneral");
+                movelocked = false;
             }
 
         }
@@ -554,6 +564,7 @@ namespace BombEistiv2WPF.View.Menu
                     _wizard.Grid.Children.Add(lab.Value);
                 }
                 SwitchOption("BoxTouche");
+                movelocked = false;
             }
 
         }
@@ -595,6 +606,7 @@ namespace BombEistiv2WPF.View.Menu
                     _wizard.Grid.Children.Add(lab.Value);
                 }
                 SwitchOption("BoxTheme");
+                movelocked = false;
             }
 
         }

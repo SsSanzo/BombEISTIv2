@@ -114,7 +114,7 @@ namespace BombEistiv2WPF.View
             var g = newgif();
             g.Margin = new Thickness(b.X * 40, b.Y * 40, 0.0, 0.0);
             Mw.explosion(g);
-            new EntityOfDeath(b.X, b.Y, game, true);
+            new EntityOfDeath(b.X, b.Y, game, b2.Owner, true);
             if (Left == null)
             {
                 if(b.X - b.Power < 0)
@@ -213,7 +213,7 @@ namespace BombEistiv2WPF.View
                     g.Margin = new Thickness(b.X * 40 - offset, b.Y * 40, 0.0, 0.0);
                     if (offset % 40 == 0)
                     {
-                        new EntityOfDeath(b.X - offset/40, b.Y, game);
+                        new EntityOfDeath(b.X - offset / 40, b.Y, game, b.Owner);
                     }
                     Mw.explosion(g);
                     if(e is HardBlock)
@@ -248,7 +248,7 @@ namespace BombEistiv2WPF.View
                     g.Margin = new Thickness(b.X * 40 + offset, b.Y * 40, 0.0, 0.0);
                     if (offset % 40 == 0)
                     {
-                        new EntityOfDeath(b.X + offset / 40, b.Y, game);
+                        new EntityOfDeath(b.X + offset / 40, b.Y, game, b.Owner);
                     }
                     Mw.explosion(g);
                     if(e is HardBlock)
@@ -281,7 +281,7 @@ namespace BombEistiv2WPF.View
                     g.Margin = new Thickness(b.X * 40, b.Y * 40 - offset, 0.0, 0.0);
                     if (offset % 40 == 0)
                     {
-                        new EntityOfDeath(b.X, b.Y - offset / 40, game);
+                        new EntityOfDeath(b.X, b.Y - offset / 40, game, b.Owner);
                     }
                     Mw.explosion(g);
                     if(e is HardBlock)
@@ -314,7 +314,7 @@ namespace BombEistiv2WPF.View
                     g.Margin = new Thickness(b.X * 40, b.Y * 40 + offset, 0.0, 0.0);
                     if (offset % 40 == 0)
                     {
-                        new EntityOfDeath(b.X, b.Y + offset / 40, game);
+                        new EntityOfDeath(b.X, b.Y + offset / 40, game, b.Owner);
                     }
                     Mw.explosion(g);
                     if (e is HardBlock)
@@ -461,7 +461,6 @@ namespace BombEistiv2WPF.View
                     bitmanimg.EndInit();
                     TypeavatarList.Add(td.Key.Substring(0, td.Key.Length - 5), bitmanimg);
                 }
-
             }
         }
 

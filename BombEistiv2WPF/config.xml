@@ -90,9 +90,17 @@
       <Texture object="CornerP3" source="cornerp3.png" />
       <Texture object="CornerP4" source="cornerp4.png" />
       <Texture object="Versus" source="versus.png" />
+      <Texture object="Start3" source="Start3.png" />
+      <Texture object="Start2" source="Start2.png" />
+      <Texture object="Start1" source="Start1.png" />
+      <Texture object="StartGo" source="StartGO.png" />
+      <Texture object="Hurry" source="hurry.png" />
+      <Texture object="Over" source="over.png" />
+      <Texture object="Score" source="score.png" />
+      <Texture object="Ray" source="ray.png" />
     </Menu>
     <SoftBlock count="120" />
-    <GameTime count="180" />
+    <GameTime count="60" />
     <ExplosionDelay count="3" />
     <keysMap>
       <Map key="Up" action="Up" player="1" />
@@ -118,20 +126,20 @@
     </keysMap>
   </CommonParameter>
   <Game type="Classic">
-    <Player lives="2" />
+    <Player lives="3" />
     <Upgrades>
-      <Upgrade defaultFreq="3" currentFreq="3">PowerUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">Kick</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
-      <Upgrade defaultFreq="1" currentFreq="1">Life</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="20">PowerUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">PowerMax</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="20">BombUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">Kick</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="15">SpeedUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="1" currentFreq="5">Life</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="10">Teleport</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">PowerDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">BombDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">SpeedDown</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="5">ChangeDirection</Upgrade>
     </Upgrades>
   </Game>
   <Game type="Hardcore">

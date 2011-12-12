@@ -24,6 +24,7 @@ namespace BombEistiv2WPF.View.Menu
         private bool thisistheend;
         private bool alreadyloaded;
         private String ItemSelected;
+        private bool movelocked;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -39,6 +40,7 @@ namespace BombEistiv2WPF.View.Menu
         {
             thisistheend = false;
             alreadyloaded = false;
+            movelocked = true;
             var pressstart = (OptionMenu)oldscreen;
             _wizard = w;
             OptionMoved = new Dictionary<String, String>();
@@ -232,250 +234,258 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyDown(Key k)
         {
-            if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
+            if (!movelocked)
             {
-                if(ItemSelected == "")
+                if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Down")
                 {
-                    switch(OptionSelected)
+                    if (ItemSelected == "")
                     {
-                        case "Time":
-                            SwitchOption("Explode");
-                            break;
-                        case "Explode":
-                            SwitchOption("Lives");
-                            break;
-                        case "Lives":
-                            SwitchOption("Soft");
-                            break;
-                        case "Soft":
-                            SwitchOption("PowerUp");
-                            break;
-                        case "PowerUp":
-                            SwitchOption("PowerMax");
-                            break;
-                        case "PowerMax":
-                            SwitchOption("BombUp");
-                            break;
-                        case "BombUp":
-                            SwitchOption("Kick");
-                            break;
-                        case "Kick":
-                            SwitchOption("Confirm");
-                            break;
-                        case "SpeedUp":
-                            SwitchOption("SpeedMax");
-                            break;
-                        case "SpeedMax":
-                            SwitchOption("Life");
-                            break;
-                        case "Life":
-                            SwitchOption("Teleport");
-                            break;
-                        case "Teleport":
-                            SwitchOption("Confirm");
-                            break;
-                        case "PowerDown":
-                            SwitchOption("BombDown");
-                            break;
-                        case "BombDown":
-                            SwitchOption("SpeedDown");
-                            break;
-                        case "SpeedDown":
-                            SwitchOption("ChangeDirection");
-                            break;
-                        case "ChangeDirection":
-                            SwitchOption("Confirm");
-                            break;
+                        switch (OptionSelected)
+                        {
+                            case "Time":
+                                SwitchOption("Explode");
+                                break;
+                            case "Explode":
+                                SwitchOption("Lives");
+                                break;
+                            case "Lives":
+                                SwitchOption("Soft");
+                                break;
+                            case "Soft":
+                                SwitchOption("PowerUp");
+                                break;
+                            case "PowerUp":
+                                SwitchOption("PowerMax");
+                                break;
+                            case "PowerMax":
+                                SwitchOption("BombUp");
+                                break;
+                            case "BombUp":
+                                SwitchOption("Kick");
+                                break;
+                            case "Kick":
+                                SwitchOption("Confirm");
+                                break;
+                            case "SpeedUp":
+                                SwitchOption("SpeedMax");
+                                break;
+                            case "SpeedMax":
+                                SwitchOption("Life");
+                                break;
+                            case "Life":
+                                SwitchOption("Teleport");
+                                break;
+                            case "Teleport":
+                                SwitchOption("Confirm");
+                                break;
+                            case "PowerDown":
+                                SwitchOption("BombDown");
+                                break;
+                            case "BombDown":
+                                SwitchOption("SpeedDown");
+                                break;
+                            case "SpeedDown":
+                                SwitchOption("ChangeDirection");
+                                break;
+                            case "ChangeDirection":
+                                SwitchOption("Confirm");
+                                break;
+                        }
                     }
                 }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
-            {
-                if(ItemSelected == "")
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Up")
                 {
-                    switch (OptionSelected)
+                    if (ItemSelected == "")
                     {
-                        case "Explode":
-                            SwitchOption("Time");
-                            break;
-                        case "Lives":
-                            SwitchOption("Explode");
-                            break;
-                        case "Soft":
-                            SwitchOption("Lives");
-                            break;
-                        case "PowerUp":
-                            SwitchOption("Soft");
-                            break;
-                        case "PowerMax":
-                            SwitchOption("PowerUp");
-                            break;
-                        case "BombUp":
-                            SwitchOption("PowerMax");
-                            break;
-                        case "Kick":
-                            SwitchOption("BombUp");
-                            break;
-                        case "SpeedUp":
-                            SwitchOption("Soft");
-                            break;
-                        case "SpeedMax":
-                            SwitchOption("SpeedUp");
-                            break;
-                        case "Life":
-                            SwitchOption("SpeedMax");
-                            break;
-                        case "Teleport":
-                            SwitchOption("Life");
-                            break;
-                        case "PowerDown":
-                            SwitchOption("Soft");
-                            break;
-                        case "BombDown":
-                            SwitchOption("PowerDown");
-                            break;
-                        case "SpeedDown":
-                            SwitchOption("BombDown");
-                            break;
-                        case "ChangeDirection":
-                            SwitchOption("SpeedDown");
-                            break;
-                        case "Confirm":
-                            SwitchOption("Kick");
-                            break;
-                        case "Quit":
-                            SwitchOption("Kick");
-                            break;
+                        switch (OptionSelected)
+                        {
+                            case "Explode":
+                                SwitchOption("Time");
+                                break;
+                            case "Lives":
+                                SwitchOption("Explode");
+                                break;
+                            case "Soft":
+                                SwitchOption("Lives");
+                                break;
+                            case "PowerUp":
+                                SwitchOption("Soft");
+                                break;
+                            case "PowerMax":
+                                SwitchOption("PowerUp");
+                                break;
+                            case "BombUp":
+                                SwitchOption("PowerMax");
+                                break;
+                            case "Kick":
+                                SwitchOption("BombUp");
+                                break;
+                            case "SpeedUp":
+                                SwitchOption("Soft");
+                                break;
+                            case "SpeedMax":
+                                SwitchOption("SpeedUp");
+                                break;
+                            case "Life":
+                                SwitchOption("SpeedMax");
+                                break;
+                            case "Teleport":
+                                SwitchOption("Life");
+                                break;
+                            case "PowerDown":
+                                SwitchOption("Soft");
+                                break;
+                            case "BombDown":
+                                SwitchOption("PowerDown");
+                                break;
+                            case "SpeedDown":
+                                SwitchOption("BombDown");
+                                break;
+                            case "ChangeDirection":
+                                SwitchOption("SpeedDown");
+                                break;
+                            case "Confirm":
+                                SwitchOption("Kick");
+                                break;
+                            case "Quit":
+                                SwitchOption("Kick");
+                                break;
+                        }
                     }
                 }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
-            {
-                if (ItemSelected == "")
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                 {
-                    switch (OptionSelected)
+                    if (ItemSelected == "")
                     {
+                        switch (OptionSelected)
+                        {
 
-                        case "Time":
-                            ChangeOption("Time", 1);
-                            break;
-                        case "Explode":
-                            ChangeOption("Explode", 1);
-                            break;
-                        case "Lives":
-                            ChangeOption("Lives", 1);
-                            break;
-                        case "Soft":
-                            ChangeOption("Soft", 1);
-                            break;
-                        case "PowerUp":
-                            SwitchOption("SpeedUp");
-                            break;
-                        case "PowerMax":
-                            SwitchOption("SpeedMax");
-                            break;
-                        case "BombUp":
-                            SwitchOption("Life");
-                            break;
-                        case "Kick":
-                            SwitchOption("Teleport");
-                            break;
-                        case "SpeedUp":
-                            SwitchOption("PowerDown");
-                            break;
-                        case "SpeedMax":
-                            SwitchOption("BombDown");
-                            break;
-                        case "Life":
-                            SwitchOption("SpeedDown");
-                            break;
-                        case "Teleport":
-                            SwitchOption("ChangeDirection");
-                            break;
-                        case "Confirm":
-                            SwitchOption("Quit");
-                            break;
+                            case "Time":
+                                ChangeOption("Time", 1);
+                                break;
+                            case "Explode":
+                                ChangeOption("Explode", 1);
+                                break;
+                            case "Lives":
+                                ChangeOption("Lives", 1);
+                                break;
+                            case "Soft":
+                                ChangeOption("Soft", 1);
+                                break;
+                            case "PowerUp":
+                                SwitchOption("SpeedUp");
+                                break;
+                            case "PowerMax":
+                                SwitchOption("SpeedMax");
+                                break;
+                            case "BombUp":
+                                SwitchOption("Life");
+                                break;
+                            case "Kick":
+                                SwitchOption("Teleport");
+                                break;
+                            case "SpeedUp":
+                                SwitchOption("PowerDown");
+                                break;
+                            case "SpeedMax":
+                                SwitchOption("BombDown");
+                                break;
+                            case "Life":
+                                SwitchOption("SpeedDown");
+                                break;
+                            case "Teleport":
+                                SwitchOption("ChangeDirection");
+                                break;
+                            case "Confirm":
+                                SwitchOption("Quit");
+                                break;
+                        }
                     }
-                }else
-                {
-                    ChangeOption(OptionSelected, 1);
+                    else
+                    {
+                        ChangeOption(OptionSelected, 1);
+                    }
                 }
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
-            {
-                if (ItemSelected == "")
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
                 {
-                    switch (OptionSelected)
+                    if (ItemSelected == "")
                     {
-                        case "Time":
-                            ChangeOption("Time", -1);
-                            break;
-                        case "Explode":
-                            ChangeOption("Explode", -1);
-                            break;
-                        case "Lives":
-                            ChangeOption("Lives", -1);
-                            break;
-                        case "Soft":
-                            ChangeOption("Soft", -1);
-                            break;
-                        case "SpeedUp":
-                            SwitchOption("PowerUp");
-                            break;
-                        case "SpeedMax":
-                            SwitchOption("PowerMax");
-                            break;
-                        case "Life":
-                            SwitchOption("BombUp");
-                            break;
-                        case "Teleport":
-                            SwitchOption("Kick");
-                            break;
-                        case "PowerDown":
-                            SwitchOption("SpeedUp");
-                            break;
-                        case "BombDown":
-                            SwitchOption("SpeedMax");
-                            break;
-                        case "SpeedDown":
-                            SwitchOption("Life");
-                            break;
-                        case "ChangeDirection":
-                            SwitchOption("Teleport");
-                            break;
-                        case "Quit":
-                            SwitchOption("Confirm");
-                            break;
+                        switch (OptionSelected)
+                        {
+                            case "Time":
+                                ChangeOption("Time", -1);
+                                break;
+                            case "Explode":
+                                ChangeOption("Explode", -1);
+                                break;
+                            case "Lives":
+                                ChangeOption("Lives", -1);
+                                break;
+                            case "Soft":
+                                ChangeOption("Soft", -1);
+                                break;
+                            case "SpeedUp":
+                                SwitchOption("PowerUp");
+                                break;
+                            case "SpeedMax":
+                                SwitchOption("PowerMax");
+                                break;
+                            case "Life":
+                                SwitchOption("BombUp");
+                                break;
+                            case "Teleport":
+                                SwitchOption("Kick");
+                                break;
+                            case "PowerDown":
+                                SwitchOption("SpeedUp");
+                                break;
+                            case "BombDown":
+                                SwitchOption("SpeedMax");
+                                break;
+                            case "SpeedDown":
+                                SwitchOption("Life");
+                                break;
+                            case "ChangeDirection":
+                                SwitchOption("Teleport");
+                                break;
+                            case "Quit":
+                                SwitchOption("Confirm");
+                                break;
+                        }
                     }
-                }else
-                {
-                    ChangeOption(OptionSelected, -1);
+                    else
+                    {
+                        ChangeOption(OptionSelected, -1);
+                    }
                 }
-            }
-            //else if (KeyAction._.KeysMenu[k] == "Enter")
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
-            {
-                if(Enum.IsDefined(typeof(UpgradeType),OptionSelected))
+                    //else if (KeyAction._.KeysMenu[k] == "Enter")
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
-                    if(ItemSelected == "")
+                    if (Enum.IsDefined(typeof (UpgradeType), OptionSelected))
                     {
-                        ItemSelected = OptionSelected;
-                        MenuDataList["Left"].Opacity = 1;
-                        MenuDataList["Right"].Opacity = 1;
-                    }else
-                    {
-                        ItemSelected = "";
-                        MenuDataList["Left"].Opacity = 0;
-                        MenuDataList["Right"].Opacity = 0;
+                        if (ItemSelected == "")
+                        {
+                            ItemSelected = OptionSelected;
+                            MenuDataList["Left"].Opacity = 1;
+                            MenuDataList["Right"].Opacity = 1;
+                        }
+                        else
+                        {
+                            ItemSelected = "";
+                            MenuDataList["Left"].Opacity = 0;
+                            MenuDataList["Right"].Opacity = 0;
+                        }
                     }
-                }else if(OptionSelected == "Quit")
-                {
-                    resetLabel();
-                }else if(OptionSelected == "Confirm")
-                {
-                    validLabel();
-                    thisistheend = true;
-                    _wizard.NextScreen(ScreenType.Options);
+                    else if (OptionSelected == "Quit")
+                    {
+                        resetLabel();
+                    }
+                    else if (OptionSelected == "Confirm")
+                    {
+                        validLabel();
+                        thisistheend = true;
+                        _wizard.NextScreen(ScreenType.Options);
+                    }
                 }
             }
         }
@@ -742,6 +752,7 @@ namespace BombEistiv2WPF.View.Menu
                     _wizard.Grid.Children.Add(lab.Value);
                 }
                 SwitchOption("Time", true);
+                movelocked = false;
             }
 
         }

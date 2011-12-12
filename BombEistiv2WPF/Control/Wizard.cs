@@ -133,6 +133,7 @@ namespace BombEistiv2WPF.Control
                     _currentScreen = m8;
                     break;
                 case ScreenType.PreGame:
+                    Score._.ResetScore();
                     var m9 = new PreGame();
                     m9.Show(this, _currentScreen);
                     _currentScreen = m9;
@@ -141,6 +142,11 @@ namespace BombEistiv2WPF.Control
                     var m10 = new GameScreen();
                     m10.Show(this, _currentScreen);
                     _currentScreen = m10;
+                    break;
+                case ScreenType.Results:
+                    var m11 = new ResultScreen();
+                    m11.Show(this, _currentScreen);
+                    _currentScreen = m11;
                     break;
 
             }

@@ -150,5 +150,11 @@ namespace BombEistiv2WPF.Control
             
 
         }
+
+        public void EmptyTheCache()
+        {
+            pulled.Clear();
+            pushed.Clear();
+        }
     }
 }

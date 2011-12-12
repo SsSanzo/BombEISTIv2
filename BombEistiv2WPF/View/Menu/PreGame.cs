@@ -104,7 +104,7 @@ namespace BombEistiv2WPF.View.Menu
                 MenuDataList.Add("P1", old.MenuDataList["Preview_1"]);
                 MenuDataList["P1"].Margin = new Thickness(MenuDataList["P1"].Margin.Left, MenuDataList["P1"].Margin.Top + 160, 0.0, 0.0);
                 MenuDataList.Add("P2", old.MenuDataList["Preview_2"]);
-                MenuDataList["P2"].Margin = new Thickness(MenuDataList["P2"].Margin.Left + 180, MenuDataList["P2"].Margin.Top + 160, 0.0, 0.0);
+                MenuDataList["P2"].Margin = new Thickness(MenuDataList["P2"].Margin.Left + 60, MenuDataList["P2"].Margin.Top + 160, 0.0, 0.0);
                 MenuDataList.Add("P3", old.MenuDataList["Preview_3"]);
                 MenuDataList["P3"].Margin = new Thickness(MenuDataList["P3"].Margin.Left + 120, MenuDataList["P3"].Margin.Top + 160, 0.0, 0.0);
             }else

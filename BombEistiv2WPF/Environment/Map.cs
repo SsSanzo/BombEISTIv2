@@ -13,6 +13,7 @@ namespace BombEistiv2WPF.Environment
         private readonly List<Bomb> _listOfBomb;
         private readonly List<Upgrade> _listOfUpgrade;
         private readonly List<EntityOfDeath> _listOfEntityOfDeath;
+        private Random rand;
 
         public Map()
         {
@@ -22,6 +23,7 @@ namespace BombEistiv2WPF.Environment
             _listOfBomb = new List<Bomb>();
             _listOfUpgrade = new List<Upgrade>();
             _listOfEntityOfDeath = new List<EntityOfDeath>();
+            rand = new Random();
         }
 
         public List<Upgrade> ListOfUpgrade
@@ -174,6 +176,7 @@ namespace BombEistiv2WPF.Environment
                     Texture._.DeleteTextureEntity(player);
                     ListOfPlayer.Remove(player);
                 }
+                CheckForAllDead();
             }
             var b = ListOfBomb.FirstOrDefault(c => c.X == x && c.Y == y);
             if(b != null)
@@ -198,6 +201,39 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
+
+        public void Teleport(Player p)
+        {
+            
+            var l = ListOfPlayer.Where(c => c != null && c.Id != p.Id);
+            var count = l.Count();
+            if(count > 0)
+            {
+                var thenumber = rand.Next(count);
+                var p2 = l.ElementAt(thenumber);
+                var oldX = p.X;
+                var oldY = p.Y;
+                p.X = p2.X;
+                p.Y = p2.Y;
+                p2.X = oldX;
+                p2.Y = oldY;
+                p.Percentx = 0;
+                p.Percenty = 0;
+                p2.Percentx = 0;
+                p2.Percenty = 0;
+                
+            }
+        }
+
+        public void CheckForAllDead()
+        {
+            var l = ListOfPlayer.Where(c => c != null && c.Lives > 0).Count();
+            if(l <= 1)
+            {
+                var g = (ClassicGame) Texture._.Mw.GameInProgress;
+                g.EndOfTheGameUntimed();
+            }
+        }
 
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Timers;
 using System.Windows.Threading;
+using BombEistiv2WPF.Control;
 using BombEistiv2WPF.View;
+using BombEistiv2WPF.View.Menu;
 
 namespace BombEistiv2WPF.Environment
 {
@@ -9,9 +11,11 @@ namespace BombEistiv2WPF.Environment
     {
         public HardBlock hb;
         public int tour;
+        public GameScreen w;
 
-        public ClassicGame()
+        public ClassicGame(GameScreen wiz = null)
         {
+            w = wiz;
             GameParameters._.Type = GameType.Classic;
             TheCurrentMap = new Map();
             TheCurrentMap.SetHardBlockOnMap();
@@ -29,7 +33,8 @@ namespace BombEistiv2WPF.Environment
         public void ChangeTime(object sender, ElapsedEventArgs elapsedEventArgs)
         {
             var t = (Timer) sender;
-            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => InGameMenu._.ChangeLabelTime(t))); 
+            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => InGameMenu._.ChangeLabelTime(t)));
+            
             
         }
 
@@ -89,6 +94,7 @@ namespace BombEistiv2WPF.Environment
         public void HurryUp(object sender, ElapsedEventArgs elapsedEventArgs)
         {
             TimerManager._.AddNewTimer(false, 45000, true, null, EndOfTheGame);
+            TimerManager._.AddNewTimer(true, 15, true, null, w.Hurry);
             hb = null;
             tour = 0;
             TimerManager._.AddNewTimer(true,80,true,null, InsertEndingBlockThread);
@@ -97,6 +103,28 @@ namespace BombEistiv2WPF.Environment
         public void EndOfTheGame(object sender, ElapsedEventArgs elapsedEventArgs)
         {
             TimerManager._.Stop();
+            var l = TheCurrentMap.ListOfPlayer.FindAll(c => c.Lives >= 0);
+            foreach (var p in l)
+            {
+                Score._.Survived(p);
+            }
+            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(Ending));
+        }
+
+        public void EndOfTheGameUntimed()
+        {
+            TimerManager._.Stop();
+            var l = TheCurrentMap.ListOfPlayer.FindAll(c => c.Lives >= 0);
+            foreach (var p in l)
+            {
+                Score._.Survived(p);
+            }
+            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(Ending));
+        }
+
+        public void Ending()
+        {
+            w.Ending();
         }
     }
 }

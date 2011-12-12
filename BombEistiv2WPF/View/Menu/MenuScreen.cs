@@ -32,6 +32,7 @@ namespace BombEistiv2WPF.View.Menu
         {
             thisIsTheEnd = false;
             _wizard = w;
+            TimerManager._.Reset();
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
             {
                 if (!(w.Grid.Children[i] is Grid))

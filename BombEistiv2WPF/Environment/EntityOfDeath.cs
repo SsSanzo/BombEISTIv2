@@ -11,6 +11,7 @@ namespace BombEistiv2WPF.Environment
     {
         private Game G;
         private bool blocus;
+        private Player owner;
 
         public bool Blocus
         {
@@ -18,11 +19,18 @@ namespace BombEistiv2WPF.Environment
             set { blocus = value; }
         }
 
-        public EntityOfDeath(int x, int y, Game g, bool b = false) : base(x, y)
+        public Player Owner
+        {
+            get { return owner; }
+            set { owner = value; }
+        }
+
+        public EntityOfDeath(int x, int y, Game g, Player o, bool b = false) : base(x, y)
         {
 
             blocus = b;
             G = g;
+            owner = o;
             if (G.TheCurrentMap.GetEntityOfDeath(x,y) == null || (G.TheCurrentMap.GetEntityOfDeath(x,y) != null && !G.TheCurrentMap.GetEntityOfDeath(x,y).Blocus))
             {
                 
@@ -59,12 +67,15 @@ namespace BombEistiv2WPF.Environment
                                 var thePlayer = G.TheCurrentMap.ListOfPlayer.First(c => c.X == play.X && c.Y == play.Y);
                                 G.TheCurrentMap.ListOfPlayer.Remove(thePlayer);
                                 Texture._.DeleteTextureEntity(thePlayer);
+                                Score._.KilledBy(owner, thePlayer);
                             }else
                             {
                                 play.cling();
                             }
                         }
+
                 }
+                G.TheCurrentMap.CheckForAllDead();
                 TimerManager._.AddNewTimer(false, 500, true, null, Supress);
                 TimerManager._.AddNewTimer(false, 1000, true, null, Supress);
             }

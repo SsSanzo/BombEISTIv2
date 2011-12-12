@@ -108,8 +108,9 @@ namespace BombEistiv2WPF
             {
                 timerEvent.Timer.Stop();
                 timerEvent.Timer.Close();
-                _timers.Remove(timerEvent);
+                
             }
+            _timers.Clear();
         }
 
         private void Destroy(object sender, EventArgs eventArgs)
@@ -121,7 +122,7 @@ namespace BombEistiv2WPF
                     DispatcherPriority.Normal,
                     (Action)(() =>
                     {
-                        var t = _timers.Find(c => c.Timer == s);
+                        var t = _timers.Find(c => c != null && c.Timer == s);
                         if(t != null){
                         t.StartTime = DateTime.Now;
                         if (!t.ReinitInterval) return;

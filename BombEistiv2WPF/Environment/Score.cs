@@ -5,39 +5,97 @@ namespace BombEistiv2WPF.Environment
     public class Score
     {
         private Dictionary<int,int> _scoreMap;
-        private int _owner;
+        private Dictionary<int, int> _surviveMap;
+        private static Score _this;
+        private List<int> _id_Victory;
 
-        public Score(int id)
+        private Score()
         {
-            _owner = id;
             _scoreMap = new Dictionary<int, int>();
+            _surviveMap = new Dictionary<int, int>();
+            _id_Victory = new List<int>(); ;
         }
 
-        public int Owner
+        public static Score _
         {
-            get { return _owner; }
+            get { return _this ?? (_this = new Score()); }
         }
 
-        public void Killed(Player p)
+        public List<int> Id_Victory
         {
-            _scoreMap[p.Id] += 1;
+            get { return _id_Victory; }
         }
 
-        public int GetScore()
+
+        public void KilledBy(Player killer, Player killed)
         {
-            var score = 0;
-            foreach (var i in _scoreMap)
+            CheckExistance(killer.Id);
+            if(killer.Id == killed.Id)
             {
-                if (i.Key == Owner)
-                {
-                    score -= i.Value;
-                }
-                else
-                {
-                    score += i.Value;
-                }
+                _scoreMap[killer.Id] -= 1;
+            }else
+            {
+                _scoreMap[killer.Id] += 1;
             }
-            return score;
+            
+        }
+
+        public void Survived(Player p)
+        {
+            CheckExistanceSurvive(p.Id);
+            _surviveMap[p.Id] += 1;
+            _id_Victory.Add(p.Id);
+        }
+
+        public void ResetSurvived()
+        {
+            _id_Victory.Clear();
+        }
+
+        public void ResetScore()
+        {
+            _scoreMap.Clear();
+            _surviveMap.Clear();
+        }
+
+        public void CheckExistance(int id)
+        {
+            if(!_scoreMap.ContainsKey(id))
+            {
+                _scoreMap.Add(id, 0);
+            }
+        }
+
+        public void CheckExistanceSurvive(int id)
+        {
+            if (!_surviveMap.ContainsKey(id))
+            {
+                _surviveMap.Add(id, 0);
+            }
+        }
+
+        public int GetScore(Player p)
+        {
+            CheckExistance(p.Id);
+            return _scoreMap[p.Id];
+        }
+
+        public int GetScore(int id)
+        {
+            CheckExistance(id);
+            return _scoreMap[id];
+        }
+
+        public int GetSurvive(Player p)
+        {
+            CheckExistanceSurvive(p.Id);
+            return _surviveMap[p.Id];
+        }
+
+        public int GetSurvive(int id)
+        {
+            CheckExistanceSurvive(id);
+            return _surviveMap[id];
         }
     }
 }

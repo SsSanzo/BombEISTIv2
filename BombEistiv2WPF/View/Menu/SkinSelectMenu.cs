@@ -26,6 +26,7 @@ namespace BombEistiv2WPF.View.Menu
         private Dictionary<String, String> OptionMoved;
         private bool thisistheend;
         private bool alreadyloaded;
+        private bool movelocked;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -41,6 +42,7 @@ namespace BombEistiv2WPF.View.Menu
         {
 
             thisistheend = false;
+            movelocked = true;
             var pressstart = (PlayerSelectMenu)oldscreen;
             _wizard = w;
             OptionMoved = new Dictionary<string, string>();
@@ -135,50 +137,57 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void KeyDown(Key k)
         {
-            if(KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Up"))
+            if (!movelocked)
             {
-                var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
-                if (OptionSelected[p] > 4 && p <= GameParameters._.PlayerCount)
+                if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Up"))
                 {
-                    OptionSelected[p] = OptionSelected[p] - 4;
-                    SwitchOption(p , OptionSelected[p] + 4);
+                    var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
+                    if (p <= GameParameters._.PlayerCount && OptionSelected[p] > 4)
+                    {
+                        OptionSelected[p] = OptionSelected[p] - 4;
+                        SwitchOption(p, OptionSelected[p] + 4);
+                    }
                 }
-            }else if(KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Down"))
-            {
-                var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
-                if (OptionSelected[p] < 5 && p <= GameParameters._.PlayerCount)
+                else if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Down"))
                 {
-                    OptionSelected[p] = OptionSelected[p] + 4;
-                    SwitchOption(p, OptionSelected[p] - 4);
+                    var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
+                    if (p <= GameParameters._.PlayerCount && OptionSelected[p] < 5)
+                    {
+                        OptionSelected[p] = OptionSelected[p] + 4;
+                        SwitchOption(p, OptionSelected[p] - 4);
+                    }
                 }
-            }
-            else if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Right"))
-            {
-                var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
-                if (OptionSelected[p] != 4 && OptionSelected[p] != 8 && p <= GameParameters._.PlayerCount)
+                else if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Right"))
                 {
-                    OptionSelected[p] = OptionSelected[p] + 1;
-                    SwitchOption(p, OptionSelected[p] - 1);
+                    var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
+                    if (p <= GameParameters._.PlayerCount && OptionSelected[p] != 4 && OptionSelected[p] != 8)
+                    {
+                        OptionSelected[p] = OptionSelected[p] + 1;
+                        SwitchOption(p, OptionSelected[p] - 1);
+                    }
                 }
-            }
-            else if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Left"))
-            {
-                var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
-                if (OptionSelected[p] != 1 && OptionSelected[p] != 5 && p <= GameParameters._.PlayerCount)
+                else if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("Left"))
                 {
-                    OptionSelected[p] = OptionSelected[p] - 1;
-                    SwitchOption(p, OptionSelected[p] + 1);
+                    var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
+                    if (p <= GameParameters._.PlayerCount && OptionSelected[p] != 1 && OptionSelected[p] != 5)
+                    {
+                        OptionSelected[p] = OptionSelected[p] - 1;
+                        SwitchOption(p, OptionSelected[p] + 1);
+                    }
                 }
-            }
-            else if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("None"))
-            {
-                var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
-                ConfirmOption(p);
-            }
-            else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
-            {
-                thisistheend = true;
-                _wizard.NextScreen(ScreenType.PlayerCound);
+                else if (KeyAction._.KeysPlayer.ContainsKey(k) && KeyAction._.KeysPlayer[k].EndsWith("None"))
+                {
+                    var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
+                    if (p <= GameParameters._.PlayerCount)
+                    {
+                        ConfirmOption(p);
+                    }
+                }
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
+                {
+                    thisistheend = true;
+                    _wizard.NextScreen(ScreenType.PlayerCound);
+                }
             }
         }
 
@@ -361,6 +370,7 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         _wizard.Grid.Children.Add(lab.Value);
                     }
+                    movelocked = false;
                 }
             }
 

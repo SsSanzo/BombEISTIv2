@@ -52,12 +52,6 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
-        //public List<Entity> ToDelete
-        //{
-        //    set { _toDelete = value; }
-        //    get { return _toDelete ?? (_toDelete = new List<Entity>()); }
-        //}
-
         public void InitPlayers()
         {
             if (TheCurrentMap != null)

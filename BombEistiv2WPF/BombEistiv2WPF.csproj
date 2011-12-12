@@ -57,7 +57,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Control\GifImage.cs" />
-    <Compile Include="Control\ListenerMenu.cs" />
     <Compile Include="Control\Wizard.cs" />
     <Compile Include="Environment\EntityOfDeath.cs" />
     <Compile Include="Main.cs" />
@@ -78,6 +77,7 @@
     <Compile Include="View\Menu\OptionMenu.cs" />
     <Compile Include="View\Menu\PlayerSelectMenu.cs" />
     <Compile Include="View\Menu\PreGame.cs" />
+    <Compile Include="View\Menu\ResultScreen.cs" />
     <Compile Include="View\Menu\Screen.cs" />
     <Compile Include="View\Menu\Screenv2.cs" />
     <Compile Include="View\Menu\SkinSelectMenu.cs" />
