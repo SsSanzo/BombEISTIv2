@@ -1,15 +1,15 @@
-D:\My Documents\BombEISTIv2\BombEistiv2WPF\bin\Debug\BombEistiv2WPF.exe
-D:\My Documents\BombEISTIv2\BombEistiv2WPF\bin\Debug\BombEistiv2WPF.pdb
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\MainWindow.baml
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\MainWindow.g.cs
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\App.g.cs
-D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF_MarkupCompile.cache
-D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.g.resources
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.Properties.Resources.resources
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\GenerateResource.read.1.tlog
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\GenerateResource.write.1.tlog
-D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.exe
-D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.pdb
 C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.exe
 C:\Users\auffraycle\documents\visual studio 2010\Projects\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.pdb
+D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEisti2_MarkupCompile.cache
+D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEisti2.g.resources
+D:\My Documents\BombEISTIv2\BombEistiv2WPF\bin\Debug\BombEisti2.exe
+D:\My Documents\BombEISTIv2\BombEistiv2WPF\bin\Debug\BombEisti2.pdb
+D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEisti2.exe
+D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEisti2.pdb

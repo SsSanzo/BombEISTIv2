@@ -7,12 +7,12 @@ using System.Windows;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("BombEistiv2WPF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("BombEisti2")]
+[assembly: AssemblyDescription("BombEisti 2")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("EISTI")]
-[assembly: AssemblyProduct("BombEistiv2WPF")]
-[assembly: AssemblyCopyright("Copyright © EISTI 2011")]
+[assembly: AssemblyCompany("Team Blui")]
+[assembly: AssemblyProduct("BombEisti2")]
+[assembly: AssemblyCopyright("Copyright © Team blui 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
