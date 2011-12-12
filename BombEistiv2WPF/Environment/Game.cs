@@ -62,7 +62,7 @@ namespace BombEistiv2WPF.Environment
                 }
                 if (GameParameters._.PlayerCount > 1)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(2, GameParameters._.PlayerSkin[2], Length - 1, 0, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(2, GameParameters._.PlayerSkin[2], Length - 1, Length - 1, TheCurrentMap));
                 }
                 if (GameParameters._.PlayerCount > 2)
                 {
@@ -70,7 +70,7 @@ namespace BombEistiv2WPF.Environment
                 }
                 if (GameParameters._.PlayerCount > 3)
                 {
-                    TheCurrentMap.ListOfPlayer.Add(new Player(4, GameParameters._.PlayerSkin[4], Length - 1, Length - 1, TheCurrentMap));
+                    TheCurrentMap.ListOfPlayer.Add(new Player(4, GameParameters._.PlayerSkin[4], Length - 1, 0, TheCurrentMap));
                 }
             }
             else

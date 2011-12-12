@@ -155,13 +155,13 @@ namespace BombEistiv2WPF.View.Menu
                 {
                     Source = GameParameters._.MenutextureList["Ray"],
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Margin = new Thickness((v % 2 == 0) ? 130 : -270, (v < 3) ? 230 : 330, 0.0, 0.0),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Margin = new Thickness((v % 2 == 0) ? 100 : -400, (v < 3) ? 30 : 230, 0.0, 0.0),
                     Opacity = 0,
-                    Width = 200,
-                    Height = 200
+                    Width = 240,
+                    Height = 240
                 };
-                var lt = new RotateTransform{ CenterX = 100, CenterY = 100};
+                var lt = new RotateTransform();
                 gc.LayoutTransform = lt;
                 MenuDataList.Add("Ray_" + v, gc);
 
@@ -380,7 +380,15 @@ namespace BombEistiv2WPF.View.Menu
             foreach (var image in MenuDataList.Where(c => c.Key.Contains("Ray")))
             {
                 var rt = (RotateTransform) image.Value.LayoutTransform;
-                rt.Angle += 2;
+                //Canvas.SetTop(image.Value, 100);
+                //Canvas.SetLeft(image.Value, 100);
+                
+                rt.CenterX = 100;
+                rt.CenterY = 100;
+                rt.Angle += 1;
+                image.Value.LayoutTransform = rt;
+                
+                //image.Value.Margin = new Thickness(image.Value.Margin.Left, image.Value.Margin.Top - ((45 - (rt.Angle % 90)) / 30.0), 0.0, 0.0);
             }
         }
 
