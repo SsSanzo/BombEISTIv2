@@ -10,7 +10,6 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:TimerManager.cs" caret="2133" fromTop="27" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Game.cs" caret="287" fromTop="11" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="1419" fromTop="18" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="4272" fromTop="5" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:config.xml" caret="1215" fromTop="6" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="27592" fromTop="13" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:GeneralOptionMenu.cs" caret="35598" fromTop="13" />
@@ -30,6 +29,7 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="2171" fromTop="11" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:GameScreen.cs" caret="223" fromTop="0" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="2340" fromTop="0" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="6760" fromTop="7" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ThemeMenu.cs" caret="5922" fromTop="14" />
     </RecentFiles>
     <RecentEdits>
