@@ -166,10 +166,10 @@ namespace BombEistiv2WPF.Environment
             switch (directionMoving)
             {
                 case Direction.Left:
-                    Percentx += 5;
+                    Percentx -= 5;
                     break;
                 case Direction.Right:
-                    Percentx -= 5;
+                    Percentx += 5;
                     break;
                 case Direction.Up:
                     Percenty -= 5;

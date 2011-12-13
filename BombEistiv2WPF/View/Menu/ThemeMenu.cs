@@ -129,27 +129,20 @@ namespace BombEistiv2WPF.View.Menu
                         var theint = rand.Next(MenuOrderDataList.Count - 1);
                         Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
                         PlaySound._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
-                        PlaySound._.ClearEverything(_wizard.TheWindow);
-                        PlaySound._.LoadAllMusic();
-                        PlaySound._.LireBoucle("Menu");
-                        foreach (var mus in PlaySound._.TypeMusicList)
-                        {
-                            _wizard.Grid.Children.Add(mus.Value);
-                        }
+                        
                     }
                     else
                     {
                         Texture._.SetTheme(PreviewSelected.Substring(6));
                         PlaySound._.SetTheme(PreviewSelected.Substring(6));
-                        PlaySound._.ClearEverything(_wizard.TheWindow);
-                        PlaySound._.LoadAllMusic();
-                        PlaySound._.LireBoucle("Menu");
-                        foreach (var mus in PlaySound._.TypeMusicList)
-                        {
-                            _wizard.Grid.Children.Add(mus.Value);
-                        }
                     }
-
+                    PlaySound._.ClearEverything(_wizard.TheWindow);
+                    PlaySound._.LoadAllMusic();
+                    PlaySound._.LireBoucle("MenuAll");
+                    foreach (var mus in PlaySound._.TypeMusicList)
+                    {
+                        _wizard.Grid.Children.Add(mus.Value);
+                    }
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.Options);
                 }
