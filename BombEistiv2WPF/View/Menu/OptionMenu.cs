@@ -206,6 +206,7 @@ namespace BombEistiv2WPF.View.Menu
                     Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
                     Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
                     MenuDataList[OptionSelected].Opacity = 0.6;
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "BoxGeneral":
@@ -228,6 +229,7 @@ namespace BombEistiv2WPF.View.Menu
                     Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
                     Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
                     MenuDataList[OptionSelected].Opacity = 0.6;
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "BoxGeneral":
@@ -250,15 +252,19 @@ namespace BombEistiv2WPF.View.Menu
                     switch (OptionSelected)
                     {
                         case "BoxGeneral":
+                            PlaySound._.TypeSoundList["Valid"].Play();
                             _wizard.NextScreen(ScreenType.GeneralOptions);
                             break;
                         case "BoxTouche":
+                            PlaySound._.TypeSoundList["Valid"].Play();
                             _wizard.NextScreen(ScreenType.KeyConfig);
                             break;
                         case "BoxTheme":
+                            PlaySound._.TypeSoundList["Valid"].Play();
                             _wizard.NextScreen(ScreenType.Themes);
                             break;
                         case "BoxCancel":
+                            PlaySound._.TypeSoundList["Cancel"].Play();
                             _wizard.NextScreen(ScreenType.MainMenu);
                             break;
                     }

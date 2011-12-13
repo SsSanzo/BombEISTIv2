@@ -149,6 +149,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "2P":
@@ -165,6 +166,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "2P":
@@ -180,12 +182,14 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
+                    PlaySound._.TypeSoundList["Valid"].Play();
                     thisistheend = true;
                     GameParameters._.PlayerCount = Convert.ToInt32(OptionSelected.Substring(0, 1));
                     _wizard.NextScreen(ScreenType.Characters);
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
                 {
+                    PlaySound._.TypeSoundList["Cancel"].Play();
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.GameMode);
                 }

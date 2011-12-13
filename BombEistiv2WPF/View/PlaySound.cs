@@ -71,7 +71,7 @@ namespace BombEistiv2WPF.View
                     sound.Volume = 0;
                     sound.Play();
                     sound.Stop();
-                    sound.Volume = 100;
+                    sound.Volume = 75;
                     TypeMusicList.Add(td.Key, sound);
                 }
             }
@@ -98,12 +98,10 @@ namespace BombEistiv2WPF.View
         {
             if (value == "MenuAll")
             {
-                TypeMusicList["Ouverturemenu"].Volume = 100;
                 TypeMusicList["Ouverturemenu"].Play();
                 TypeMusicList["Ouverturemenu"].MediaEnded += loopmenu;
             }else
             {
-                TypeMusicList[value].Volume = 100;
                 TypeMusicList[value].Play();
                 TypeMusicList[value].MediaEnded += loop;
             }

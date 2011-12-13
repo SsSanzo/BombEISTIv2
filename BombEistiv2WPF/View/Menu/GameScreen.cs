@@ -22,6 +22,9 @@ namespace BombEistiv2WPF.View.Menu
         private Key lastReleaseKey;
         private int start;
         private bool movelocked;
+        private int animbomb;
+        private int sens;
+        private bool openedanim;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -36,7 +39,9 @@ namespace BombEistiv2WPF.View.Menu
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
             PlaySound._.Stop("Result");
-            
+            animbomb = 0;
+            sens = 1;
+            openedanim = true;
             lastKey = Key.None;
             lastReleaseKey = Key.None;
             _wizard = w;
@@ -207,6 +212,17 @@ namespace BombEistiv2WPF.View.Menu
 
         }
 
+        private void BombAnim(object sender, ElapsedEventArgs e)
+        {
+            if(openedanim)
+            {
+                openedanim = false;
+                _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(AnimBomb));
+            }
+            
+
+        }
+
         public void Hurry(object sender, ElapsedEventArgs e)
         {
             _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => HurryUp((Timer)sender)));
@@ -218,6 +234,35 @@ namespace BombEistiv2WPF.View.Menu
             {
                 MenuDataList["Hurry"].Margin = new Thickness(MenuDataList["Hurry"].Margin.Left + 5, 0.0, 0.0, 0.0);
             }
+        }
+
+        public void AnimBomb()
+        {
+            var copy = _wizard.TheWindow.GameInProgress.TheCurrentMap.ListOfBomb;
+            for(var i = 0; i<copy.Count;i++)
+            {
+                if(!(copy.ElementAt(i).LayoutTransform is ScaleTransform))
+                {
+                    var lol = new ScaleTransform {CenterX = 20, CenterY = 20, ScaleX = 1.0, ScaleY = 1.0};
+                    copy.ElementAt(i).LayoutTransform = lol;
+                }
+                var rt = (ScaleTransform) copy.ElementAt(i).LayoutTransform;
+                rt.ScaleX = rt.ScaleX + sens* (0.002);
+                rt.ScaleY = rt.ScaleY + sens *(0.002);
+                copy.ElementAt(i).Margin = new Thickness(copy.ElementAt(i).Margin.Left - sens * 0.05, copy.ElementAt(i).Margin.Top - sens * 0.05, 0.0, 0.0);
+            }
+            animbomb += sens;
+            if(animbomb > 20)
+            {
+                sens = -1;
+                animbomb = 20;
+            }
+            else if (animbomb < 0)
+            {
+                sens = 1;
+                animbomb = 0;
+            }
+            openedanim = true;
         }
 
 
@@ -260,6 +305,7 @@ namespace BombEistiv2WPF.View.Menu
                 ListenerGame._.StartTimers();
                 var g = (ClassicGame) _wizard.TheWindow.GameInProgress;
                 g.Start();
+                TimerManager._.AddNewTimer(true, 15, true, null, BombAnim);
                 movelocked = false;
                 start--;
             }else if(start < 0 && start > -100)

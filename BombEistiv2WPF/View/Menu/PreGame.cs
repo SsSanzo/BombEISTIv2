@@ -36,6 +36,7 @@ namespace BombEistiv2WPF.View.Menu
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
             PlaySound._.Stop("Select");
+            PlaySound._.TypeSoundList["Versus"].Play();
             thisistheend = false;
             onthepop = false;
             var pressstart = (SkinSelectMenu)oldscreen;

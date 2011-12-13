@@ -100,6 +100,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     if (MenuOrderDataList[PreviewSelected] == MenuOrderDataList.Count - 1)
                     {
                         SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == 0).Key);
@@ -112,6 +113,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     if (MenuOrderDataList[PreviewSelected] == 0)
                     {
                         SwitchOption(MenuOrderDataList.FirstOrDefault(c => c.Value == MenuOrderDataList.Count - 1).Key);
@@ -123,6 +125,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
+                    PlaySound._.TypeSoundList["Valid"].Play();
                     if (PreviewSelected.Substring(6) == "Random")
                     {
                         var rand = new Random();

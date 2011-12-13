@@ -40,6 +40,7 @@ namespace BombEistiv2WPF.View.Menu
         {
             PlaySound._.Stop("Game");
             PlaySound._.Stop("Quick");
+            PlaySound._.TypeSoundList["Hurry"].Stop();
             PlaySound._.LireBoucle("Result");
             thisistheend = false;
             movelocked = true;
@@ -96,11 +97,13 @@ namespace BombEistiv2WPF.View.Menu
             {
                 if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     SwitchOption("Retour");
 
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     SwitchOption("Rejouer");
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")

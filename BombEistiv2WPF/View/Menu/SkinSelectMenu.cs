@@ -107,6 +107,7 @@ namespace BombEistiv2WPF.View.Menu
                 MenuDataList["Preview_" + p].Opacity = 0.4;
                 MenuDataList["Player_" + previous].Opacity = 1;
                 MenuDataList["Corner_" + p].Opacity = 1;
+                OptionValidate[p] = 0;
             }
             MenuDataList["Preview_" + p].Source = Texture._.TypeavatarList["Player_" + OptionSelected[p]];
             MenuDataList["Corner_" + p].Margin = new Thickness(MenuDataList["Player_" + OptionSelected[p]].Margin.Left, MenuDataList["Player_" + OptionSelected[p]].Margin.Top, 0.0, 0.0);
@@ -145,6 +146,7 @@ namespace BombEistiv2WPF.View.Menu
                     var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
                     if (p <= GameParameters._.PlayerCount && OptionSelected[p] > 4)
                     {
+                        PlaySound._.TypeSoundList["Selection"].Play();
                         OptionSelected[p] = OptionSelected[p] - 4;
                         SwitchOption(p, OptionSelected[p] + 4);
                     }
@@ -154,6 +156,7 @@ namespace BombEistiv2WPF.View.Menu
                     var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
                     if (p <= GameParameters._.PlayerCount && OptionSelected[p] < 5)
                     {
+                        PlaySound._.TypeSoundList["Selection"].Play();
                         OptionSelected[p] = OptionSelected[p] + 4;
                         SwitchOption(p, OptionSelected[p] - 4);
                     }
@@ -163,6 +166,7 @@ namespace BombEistiv2WPF.View.Menu
                     var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
                     if (p <= GameParameters._.PlayerCount && OptionSelected[p] != 4 && OptionSelected[p] != 8)
                     {
+                        PlaySound._.TypeSoundList["Selection"].Play();
                         OptionSelected[p] = OptionSelected[p] + 1;
                         SwitchOption(p, OptionSelected[p] - 1);
                     }
@@ -172,6 +176,7 @@ namespace BombEistiv2WPF.View.Menu
                     var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
                     if (p <= GameParameters._.PlayerCount && OptionSelected[p] != 1 && OptionSelected[p] != 5)
                     {
+                        PlaySound._.TypeSoundList["Selection"].Play();
                         OptionSelected[p] = OptionSelected[p] - 1;
                         SwitchOption(p, OptionSelected[p] + 1);
                     }
@@ -181,11 +186,13 @@ namespace BombEistiv2WPF.View.Menu
                     var p = Convert.ToInt32(KeyAction._.KeysPlayer[k].Substring(0, 1));
                     if (p <= GameParameters._.PlayerCount)
                     {
+                        PlaySound._.TypeSoundList["Selection"].Play();
                         ConfirmOption(p);
                     }
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
                 {
+                    PlaySound._.TypeSoundList["Cancel"].Play();
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.PlayerCound);
                 }

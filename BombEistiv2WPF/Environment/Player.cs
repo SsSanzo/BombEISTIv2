@@ -55,7 +55,7 @@ namespace BombEistiv2WPF.Environment
         {
             set
             {
-                if(InvertedDirections)
+                if (InvertedDirections)
                 {
                     var d = value - _percentx;
                     value = _percentx - d;
@@ -70,8 +70,8 @@ namespace BombEistiv2WPF.Environment
                             if (value > 50)
                             {
                                 X = x;
-                                HaveToDie(X,Y);
-                                _percentx = -49;
+                                HaveToDie(X, Y);
+                                _percentx = -49 + (value - 51);
                             }
                             else
                             {
@@ -88,7 +88,7 @@ namespace BombEistiv2WPF.Environment
                             {
                                 X = x;
                                 HaveToDie(X, Y);
-                                _percentx = 50;
+                                _percentx = 50 + (50 + value);
                             }
                             else
                             {
@@ -128,7 +128,7 @@ namespace BombEistiv2WPF.Environment
                             {
                                 Y = y;
                                 HaveToDie(X, Y);
-                                _percenty = -49;
+                                _percenty = -49 + (value - 51);
                             }
                             else
                             {
@@ -146,7 +146,7 @@ namespace BombEistiv2WPF.Environment
                             {
                                 Y = y;
                                 HaveToDie(X, Y);
-                                _percenty = 50;
+                                _percenty = 50 + (50 + value);
                             }
                             else
                             {
@@ -165,6 +165,7 @@ namespace BombEistiv2WPF.Environment
 
             get { return _percenty; }
         }
+
 
         public Map Map
         {

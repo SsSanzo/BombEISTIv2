@@ -136,6 +136,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Right")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "Classic":
@@ -152,6 +153,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Left")
                 {
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "Classic":
@@ -167,6 +169,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
+                    PlaySound._.TypeSoundList["Valid"].Play();
                     if (OptionSelected == "Classic")
                     {
                         thisistheend = true;
@@ -175,6 +178,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
                 {
+                    PlaySound._.TypeSoundList["Cancel"].Play();
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.MainMenu);
                 }

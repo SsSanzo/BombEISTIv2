@@ -27,6 +27,12 @@
         <Music object="Result" source="result.mp3" />
         <Music object="Quick" source="quick.mp3" />
         <Music object="Game" source="game.mp3" />
+        <Music object="Cancel" source="cancel.wav" />
+        <Music object="Valid" source="valid.wav" />
+        <Music object="Error" source="error.wav" />
+        <Music object="Hurry" source="hurry.wav" />
+        <Music object="Versus" source="versus.wav" />
+        <Music object="Selection" source="selection.wav" />
         <Music object="Explosionwav" source="Explosion.wav" />
         <Player object="Player_1_up" source="Player_1_up.png" />
         <Player object="Player_1_down" source="Player_1_down.png" />
@@ -102,7 +108,7 @@
       <Texture object="Ray" source="ray.png" />
     </Menu>
     <SoftBlock count="120" />
-    <GameTime count="180" />
+    <GameTime count="60" />
     <ExplosionDelay count="3" />
     <keysMap>
       <Map key="Up" action="Up" player="1" />

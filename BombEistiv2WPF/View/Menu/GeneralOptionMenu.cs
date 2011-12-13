@@ -197,11 +197,13 @@ namespace BombEistiv2WPF.View.Menu
                     }
                     else if (Convert.ToInt32(MenuLabelList["ValueSoft"].Content) + value < total)
                     {
+                        PlaySound._.TypeSoundList["Error"].Play();
                         MenuLabelList["Help"].Foreground = new SolidColorBrush(Colors.Red);
                         MenuLabelList["ValueSoft"].Foreground = new SolidColorBrush(Colors.Red);
                         MenuLabelList["Help"].Content = "ATTENTION ! \nPlus assez de destructibles \npar rapport au nombre total \nde bonus !";
                     }else
                     {
+                        PlaySound._.TypeSoundList["Error"].Play();
                         MenuLabelList["Help"].Foreground = new SolidColorBrush(Colors.Red);
                         MenuLabelList["ValueSoft"].Foreground = new SolidColorBrush(Colors.Red);
                         MenuLabelList["Help"].Content = "Limite maximum atteinte !";
@@ -222,6 +224,7 @@ namespace BombEistiv2WPF.View.Menu
                     }
                     else if (Convert.ToInt32(MenuLabelList["Value" + s].Content) < total2 + value && Convert.ToInt32(MenuLabelList["Value" + s].Content) + value > 0)
                     {
+                        PlaySound._.TypeSoundList["Error"].Play();
                         MenuLabelList["Help"].Foreground = new SolidColorBrush(Colors.Red);
                         MenuLabelList["ValueSoft"].Foreground = new SolidColorBrush(Colors.Red);
                         MenuLabelList["Help"].Content = "ATTENTION ! \nPlus assez de destructibles \npar rapport au nombre total \nde bonus !";
@@ -243,51 +246,67 @@ namespace BombEistiv2WPF.View.Menu
                         switch (OptionSelected)
                         {
                             case "Time":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Explode");
                                 break;
                             case "Explode":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Lives");
                                 break;
                             case "Lives":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Soft");
                                 break;
                             case "Soft":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerUp");
                                 break;
                             case "PowerUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerMax");
                                 break;
                             case "PowerMax":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("BombUp");
                                 break;
                             case "BombUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Kick");
                                 break;
                             case "Kick":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Confirm");
                                 break;
                             case "SpeedUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedMax");
                                 break;
                             case "SpeedMax":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Life");
                                 break;
                             case "Life":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Teleport");
                                 break;
                             case "Teleport":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Confirm");
                                 break;
                             case "PowerDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("BombDown");
                                 break;
                             case "BombDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedDown");
                                 break;
                             case "SpeedDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("ChangeDirection");
                                 break;
                             case "ChangeDirection":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Confirm");
                                 break;
                         }
@@ -300,54 +319,71 @@ namespace BombEistiv2WPF.View.Menu
                         switch (OptionSelected)
                         {
                             case "Explode":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Time");
                                 break;
                             case "Lives":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Explode");
                                 break;
                             case "Soft":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Lives");
                                 break;
                             case "PowerUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Soft");
                                 break;
                             case "PowerMax":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerUp");
                                 break;
                             case "BombUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerMax");
                                 break;
                             case "Kick":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("BombUp");
                                 break;
                             case "SpeedUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Soft");
                                 break;
                             case "SpeedMax":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedUp");
                                 break;
                             case "Life":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedMax");
                                 break;
                             case "Teleport":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Life");
                                 break;
                             case "PowerDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Soft");
                                 break;
                             case "BombDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerDown");
                                 break;
                             case "SpeedDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("BombDown");
                                 break;
                             case "ChangeDirection":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedDown");
                                 break;
                             case "Confirm":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Kick");
                                 break;
                             case "Quit":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Kick");
                                 break;
                         }
@@ -359,44 +395,56 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         switch (OptionSelected)
                         {
-
                             case "Time":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Time", 1);
                                 break;
                             case "Explode":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Explode", 1);
                                 break;
                             case "Lives":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Lives", 1);
                                 break;
                             case "Soft":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Soft", 1);
                                 break;
                             case "PowerUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedUp");
                                 break;
                             case "PowerMax":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedMax");
                                 break;
                             case "BombUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Life");
                                 break;
                             case "Kick":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Teleport");
                                 break;
                             case "SpeedUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerDown");
                                 break;
                             case "SpeedMax":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("BombDown");
                                 break;
                             case "Life":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedDown");
                                 break;
                             case "Teleport":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("ChangeDirection");
                                 break;
-                            case "Confirm":
+                            case "Confirm": 
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Quit");
                                 break;
                         }
@@ -413,48 +461,62 @@ namespace BombEistiv2WPF.View.Menu
                         switch (OptionSelected)
                         {
                             case "Time":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Time", -1);
                                 break;
                             case "Explode":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Explode", -1);
                                 break;
                             case "Lives":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Lives", -1);
                                 break;
                             case "Soft":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 ChangeOption("Soft", -1);
                                 break;
                             case "SpeedUp":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerUp");
                                 break;
                             case "SpeedMax":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("PowerMax");
                                 break;
                             case "Life":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("BombUp");
                                 break;
                             case "Teleport":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Kick");
                                 break;
                             case "PowerDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedUp");
                                 break;
                             case "BombDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("SpeedMax");
                                 break;
                             case "SpeedDown":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Life");
                                 break;
                             case "ChangeDirection":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Teleport");
                                 break;
                             case "Quit":
+                                PlaySound._.TypeSoundList["Selection"].Play();
                                 SwitchOption("Confirm");
                                 break;
                         }
                     }
                     else
                     {
+                        PlaySound._.TypeSoundList["Selection"].Play();
                         ChangeOption(OptionSelected, -1);
                     }
                 }
@@ -463,6 +525,7 @@ namespace BombEistiv2WPF.View.Menu
                 {
                     if (Enum.IsDefined(typeof (UpgradeType), OptionSelected))
                     {
+                        PlaySound._.TypeSoundList["Selection"].Play();
                         if (ItemSelected == "")
                         {
                             ItemSelected = OptionSelected;
@@ -478,10 +541,12 @@ namespace BombEistiv2WPF.View.Menu
                     }
                     else if (OptionSelected == "Quit")
                     {
+                        PlaySound._.TypeSoundList["Cancel"].Play();
                         resetLabel();
                     }
                     else if (OptionSelected == "Confirm")
                     {
+                        PlaySound._.TypeSoundList["Valid"].Play();
                         validLabel();
                         thisistheend = true;
                         _wizard.NextScreen(ScreenType.Options);

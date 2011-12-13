@@ -74,7 +74,7 @@ namespace BombEistiv2WPF.Environment
                             if (value > 50)
                             {
                                 X = x;
-                                _percentx = -49;
+                                _percentx = -49 + (value - 51);
                             }
                             else
                             {
@@ -91,7 +91,7 @@ namespace BombEistiv2WPF.Environment
                             if (value <= -50)
                             {
                                 X = x;
-                                _percentx = 50;
+                                _percentx = 50 + (50 + value);
                             }
                             else
                             {
@@ -123,7 +123,7 @@ namespace BombEistiv2WPF.Environment
                             if (value > 50)
                             {
                                 Y = y;
-                                _percenty = -49;
+                                _percenty = -49 + (value - 51);
                             }else
                             {
                                 _percenty = value;
@@ -138,8 +138,8 @@ namespace BombEistiv2WPF.Environment
                         {
                             if (value <= -50)
                             {
-                                Y = y; 
-                                _percenty = 50;
+                                Y = y;
+                                _percenty = 50 + (50 + value);
                             }else
                             {
                                 _percenty = value;

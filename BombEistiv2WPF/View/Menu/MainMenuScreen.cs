@@ -166,6 +166,7 @@ namespace BombEistiv2WPF.View.Menu
                     Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
                     Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
                     MenuDataList[OptionSelected].Opacity = 0.6;
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "BoxGame":
@@ -188,6 +189,7 @@ namespace BombEistiv2WPF.View.Menu
                     Canvas.SetZIndex(MenuDataList[OptionSelected], 0);
                     Canvas.SetZIndex(MenuLabelList[OptionSelected], 1);
                     MenuDataList[OptionSelected].Opacity = 0.6;
+                    PlaySound._.TypeSoundList["Selection"].Play();
                     switch (OptionSelected)
                     {
                         case "BoxGame":
@@ -207,6 +209,7 @@ namespace BombEistiv2WPF.View.Menu
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
                     thisistheend = true;
+                    PlaySound._.TypeSoundList["Valid"].Play();
                     switch (OptionSelected)
                     {
                         case "BoxGame":

@@ -102,18 +102,23 @@ namespace BombEistiv2WPF.View.Menu
                             switch (OptionSelected.Split('_')[1])
                             {
                                 case "None":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Up");
                                     break;
                                 case "Up":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Down");
                                     break;
                                 case "Down":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Right");
                                     break;
                                 case "Right":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Left");
                                     break;
                                 case "Left":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("Confirm");
                                     break;
                             }
@@ -127,15 +132,19 @@ namespace BombEistiv2WPF.View.Menu
                             switch (OptionSelected.Split('_')[1])
                             {
                                 case "Up":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_None");
                                     break;
                                 case "Down":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Up");
                                     break;
                                 case "Right":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Down");
                                     break;
                                 case "Left":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Right");
                                     break;
                             }
@@ -145,9 +154,11 @@ namespace BombEistiv2WPF.View.Menu
                             switch (OptionSelected)
                             {
                                 case "Confirm":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("1_Left");
                                     break;
                                 case "Quit":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("1_Left");
                                     break;
                             }
@@ -160,12 +171,15 @@ namespace BombEistiv2WPF.View.Menu
                             switch (OptionSelected.Split('_')[0])
                             {
                                 case "1":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("2_" + OptionSelected.Split('_')[1]);
                                     break;
                                 case "2":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("3_" + OptionSelected.Split('_')[1]);
                                     break;
                                 case "3":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("4_" + OptionSelected.Split('_')[1]);
                                     break;
                             }
@@ -175,6 +189,7 @@ namespace BombEistiv2WPF.View.Menu
                             switch (OptionSelected)
                             {
                                 case "Confirm":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("Quit");
                                     break;
                             }
@@ -188,12 +203,15 @@ namespace BombEistiv2WPF.View.Menu
                             switch (OptionSelected.Split('_')[0])
                             {
                                 case "2":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("1_" + OptionSelected.Split('_')[1]);
                                     break;
                                 case "3":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("2_" + OptionSelected.Split('_')[1]);
                                     break;
                                 case "4":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("3_" + OptionSelected.Split('_')[1]);
                                     break;
                             }
@@ -203,6 +221,7 @@ namespace BombEistiv2WPF.View.Menu
                             switch (OptionSelected)
                             {
                                 case "Quit":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption("Confirm");
                                     break;
                             }
@@ -212,18 +231,21 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         if (OptionSelected == "Quit")
                         {
+                            PlaySound._.TypeSoundList["Cancel"].Play();
                             resetLabel();
                         }
                         else if (OptionSelected == "Confirm")
                         {
                             if (KeyAction._.checkAllKeys())
                             {
+                                PlaySound._.TypeSoundList["Valid"].Play();
                                 validLabel();
                                 thisistheend = true;
                                 _wizard.NextScreen(ScreenType.Options);
                             }
                             else
                             {
+                                PlaySound._.TypeSoundList["Error"].Play();
                                 MenuLabelList["LabelInfo"].Foreground = new SolidColorBrush(Colors.Red);
                                 MenuLabelList["LabelInfo"].Content = "Impossible : Certaines touches sont vides !!";
                             }
@@ -231,6 +253,7 @@ namespace BombEistiv2WPF.View.Menu
                         }
                         else
                         {
+                            PlaySound._.TypeSoundList["Selection"].Play();
                             ItemSelected = OptionSelected;
                             Canvas.SetZIndex(MenuDataList["BlackActive"], 1);
                             Canvas.SetZIndex(MenuLabelList["LabelActive"], 2);
@@ -254,9 +277,11 @@ namespace BombEistiv2WPF.View.Menu
                     MenuLabelList["Value" + ItemSelected].Foreground = new SolidColorBrush(Colors.White);
                     if (oldlenght > 5)
                     {
+                        MenuLabelList["Value" + ItemSelected].FontSize += oldlenght - 5;
                         MenuLabelList["Value" + ItemSelected].Margin =
                             new Thickness(MenuLabelList["Value" + ItemSelected].Margin.Left,
                                           MenuLabelList["Value" + ItemSelected].Margin.Top - (oldlenght - 5), 0.0, 0.0);
+                        MenuDataList["BoxMovable"].Margin = new Thickness(MenuDataList["BoxMovable"].Margin.Left, MenuDataList["BoxMovable"].Margin.Top - (oldlenght - 5), 0.0, 0.0);
                     }
                     if (MenuLabelList["Value" + ItemSelected].Content.ToString().Length > 5)
                     {
@@ -267,11 +292,13 @@ namespace BombEistiv2WPF.View.Menu
                                           MenuLabelList["Value" + ItemSelected].Margin.Top +
                                           (MenuLabelList["Value" + ItemSelected].Content.ToString().Length - 5), 0.0,
                                           0.0);
+                        MenuDataList["BoxMovable"].Margin = new Thickness(MenuDataList["BoxMovable"].Margin.Left, MenuDataList["BoxMovable"].Margin.Top + (MenuLabelList["Value" + ItemSelected].Content.ToString().Length - 5), 0.0, 0.0);
                     }
 
                     MenuDataList["BlackActive"].Opacity = 0;
                     MenuLabelList["LabelActive"].Opacity = 0;
                     ItemSelected = "";
+                    PlaySound._.TypeSoundList["Selection"].Play();
                 }
             }
         }
@@ -592,23 +619,37 @@ namespace BombEistiv2WPF.View.Menu
             var copy = OptionMoved.Where(c => c.Value != "");
             for (var i = 0; i < copy.Count(); i++)
             {
-                var blui = "Value" + OptionMoved[copy.ElementAt(i).Key];
-                var t1 = MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left;
-                var t2 = MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top;
+                //var blui = MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top;
+                //var blui2 = MenuLabelList["Value" + copy.ElementAt(i).Key].Margin.Top;
+
+                //if (MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Content.ToString().Length > 5 && OptionMoved[copy.ElementAt(i).Key] != "Confirm" && OptionMoved[copy.ElementAt(i).Key] != "Quit")
+                //{
+                //    blui += (MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Content.ToString().Length - 5);
+                //}
+                //if (MenuLabelList["Value" + copy.ElementAt(i).Key].Content.ToString().Length > 5 && copy.ElementAt(i).Key != "Confirm" && copy.ElementAt(i).Key != "Quit")
+                //{
+                //    blui2 += (MenuLabelList["Value" + copy.ElementAt(i).Key].Content.ToString().Length - 5);
+                //}
+
                 if (Math.Abs((MenuDataList["BoxMovable"].Margin.Left - (MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left))) <= 0.05 && (Math.Abs((MenuDataList["BoxMovable"].Margin.Top - MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top) + 5)) <= 0.05)
                 {
                     OptionMoved[copy.ElementAt(i).Key] = "";
                 }
                 else
                 {
+                    //var t1 = MenuLabelList["Value" + copy.ElementAt(i).Key].Margin.Left;
+                    //var t2 = MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left;
+                    //var t22 = MenuDataList["BoxMovable"].Margin.Top;
                     var thenewleft = MenuDataList["BoxMovable"].Margin.Left -
                                      (((MenuLabelList["Value" + copy.ElementAt(i).Key].Margin.Left) -
                                       MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Left) / 5.0);
                     //var t3 = MenuLabelList["Value" + copy.ElementAt(i).Key].Margin.Top;
                     //var t4 = MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top;
+                    //var t5 = MenuDataList["BoxMovable"].Margin.Top;
                     var thenewtop = MenuDataList["BoxMovable"].Margin.Top - (
                                      (MenuLabelList["Value" + copy.ElementAt(i).Key].Margin.Top -
                                       MenuLabelList["Value" + OptionMoved[copy.ElementAt(i).Key]].Margin.Top) / 5.0);
+                    
                     if (OptionMoved[copy.ElementAt(i).Key] == "Confirm" || OptionMoved[copy.ElementAt(i).Key] == "Quit")
                     {
                         var lt = (ScaleTransform)MenuDataList["BoxMovable"].LayoutTransform;

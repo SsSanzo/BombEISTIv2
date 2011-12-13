@@ -69,8 +69,8 @@ namespace BombEistiv2WPF
                                 ElapsedEventHandler e = null)
         {
             var t = new Timer { AutoReset = autoReset, Interval = delay };
-            if (timerEvent == null) timerEvent = new TimerEvent();
-            else t.Elapsed += Elapsed;
+            if (timerEvent == null){ timerEvent = new TimerEvent();}
+            else{ t.Elapsed += Elapsed;}
             timerEvent.Interval = delay;
             timerEvent.StartTime = DateTime.Now;
             if (e != null) t.Elapsed += e;
