@@ -30,6 +30,11 @@ namespace BombEistiv2WPF.View.Menu
                 }
             }
             _wizard.Grid.Children.Add(img);
+            PlaySound._.LoadAllMusic();
+            foreach (var mus in PlaySound._.TypeMusicList)
+            {
+                _wizard.Grid.Children.Add(mus.Value);
+            }
             TimerManager._.AddNewTimer(false, 4000, true,null, HideTimerEvent);
             TimerManager._.AddNewTimer(true, 28, true, null, FadingIn);
         }

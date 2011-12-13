@@ -30,12 +30,13 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 screen)
         {
+            PlaySound._.Stop("Result");
             thisIsTheEnd = false;
             _wizard = w;
             TimerManager._.Reset();
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
             {
-                if (!(w.Grid.Children[i] is Grid))
+                if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
                 {
                     w.Grid.Children.RemoveAt(i);
                 }

@@ -114,6 +114,7 @@ namespace BombEistiv2WPF.Environment
 
         public void Explode(Game g)
         {
+            PlaySound._.TypeSoundList["Explosionwav"].Play();
             g.TheCurrentMap.ListOfBomb.Remove(this);
             var thecompletelist = g.TheCurrentMap.GetCompleteList();
             thecompletelist.AddRange(g.TheCurrentMap.ListOfEntityOfDeath.Where(c => c != null && c.Blocus));

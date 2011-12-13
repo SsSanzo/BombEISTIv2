@@ -35,7 +35,7 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
-
+            PlaySound._.Stop("Select");
             thisistheend = false;
             onthepop = false;
             var pressstart = (SkinSelectMenu)oldscreen;
@@ -50,7 +50,7 @@ namespace BombEistiv2WPF.View.Menu
             }
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
             {
-                if (!(w.Grid.Children[i] is Grid))
+                if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
                 {
                     w.Grid.Children.RemoveAt(i);
                 }

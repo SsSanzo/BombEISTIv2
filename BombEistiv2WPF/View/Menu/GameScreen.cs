@@ -35,13 +35,15 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
+            PlaySound._.Stop("Result");
+            
             lastKey = Key.None;
             lastReleaseKey = Key.None;
             _wizard = w;
             movelocked = true;
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
             {
-                if (!(w.Grid.Children[i] is Grid))
+                if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
                 {
                     w.Grid.Children.RemoveAt(i);
                 }
@@ -68,6 +70,7 @@ namespace BombEistiv2WPF.View.Menu
             ListenerGame._.EmptyTheCache();
             Score._.ResetSurvived();
             start = 4;
+            PlaySound._.LireBoucle("Game");
             TimerManager._.AddNewTimer(true, 15, true, null, FadeIn);
         }
 

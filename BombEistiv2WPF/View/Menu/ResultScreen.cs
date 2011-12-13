@@ -38,7 +38,9 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
-            
+            PlaySound._.Stop("Game");
+            PlaySound._.Stop("Quick");
+            PlaySound._.LireBoucle("Result");
             thisistheend = false;
             movelocked = true;
             _wizard = w;

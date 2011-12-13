@@ -40,7 +40,8 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
-
+            PlaySound._.Stop("MenuAll");
+            PlaySound._.LireBoucle("Select");
             thisistheend = false;
             movelocked = true;
             var pressstart = (PlayerSelectMenu)oldscreen;
@@ -78,7 +79,7 @@ namespace BombEistiv2WPF.View.Menu
             }
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
             {
-                if (!(w.Grid.Children[i] is Grid))
+                if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
                 {
                     w.Grid.Children.RemoveAt(i);
                 }
@@ -357,7 +358,7 @@ namespace BombEistiv2WPF.View.Menu
                     _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                     for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        if (!(_wizard.Grid.Children[i] is Grid))
+                        if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
                         {
                             _wizard.Grid.Children.RemoveAt(i);
                         }

@@ -94,6 +94,8 @@ namespace BombEistiv2WPF.Environment
 
         public void HurryUp(object sender, ElapsedEventArgs elapsedEventArgs)
         {
+            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => PlaySound._.Stop("Game")));
+            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => PlaySound._.TypeMusicList["Quick"].Play()));
             TimerManager._.AddNewTimer(false, 45000, true, null, EndOfTheGame);
             TimerManager._.AddNewTimer(true, 15, true, null, w.Hurry);
             hb = null;

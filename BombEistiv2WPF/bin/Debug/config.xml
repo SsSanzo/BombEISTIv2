@@ -21,11 +21,13 @@
         <Texture object="Upgrade.ChangeDirection" source="ChangeDirection.png" />
         <Texture object="EndBlock" source="Metal.png" />
         <Texture object="Explosion" source="explosion.gif" />
-        <Music object="Menu" source="menu.wav" />
-        <Music object="Game" source="game1.wav" />
-        <Music object="Win" source="win.wav" />
-        <Music object="Draw" source="win.wav" />
-        <Music object="Explosionwav" source="explosion.wav" />
+        <Music object="Menu" source="menu.mp3" />
+        <Music object="Ouverturemenu" source="ouverturemenu.mp3" />
+        <Music object="Select" source="select.mp3" />
+        <Music object="Result" source="result.mp3" />
+        <Music object="Quick" source="quick.mp3" />
+        <Music object="Game" source="game.mp3" />
+        <Music object="Explosionwav" source="Explosion.wav" />
         <Player object="Player_1_up" source="Player_1_up.png" />
         <Player object="Player_1_down" source="Player_1_down.png" />
         <Player object="Player_1_left" source="Player_1_left.png" />
@@ -100,7 +102,7 @@
       <Texture object="Ray" source="ray.png" />
     </Menu>
     <SoftBlock count="120" />
-    <GameTime count="180" />
+    <GameTime count="60" />
     <ExplosionDelay count="3" />
     <keysMap>
       <Map key="Up" action="Up" player="1" />
