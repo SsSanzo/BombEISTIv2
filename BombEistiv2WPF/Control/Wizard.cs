@@ -82,25 +82,37 @@ namespace BombEistiv2WPF.Control
             switch (screen)
             {
                 case ScreenType.DevScreen:
-                    var s = new DevScreen();
-                    s.setImage("Teamblui");
-                    s.Show(this, _currentScreen);
-                    _currentScreen = s;
+                    if (!(_currentScreen is DevScreen))
+                    {
+                        var s = new DevScreen();
+                        s.setImage("Teamblui");
+                        s.Show(this, _currentScreen);
+                        _currentScreen = s;
+                    }
                     break;
                 case ScreenType.PressStart:
-                    var m = new MenuScreen();
-                    m.Show(this, _currentScreen);
-                    _currentScreen = m;
+                    if (!(_currentScreen is MenuScreen))
+                    {
+                        var m = new MenuScreen();
+                        m.Show(this, _currentScreen);
+                        _currentScreen = m;
+                    }
                     break;
                 case ScreenType.MainMenu:
-                    var mm = new MainMenuScreen();
-                    mm.Show(this, _currentScreen);
-                    _currentScreen = mm;
+                    if (!(_currentScreen is MainMenuScreen))
+                    {
+                        var mm = new MainMenuScreen();
+                        mm.Show(this, _currentScreen);
+                        _currentScreen = mm;
+                    }
                     break;
                 case ScreenType.Options:
-                    var m2 = new OptionMenu();
-                    m2.Show(this, _currentScreen);
-                    _currentScreen = m2;
+                    if (!(_currentScreen is OptionMenu))
+                    {
+                        var m2 = new OptionMenu();
+                        m2.Show(this, _currentScreen);
+                        _currentScreen = m2;
+                    }
                     break;
                 case ScreenType.GeneralOptions:
                     var m3 = new GeneralOptionMenu();
@@ -108,45 +120,69 @@ namespace BombEistiv2WPF.Control
                     _currentScreen = m3;
                     break;
                 case ScreenType.KeyConfig:
-                    var m4 = new KeyOption();
-                    m4.Show(this, _currentScreen);
-                    _currentScreen = m4;
+                    if (!(_currentScreen is KeyOption))
+                    {
+                        var m4 = new KeyOption();
+                        m4.Show(this, _currentScreen);
+                        _currentScreen = m4;
+                    }
                     break;
                 case ScreenType.Themes:
-                    var m5 = new ThemeMenu();
-                    m5.Show(this, _currentScreen);
-                    _currentScreen = m5;
+                    if (!(_currentScreen is ThemeMenu))
+                    {
+                        var m5 = new ThemeMenu();
+                        m5.Show(this, _currentScreen);
+                        _currentScreen = m5;
+                    }
                     break;
                 case ScreenType.GameMode:
-                    var m6 = new GameModeMenu();
-                    m6.Show(this, _currentScreen);
-                    _currentScreen = m6;
+                    if (!(_currentScreen is GameModeMenu))
+                    {
+                        var m6 = new GameModeMenu();
+                        m6.Show(this, _currentScreen);
+                        _currentScreen = m6;
+                    }
                     break;
                 case ScreenType.PlayerCound:
-                    var m7 = new PlayerSelectMenu();
-                    m7.Show(this, _currentScreen);
-                    _currentScreen = m7;
+                    if (!(_currentScreen is PlayerSelectMenu))
+                    {
+                        var m7 = new PlayerSelectMenu();
+                        m7.Show(this, _currentScreen);
+                        _currentScreen = m7;
+                    }
                     break;
                 case ScreenType.Characters:
-                    var m8 = new SkinSelectMenu();
-                    m8.Show(this, _currentScreen);
-                    _currentScreen = m8;
+                    if (!(_currentScreen is SkinSelectMenu))
+                    {
+                        var m8 = new SkinSelectMenu();
+                        m8.Show(this, _currentScreen);
+                        _currentScreen = m8;
+                    }
                     break;
                 case ScreenType.PreGame:
-                    Score._.ResetScore();
-                    var m9 = new PreGame();
-                    m9.Show(this, _currentScreen);
-                    _currentScreen = m9;
+                    if (!(_currentScreen is PreGame))
+                    {
+                        Score._.ResetScore();
+                        var m9 = new PreGame();
+                        m9.Show(this, _currentScreen);
+                        _currentScreen = m9;
+                    }
                     break;
                 case ScreenType.Game:
-                    var m10 = new GameScreen();
-                    m10.Show(this, _currentScreen);
-                    _currentScreen = m10;
+                    if (!(_currentScreen is GameScreen))
+                    {
+                        var m10 = new GameScreen();
+                        m10.Show(this, _currentScreen);
+                        _currentScreen = m10;
+                    }
                     break;
                 case ScreenType.Results:
-                    var m11 = new ResultScreen();
-                    m11.Show(this, _currentScreen);
-                    _currentScreen = m11;
+                    if(!(_currentScreen is ResultScreen))
+                    {
+                        var m11 = new ResultScreen();
+                        m11.Show(this, _currentScreen);
+                        _currentScreen = m11;
+                    }
                     break;
 
             }

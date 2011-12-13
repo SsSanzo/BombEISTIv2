@@ -406,12 +406,12 @@ namespace BombEistiv2WPF.Environment
                 var e = _map.GetEntityOfDeath(x, y);
                 if (e != null)
                 {
+                    Score._.KilledBy(e.Owner, this);
                     if (Die())
                     {
-                        var thePlayer = _map.ListOfPlayer.First(c => c.X == this.X && c.Y == this.Y);
+                        var thePlayer = _map.ListOfPlayer.First(c => c != null && c.X == this.X && c.Y == this.Y);
                         _map.ListOfPlayer.Remove(thePlayer);
                         Texture._.DeleteTextureEntity(thePlayer);
-                        Score._.KilledBy(e.Owner, thePlayer);
                         _map.CheckForAllDead();
                     }else
                     {

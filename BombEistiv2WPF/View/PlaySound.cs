@@ -98,10 +98,12 @@ namespace BombEistiv2WPF.View
         {
             if (value == "MenuAll")
             {
+                TypeMusicList["Ouverturemenu"].Volume = 100;
                 TypeMusicList["Ouverturemenu"].Play();
                 TypeMusicList["Ouverturemenu"].MediaEnded += loopmenu;
             }else
             {
+                TypeMusicList[value].Volume = 100;
                 TypeMusicList[value].Play();
                 TypeMusicList[value].MediaEnded += loop;
             }
@@ -136,6 +138,7 @@ namespace BombEistiv2WPF.View
         {
             var u = (MediaElement)sender;
             u.Stop();
+            PlaySound._.TypeMusicList["Menu"].Volume = 100;
             PlaySound._.TypeMusicList["Menu"].Play();
             PlaySound._.TypeMusicList["Menu"].MediaEnded += loop;
         }

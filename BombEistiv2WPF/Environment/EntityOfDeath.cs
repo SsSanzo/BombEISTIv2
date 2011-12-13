@@ -12,6 +12,7 @@ namespace BombEistiv2WPF.Environment
         private Game G;
         private bool blocus;
         private Player owner;
+        private bool thereIsOne;
 
         public bool Blocus
         {
@@ -27,13 +28,12 @@ namespace BombEistiv2WPF.Environment
 
         public EntityOfDeath(int x, int y, Game g, Player o, bool b = false) : base(x, y)
         {
-
+            thereIsOne = false;
             blocus = b;
             G = g;
             owner = o;
             if (G.TheCurrentMap.GetEntityOfDeath(x,y) == null || (G.TheCurrentMap.GetEntityOfDeath(x,y) != null && !G.TheCurrentMap.GetEntityOfDeath(x,y).Blocus))
             {
-                
                 G.TheCurrentMap.ListOfEntityOfDeath.Add(this);
                 var listEntity = new List<Entity>();
                 listEntity.AddRange(G.TheCurrentMap.GetCompleteList());
@@ -62,20 +62,25 @@ namespace BombEistiv2WPF.Environment
                         else if (e is Player)
                         {
                             var play = (Player)e;
+                            Score._.KilledBy(owner, play);
                             if ((play.Clingnotement == 0 || play.Clingnotement > 19) && play.Die())
                             {
                                 var thePlayer = G.TheCurrentMap.ListOfPlayer.First(c => c.X == play.X && c.Y == play.Y);
                                 G.TheCurrentMap.ListOfPlayer.Remove(thePlayer);
                                 Texture._.DeleteTextureEntity(thePlayer);
-                                Score._.KilledBy(owner, thePlayer);
+                                thereIsOne = true;
                             }else
                             {
                                 play.cling();
                             }
+                            
                         }
-
+                    if(thereIsOne)
+                    {
+                        G.TheCurrentMap.CheckForAllDead();
+                    }
                 }
-                G.TheCurrentMap.CheckForAllDead();
+                
                 TimerManager._.AddNewTimer(false, 500, true, null, Supress);
                 TimerManager._.AddNewTimer(false, 1000, true, null, Supress);
             }
