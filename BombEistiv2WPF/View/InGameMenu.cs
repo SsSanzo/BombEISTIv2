@@ -147,7 +147,14 @@ namespace BombEistiv2WPF.View
 
         public void changeLabel(int id, int lives)
         {
-            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => lifeLabel[id].Content = lives));
+            if(lives <= 0)
+            {
+                Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => lifeLabel[id].Content = 0));
+            }else
+            {
+                Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => lifeLabel[id].Content = lives));
+            }
+            
         }
 
         public void ChangeLabelTime(Timer t)

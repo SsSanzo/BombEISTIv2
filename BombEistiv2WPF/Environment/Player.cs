@@ -22,6 +22,7 @@ namespace BombEistiv2WPF.Environment
         private Direction sens;
         private Direction newsens;
         private int clingnotement;
+        private bool _invincible;
 
         public Player(int id, int skinid, int x, int y, Map map, Score score = null) : base(x, y)
         {
@@ -49,6 +50,13 @@ namespace BombEistiv2WPF.Environment
             Lives = GameParameters._.LivesCount;
             sens = Direction.Down;
             newsens = Direction.Down;
+            _invincible = false;
+        }
+
+        public bool Invincible
+        {
+            get { return _invincible; }
+            set { _invincible = value;  }
         }
 
         public new int Percentx
@@ -402,7 +410,7 @@ namespace BombEistiv2WPF.Environment
 
         protected void HaveToDie(int x, int y)
         {
-            if(clingnotement == 0 || clingnotement > 19)
+            if(!Invincible)
             {
                 var e = _map.GetEntityOfDeath(x, y);
                 if (e != null)
@@ -410,10 +418,14 @@ namespace BombEistiv2WPF.Environment
                     Score._.KilledBy(e.Owner, this);
                     if (Die())
                     {
-                        var thePlayer = _map.ListOfPlayer.First(c => c != null && c.X == this.X && c.Y == this.Y);
-                        _map.ListOfPlayer.Remove(thePlayer);
-                        Texture._.DeleteTextureEntity(thePlayer);
-                        _map.CheckForAllDead();
+                        var thePlayer = _map.ListOfPlayer.FirstOrDefault(c => c != null && c.X == this.X && c.Y == this.Y);
+                        if(thePlayer != null)
+                        {
+                            _map.ListOfPlayer.Remove(thePlayer);
+                            Texture._.DeleteTextureEntity(thePlayer);
+                            _map.CheckForAllDead();
+                        }
+                        
                     }else
                     {
                         cling();
@@ -429,6 +441,7 @@ namespace BombEistiv2WPF.Environment
 
         public void cling()
         {
+            _invincible = true;
             clingnotement = 0;
             TimerManager._.AddNewTimer(true,100,true,null,theclingthread);
         }
@@ -440,6 +453,7 @@ namespace BombEistiv2WPF.Environment
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(thecling));
             }else
             {
+                _invincible = false;
                 var t = (Timer) sender;
                 t.AutoReset = false;
             }

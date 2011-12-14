@@ -21,11 +21,13 @@ namespace BombEistiv2WPF.View
         private int offsetglobal = 20;
         private int timeoffset = 20;
         private String _theme;
+        public bool IsRandom;
 
         private static Texture _this;
 
         private Texture()
         {
+            IsRandom = false;
             _themeData = GameParameters._.GetThemeData("Basic");
             _theme = "Basic";
             _typetextureList = new Dictionary<string, BitmapImage>();

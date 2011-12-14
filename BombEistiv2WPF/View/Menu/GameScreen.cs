@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Timers;
@@ -46,6 +47,7 @@ namespace BombEistiv2WPF.View.Menu
             lastReleaseKey = Key.None;
             _wizard = w;
             movelocked = true;
+            TimerManager._.Reset();
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
             {
                 if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
@@ -53,7 +55,26 @@ namespace BombEistiv2WPF.View.Menu
                     w.Grid.Children.RemoveAt(i);
                 }
             }
-            TimerManager._.Reset();
+            if(Texture._.IsRandom)
+            {
+                var listDir = Directory.EnumerateDirectories(GameParameters.Path + @"\" + GameParameters._.GetThemeFolder());
+                var listScreen = new List<String>();
+                foreach (var dir in listDir)
+                {
+                    listScreen.Add(dir.Split('\\')[dir.Split('\\').Length - 1]);
+                }
+                var rand = new Random();
+                var theint = rand.Next(listScreen.Count - 1);
+                Texture._.SetTheme(listScreen.ElementAt(theint));
+                PlaySound._.SetTheme(listScreen.ElementAt(theint));
+                PlaySound._.ClearEverything(_wizard.TheWindow);
+                PlaySound._.LoadAllMusic();
+                foreach (var mus in PlaySound._.TypeMusicList)
+                {
+                    _wizard.Grid.Children.Add(mus.Value);
+                }
+            }
+
             if (_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();

@@ -62,18 +62,24 @@ namespace BombEistiv2WPF.Environment
                         else if (e is Player)
                         {
                             var play = (Player)e;
-                            Score._.KilledBy(owner, play);
-                            if ((play.Clingnotement == 0 || play.Clingnotement > 19) && play.Die())
+                            if (!(play.Invincible))
                             {
-                                var thePlayer = G.TheCurrentMap.ListOfPlayer.First(c => c.X == play.X && c.Y == play.Y);
-                                G.TheCurrentMap.ListOfPlayer.Remove(thePlayer);
-                                Texture._.DeleteTextureEntity(thePlayer);
-                                thereIsOne = true;
-                            }else
-                            {
-                                play.cling();
+                                Score._.KilledBy(owner, play);
+                                if (play.Die())
+                                {
+                                    var thePlayer = G.TheCurrentMap.ListOfPlayer.FirstOrDefault(c => c.X == play.X && c.Y == play.Y);
+                                    if (thePlayer != null)
+                                    {
+                                        G.TheCurrentMap.ListOfPlayer.Remove(thePlayer);
+                                        Texture._.DeleteTextureEntity(thePlayer);
+                                        thereIsOne = true;
+                                    }
+                                }
+                                else
+                                {
+                                    play.cling();
+                                }
                             }
-                            
                         }
                     if(thereIsOne)
                     {

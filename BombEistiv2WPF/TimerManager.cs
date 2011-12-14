@@ -106,9 +106,11 @@ namespace BombEistiv2WPF
         {
             foreach (var timerEvent in _timers)
             {
-                timerEvent.Timer.Stop();
-                timerEvent.Timer.Close();
-                
+                if(timerEvent != null)
+                {
+                    timerEvent.Timer.Stop();
+                    timerEvent.Timer.Close();
+                }
             }
             _timers.Clear();
         }

@@ -51,7 +51,8 @@ namespace BombEistiv2WPF.View.Menu
             _wizard = w;
             OptionMoved = new Dictionary<string, string>();
             _menuOrderDataList = new Dictionary<string, int>();
-            PreviewSelected = "Screen" + Texture._.Theme;
+            var theme = Texture._.IsRandom ? "Random" : Texture._.Theme;
+            PreviewSelected = "Screen" + theme;
             if (_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
@@ -128,24 +129,32 @@ namespace BombEistiv2WPF.View.Menu
                     PlaySound._.TypeSoundList["Valid"].Play();
                     if (PreviewSelected.Substring(6) == "Random")
                     {
-                        var rand = new Random();
-                        var theint = rand.Next(MenuOrderDataList.Count - 1);
-                        Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
-                        PlaySound._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
-                        
+                        //var rand = new Random();
+                        //var theint = rand.Next(MenuOrderDataList.Count - 1);
+                        //Texture._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
+                        //PlaySound._.SetTheme(MenuOrderDataList.FirstOrDefault(c => c.Value == theint).Key.Substring(6));
+                        Texture._.IsRandom = true;
                     }
                     else
                     {
                         Texture._.SetTheme(PreviewSelected.Substring(6));
                         PlaySound._.SetTheme(PreviewSelected.Substring(6));
+                        Texture._.IsRandom = false;
+                        PlaySound._.ClearEverything(_wizard.TheWindow);
+                        PlaySound._.LoadAllMusic();
+                        PlaySound._.LireBoucle("MenuAll");
+                        foreach (var mus in PlaySound._.TypeMusicList)
+                        {
+                            _wizard.Grid.Children.Add(mus.Value);
+                        }
                     }
-                    PlaySound._.ClearEverything(_wizard.TheWindow);
-                    PlaySound._.LoadAllMusic();
-                    PlaySound._.LireBoucle("MenuAll");
-                    foreach (var mus in PlaySound._.TypeMusicList)
-                    {
-                        _wizard.Grid.Children.Add(mus.Value);
-                    }
+                    //PlaySound._.ClearEverything(_wizard.TheWindow);
+                    //PlaySound._.LoadAllMusic();
+                    //PlaySound._.LireBoucle("MenuAll");
+                    //foreach (var mus in PlaySound._.TypeMusicList)
+                    //{
+                    //    _wizard.Grid.Children.Add(mus.Value);
+                    //}
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.Options);
                 }
@@ -232,14 +241,14 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList.Add("ScreenRandom", grand);
             OptionMoved.Add("ScreenRandom", "");
             MenuOrderDataList.Add("ScreenRandom", order);
-
-            var zero = MenuOrderDataList["Screen" + Texture._.Theme];
-            var un = MenuOrderDataList["Screen" + Texture._.Theme] == MenuOrderDataList.Count - 1
+            var theme = Texture._.IsRandom ? "Random" : Texture._.Theme;
+            var zero = MenuOrderDataList["Screen" + theme];
+            var un = MenuOrderDataList["Screen" + theme] == MenuOrderDataList.Count - 1
                          ? 0
-                         : MenuOrderDataList["Screen" + Texture._.Theme] + 1;
-            var moinsun = MenuOrderDataList["Screen" + Texture._.Theme] == 0
+                         : MenuOrderDataList["Screen" + theme] + 1;
+            var moinsun = MenuOrderDataList["Screen" + theme] == 0
                          ? MenuOrderDataList.Count - 1
-                         : MenuOrderDataList["Screen" + Texture._.Theme] - 1;
+                         : MenuOrderDataList["Screen" + theme] - 1;
             var thedata = MenuDataList.Where(c => c.Key.StartsWith("Screen"));
             thedata.ElementAt(zero).Value.Margin = new Thickness(0.0, 250, 0.0, 0.0);
             thedata.ElementAt(zero).Value.Opacity = 1;
