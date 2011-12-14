@@ -87,7 +87,7 @@ namespace BombEistiv2WPF.Environment
                     }
                 }
                 
-                TimerManager._.AddNewTimer(false, 500, true, null, Supress);
+                TimerManager._.AddNewTimer(false, 500, true, null, SupressBlocus);
                 TimerManager._.AddNewTimer(false, 1000, true, null, Supress);
             }
         }
@@ -99,7 +99,14 @@ namespace BombEistiv2WPF.Environment
 
         public void Supress(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            G.TheCurrentMap.ListOfEntityOfDeath.Remove(this);
+            try
+            {
+                G.TheCurrentMap.ListOfEntityOfDeath.Remove(this);
+            }catch
+            {
+                G.TheCurrentMap.ListOfEntityOfDeath.Remove(this);
+            }
+            
         }
 
         protected override bool Move(int x, int y)

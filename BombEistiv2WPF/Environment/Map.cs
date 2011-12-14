@@ -221,7 +221,57 @@ namespace BombEistiv2WPF.Environment
                 p.Percenty = 0;
                 p2.Percentx = 0;
                 p2.Percenty = 0;
-                
+
+                //if(p.X == 0)
+                //{
+                //    p.Percentx = 10;
+                //}else if(p.X == Game.Length - 1)
+                //{
+                //    p.Percentx = -10;
+                //}else
+                //{
+                //    p.Percentx = 0;
+                //}
+
+                //if (p.Y == 0)
+                //{
+                //    p.Percenty = -10;
+                //}
+                //else if (p.Y == Game.Length - 1)
+                //{
+                //    p.Percenty = 10;
+                //}
+                //else
+                //{
+                //    p.Percenty = 0;
+                //}
+
+                //if (p2.X == 0)
+                //{
+                //    p2.Percentx = 10;
+                //}
+                //else if (p2.X == Game.Length - 1)
+                //{
+                //    p2.Percentx = -10;
+                //}
+                //else
+                //{
+                //    p2.Percentx = 0;
+                //}
+
+                //if (p2.Y == 0)
+                //{
+                //    p2.Percenty = -10;
+                //}
+                //else if (p2.Y == Game.Length - 1)
+                //{
+                //    p2.Percenty = 10;
+                //}
+                //else
+                //{
+                //    p2.Percenty = 0;
+                //}
+
             }
         }
 

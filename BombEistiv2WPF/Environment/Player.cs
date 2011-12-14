@@ -23,6 +23,7 @@ namespace BombEistiv2WPF.Environment
         private Direction newsens;
         private int clingnotement;
         private bool _invincible;
+        private bool teleportme;
 
         public Player(int id, int skinid, int x, int y, Map map, Score score = null) : base(x, y)
         {
@@ -51,6 +52,7 @@ namespace BombEistiv2WPF.Environment
             sens = Direction.Down;
             newsens = Direction.Down;
             _invincible = false;
+            teleportme = false;
         }
 
         public bool Invincible
@@ -85,6 +87,11 @@ namespace BombEistiv2WPF.Environment
                             {
                                 _percentx = value;
                             }
+                            if (teleportme)
+                            {
+                                teleportme = false;
+                                Map.Teleport(this);
+                            }
                         }
                     }
                     else if (value < 0 && ((value - Percentx) < 0))
@@ -101,6 +108,11 @@ namespace BombEistiv2WPF.Environment
                             else
                             {
                                 _percentx = value;
+                            }
+                            if (teleportme)
+                            {
+                                teleportme = false;
+                                Map.Teleport(this);
                             }
 
                         }
@@ -142,6 +154,11 @@ namespace BombEistiv2WPF.Environment
                             {
                                 _percenty = value;
                             }
+                            if(teleportme)
+                            {
+                                teleportme = false;
+                                Map.Teleport(this);
+                            }
                         }
                     }
                     else if (value < 0 && ((value - Percenty) < 0))
@@ -159,6 +176,11 @@ namespace BombEistiv2WPF.Environment
                             else
                             {
                                 _percenty = value;
+                            }
+                            if (teleportme)
+                            {
+                                teleportme = false;
+                                Map.Teleport(this);
                             }
 
                         }
@@ -195,7 +217,7 @@ namespace BombEistiv2WPF.Environment
             get { return _speed; }
             private set
             {
-                if(value >= 1)
+                if(value >= 1 && value <= 9)
                 {
                     _speed = value;
                 }
@@ -207,7 +229,7 @@ namespace BombEistiv2WPF.Environment
             get { return _bombCount; }
             private set
             {
-                if (value >= 1)
+                if (value >= 1 && value <= 9)
                 {
                     _bombCount = value;
                 }
@@ -326,7 +348,7 @@ namespace BombEistiv2WPF.Environment
                         Speed++;
                         break;
                     case UpgradeType.Teleport:
-                        Map.Teleport(this);
+                        teleportme = true;
                         break;
                     case UpgradeType.Life:
                         Lives++;
