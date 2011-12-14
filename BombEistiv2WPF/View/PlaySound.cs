@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Media;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
 
 namespace BombEistiv2WPF.View
@@ -14,6 +17,7 @@ namespace BombEistiv2WPF.View
         private Dictionary<string, SoundPlayer> _typesoundList;
         private Dictionary<string, MediaElement> _typemusicList;
         private String _theme;
+        private Wizard _theW;
 
         private PlaySound()
         {
@@ -71,7 +75,7 @@ namespace BombEistiv2WPF.View
                     sound.Volume = 0;
                     sound.Play();
                     sound.Stop();
-                    sound.Volume = 75;
+                    sound.Volume = 0.8;
                     TypeMusicList.Add(td.Key, sound);
                 }
             }
@@ -105,7 +109,28 @@ namespace BombEistiv2WPF.View
                 TypeMusicList[value].Play();
                 TypeMusicList[value].MediaEnded += loop;
             }
-            
+        }
+
+        public void StopFonduPressStart(Wizard w)
+        {
+            _theW = w;
+            TimerManager._.AddNewTimer(true, 15, true, null, FonduPressStart);
+        }
+
+        public void FonduPressStart(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            _theW.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => Fondu((Timer) sender)));
+        }
+
+        public void Fondu(Timer t)
+        {
+            TypeMusicList["PressStart"].Volume -= 0.008;
+            if(TypeMusicList["PressStart"].Volume <= 0)
+            {
+                Stop("PressStart");
+                TypeMusicList["PressStart"].Volume = 0.8;
+                t.AutoReset = false;
+            }
         }
 
         public void Stop(string value)

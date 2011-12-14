@@ -27,11 +27,13 @@
         <Music object="Result" source="result.mp3" />
         <Music object="Quick" source="quick.mp3" />
         <Music object="Game" source="game.mp3" />
+        <Music object="PressStart" source="pressstart.mp3" />
         <Music object="Cancel" source="cancel.wav" />
         <Music object="Valid" source="valid.wav" />
         <Music object="Error" source="error.wav" />
         <Music object="Hurry" source="hurry.wav" />
         <Music object="Versus" source="versus.wav" />
+        <Music object="OpenPressStart" source="openpressstart.wav" />
         <Music object="Selection" source="selection.wav" />
         <Music object="Explosionwav" source="Explosion.wav" />
         <Player object="Player_1_up" source="Player_1_up.png" />

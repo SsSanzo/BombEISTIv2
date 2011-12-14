@@ -169,11 +169,15 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
-                    PlaySound._.TypeSoundList["Valid"].Play();
+                    
                     if (OptionSelected == "Classic")
                     {
+                        PlaySound._.TypeSoundList["Valid"].Play();
                         thisistheend = true;
                         _wizard.NextScreen(ScreenType.PlayerCound);
+                    }else
+                    {
+                        PlaySound._.TypeSoundList["Error"].Play();
                     }
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")

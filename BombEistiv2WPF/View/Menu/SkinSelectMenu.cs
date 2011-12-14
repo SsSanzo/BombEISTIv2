@@ -40,8 +40,6 @@ namespace BombEistiv2WPF.View.Menu
 
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
-            PlaySound._.Stop("MenuAll");
-            PlaySound._.LireBoucle("Select");
             thisistheend = false;
             movelocked = true;
             var pressstart = (PlayerSelectMenu)oldscreen;
@@ -124,6 +122,7 @@ namespace BombEistiv2WPF.View.Menu
                 GameParameters._.PlayerSkin[p] = OptionValidate[p];
             }else
             {
+                PlaySound._.TypeSoundList["Error"].Play();
                 OptionValidate[p] = -1 * OptionSelected[p];
             }
 
@@ -361,6 +360,8 @@ namespace BombEistiv2WPF.View.Menu
                 if (!alreadyloaded)
                 {
                     alreadyloaded = true;
+                    PlaySound._.Stop("MenuAll");
+                    PlaySound._.LireBoucle("Select");
                     _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
                     _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                     for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)

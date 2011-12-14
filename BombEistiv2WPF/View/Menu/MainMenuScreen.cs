@@ -41,10 +41,11 @@ namespace BombEistiv2WPF.View.Menu
             
             if(oldscreen is MenuScreen)
             {
-                PlaySound._.LireBoucle("MenuAll");
                 var pressstart = (MenuScreen)oldscreen;
                 movelocked = true;
                 _wizard = w;
+                PlaySound._.StopFonduPressStart(w);
+                PlaySound._.LireBoucle("MenuAll");
                 OptionZommed = new Dictionary<string, int>();
                 OptionSelected = "BoxGame";
                 if (_menuDataList == null)

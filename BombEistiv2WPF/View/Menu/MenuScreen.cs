@@ -31,6 +31,7 @@ namespace BombEistiv2WPF.View.Menu
         public override void Show(Control.Wizard w, Screenv2 screen)
         {
             PlaySound._.Stop("Result");
+            PlaySound._.TypeSoundList["OpenPressStart"].Play();
             thisIsTheEnd = false;
             _wizard = w;
             TimerManager._.Reset();
@@ -222,6 +223,7 @@ namespace BombEistiv2WPF.View.Menu
                 MenuDataList["2"].Opacity = 1;
                 time.Interval = 50;
                 _actionInProgress = flash;
+                PlaySound._.LireBoucle("PressStart");
             }
         }
 
@@ -271,6 +273,8 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList["Bomb"].Margin = new Thickness(-130, -70, 0.0, 0.0);
             MenuDataList["Eisti"].Margin = new Thickness(100, 120 + 10, 0.0, 0.0);
             MenuDataList["2"].Opacity = 1;
+            PlaySound._.TypeSoundList["OpenPressStart"].Stop();
+            PlaySound._.LireBoucle("PressStart");
         }
 
         public void slideonthetop()
