@@ -21,21 +21,18 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:OptionMenu.cs" caret="12228" fromTop="12" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="34086" fromTop="15" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:PlayerSelectMenu.cs" caret="8058" fromTop="17" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:GameModeMenu.cs" caret="7700" fromTop="20" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ResultScreen.cs" caret="1429" fromTop="16" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="4327" fromTop="11" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:PreGame.cs" caret="1156" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:SkinSelectMenu.cs" caret="16330" fromTop="8" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:config.xml" caret="1613" fromTop="12" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MenuScreen.cs" caret="8305" fromTop="0" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="4065" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MainMenuScreen.cs" caret="1773" fromTop="14" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="1232" fromTop="8" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="3947" fromTop="14" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="1659" fromTop="16" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MainMenuScreen.cs" caret="1416" fromTop="7" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:SkinSelectMenu.cs" caret="5109" fromTop="13" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:GameModeMenu.cs" caret="7647" fromTop="8" />
     </RecentFiles>
     <RecentEdits>
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="31498" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="32488" fromTop="21" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="13958" fromTop="10" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="14921" fromTop="21" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="33482" fromTop="17" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:KeyOption.cs" caret="32914" fromTop="11" />
@@ -47,7 +44,7 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:ClassicGame.cs" caret="3525" fromTop="8" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ResultScreen.cs" caret="1281" fromTop="12" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:SkinSelectMenu.cs" caret="1251" fromTop="14" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:SkinSelectMenu.cs" caret="16424" fromTop="8" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:SkinSelectMenu.cs" caret="16484" fromTop="8" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:config.xml" caret="2059" fromTop="19" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:config.xml" caret="1719" fromTop="14" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MenuScreen.cs" caret="983" fromTop="15" />
@@ -56,13 +53,16 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MenuScreen.cs" caret="8360" fromTop="14" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MainMenuScreen.cs" caret="1468" fromTop="9" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:MainMenuScreen.cs" caret="1240" fromTop="3" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="3882" fromTop="18" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="609" fromTop="10" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="3598" fromTop="4" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="3818" fromTop="10" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="4062" fromTop="12" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="3805" fromTop="10" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="1257" fromTop="22" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="638" fromTop="10" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="3606" fromTop="13" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="4153" fromTop="21" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="2456" fromTop="16" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="4109" fromTop="18" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:SkinSelectMenu.cs" caret="5203" fromTop="16" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:GameModeMenu.cs" caret="7671" fromTop="14" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -95,7 +95,7 @@
       <Item value="_x" priority="95" />
       <Item value="value" priority="1408" />
       <Item value="X" priority="513" />
-      <Item value="if" priority="10556" />
+      <Item value="if" priority="10620" />
       <Item value="throw" priority="95" />
       <Item value="new" priority="4961" />
       <Item value="Exception" priority="86" />
@@ -127,8 +127,8 @@
       <Item value="Percentx" priority="384" />
       <Item value="Percenty" priority="255" />
       <Item value="_percentx" priority="255" />
-      <Item value="else" priority="4541" />
-      <Item value="Player`0" priority="735" />
+      <Item value="else" priority="4573" />
+      <Item value="Player`0" priority="767" />
       <Item value="Kick" priority="67" />
       <Item value="BombUp" priority="50" />
       <Item value="PowerMax" priority="50" />
@@ -172,7 +172,7 @@
       <Item value="initSkills`0" priority="31" />
       <Item value="_bombPower" priority="31" />
       <Item value="_canKick" priority="127" />
-      <Item value="false" priority="2206" />
+      <Item value="false" priority="2238" />
       <Item value="_invertedDirections" priority="95" />
       <Item value="true" priority="2238" />
       <Item value="_availableBombCount" priority="95" />
@@ -299,7 +299,7 @@
       <Item value="TimerManager" priority="28" />
       <Item value="_this" priority="128" />
       <Item value="Timer`0" priority="321" />
-      <Item value="t" priority="767" />
+      <Item value="t" priority="799" />
       <Item value="lastId" priority="63" />
       <Item value="MainWindow`0" priority="511" />
       <Item value="Button" priority="28" />
@@ -739,7 +739,7 @@
       <Item value="Environment" priority="63" />
       <Item value="Environment`0" priority="31" />
       <Item value="const" priority="31" />
-      <Item value="PlaySound`0" priority="607" />
+      <Item value="PlaySound`0" priority="639" />
       <Item value="PlaySound" priority="29" />
       <Item value="_typesoundList" priority="95" />
       <Item value="Dictionary&lt;string,SoundPlayer&gt;" priority="28" />
@@ -747,7 +747,7 @@
       <Item value="SoundPlayer" priority="29" />
       <Item value="sound" priority="191" />
       <Item value="Manual" priority="16" />
-      <Item value="TypeMusicList" priority="191" />
+      <Item value="TypeMusicList" priority="255" />
       <Item value="n" priority="31" />
       <Item value="loop`0" priority="32" />
       <Item value="TimeSpan`0" priority="31" />
@@ -764,7 +764,7 @@
       <Item value="ScaleX" priority="32" />
       <Item value="ScaleY" priority="32" />
       <Item value="_theW" priority="63" />
-      <Item value="Stop`0" priority="31" />
+      <Item value="Stop`0" priority="63" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Console">
       <Item value="WriteLine`0" priority="26" />
@@ -922,7 +922,7 @@
       <Item value="Start`0" priority="107" />
       <Item value="Container" priority="26" />
       <Item value="BeginInit`0" priority="26" />
-      <Item value="AutoReset" priority="458" />
+      <Item value="AutoReset" priority="485" />
       <Item value="Dispose`0" priority="80" />
       <Item value="Close`0" priority="80" />
     </ItemStatistics>
@@ -1499,11 +1499,11 @@
       <Item value="OpacityMaskProperty" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@BombEistiv2WPF.View.PlaySound">
-      <Item value="_" priority="485" />
+      <Item value="_" priority="512" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BombEistiv2WPF.View.PlaySound">
       <Item value="LoadAllMusic`0" priority="53" />
-      <Item value="TypeSoundList" priority="242" />
+      <Item value="TypeSoundList" priority="269" />
       <Item value="LireBoucle`0" priority="164" />
       <Item value="TypeMusicList" priority="26" />
       <Item value="Stop`0" priority="26" />
@@ -1512,14 +1512,14 @@
       <Item value="StopFonduPressStart`0" priority="26" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Media.SoundPlayer">
-      <Item value="Play`0" priority="215" />
+      <Item value="Play`0" priority="242" />
       <Item value="Stream" priority="26" />
       <Item value="Stop`0" priority="53" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Controls.MediaElement">
       <Item value="Source" priority="26" />
       <Item value="LoadedBehavior" priority="26" />
-      <Item value="Volume" priority="134" />
+      <Item value="Volume" priority="161" />
       <Item value="Play`0" priority="161" />
       <Item value="Stop`0" priority="189" />
       <Item value="MediaEnded" priority="53" />
@@ -1531,6 +1531,9 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.RoutedEventArgs">
       <Item value="ToString`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@BombEistiv2WPF.Environment.Player">
+      <Item value="ActualHeightProperty" priority="26" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <Bookmarks>

@@ -64,6 +64,7 @@ namespace BombEistiv2WPF.View
                 if (td.Value.EndsWith(".wav"))
                 {
                     var sound = new SoundPlayer(GameParameters.Path + td.Value);
+                    sound.LoadAsync();
                     TypeSoundList.Add(td.Key, sound);
                 }
                 else if (td.Value.EndsWith(".mp3"))

@@ -31,7 +31,7 @@
         <Music object="Cancel" source="cancel.wav" />
         <Music object="Valid" source="valid.wav" />
         <Music object="Error" source="error.wav" />
-        <Music object="Hurry" source="hurry.wav" />
+        <Music object="Hurry" source="hurry.mp3" />
         <Music object="Versus" source="versus.wav" />
         <Music object="OpenPressStart" source="openpressstart.wav" />
         <Music object="Selection" source="selection.wav" />
@@ -109,8 +109,8 @@
       <Texture object="Score" source="score.png" />
       <Texture object="Ray" source="ray.png" />
     </Menu>
-    <SoftBlock count="120" />
-    <GameTime count="60" />
+    <SoftBlock count="135" />
+    <GameTime count="180" />
     <ExplosionDelay count="3" />
     <keysMap>
       <Map key="Up" action="Up" player="1" />
@@ -138,14 +138,14 @@
   <Game type="Classic">
     <Player lives="3" />
     <Upgrades>
-      <Upgrade defaultFreq="15" currentFreq="20">PowerUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="5">PowerMax</Upgrade>
-      <Upgrade defaultFreq="20" currentFreq="20">BombUp</Upgrade>
+      <Upgrade defaultFreq="15" currentFreq="30">PowerUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
+      <Upgrade defaultFreq="20" currentFreq="30">BombUp</Upgrade>
       <Upgrade defaultFreq="4" currentFreq="5">Kick</Upgrade>
       <Upgrade defaultFreq="8" currentFreq="15">SpeedUp</Upgrade>
-      <Upgrade defaultFreq="2" currentFreq="5">SpeedMax</Upgrade>
-      <Upgrade defaultFreq="4" currentFreq="5">Life</Upgrade>
-      <Upgrade defaultFreq="8" currentFreq="10">Teleport</Upgrade>
+      <Upgrade defaultFreq="2" currentFreq="3">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="4" currentFreq="4">Life</Upgrade>
+      <Upgrade defaultFreq="8" currentFreq="8">Teleport</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">PowerDown</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">BombDown</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">SpeedDown</Upgrade>

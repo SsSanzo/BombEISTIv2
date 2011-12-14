@@ -40,7 +40,7 @@ namespace BombEistiv2WPF.View.Menu
         {
             PlaySound._.Stop("Game");
             PlaySound._.Stop("Quick");
-            PlaySound._.TypeSoundList["Hurry"].Stop();
+            PlaySound._.Stop("Hurry");
             PlaySound._.LireBoucle("Result");
             thisistheend = false;
             movelocked = true;

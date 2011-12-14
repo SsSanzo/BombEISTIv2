@@ -120,10 +120,17 @@ namespace BombEistiv2WPF.View.Menu
                 MenuDataList["Corner_" + p].Opacity = 0.4;
                 OptionValidate[p] = OptionSelected[p];
                 GameParameters._.PlayerSkin[p] = OptionValidate[p];
-            }else
+            }
+            else if (OptionSelected[p] != OptionValidate[p])
             {
                 PlaySound._.TypeSoundList["Error"].Play();
                 OptionValidate[p] = -1 * OptionSelected[p];
+            }else
+            {
+                MenuDataList["Preview_" + p].Opacity = 0.4;
+                MenuDataList["Player_" + OptionSelected[p]].Opacity = 1;
+                MenuDataList["Corner_" + p].Opacity = 1;
+                OptionValidate[p] = 0;
             }
 
             if(OptionValidate.Where(c => c.Value <= 0).Count() == 0)

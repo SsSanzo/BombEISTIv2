@@ -136,13 +136,28 @@ namespace BombEistiv2WPF
             else
             {
                 Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Normal,
-                                                    (Action) (() => _timers.RemoveAll(c => c != null && c.Timer == s)));
+                                                    (Action) (() => removeTime(s)));
             
                 s.Stop();
                 s.Close();
             }
         }
+        public void removeTime(Timer t)
+        {
+            var a = _timers.Find(c => c != null && c.Timer == t);
+            try
+            {
+                _timers.Remove(a);
+            }catch
+            {
+                var a2 = _timers.Find(c => c != null && c.Timer == t);
+                _timers.Remove(a2);
+            }
+            
+        }
     }
+
+    
 
     public enum EventType
     {
