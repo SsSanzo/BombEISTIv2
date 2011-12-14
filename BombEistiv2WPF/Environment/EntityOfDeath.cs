@@ -88,7 +88,7 @@ namespace BombEistiv2WPF.Environment
                 }
                 
                 TimerManager._.AddNewTimer(false, 500, true, null, SupressBlocus);
-                TimerManager._.AddNewTimer(false, 1000, true, null, Supress);
+                TimerManager._.AddNewTimer(false, 750, true, null, Supress);
             }
         }
 
