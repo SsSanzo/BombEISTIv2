@@ -58,6 +58,11 @@ namespace BombEistiv2WPF.Environment
             get { return _this ?? (_this = new GameParameters()); }
         }
 
+        public void instanciate()
+        {
+            //doing nothing
+        }
+
         public Network Network { get; set; }
 
         public int PlayerCount

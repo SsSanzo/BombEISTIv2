@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using BombEistiv2WPF.Control;
 using BombEistiv2WPF.Environment;
@@ -32,7 +33,19 @@ namespace BombEistiv2WPF
         public MainWindow()
         {
             InitializeComponent();
+            GameParameters._.instanciate();
+            var u = new Uri(GameParameters.Path + @"\\icone.ico");
+            var bitmanimg = new BitmapImage();
+            bitmanimg.BeginInit();
+            bitmanimg.UriSource = u;
+            bitmanimg.EndInit();
+            Icon = bitmanimg;
 
+            //POUR LE RENDU, ENLEVER COMMENTAIRE BLUIIIIIOUFNKLSNDFSJDFN
+            //MainGrid.Children.RemoveAt(0);
+            //var w = new Wizard(this);
+            //w.Init();
+            //w.LaunchScreen();
         }
 
         public Screen Menu
