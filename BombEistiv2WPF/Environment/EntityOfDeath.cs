@@ -88,7 +88,7 @@ namespace BombEistiv2WPF.Environment
                 }
                 
                 TimerManager._.AddNewTimer(false, 500, true, null, SupressBlocus);
-                TimerManager._.AddNewTimer(false, 750, true, null, Supress);
+                TimerManager._.AddNewTimer(false, 700, true, null, Supress);
             }
         }
 
@@ -104,7 +104,7 @@ namespace BombEistiv2WPF.Environment
                 G.TheCurrentMap.ListOfEntityOfDeath.Remove(this);
             }catch
             {
-                G.TheCurrentMap.ListOfEntityOfDeath.Remove(this);
+                TimerManager._.AddNewTimer(false, 50, true, null, Supress);
             }
             
         }

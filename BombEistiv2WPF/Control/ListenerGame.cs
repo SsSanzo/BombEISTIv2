@@ -105,13 +105,14 @@ namespace BombEistiv2WPF.Control
                         
                     }
                     Movement.ChangeFace(GameInProgress.TheCurrentMap.ListOfPlayer);
-                    if (Pulled.Count != 0)
+                    var c = Pulled.Count;
+                    if (c != 0)
                     {
-                        foreach (var p in Pulled)
+                        for (var i = c - 1; i >= 0; i-- )
                         {
-                            Pushed.Remove(p);
+                            Pushed.Remove(Pulled[i]);
+                            pulled.RemoveAt(i);
                         }
-                        Pulled.Clear();
                     }
                 }
             

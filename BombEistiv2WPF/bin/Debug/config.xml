@@ -138,14 +138,14 @@
   <Game type="Classic">
     <Player lives="3" />
     <Upgrades>
-      <Upgrade defaultFreq="15" currentFreq="30">PowerUp</Upgrade>
+      <Upgrade defaultFreq="15" currentFreq="25">PowerUp</Upgrade>
       <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
-      <Upgrade defaultFreq="20" currentFreq="30">BombUp</Upgrade>
+      <Upgrade defaultFreq="20" currentFreq="25">BombUp</Upgrade>
       <Upgrade defaultFreq="4" currentFreq="5">Kick</Upgrade>
       <Upgrade defaultFreq="8" currentFreq="15">SpeedUp</Upgrade>
       <Upgrade defaultFreq="2" currentFreq="3">SpeedMax</Upgrade>
       <Upgrade defaultFreq="4" currentFreq="4">Life</Upgrade>
-      <Upgrade defaultFreq="8" currentFreq="8">Teleport</Upgrade>
+      <Upgrade defaultFreq="8" currentFreq="5">Teleport</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">PowerDown</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">BombDown</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">SpeedDown</Upgrade>
