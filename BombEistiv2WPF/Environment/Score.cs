@@ -30,10 +30,7 @@ namespace BombEistiv2WPF.Environment
         public void KilledBy(Player killer, Player killed)
         {
             CheckExistance(killer.Id);
-            if(killer.Id == killed.Id)
-            {
-                _scoreMap[killer.Id] -= 1;
-            }else
+            if(killer.Id != killed.Id)
             {
                 _scoreMap[killer.Id] += 1;
             }

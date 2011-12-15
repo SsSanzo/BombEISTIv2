@@ -86,7 +86,13 @@ namespace BombEistiv2WPF.Control
                     //    Incoming.Clear();
                     //}
                     var l = new List<string>();
-                    l.AddRange(Pushed);
+                    try
+                    {
+                        l.AddRange(Pushed);
+                    }catch
+                    {
+                        
+                    }
                     foreach (var s in l)
                     {
                         if(s != null)

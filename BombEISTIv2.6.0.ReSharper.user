@@ -1,8 +1,6 @@
 <Configuration>
   <RecentFiles>
     <RecentFiles>
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="2719" fromTop="48" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:Movement.cs" caret="918" fromTop="10" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Game.cs" caret="455" fromTop="0" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:Wizard.cs" caret="3217" fromTop="11" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Bomb.cs" caret="7250" fromTop="22" />
@@ -23,21 +21,18 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:PlaySound.cs" caret="1153" fromTop="9" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:SkinSelectMenu.cs" caret="5040" fromTop="12" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ResultScreen.cs" caret="1273" fromTop="12" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ThemeMenu.cs" caret="1731" fromTop="9" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml" caret="1" fromTop="0" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="2141" fromTop="23" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/f:Texture.cs" caret="17751" fromTop="8" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="6830" fromTop="7" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1144" fromTop="11" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Player.cs" caret="2450" fromTop="8" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3857" fromTop="11" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="2376" fromTop="15" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Score.cs" caret="917" fromTop="13" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="2631" fromTop="6" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1144" fromTop="11" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ThemeMenu.cs" caret="5914" fromTop="15" />
     </RecentFiles>
     <RecentEdits>
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="842" fromTop="13" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="3206" fromTop="15" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="3206" fromTop="9" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:GameParameters.cs" caret="2141" fromTop="14" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="887" fromTop="11" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1363" fromTop="23" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1125" fromTop="17" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Player.cs" caret="3867" fromTop="23" />
@@ -63,6 +58,11 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Player.cs" caret="2704" fromTop="15" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Player.cs" caret="2915" fromTop="19" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3808" fromTop="9" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Score.cs" caret="846" fromTop="13" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Score.cs" caret="917" fromTop="15" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="2448" fromTop="18" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ThemeMenu.cs" caret="5843" fromTop="9" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ThemeMenu.cs" caret="6220" fromTop="15" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -328,7 +328,7 @@
       <Item value="Dictionary&lt;Entity,Image&gt;" priority="28" />
       <Item value="GetPathTextures`0" priority="31" />
       <Item value="try" priority="159" />
-      <Item value="catch" priority="159" />
+      <Item value="catch" priority="191" />
       <Item value="Exception`0" priority="31" />
       <Item value="MessageBox`0" priority="31" />
       <Item value="TheCurrentMap" priority="318" />
