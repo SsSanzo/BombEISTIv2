@@ -41,11 +41,10 @@ namespace BombEistiv2WPF
             bitmanimg.EndInit();
             Icon = bitmanimg;
 
-            //POUR LE RENDU, ENLEVER COMMENTAIRE BLUIIIIIOUFNKLSNDFSJDFN
-            //MainGrid.Children.RemoveAt(0);
-            //var w = new Wizard(this);
-            //w.Init();
-            //w.LaunchScreen();
+            MainGrid.Children.RemoveAt(0);
+            var w = new Wizard(this);
+            w.Init();
+            w.LaunchScreen();
         }
 
         public Screen Menu
