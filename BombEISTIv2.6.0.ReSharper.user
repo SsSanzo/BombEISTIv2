@@ -29,8 +29,8 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="5443" fromTop="16" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:View/d:Menu/f:ThemeMenu.cs" caret="5914" fromTop="15" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="3161" fromTop="9" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="181" fromTop="8" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="955" fromTop="12" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1003" fromTop="13" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="2450" fromTop="6" />
     </RecentFiles>
     <RecentEdits>
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:Map.cs" caret="8139" fromTop="20" />
@@ -58,11 +58,11 @@
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="3219" fromTop="6" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="3209" fromTop="10" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="3378" fromTop="14" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="4280" fromTop="19" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="4254" fromTop="19" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Control/f:ListenerGame.cs" caret="3218" fromTop="10" />
-      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3808" fromTop="6" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1281" fromTop="23" />
       <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/f:MainWindow.xaml.cs" caret="1144" fromTop="18" />
+      <File id="C33B1AB2-ABE1-4DA4-BE04-6101453942A3/d:Environment/f:EntityOfDeath.cs" caret="3651" fromTop="12" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

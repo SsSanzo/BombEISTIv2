@@ -86,10 +86,9 @@ namespace BombEistiv2WPF.Environment
                         G.TheCurrentMap.CheckForAllDead();
                     }
                 }
-                
-                TimerManager._.AddNewTimer(false, 500, true, null, SupressBlocus);
-                TimerManager._.AddNewTimer(false, 700, true, null, Supress);
             }
+            TimerManager._.AddNewTimer(false, 500, true, null, SupressBlocus);
+            TimerManager._.AddNewTimer(false, 700, true, null, Supress);
         }
 
         public void SupressBlocus(object sender, ElapsedEventArgs elapsedEventArgs)
