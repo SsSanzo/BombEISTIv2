@@ -37,10 +37,22 @@ namespace BombEistiv2WPF.View.Menu
             TimerManager._.Reset();
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
             {
+                if (w.Grid.Children[i] is Grid)
+                {
+                    var g = (Grid)w.Grid.Children[i];
+                    for (var j = g.Children.Count - 1; j > -1; j--)
+                    {
+                        if (!(g.Children[i] is Grid || g.Children[i] is MediaElement))
+                        {
+                            g.Children.RemoveAt(i);
+                        }
+                    }
+                }
                 if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
                 {
                     w.Grid.Children.RemoveAt(i);
                 }
+                
             }
             if(_menuDataList == null)
             {
