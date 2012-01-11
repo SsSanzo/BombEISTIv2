@@ -44,7 +44,13 @@ namespace BombEistiv2WPF.Environment
             {
                 if(G.TheCurrentMap.GetEntityOfDeath(x,y) != null)
                 {
-                    G.TheCurrentMap.ListOfEntityOfDeath.Remove(G.TheCurrentMap.GetEntityOfDeath(x, y));
+                    try
+                    {
+                        G.TheCurrentMap.ListOfEntityOfDeath.Remove(G.TheCurrentMap.GetEntityOfDeath(x, y));
+                    }catch(Exception e)
+                    {
+                        
+                    }
                 }
                 G.TheCurrentMap.ListOfEntityOfDeath.Add(this);
                 var listEntity = new List<Entity>();
