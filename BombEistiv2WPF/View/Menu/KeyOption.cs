@@ -238,6 +238,7 @@ namespace BombEistiv2WPF.View.Menu
                         {
                             if (KeyAction._.checkAllKeys())
                             {
+                                movelocked = true;
                                 PlaySound._.TypeSoundList["Valid"].Play();
                                 validLabel();
                                 thisistheend = true;

@@ -214,10 +214,12 @@ namespace BombEistiv2WPF.View.Menu
                     switch (OptionSelected)
                     {
                         case "BoxGame":
+                            movelocked = true;
                             thisistheend = true;
                             _wizard.NextScreen(ScreenType.GameMode);
                             break;
                         case "BoxOption":
+                            movelocked = true;
                             thisistheend = true;
                             _wizard.NextScreen(ScreenType.Options);
                             break;

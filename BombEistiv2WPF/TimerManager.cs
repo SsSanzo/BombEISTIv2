@@ -69,12 +69,11 @@ namespace BombEistiv2WPF
                                 ElapsedEventHandler e = null)
         {
             var t = new Timer { AutoReset = autoReset, Interval = delay };
-            if (timerEvent == null){ timerEvent = new TimerEvent();}
-            else{ t.Elapsed += Elapsed;}
+            if (timerEvent == null) { timerEvent = new TimerEvent(); t.Elapsed += Destroy; }
+            else { t.Elapsed += Elapsed;}
             timerEvent.Interval = delay;
             timerEvent.StartTime = DateTime.Now;
-            if (e != null) t.Elapsed += e;
-            t.Elapsed += Destroy;
+            if (e != null){ t.Elapsed += e; }
             timerEvent.Timer = t;
             _timers.Add(timerEvent);
             if (autoStart) t.Start();
@@ -82,7 +81,19 @@ namespace BombEistiv2WPF
 
         private void Elapsed(object sender, EventArgs eventArgs)
         {
-            _game.EventManager(_timers.Find(c => c.Timer == (Timer)sender));
+            var copy = new List<TimerEvent>();
+            copy.AddRange(_timers);
+            var v = copy.FirstOrDefault(c => c != null && c.Timer == (Timer) sender);
+            if(v != null)
+            {
+                _game.EventManager(v);
+                Destroy(sender, eventArgs);
+            }else
+            {
+                var t = (Timer) sender;
+                t.Interval = 20;
+                t.Start();
+            }
         }
 
         public void Start()
@@ -115,7 +126,7 @@ namespace BombEistiv2WPF
             _timers.Clear();
         }
 
-        private void Destroy(object sender, EventArgs eventArgs)
+        public void Destroy(object sender, EventArgs eventArgs)
         {
             var s = (Timer)sender;
             if (s.AutoReset)
@@ -124,7 +135,9 @@ namespace BombEistiv2WPF
                     DispatcherPriority.Normal,
                     (Action)(() =>
                     {
-                        var t = _timers.Find(c => c != null && c.Timer == s);
+                        var copy = new List<TimerEvent>();
+                        copy.AddRange(_timers);
+                        var t = copy.FirstOrDefault(c => c != null && c.Timer == s);
                         if(t != null){
                         t.StartTime = DateTime.Now;
                         if (!t.ReinitInterval) return;
@@ -146,14 +159,16 @@ namespace BombEistiv2WPF
         }
         public void removeTime(Timer t)
         {
-            var a = _timers.Find(c => c != null && c.Timer == t);
+            var copy = new List<TimerEvent>();
+            copy.AddRange(_timers);
+            var a = copy.FirstOrDefault(c => c != null && c.Timer == t);
             try
             {
                 _timers.Remove(a);
             }catch
             {
-                var a2 = _timers.Find(c => c != null && c.Timer == t);
-                _timers.Remove(a2);
+                //var a2 = _timers.Find(c => c != null && c.Timer == t);
+                //_timers.Remove(a2);
             }
             
         }

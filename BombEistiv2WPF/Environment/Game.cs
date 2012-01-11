@@ -26,30 +26,33 @@ namespace BombEistiv2WPF.Environment
 
         public void EventManager(TimerEvent timerEvent)
         {
-            
-            switch (timerEvent.Type)
+            if(timerEvent != null)
             {
-                case EventType.BombExplode:
-                    var b = (Bomb)timerEvent.InvolvedObject;
-                    if(TheCurrentMap.GetBomb(b.X,b.Y) != null)
-                    {
-                        b.Explode(this);
-                        //EmptyTheTrash(TheCurrentMap);
-                    }
-                    break;
-                case EventType.BombMove:
-                    var be = (Bomb)timerEvent.InvolvedObject;
-                    if(!be.Move())
-                    {
-                        timerEvent.Timer.Stop();
-                    }
-                    break;
-                case EventType.Malediction:
-                    var p = (Player)timerEvent.InvolvedObject;
-                    p.InvertedDirections = false;
-                    p.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(p)]);
-                    break;
+                switch (timerEvent.Type)
+                {
+                    case EventType.BombExplode:
+                        var b = (Bomb)timerEvent.InvolvedObject;
+                        if (TheCurrentMap.GetBomb(b.X, b.Y) != null)
+                        {
+                            b.Explode(this);
+                            //EmptyTheTrash(TheCurrentMap);
+                        }
+                        break;
+                    case EventType.BombMove:
+                        var be = (Bomb)timerEvent.InvolvedObject;
+                        if (!be.Move())
+                        {
+                            timerEvent.Timer.Stop();
+                        }
+                        break;
+                    case EventType.Malediction:
+                        var p = (Player)timerEvent.InvolvedObject;
+                        p.InvertedDirections = false;
+                        p.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(p)]);
+                        break;
+                }
             }
+            
         }
 
         public void InitPlayers()

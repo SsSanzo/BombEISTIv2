@@ -182,6 +182,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Enter")
                 {
+                    movelocked = true;
                     PlaySound._.TypeSoundList["Valid"].Play();
                     thisistheend = true;
                     GameParameters._.PlayerCount = Convert.ToInt32(OptionSelected.Substring(0, 1));
@@ -189,6 +190,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
                 {
+                    movelocked = true;
                     PlaySound._.TypeSoundList["Cancel"].Play();
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.GameMode);
@@ -490,48 +492,51 @@ namespace BombEistiv2WPF.View.Menu
 
         public void FadeOutOption(Timer t)
         {
-            Canvas.SetZIndex(MenuDataList["BoxDLevel"], 0);
-            Canvas.SetZIndex(MenuDataList["BoxGLevel"], 0);
-            Canvas.SetZIndex(MenuLabelList["BoxLevel"], 0);
-            var lt = (ScaleTransform)MenuDataList["BoxDLevel"].LayoutTransform;
-            var lt2 = (ScaleTransform)MenuDataList["BoxGLevel"].LayoutTransform;
-            if (lt.ScaleY < 0.69)
+            if(!alreadyloaded)
             {
-                MenuDataList["BoxDLevel"].Margin = new Thickness(MenuDataList["BoxDLevel"].Margin.Left + 150.0 / 20.0, MenuDataList["BoxDLevel"].Margin.Top + 70.0 / 20.0, 0, 0);
-                MenuDataList["BoxGLevel"].Margin = new Thickness(MenuDataList["BoxGLevel"].Margin.Left + 60.0 / 20.0, MenuDataList["BoxGLevel"].Margin.Top + 70.0 / 20.0, 0, 0);
-
-                lt.ScaleY = lt.ScaleY + 0.5 / 20.0;
-                lt2.ScaleY = lt2.ScaleY + 0.5 / 20.0;
-                MenuLabelList["BoxLevel"].Margin = new Thickness(MenuLabelList["BoxLevel"].Margin.Left + 100.0 / 20.0, MenuLabelList["BoxLevel"].Margin.Top + 220.0 / 20.0, 0, 0);
-                MenuLabelList["BoxLevel"].FontSize += 0.3;
-            }
-            else
-            {
-                t.AutoReset = false;
-                if (!alreadyloaded)
+                Canvas.SetZIndex(MenuDataList["BoxDLevel"], 0);
+                Canvas.SetZIndex(MenuDataList["BoxGLevel"], 0);
+                Canvas.SetZIndex(MenuLabelList["BoxLevel"], 0);
+                var lt = (ScaleTransform)MenuDataList["BoxDLevel"].LayoutTransform;
+                var lt2 = (ScaleTransform)MenuDataList["BoxGLevel"].LayoutTransform;
+                if (lt.ScaleY < 0.69)
                 {
-                    alreadyloaded = true;
-                    MenuDataList.Remove("BoxDLevel");
-                    MenuDataList.Remove("BoxGLevel");
-                    MenuLabelList.Remove("BoxLevel");
-                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                    MenuDataList["BoxDLevel"].Margin = new Thickness(MenuDataList["BoxDLevel"].Margin.Left + 150.0 / 20.0, MenuDataList["BoxDLevel"].Margin.Top + 70.0 / 20.0, 0, 0);
+                    MenuDataList["BoxGLevel"].Margin = new Thickness(MenuDataList["BoxGLevel"].Margin.Left + 60.0 / 20.0, MenuDataList["BoxGLevel"].Margin.Top + 70.0 / 20.0, 0, 0);
+
+                    lt.ScaleY = lt.ScaleY + 0.5 / 20.0;
+                    lt2.ScaleY = lt2.ScaleY + 0.5 / 20.0;
+                    MenuLabelList["BoxLevel"].Margin = new Thickness(MenuLabelList["BoxLevel"].Margin.Left + 100.0 / 20.0, MenuLabelList["BoxLevel"].Margin.Top + 220.0 / 20.0, 0, 0);
+                    MenuLabelList["BoxLevel"].FontSize += 0.3;
+                }
+                else
+                {
+                    t.AutoReset = false;
+                    if (!alreadyloaded)
                     {
-                        if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                        alreadyloaded = true;
+                        MenuDataList.Remove("BoxDLevel");
+                        MenuDataList.Remove("BoxGLevel");
+                        MenuLabelList.Remove("BoxLevel");
+                        _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                        _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                        for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                         {
-                            _wizard.Grid.Children.RemoveAt(i);
+                            if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                            {
+                                _wizard.Grid.Children.RemoveAt(i);
+                            }
                         }
+                        foreach (var img in MenuDataList)
+                        {
+                            _wizard.Grid.Children.Add(img.Value);
+                        }
+                        foreach (var lab in MenuLabelList)
+                        {
+                            _wizard.Grid.Children.Add(lab.Value);
+                        }
+                        movelocked = false;
                     }
-                    foreach (var img in MenuDataList)
-                    {
-                        _wizard.Grid.Children.Add(img.Value);
-                    }
-                    foreach (var lab in MenuLabelList)
-                    {
-                        _wizard.Grid.Children.Add(lab.Value);
-                    }
-                    movelocked = false;
                 }
             }
 

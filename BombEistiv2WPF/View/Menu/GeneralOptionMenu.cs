@@ -546,6 +546,7 @@ namespace BombEistiv2WPF.View.Menu
                     }
                     else if (OptionSelected == "Confirm")
                     {
+                        movelocked = true;
                         PlaySound._.TypeSoundList["Valid"].Play();
                         validLabel();
                         thisistheend = true;

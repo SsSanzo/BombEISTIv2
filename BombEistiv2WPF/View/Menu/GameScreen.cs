@@ -238,7 +238,14 @@ namespace BombEistiv2WPF.View.Menu
             if(openedanim)
             {
                 openedanim = false;
-                _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(AnimBomb));
+                try
+                {
+                    _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                    new Action(AnimBomb));
+                }catch
+                {
+                    
+                }
             }
             
 

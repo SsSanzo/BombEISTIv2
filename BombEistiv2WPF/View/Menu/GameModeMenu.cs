@@ -172,6 +172,7 @@ namespace BombEistiv2WPF.View.Menu
                     
                     if (OptionSelected == "Classic")
                     {
+                        movelocked = true;
                         PlaySound._.TypeSoundList["Valid"].Play();
                         thisistheend = true;
                         _wizard.NextScreen(ScreenType.PlayerCound);
@@ -182,6 +183,7 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
                 {
+                    movelocked = true;
                     PlaySound._.TypeSoundList["Cancel"].Play();
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.MainMenu);

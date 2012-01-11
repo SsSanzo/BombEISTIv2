@@ -23,6 +23,7 @@ namespace BombEistiv2WPF.View.Menu
         private Dictionary<String, int> OptionZommed;
         private bool thisistheend;
         private bool movelocked;
+        private bool alreadyloaded;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -40,6 +41,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 thisistheend = false;
                 movelocked = true;
+                alreadyloaded = false;
                 var pressstart = (MainMenuScreen)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -76,6 +78,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 thisistheend = false;
                 movelocked = true;
+                alreadyloaded = false;
                 var pressstart = (GeneralOptionMenu)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -112,6 +115,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 thisistheend = false;
                 movelocked = true;
+                alreadyloaded = false;
                 var pressstart = (KeyOption)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -149,6 +153,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 thisistheend = false;
                 movelocked = true;
+                alreadyloaded = false;
                 var pressstart = (ThemeMenu)oldscreen;
                 _wizard = w;
                 OptionZommed = new Dictionary<string, int>();
@@ -252,18 +257,22 @@ namespace BombEistiv2WPF.View.Menu
                     switch (OptionSelected)
                     {
                         case "BoxGeneral":
+                            movelocked = true;
                             PlaySound._.TypeSoundList["Valid"].Play();
                             _wizard.NextScreen(ScreenType.GeneralOptions);
                             break;
                         case "BoxTouche":
+                            movelocked = true;
                             PlaySound._.TypeSoundList["Valid"].Play();
                             _wizard.NextScreen(ScreenType.KeyConfig);
                             break;
                         case "BoxTheme":
+                            movelocked = true;
                             PlaySound._.TypeSoundList["Valid"].Play();
                             _wizard.NextScreen(ScreenType.Themes);
                             break;
                         case "BoxCancel":
+                            movelocked = true;
                             PlaySound._.TypeSoundList["Cancel"].Play();
                             _wizard.NextScreen(ScreenType.MainMenu);
                             break;
@@ -465,9 +474,10 @@ namespace BombEistiv2WPF.View.Menu
                 lt.ScaleY = lt.ScaleY - 0.4 / 20.0;
                 MenuLabelList["BoxOption"].Margin = new Thickness(MenuLabelList["BoxOption"].Margin.Left - 100.0 / 20.0, MenuLabelList["BoxOption"].Margin.Top - 390.0 / 20.0, 0, 0);
                 MenuLabelList["BoxOption"].FontSize -= 0.7;
-            }else
+            }else if(!alreadyloaded)
             {
                 t.AutoReset = false;
+                alreadyloaded = true;
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                 for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
@@ -504,12 +514,12 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxGeneral"].Margin = new Thickness(MenuLabelList["BoxGeneral"].Margin.Left + 250.0 / 20.0, MenuLabelList["BoxGeneral"].Margin.Top + 180.0 / 20.0, 0, 0);
                 MenuLabelList["BoxGeneral"].FontSize += 0.7;
             }
-            else //if (!alreadyloaded)
+            else if (!alreadyloaded)
             {
                 t.AutoReset = false;
                 MenuDataList.Remove("BoxGeneral");
                 MenuLabelList.Remove("BoxGeneral");
-                //alreadyloaded = true;
+                alreadyloaded = true;
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                 for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
@@ -546,12 +556,12 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxTouche"].Margin = new Thickness(MenuLabelList["BoxTouche"].Margin.Left + 175.0 / 20.0, MenuLabelList["BoxTouche"].Margin.Top + 255.0 / 20.0, 0, 0);
                 MenuLabelList["BoxTouche"].FontSize += 0.7;
             }
-            else //if (!alreadyloaded)
+            else if (!alreadyloaded)
             {
                 t.AutoReset = false;
                 MenuDataList.Remove("BoxTouche");
                 MenuLabelList.Remove("BoxTouche");
-                //alreadyloaded = true;
+                alreadyloaded = true;
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                 for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
@@ -588,12 +598,12 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxTheme"].Margin = new Thickness(MenuLabelList["BoxTheme"].Margin.Left + 100.0 / 20.0, MenuLabelList["BoxTheme"].Margin.Top + 330.0 / 20.0, 0, 0);
                 MenuLabelList["BoxTheme"].FontSize += 0.7;
             }
-            else //if (!alreadyloaded)
+            else if (!alreadyloaded)
             {
                 t.AutoReset = false;
                 MenuDataList.Remove("BoxTheme");
                 MenuLabelList.Remove("BoxTheme");
-                //alreadyloaded = true;
+                alreadyloaded = true;
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                 for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
