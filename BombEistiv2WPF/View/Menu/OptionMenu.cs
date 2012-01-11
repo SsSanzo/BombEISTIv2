@@ -474,29 +474,32 @@ namespace BombEistiv2WPF.View.Menu
                 lt.ScaleY = lt.ScaleY - 0.4 / 20.0;
                 MenuLabelList["BoxOption"].Margin = new Thickness(MenuLabelList["BoxOption"].Margin.Left - 100.0 / 20.0, MenuLabelList["BoxOption"].Margin.Top - 390.0 / 20.0, 0, 0);
                 MenuLabelList["BoxOption"].FontSize -= 0.7;
-            }else if(!alreadyloaded)
+            }else
             {
                 t.AutoReset = false;
-                alreadyloaded = true;
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if (!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                    alreadyloaded = true;
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
+                    SwitchOption("BoxGeneral");
+                    movelocked = false;
                 }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
-                }
-                SwitchOption("BoxGeneral");
-                movelocked = false;
             }
             
         }
@@ -514,31 +517,34 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxGeneral"].Margin = new Thickness(MenuLabelList["BoxGeneral"].Margin.Left + 250.0 / 20.0, MenuLabelList["BoxGeneral"].Margin.Top + 180.0 / 20.0, 0, 0);
                 MenuLabelList["BoxGeneral"].FontSize += 0.7;
             }
-            else if (!alreadyloaded)
+            else
             {
                 t.AutoReset = false;
-                MenuDataList.Remove("BoxGeneral");
-                MenuLabelList.Remove("BoxGeneral");
-                alreadyloaded = true;
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if (!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                    MenuDataList.Remove("BoxGeneral");
+                    MenuLabelList.Remove("BoxGeneral");
+                    alreadyloaded = true;
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
+                    SwitchOption("BoxGeneral");
+                    movelocked = false;
                 }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
-                }
-                SwitchOption("BoxGeneral");
-                movelocked = false;
             }
 
         }
@@ -556,31 +562,34 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxTouche"].Margin = new Thickness(MenuLabelList["BoxTouche"].Margin.Left + 175.0 / 20.0, MenuLabelList["BoxTouche"].Margin.Top + 255.0 / 20.0, 0, 0);
                 MenuLabelList["BoxTouche"].FontSize += 0.7;
             }
-            else if (!alreadyloaded)
+            else
             {
                 t.AutoReset = false;
-                MenuDataList.Remove("BoxTouche");
-                MenuLabelList.Remove("BoxTouche");
-                alreadyloaded = true;
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if (!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                    MenuDataList.Remove("BoxTouche");
+                    MenuLabelList.Remove("BoxTouche");
+                    alreadyloaded = true;
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
+                    SwitchOption("BoxTouche");
+                    movelocked = false;
                 }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
-                }
-                SwitchOption("BoxTouche");
-                movelocked = false;
             }
 
         }
@@ -598,31 +607,34 @@ namespace BombEistiv2WPF.View.Menu
                 MenuLabelList["BoxTheme"].Margin = new Thickness(MenuLabelList["BoxTheme"].Margin.Left + 100.0 / 20.0, MenuLabelList["BoxTheme"].Margin.Top + 330.0 / 20.0, 0, 0);
                 MenuLabelList["BoxTheme"].FontSize += 0.7;
             }
-            else if (!alreadyloaded)
+            else
             {
                 t.AutoReset = false;
-                MenuDataList.Remove("BoxTheme");
-                MenuLabelList.Remove("BoxTheme");
-                alreadyloaded = true;
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
-                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                if (!alreadyloaded)
                 {
-                    if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                    MenuDataList.Remove("BoxTheme");
+                    MenuLabelList.Remove("BoxTheme");
+                    alreadyloaded = true;
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                    for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
-                        _wizard.Grid.Children.RemoveAt(i);
+                        if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                        {
+                            _wizard.Grid.Children.RemoveAt(i);
+                        }
                     }
+                    foreach (var img in MenuDataList)
+                    {
+                        _wizard.Grid.Children.Add(img.Value);
+                    }
+                    foreach (var lab in MenuLabelList)
+                    {
+                        _wizard.Grid.Children.Add(lab.Value);
+                    }
+                    SwitchOption("BoxTheme");
+                    movelocked = false;
                 }
-                foreach (var img in MenuDataList)
-                {
-                    _wizard.Grid.Children.Add(img.Value);
-                }
-                foreach (var lab in MenuLabelList)
-                {
-                    _wizard.Grid.Children.Add(lab.Value);
-                }
-                SwitchOption("BoxTheme");
-                movelocked = false;
             }
 
         }
