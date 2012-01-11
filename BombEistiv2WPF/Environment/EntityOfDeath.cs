@@ -11,6 +11,7 @@ namespace BombEistiv2WPF.Environment
     {
         private Game G;
         private bool blocus;
+        private bool hurt;
         private Player owner;
         private bool thereIsOne;
 
@@ -18,6 +19,12 @@ namespace BombEistiv2WPF.Environment
         {
             get { return blocus; }
             set { blocus = value; }
+        }
+
+        public bool IsHurting
+        {
+            get { return hurt; }
+            set { hurt = value; }
         }
 
         public Player Owner
@@ -30,10 +37,15 @@ namespace BombEistiv2WPF.Environment
         {
             thereIsOne = false;
             blocus = b;
+            hurt = true;
             G = g;
             owner = o;
             if (G.TheCurrentMap.GetEntityOfDeath(x,y) == null || (G.TheCurrentMap.GetEntityOfDeath(x,y) != null && !G.TheCurrentMap.GetEntityOfDeath(x,y).Blocus))
             {
+                if(G.TheCurrentMap.GetEntityOfDeath(x,y) != null)
+                {
+                    G.TheCurrentMap.ListOfEntityOfDeath.Remove(G.TheCurrentMap.GetEntityOfDeath(x, y));
+                }
                 G.TheCurrentMap.ListOfEntityOfDeath.Add(this);
                 var listEntity = new List<Entity>();
                 listEntity.AddRange(G.TheCurrentMap.GetCompleteList());
@@ -98,6 +110,7 @@ namespace BombEistiv2WPF.Environment
 
         public void Supress(object sender, ElapsedEventArgs elapsedEventArgs)
         {
+            hurt = false;
             try
             {
                 G.TheCurrentMap.ListOfEntityOfDeath.Remove(this);

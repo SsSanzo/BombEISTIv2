@@ -435,7 +435,7 @@ namespace BombEistiv2WPF.Environment
             if(!Invincible)
             {
                 var e = _map.GetEntityOfDeath(x, y);
-                if (e != null)
+                if (e != null && e.IsHurting)
                 {
                     Score._.KilledBy(e.Owner, this);
                     if (Die())
