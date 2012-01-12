@@ -55,6 +55,21 @@ namespace BombEistiv2WPF.Environment
             teleportme = false;
         }
 
+        //private void InitSkills()
+        //{
+        //    Speed = 9;
+        //    BombCount = 9;
+        //    BombPower = 10;
+        //    CanKick = true;
+        //    InvertedDirections = false;
+        //    AvailableBombCount = 9;
+        //    Lives = GameParameters._.LivesCount;
+        //    sens = Direction.Down;
+        //    newsens = Direction.Down;
+        //    _invincible = false;
+        //    teleportme = false;
+        //}
+
         public bool Invincible
         {
             get { return _invincible; }

@@ -110,7 +110,7 @@
       <Texture object="Ray" source="ray.png" />
     </Menu>
     <SoftBlock count="135" />
-    <GameTime count="100" />
+    <GameTime count="180" />
     <ExplosionDelay count="3" />
     <keysMap>
       <Map key="Up" action="Up" player="1" />

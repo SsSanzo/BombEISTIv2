@@ -84,20 +84,23 @@ namespace BombEistiv2WPF
             
             try
             {
+                //var copy = new List<TimerEvent>();
+                //copy.AddRange(_timers);
+                
                 var copy = new List<TimerEvent>();
-                copy.AddRange(_timers);
-                var v = copy.FirstOrDefault(c => c != null && c.Timer == (Timer) sender);
+                for (var i = _timers.Count - 1; i >= 0; i--)
+                {
+                    //index = i;
+                    if (i <= _timers.Count)
+                    {
+                        copy.Add(_timers[i]);
+                    }
+                }
+                var v = copy.FirstOrDefault(c => c != null && c.Timer == (Timer)sender);
                 if(v != null)
                 {
                     _game.EventManager(v);
                     Destroy(sender, eventArgs);
-                }else
-                {
-                    var t = (Timer)sender;
-                    t.Stop();
-                    t.Interval = 20;
-                    t.Start();
-                    Console.WriteLine("["+DateTime.Now+"] - Error v null");
                 }
             }catch
             {
@@ -105,7 +108,7 @@ namespace BombEistiv2WPF
                 t.Stop();
                 t.Interval = 20;
                 t.Start();
-                Console.WriteLine("[" + DateTime.Now + "] - Error addrange fail");
+               //Console.WriteLine("[" + DateTime.Now + "] - Error addrange fail");
             }
         }
 
@@ -118,11 +121,23 @@ namespace BombEistiv2WPF
         }
 
 
+        //public void Stop()
+        //{
+        //    foreach (var timerEvent in _timers.Where(timerEvent => timerEvent != null))
+        //    {
+        //        timerEvent.Timer.Stop();
+        //    }
+        //}
+
         public void Stop()
         {
-            foreach (var timerEvent in _timers.Where(timerEvent => timerEvent != null))
+            for (var i = _timers.Count - 1; i > 0; i--)
             {
-                timerEvent.Timer.Stop();
+                var v = _timers[i];
+                if (v != null)
+                {
+                    v.Timer.Stop();
+                }
             }
         }
 
@@ -148,44 +163,67 @@ namespace BombEistiv2WPF
                     DispatcherPriority.Normal,
                     (Action)(() =>
                     {
-                        var copy = new List<TimerEvent>();
-                        copy.AddRange(_timers);
-                        var t = copy.FirstOrDefault(c => c != null && c.Timer == s);
-                        if(t != null){
-                        t.StartTime = DateTime.Now;
-                        if (!t.ReinitInterval) return;
-                        t.Timer.Interval = t.Interval;
-                        t.ReinitInterval = false;
-                        }
+                        try
+                        {
+                            var copy = new List<TimerEvent>();
+                            copy.AddRange(_timers);
+                            var t = copy.FirstOrDefault(c => c != null && c.Timer == s);
+                            if (t != null)
+                            {
+                                t.StartTime = DateTime.Now;
+                                if (!t.ReinitInterval) return;
+                                t.Timer.Interval = t.Interval;
+                                t.ReinitInterval = false;
+                            }
+                        }catch{}
                     }
                              )
                 );
             }
             else
             {
+                s.Stop();
                 Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Normal,
                                                     (Action) (() => removeTime(s)));
             
-                s.Stop();
-                s.Close();
+                
+                
             }
         }
         public void removeTime(Timer t)
         {
-            try
+            bool fail = false;
+            int index = 0;
+            do
             {
-            var copy = new List<TimerEvent>();
-            copy.AddRange(_timers);
-            var a = copy.FirstOrDefault(c => c != null && c.Timer == t);
-            
-                _timers.Remove(a);
-            }catch
-            {
-                Console.WriteLine("[" + DateTime.Now + "] - Error removetime fail");
-                //var a2 = _timers.Find(c => c != null && c.Timer == t);
-                //_timers.Remove(a2);
-            }
-            
+                try
+                {
+                    var copy = new List<TimerEvent>();
+                    for(var i=_timers.Count - 1;i>=0;i--)
+                    {
+                        //index = i;
+                        if(i <= _timers.Count)
+                        {
+                            copy.Add(_timers[i]);
+                        }
+                        
+                    }
+                    var a = copy.FirstOrDefault(c => c != null && c.Timer == t);
+                    _timers.Remove(a);
+                    fail = false;
+                }
+                catch(Exception e)
+                {
+                    //t.Close();
+                    fail = true;
+                    //Console.WriteLine("[" + DateTime.Now + "] - Error removetime fail : " + t.GetHashCode() + " // Ex : " + e.Message + " // index : " + index + " // " + _timers.Count);
+                    //var a2 = _timers.Find(c => c != null && c.Timer == t);
+                    //_timers.Remove(a2);
+                }
+            } while (fail);
+            t.Close();
+
+
         }
     }
 

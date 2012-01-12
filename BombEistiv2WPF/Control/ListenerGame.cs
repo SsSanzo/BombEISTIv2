@@ -108,11 +108,14 @@ namespace BombEistiv2WPF.Control
                     var c = Pulled.Count;
                     if (c != 0)
                     {
-                        for (var i = c - 1; i >= 0; i-- )
+                        try
                         {
-                            Pushed.Remove(Pulled[i]);
-                            pulled.RemoveAt(i);
-                        }
+                            for (var i = c - 1; i >= 0; i--)
+                            {
+                                Pushed.Remove(Pulled[i]);
+                                pulled.RemoveAt(i);
+                            }
+                        }catch{}
                     }
                 }
             
