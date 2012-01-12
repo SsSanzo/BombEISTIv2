@@ -163,11 +163,12 @@ namespace BombEistiv2WPF
         }
         public void removeTime(Timer t)
         {
+            try
+            {
             var copy = new List<TimerEvent>();
             copy.AddRange(_timers);
             var a = copy.FirstOrDefault(c => c != null && c.Timer == t);
-            try
-            {
+            
                 _timers.Remove(a);
             }catch
             {

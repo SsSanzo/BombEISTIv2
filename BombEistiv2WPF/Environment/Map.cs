@@ -75,10 +75,17 @@ namespace BombEistiv2WPF.Environment
                 throw new Exception("Empty case are negative");
             }
             var allupgrades = GameParameters._.GetAllUpgrades();
-            if (allupgrades.Count > GameParameters._.SoftBlocCount)
+            for (var i = allupgrades.Count - 1; i >= 0;i--)
             {
-                throw new Exception("Too much upgrades");
+                if(allupgrades.ElementAt(i).Value <= 0)
+                {
+                    allupgrades.Remove(allupgrades.ElementAt(i).Key);
+                }
             }
+            //if (allupgrades.Count > GameParameters._.SoftBlocCount)
+            //{
+            //    throw new Exception("Too much upgrades");
+            //}
             var theListOfEntityEmptry = new List<Entity>();
             for(var i = 0;i<Game.Length;i++)
             {
@@ -98,7 +105,6 @@ namespace BombEistiv2WPF.Environment
             var rand = new Random();
             for (var i = GameParameters._.SoftBlocCount; i > 0; i--)
             {
-                
                 var selectionPick = rand.Next(theListOfEntityEmptry.Count);
                 var thePick = theListOfEntityEmptry.ElementAt(selectionPick);
                 if(allupgrades.Count > 0)
