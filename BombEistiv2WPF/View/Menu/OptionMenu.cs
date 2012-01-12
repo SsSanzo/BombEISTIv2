@@ -278,6 +278,13 @@ namespace BombEistiv2WPF.View.Menu
                             break;
                     }
                 }
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
+                {
+                    thisistheend = true;
+                    movelocked = true;
+                    PlaySound._.TypeSoundList["Cancel"].Play();
+                    _wizard.NextScreen(ScreenType.MainMenu);
+                }
             }
         }
 

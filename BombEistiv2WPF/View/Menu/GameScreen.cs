@@ -266,19 +266,27 @@ namespace BombEistiv2WPF.View.Menu
 
         public void AnimBomb()
         {
-            var copy = _wizard.TheWindow.GameInProgress.TheCurrentMap.ListOfBomb;
-            for(var i = 0; i<copy.Count;i++)
+            try
             {
-                if(!(copy.ElementAt(i).LayoutTransform is ScaleTransform))
+            var copy = _wizard.TheWindow.GameInProgress.TheCurrentMap.ListOfBomb;
+            
+            for (var i = 0; i < copy.Count; i++)
+            {
+                var b = copy.ElementAt(i);
+                if (b != null)
                 {
-                    var lol = new ScaleTransform {CenterX = 20, CenterY = 20, ScaleX = 1.0, ScaleY = 1.0};
-                    copy.ElementAt(i).LayoutTransform = lol;
+                    if (!(b.LayoutTransform is ScaleTransform))
+                    {
+                        var lol = new ScaleTransform {CenterX = 20, CenterY = 20, ScaleX = 1.0, ScaleY = 1.0};
+                        b.LayoutTransform = lol;
+                    }
+                    var rt = (ScaleTransform) b.LayoutTransform;
+                    rt.ScaleX = rt.ScaleX + sens*(0.002);
+                    rt.ScaleY = rt.ScaleY + sens*(0.002);
+                    b.Margin = new Thickness(b.Margin.Left - sens*0.05, b.Margin.Top - sens*0.05, 0.0, 0.0);
                 }
-                var rt = (ScaleTransform) copy.ElementAt(i).LayoutTransform;
-                rt.ScaleX = rt.ScaleX + sens* (0.002);
-                rt.ScaleY = rt.ScaleY + sens *(0.002);
-                copy.ElementAt(i).Margin = new Thickness(copy.ElementAt(i).Margin.Left - sens * 0.05, copy.ElementAt(i).Margin.Top - sens * 0.05, 0.0, 0.0);
             }
+            
             animbomb += sens;
             if(animbomb > 20)
             {
@@ -291,6 +299,8 @@ namespace BombEistiv2WPF.View.Menu
                 animbomb = 0;
             }
             openedanim = true;
+            }
+            catch { }
         }
 
 

@@ -484,6 +484,9 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         _wizard.Grid.Children.Add(lab.Value);
                     }
+                    MenuDataList["Bomb"].Margin = new Thickness(-58, -34 , 0.0, 0.0);
+                    MenuDataList["Eisti"].Margin = new Thickness(59, 63, 0.0, 0.0);
+                    MenuDataList["2"].Margin = new Thickness(240, 36, 0.0, 0.0);
                     SwitchOption("BoxGame");
                     movelocked = false;
                 }
@@ -530,6 +533,9 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         _wizard.Grid.Children.Add(lab.Value);
                     }
+                    MenuDataList["Bomb"].Margin = new Thickness(-58, -34, 0.0, 0.0);
+                    MenuDataList["Eisti"].Margin = new Thickness(59, 63, 0.0, 0.0);
+                    MenuDataList["2"].Margin = new Thickness(240, 36, 0.0, 0.0);
                     SwitchOption("BoxGame");
                     movelocked = false;
                 }

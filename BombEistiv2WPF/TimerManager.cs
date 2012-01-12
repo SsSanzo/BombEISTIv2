@@ -81,14 +81,18 @@ namespace BombEistiv2WPF
 
         private void Elapsed(object sender, EventArgs eventArgs)
         {
-            var copy = new List<TimerEvent>();
-            copy.AddRange(_timers);
-            var v = copy.FirstOrDefault(c => c != null && c.Timer == (Timer) sender);
-            if(v != null)
+            
+            try
             {
-                _game.EventManager(v);
-                Destroy(sender, eventArgs);
-            }else
+                var copy = new List<TimerEvent>();
+                copy.AddRange(_timers);
+                var v = copy.FirstOrDefault(c => c != null && c.Timer == (Timer) sender);
+                if(v != null)
+                {
+                    _game.EventManager(v);
+                    Destroy(sender, eventArgs);
+                }
+            }catch
             {
                 var t = (Timer) sender;
                 t.Interval = 20;
@@ -107,7 +111,7 @@ namespace BombEistiv2WPF
 
         public void Stop()
         {
-            foreach (var timerEvent in _timers)
+            foreach (var timerEvent in _timers.Where(timerEvent => timerEvent != null))
             {
                 timerEvent.Timer.Stop();
             }

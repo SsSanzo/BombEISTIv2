@@ -347,10 +347,10 @@ namespace BombEistiv2WPF.View.Menu
                 Source = GameParameters._.MenutextureList[right],
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness((OptionSelected == "3P") ? 350.0 : 370.0, 420, 0.0, 0.0),
+                Margin = new Thickness((OptionSelected == "3P") ? 330.0 : 350.0, 430, 0.0, 0.0),
                 Opacity = 0.2,
-                Width = 180,
-                Height = 180
+                Width = 150,
+                Height = 150
             };
             MenuDataList.Add("P" + right, gc2);
 
@@ -359,7 +359,7 @@ namespace BombEistiv2WPF.View.Menu
                 Source = GameParameters._.MenutextureList[left],
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness((OptionSelected == "3P") ? -390.0 : -370.0, 420, 0.0, 0.0),
+                Margin = new Thickness((OptionSelected == "3P") ? -370.0 : -350.0, 430, 0.0, 0.0),
                 Opacity = 0.2,
                 Width = 150,
                 Height = 150

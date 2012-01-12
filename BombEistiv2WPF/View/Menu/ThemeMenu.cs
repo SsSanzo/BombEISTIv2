@@ -167,6 +167,12 @@ namespace BombEistiv2WPF.View.Menu
                     thisistheend = true;
                     _wizard.NextScreen(ScreenType.Options);
                 }
+                else if (KeyAction._.KeysMenu.ContainsKey(k) && KeyAction._.KeysMenu[k] == "Escape")
+                {
+                    thisistheend = true;
+                    PlaySound._.TypeSoundList["Cancel"].Play();
+                    _wizard.NextScreen(ScreenType.Options);
+                }
             }
             
         }
