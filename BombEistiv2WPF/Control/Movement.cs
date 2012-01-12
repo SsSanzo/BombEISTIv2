@@ -36,16 +36,19 @@ namespace BombEistiv2WPF.Control
 
         public static void ChangeFace(List<Player> p)
         {
-            foreach (var player in p)
+            try
             {
-                if(player.NewSens != player.Sens)
+                foreach (var player in p)
                 {
-                    player.Sens = player.NewSens;
-                    player.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(player)]);
+                    if (player.NewSens != player.Sens)
+                    {
+                        player.Sens = player.NewSens;
+                        player.changeFace(Texture._.TypetextureList[Texture._.GetTextureKey(player)]);
+                    }
+
                 }
-                
-            }
-            
+            }catch{}
+
         }
 
         public static Bomb PutABomb(Player p)

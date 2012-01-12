@@ -12,10 +12,12 @@ namespace BombEistiv2WPF.Environment
         public HardBlock hb;
         public int tour;
         public GameScreen w;
+        public bool theGameIsOver;
 
         public ClassicGame(GameScreen wiz = null)
         {
             w = wiz;
+            theGameIsOver = false;
             GameParameters._.Type = GameType.Classic;
             TheCurrentMap = new Map();
             TheCurrentMap.SetHardBlockOnMap();
@@ -107,24 +109,32 @@ namespace BombEistiv2WPF.Environment
 
         public void EndOfTheGame(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            TimerManager._.Stop();
-            var l = TheCurrentMap.ListOfPlayer.FindAll(c => c.Lives >= 0);
-            foreach (var p in l)
+            if (!theGameIsOver)
             {
-                Score._.Survived(p);
+                theGameIsOver = true;
+                TimerManager._.Stop();
+                var l = TheCurrentMap.ListOfPlayer.FindAll(c => c.Lives >= 0);
+                foreach (var p in l)
+                {
+                    Score._.Survived(p);
+                }
+                Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(Ending));
             }
-            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(Ending));
         }
 
         public void EndOfTheGameUntimed()
         {
-            TimerManager._.Stop();
-            var l = TheCurrentMap.ListOfPlayer.FindAll(c => c.Lives >= 0);
-            foreach (var p in l)
+            if(!theGameIsOver)
             {
-                Score._.Survived(p);
+                theGameIsOver = true;
+                TimerManager._.Stop();
+                var l = TheCurrentMap.ListOfPlayer.FindAll(c => c.Lives >= 0);
+                foreach (var p in l)
+                {
+                    Score._.Survived(p);
+                }
+                Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(Ending));
             }
-            Texture._.Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(Ending));
         }
 
         public void Ending()

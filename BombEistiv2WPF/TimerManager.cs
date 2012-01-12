@@ -91,12 +91,21 @@ namespace BombEistiv2WPF
                 {
                     _game.EventManager(v);
                     Destroy(sender, eventArgs);
+                }else
+                {
+                    var t = (Timer)sender;
+                    t.Stop();
+                    t.Interval = 20;
+                    t.Start();
+                    Console.WriteLine("["+DateTime.Now+"] - Error v null");
                 }
             }catch
             {
                 var t = (Timer) sender;
+                t.Stop();
                 t.Interval = 20;
                 t.Start();
+                Console.WriteLine("[" + DateTime.Now + "] - Error addrange fail");
             }
         }
 
@@ -172,6 +181,7 @@ namespace BombEistiv2WPF
                 _timers.Remove(a);
             }catch
             {
+                Console.WriteLine("[" + DateTime.Now + "] - Error removetime fail");
                 //var a2 = _timers.Find(c => c != null && c.Timer == t);
                 //_timers.Remove(a2);
             }

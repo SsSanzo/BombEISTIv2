@@ -110,7 +110,7 @@
       <Texture object="Ray" source="ray.png" />
     </Menu>
     <SoftBlock count="135" />
-    <GameTime count="180" />
+    <GameTime count="100" />
     <ExplosionDelay count="3" />
     <keysMap>
       <Map key="Up" action="Up" player="1" />
@@ -138,18 +138,18 @@
   <Game type="Classic">
     <Player lives="3" />
     <Upgrades>
-      <Upgrade defaultFreq="15" currentFreq="0">PowerUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="0">PowerMax</Upgrade>
-      <Upgrade defaultFreq="20" currentFreq="0">BombUp</Upgrade>
-      <Upgrade defaultFreq="4" currentFreq="0">Kick</Upgrade>
-      <Upgrade defaultFreq="8" currentFreq="0">SpeedUp</Upgrade>
-      <Upgrade defaultFreq="2" currentFreq="0">SpeedMax</Upgrade>
-      <Upgrade defaultFreq="4" currentFreq="0">Life</Upgrade>
-      <Upgrade defaultFreq="8" currentFreq="0">Teleport</Upgrade>
-      <Upgrade defaultFreq="5" currentFreq="0">PowerDown</Upgrade>
-      <Upgrade defaultFreq="5" currentFreq="0">BombDown</Upgrade>
-      <Upgrade defaultFreq="5" currentFreq="0">SpeedDown</Upgrade>
-      <Upgrade defaultFreq="5" currentFreq="0">ChangeDirection</Upgrade>
+      <Upgrade defaultFreq="15" currentFreq="25">PowerUp</Upgrade>
+      <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
+      <Upgrade defaultFreq="20" currentFreq="25">BombUp</Upgrade>
+      <Upgrade defaultFreq="4" currentFreq="4">Kick</Upgrade>
+      <Upgrade defaultFreq="8" currentFreq="9">SpeedUp</Upgrade>
+      <Upgrade defaultFreq="2" currentFreq="3">SpeedMax</Upgrade>
+      <Upgrade defaultFreq="4" currentFreq="3">Life</Upgrade>
+      <Upgrade defaultFreq="8" currentFreq="5">Teleport</Upgrade>
+      <Upgrade defaultFreq="5" currentFreq="5">PowerDown</Upgrade>
+      <Upgrade defaultFreq="5" currentFreq="5">BombDown</Upgrade>
+      <Upgrade defaultFreq="5" currentFreq="5">SpeedDown</Upgrade>
+      <Upgrade defaultFreq="5" currentFreq="5">ChangeDirection</Upgrade>
     </Upgrades>
   </Game>
   <Game type="Hardcore">

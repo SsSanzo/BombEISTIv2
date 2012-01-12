@@ -154,6 +154,7 @@ namespace BombEistiv2WPF.View.Menu
             };
             MenuDataList.Add("Score", gc2);
             var index = 0;
+            Texture._.LoadAvatarTextures();
             foreach (var v in Score._.Id_Victory)
             {
                 var gc = new Image

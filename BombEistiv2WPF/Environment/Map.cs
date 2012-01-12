@@ -142,14 +142,44 @@ namespace BombEistiv2WPF.Environment
             return ListOfUpgrade.Remove(upgrade);
         }
 
+        //Ancienne version
+        //public List<Entity> GetCompleteList(bool withoutplayer = false)
+        //{
+        //    var thecompletelist = new List<Entity>();
+        //    thecompletelist.AddRange(ListOfHardBlock);
+        //    thecompletelist.AddRange(ListOfSoftBlock);
+        //    thecompletelist.AddRange(ListOfBomb);
+        //    thecompletelist.AddRange(ListOfUpgrade);
+        //    if(!withoutplayer){thecompletelist.AddRange(ListOfPlayer);}
+        //    return thecompletelist;
+        //}
+
         public List<Entity> GetCompleteList(bool withoutplayer = false)
         {
             var thecompletelist = new List<Entity>();
-            thecompletelist.AddRange(ListOfHardBlock);
-            thecompletelist.AddRange(ListOfSoftBlock);
-            thecompletelist.AddRange(ListOfBomb);
-            thecompletelist.AddRange(ListOfUpgrade);
-            if(!withoutplayer){thecompletelist.AddRange(ListOfPlayer);}
+            for (var i = 0; i < ListOfHardBlock.Count;i++)
+            {
+                thecompletelist.Add(ListOfHardBlock[i]);
+            }
+            for (var i = 0; i < ListOfSoftBlock.Count; i++)
+            {
+                thecompletelist.Add(ListOfSoftBlock[i]);
+            }
+            for (var i = 0; i < ListOfBomb.Count; i++)
+            {
+                thecompletelist.Add(ListOfBomb[i]);
+            }
+            for (var i = 0; i < ListOfUpgrade.Count; i++)
+            {
+                thecompletelist.Add(ListOfUpgrade[i]);
+            }
+            if (!withoutplayer)
+            {
+                for (var i = 0; i < ListOfPlayer.Count; i++)
+                {
+                    thecompletelist.Add(ListOfPlayer[i]);
+                }
+            }
             return thecompletelist;
         }
 

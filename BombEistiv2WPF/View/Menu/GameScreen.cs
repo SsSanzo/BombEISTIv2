@@ -268,38 +268,38 @@ namespace BombEistiv2WPF.View.Menu
         {
             try
             {
-            var copy = _wizard.TheWindow.GameInProgress.TheCurrentMap.ListOfBomb;
+                var copy = _wizard.TheWindow.GameInProgress.TheCurrentMap.ListOfBomb;
             
-            for (var i = 0; i < copy.Count; i++)
-            {
-                var b = copy.ElementAt(i);
-                if (b != null)
+                for (var i = 0; i < copy.Count; i++)
                 {
-                    if (!(b.LayoutTransform is ScaleTransform))
+                    var b = copy.ElementAt(i);
+                    if (b != null)
                     {
-                        var lol = new ScaleTransform {CenterX = 20, CenterY = 20, ScaleX = 1.0, ScaleY = 1.0};
-                        b.LayoutTransform = lol;
+                        if (!(b.LayoutTransform is ScaleTransform))
+                        {
+                            var lol = new ScaleTransform {CenterX = 20, CenterY = 20, ScaleX = 1.0, ScaleY = 1.0};
+                            b.LayoutTransform = lol;
+                        }
+                        var rt = (ScaleTransform) b.LayoutTransform;
+                        rt.ScaleX = rt.ScaleX + sens*(0.002);
+                        rt.ScaleY = rt.ScaleY + sens*(0.002);
+                        b.Margin = new Thickness(b.Margin.Left - sens*0.05, b.Margin.Top - sens*0.05, 0.0, 0.0);
                     }
-                    var rt = (ScaleTransform) b.LayoutTransform;
-                    rt.ScaleX = rt.ScaleX + sens*(0.002);
-                    rt.ScaleY = rt.ScaleY + sens*(0.002);
-                    b.Margin = new Thickness(b.Margin.Left - sens*0.05, b.Margin.Top - sens*0.05, 0.0, 0.0);
                 }
-            }
             
-            animbomb += sens;
-            if(animbomb > 20)
-            {
-                sens = -1;
-                animbomb = 20;
-            }
-            else if (animbomb < 0)
-            {
-                sens = 1;
-                animbomb = 0;
-            }
-            openedanim = true;
-            }
+                animbomb += sens;
+                if(animbomb > 20)
+                {
+                    sens = -1;
+                    animbomb = 20;
+                }
+                else if (animbomb < 0)
+                {
+                    sens = 1;
+                    animbomb = 0;
+                }
+                openedanim = true;
+                }
             catch { }
         }
 
