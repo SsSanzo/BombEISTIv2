@@ -96,6 +96,7 @@ namespace BombEistiv2WPF.Environment
                             {
                                 X = x;
                                 HaveToDie(X, Y);
+                                GetMyUpgrade(X,Y);
                                 _percentx = -49 + (value - 51);
                             }
                             else
@@ -118,6 +119,7 @@ namespace BombEistiv2WPF.Environment
                             {
                                 X = x;
                                 HaveToDie(X, Y);
+                                GetMyUpgrade(X, Y);
                                 _percentx = 50 + (50 + value);
                             }
                             else
@@ -163,6 +165,7 @@ namespace BombEistiv2WPF.Environment
                             {
                                 Y = y;
                                 HaveToDie(X, Y);
+                                GetMyUpgrade(X, Y);
                                 _percenty = -49 + (value - 51);
                             }
                             else
@@ -186,6 +189,7 @@ namespace BombEistiv2WPF.Environment
                             {
                                 Y = y;
                                 HaveToDie(X, Y);
+                                GetMyUpgrade(X, Y);
                                 _percenty = 50 + (50 + value);
                             }
                             else
@@ -434,14 +438,14 @@ namespace BombEistiv2WPF.Environment
             {
                 return false;
             }
-            else if(e is Upgrade)
-            {
-                var u = (Upgrade) e;
-                _map.PickupUpgrade(u);
-                AddAndApplyUpgrade(u);
-                u.Burn();
-                return true;
-            }
+            //else if(e is Upgrade)
+            //{
+            //    var u = (Upgrade) e;
+            //    _map.PickupUpgrade(u);
+            //    AddAndApplyUpgrade(u);
+            //    u.Burn();
+            //    return true;
+            //}
             return true;
         }
 
@@ -469,6 +473,19 @@ namespace BombEistiv2WPF.Environment
                     }
                 }
             }
+        }
+
+        protected void GetMyUpgrade(int x, int y)
+        {
+
+            var e = _map.GetUpgrade(x, y);
+            if(e != null)
+            {
+                    _map.PickupUpgrade(e);
+                    AddAndApplyUpgrade(e);
+                    e.Burn();
+            }
+            
         }
 
         public void changeFace(BitmapImage bi)

@@ -99,10 +99,10 @@ namespace BombEistiv2WPF.Environment
                                 }
                             }
                         }
-                    if(thereIsOne)
-                    {
-                        G.TheCurrentMap.CheckForAllDead();
-                    }
+                }
+                if (thereIsOne)
+                {
+                    G.TheCurrentMap.CheckForAllDead();
                 }
             }
             TimerManager._.AddNewTimer(false, 500, true, null, SupressBlocus);

@@ -201,6 +201,18 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
+        public Upgrade GetUpgrade(int x, int y)
+        {
+            try
+            {
+                return ListOfUpgrade.FirstOrDefault(c => c != null && (c.X == x && c.Y == y));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public Entity GetBomb(int x, int y)
         {
             return ListOfBomb.FirstOrDefault(c => c.X == x && c.Y == y);
