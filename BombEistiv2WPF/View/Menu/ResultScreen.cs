@@ -22,7 +22,7 @@ namespace BombEistiv2WPF.View.Menu
         private String OptionSelected;
         private Dictionary<String, String> OptionMoved;
         private bool thisistheend;
-        private bool alreadyloaded;
+        //private bool alreadyloaded;
         private bool movelocked;
         private int anim;
 
@@ -48,7 +48,7 @@ namespace BombEistiv2WPF.View.Menu
             anim = 0;
             OptionMoved = new Dictionary<string, string>();
             OptionSelected = "Rejouer";
-            alreadyloaded = false;
+            //alreadyloaded = false;
             var pressstart = (GameScreen) oldscreen;
             if (_menuDataList == null)
             {
@@ -235,30 +235,30 @@ namespace BombEistiv2WPF.View.Menu
         {
             if(Score._.Id_Victory.Count == 0)
             {
-                var l3 = new Label { Content = "Aucun survivant !", Opacity = 0, FontSize = 35, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 300, 0.0, 0.0) };
+                var l3 = new Label { Content = "Aucun survivant !", Opacity = 0, FontSize = 35, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 300, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Condition", l3);
             }
             else if (Score._.Id_Victory.Count > 1)
             {
-                var l5 = new Label { Content = "Survivants", Opacity = 0, FontSize = 35, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 300, 0.0, 0.0) };
+                var l5 = new Label { Content = "Survivants", Opacity = 0, FontSize = 35, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 300, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Condition", l5);
             }else
             {
-                var l4 = new Label { Content = "Victoire de", Opacity = 0, FontSize = 35, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 300, 0.0, 0.0) };
+                var l4 = new Label { Content = "Victoire de", Opacity = 0, FontSize = 35, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 300, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Condition", l4);
             }
 
             for (var i = 0; i < GameParameters._.PlayerCount; i++)
             {
-                var l = new Label { Content = "Tués : " + Score._.GetScore(i+1), Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness((i % 2 == 1) ? 280 : -220, (i < 2) ? 300 : 400, 0.0, 0.0) };
+                var l = new Label { Content = "Tués : " + Score._.GetScore(i + 1), Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness((i % 2 == 1) ? 280 : -220, (i < 2) ? 300 : 400, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("scoreP" + (i+1), l);
-                var l2 = new Label { Content = "Victoire : " + Score._.GetSurvive(i + 1), Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness((i % 2 == 1) ? 310 : -190, (i < 2) ? 330 : 430, 0.0, 0.0) };
+                var l2 = new Label { Content = "Victoire : " + Score._.GetSurvive(i + 1), Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness((i % 2 == 1) ? 310 : -190, (i < 2) ? 330 : 430, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("surviveP" + (i + 1), l2);
             }
 
-            var lp1 = new Label { Content = "Rejouer", Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(-300, 550, 0.0, 0.0) };
+            var lp1 = new Label { Content = "Rejouer", Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(-300, 550, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("Rejouer", lp1);
-            var lp2 = new Label { Content = "Retour", Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(300, 550, 0.0, 0.0) };
+            var lp2 = new Label { Content = "Retour", Opacity = 0, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(300, 550, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("Retour", lp2);
         }
 

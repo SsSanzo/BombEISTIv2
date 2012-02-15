@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using BombEistiv2WPF.Control;
 using BombEistiv2WPF.View;
 
 namespace BombEistiv2WPF.Environment
@@ -12,6 +14,7 @@ namespace BombEistiv2WPF.Environment
 
         private readonly int _id;
         private readonly List<Upgrade> _upgrades;
+        private readonly List<UpgradeBomb> _upgradesBomb;
         private int _skinid;
         private int _speed;
         private int _bombCount;
@@ -24,12 +27,20 @@ namespace BombEistiv2WPF.Environment
         private int clingnotement;
         private bool _invincible;
         private bool teleportme;
+        private BombType bomb;
+        private bool secAvaliable;
+        private int stack;
+        private bool freeze;
+        private ImageSource oldSource;
+        private bool cursed;
+        private Bomb myBombTeleguide;
 
         public Player(int id, int skinid, int x, int y, Map map, Score score = null) : base(x, y)
         {
             _id = id;
             _skinid = skinid;
             _upgrades = new List<Upgrade>();
+            _upgradesBomb = new List<UpgradeBomb>();
             _map = map;
             InitSkills();
         }
@@ -38,6 +49,30 @@ namespace BombEistiv2WPF.Environment
         {
             get { return _skinid; }
             set { if (value >= 1 && value <= 8) _skinid = value; }
+        }
+
+        public BombType BombSecond
+        {
+            get { return bomb; }
+            set { bomb = value; }
+        }
+
+        public Bomb MyBombTeleguide
+        {
+            get { return myBombTeleguide; }
+            set { myBombTeleguide = value; }
+        }
+
+        public int Stack
+        {
+            get { return stack; }
+            set { stack = value; }
+        }
+
+        public bool Cursed
+        {
+            get { return cursed; }
+            set { cursed = value; }
         }
 
         private void InitSkills()
@@ -53,6 +88,30 @@ namespace BombEistiv2WPF.Environment
             newsens = Direction.Down;
             _invincible = false;
             teleportme = false;
+            bomb = BombType.None;
+            secAvaliable = false;
+            freeze = false;
+            cursed = false;
+        }
+
+        public void InitCrazySkills()
+        {
+            Speed = 7;
+            BombCount = 9;
+            BombPower = 1;
+            CanKick = true;
+            InvertedDirections = false;
+            AvailableBombCount = 9;
+            Lives = GameParameters._.LivesCount;
+            sens = Direction.Down;
+            newsens = Direction.Down;
+            _invincible = false;
+            teleportme = false;
+            bomb = BombType.None;
+            secAvaliable = true;
+            stack = 8;
+            freeze = false;
+            cursed = false;
         }
 
         //private void InitSkills()
@@ -74,6 +133,12 @@ namespace BombEistiv2WPF.Environment
         {
             get { return _invincible; }
             set { _invincible = value;  }
+        }
+
+        public bool Freeze
+        {
+            get { return freeze; }
+            set { freeze = value; }
         }
 
         public new int Percentx
@@ -331,6 +396,13 @@ namespace BombEistiv2WPF.Environment
             return ApplyUpgrade(u);
         }
 
+        public Player AddAndApplyUpgradeBomb(UpgradeBomb u)
+        {
+            _upgradesBomb.Add(u);
+            return ApplyUpgradeBomb(u);
+        }
+
+
         public Player ApplyUpgrade(Upgrade u)
         {
             UpgradeType type = u.Type;
@@ -377,28 +449,140 @@ namespace BombEistiv2WPF.Environment
             return this;
         }
 
+        public Player ApplyUpgradeBomb(UpgradeBomb u)
+        {
+            if(BombSecond == u.Type && this.stack > 2)
+            {
+                stack = stack/2;
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.BombStack[this.Id].Source = Texture._.TypetextureList["Stack_" + stack]));
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>InGameMenu._.BombStack[this.Id].Opacity = 1));
+            }else
+            {
+                stack = 8;
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>InGameMenu._.BombStack[this.Id].Source = Texture._.TypetextureList["Stack_" + stack]));
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>InGameMenu._.BombStack[this.Id].Opacity = 1));
+                this.BombSecond = u.Type;
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.BombImage[this.Id].Source = Texture._.TypetextureList["UpgradeBomb." + this.BombSecond]));
+            }
+            return this;
+        }
+
         public Player BombExploded(Bomb b)
         {
-            if(b.Owner == this)
+            if(b.Owner == this && b.Type == BombType.Normal)
             {
                 AvailableBombCount++;
             }
             return this;
         }
 
-        public Bomb PutABomb()
+        public Bomb PutABomb(bool spec = false)
         {
             Bomb b = null;
-            if(AvailableBombCount >= 1 && _map.GetBomb(X,Y) == null){
-                b = new Bomb(X,Y,BombPower,this);
-                AvailableBombCount--;
+            
+            if(!spec)
+            {
+                var bm = (Bomb) _map.GetBomb(X, Y);
+                if (AvailableBombCount >= 1 && (bm == null))
+                {
+                    b = new Bomb(X, Y, BombPower, this);
+                    AvailableBombCount--;
+                }
+            }else if(secAvaliable && bomb != BombType.None)
+            {
+                if(bomb != BombType.Teleguide)
+                {
+                    b = new Bomb(X, Y, BombPower, this, true, BombSecond);
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.BombImage[this.Id].Opacity = 0.4));
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.cdLabel[this.Id].Content = Stack));
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.cdLabel[this.Id].Opacity = 1));
+                    secAvaliable = false;
+                    TimerManager._.AddNewTimer(false, this.stack * 1000, true, null, beAvaliable);
+                    TimerManager._.AddNewTimer(true, 1000, true, null, ChangeTheCD);
+                }else
+                {
+                    b = new Bomb(X, Y, BombPower, this, false, BombSecond);
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.BombImage[this.Id].Opacity = 0.4));
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.cdLabel[this.Id].Content = Stack));
+                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.cdLabel[this.Id].Opacity = 1));
+                    secAvaliable = false;
+                    MyBombTeleguide = b;
+                    //TimerManager._.AddNewTimer(false, this.stack * 1000, true, null, beAvaliable);
+                }
+                
             }
             return b;
+        }
+
+        public void beAvaliableLag()
+        {
+            TimerManager._.AddNewTimer(false, this.stack * 1000, true, null, beAvaliable);
+            TimerManager._.AddNewTimer(true, 1000, true, null, ChangeTheCD);
+        }
+
+        public void PutMultipleBomb()
+        {
+            if(secAvaliable)
+            {
+                var lb = _map.GetAroundEntity(X, Y);
+                if (lb.FirstOrDefault(c => c.X == X - 1 && c.Y == Y) == null && X - 1 > -1)
+                {
+                    var bi = new Bomb(X - 1, Y, BombPower, this, true, BombType.Move);
+                    ListenerGame._.GameInProgress.TheCurrentMap.ListOfBomb.Add(bi);
+                    Texture._.InsertTextureEntity(bi);
+                    bi.Move(Direction.Left);
+                }
+                if (lb.FirstOrDefault(c => c.X == X + 1 && c.Y == Y) == null && X + 1 < Game.Length)
+                {
+                    var bi = new Bomb(X + 1, Y, BombPower, this, true, BombType.Move);
+                    ListenerGame._.GameInProgress.TheCurrentMap.ListOfBomb.Add(bi);
+                    Texture._.InsertTextureEntity(bi);
+                    bi.Move(Direction.Right);
+                }
+                if (lb.FirstOrDefault(c => c.X == X && c.Y == Y - 1) == null && Y - 1 > -1)
+                {
+                    var bi = new Bomb(X, Y - 1, BombPower, this, true, BombType.Move);
+                    ListenerGame._.GameInProgress.TheCurrentMap.ListOfBomb.Add(bi);
+                    Texture._.InsertTextureEntity(bi);
+                    bi.Move(Direction.Up);
+
+                }
+                if (lb.FirstOrDefault(c => c.X == X && c.Y == Y + 1) == null && Y + 1 < Game.Length)
+                {
+                    var bi = new Bomb(X, Y + 1, BombPower, this, true, BombType.Move);
+                    ListenerGame._.GameInProgress.TheCurrentMap.ListOfBomb.Add(bi);
+                    Texture._.InsertTextureEntity(bi);
+                    bi.Move(Direction.Down);
+                }
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.BombImage[this.Id].Opacity = 0.4));
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.cdLabel[this.Id].Content = Stack));
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.cdLabel[this.Id].Opacity = 1));
+                secAvaliable = false;
+                TimerManager._.AddNewTimer(false, this.stack * 1000, true, null, beAvaliable);
+                TimerManager._.AddNewTimer(true, 1000, true, null, ChangeTheCD);
+
+            }    
+            
+        }
+
+        public void beAvaliable(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            secAvaliable = true;
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.BombImage[this.Id].Opacity = 1));
+        }
+
+        public void ChangeTheCD(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.ChangeLabelTime((Timer)sender, this)));
         }
 
         public bool Die()
         {
             this.Lives--;
+            if(cursed)
+            {
+                this.Lives = 0;
+            }
             InGameMenu._.changeLabel(Id,Lives);
             return Lives <= 0;
         }
@@ -420,16 +604,25 @@ namespace BombEistiv2WPF.Environment
             var e = _map.GetEntity(x, y);
             if(e is Bomb)
             {
-                if (CanKick)
+                var b = (Bomb)e;
+                if (CanKick && (b.Type == BombType.Normal || b.Type == BombType.Cataclysm || b.Type == BombType.Dark 
+                    || b.Type == BombType.Flower || b.Type == BombType.Freeze || b.Type == BombType.Ghost))
                 {
-                    var b = (Bomb)e;
                     //b.Move(this.GetDirectionTo(x, y));
                     if(b.DirectionMoving == Direction.None)
                     {
                         b.Move(this.Sens);
                     }
                 }
-                return false;
+                if(b.Type != BombType.Mine)
+                {
+                    return false;
+                }else if(b.Type == BombType.Mine)
+                {
+                    b.Explode(Texture._.Mw.GameInProgress);
+                    return true;
+                }
+                
             }else if(e is EntityOfDeath)
             {
                 return true;
@@ -454,7 +647,7 @@ namespace BombEistiv2WPF.Environment
             if(!Invincible)
             {
                 var e = _map.GetEntityOfDeath(x, y);
-                if (e != null && e.IsHurting)
+                if (e != null && e.IsHurting && e.Mode == 0)
                 {
                     Score._.KilledBy(e.Owner, this);
                     if (Die())
@@ -464,6 +657,12 @@ namespace BombEistiv2WPF.Environment
                         {
                             _map.ListOfPlayer.Remove(thePlayer);
                             Texture._.DeleteTextureEntity(thePlayer);
+                            if(GameParameters._.Type == GameType.Crazy)
+                            {
+                                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.cdLabel[this.Id].Opacity = 0));
+                                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>InGameMenu._.BombImage[this.Id].Opacity = 0));
+                                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => InGameMenu._.BombStack[this.Id].Opacity = 0));
+                            }
                             _map.CheckForAllDead();
                         }
                         
@@ -473,6 +672,11 @@ namespace BombEistiv2WPF.Environment
                     }
                 }
             }
+            var b = (Bomb)_map.GetBomb(x, y);
+            if(b != null && b.Type == BombType.Mine)
+            {
+                b.Explode(Texture._.Mw.GameInProgress);
+            }
         }
 
         protected void GetMyUpgrade(int x, int y)
@@ -481,9 +685,20 @@ namespace BombEistiv2WPF.Environment
             var e = _map.GetUpgrade(x, y);
             if(e != null)
             {
-                    _map.PickupUpgrade(e);
-                    AddAndApplyUpgrade(e);
-                    e.Burn();
+                if(e is Upgrade)
+                {
+                    var u = (Upgrade) e;
+                    _map.PickupUpgrade(u);
+                    AddAndApplyUpgrade(u);
+                    u.Burn();
+                }else if(e is UpgradeBomb)
+                {
+                    var bt = (UpgradeBomb)e;
+                    _map.PickupUpgrade(bt);
+                    AddAndApplyUpgradeBomb(bt);
+                    bt.Burn();
+                }
+                    
             }
             
         }
@@ -524,6 +739,52 @@ namespace BombEistiv2WPF.Environment
                 Opacity = 0;
             }
             clingnotement++;
+        }
+
+        public void freezePlayer()
+        {
+            if(!freeze)
+            {
+                this.freeze = true;
+                oldSource = this.Source;
+                this.Source = Texture._.TypetextureList["IceCube"];
+                TimerManager._.AddNewTimer(false, 3000, true, null, unfreezeDispatcher);
+            }
+            
+        }
+
+        public void unfreezeDispatcher(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+
+            Texture._.Mw.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(unfreeze));
+        }
+
+        public void unfreeze()
+        {
+            this.Source = oldSource;
+            this.freeze = false;
+        }
+
+        public void cursePlayer()
+        {
+            if (!cursed)
+            {
+                this.cursed = true;
+                TimerManager._.AddNewTimer(false, 5000, true, null, uncurseDispatcher);
+            }
+
+        }
+
+        public void uncurseDispatcher(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+
+            Texture._.Mw.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(uncurse));
+        }
+
+        public void uncurse()
+        {
+            this.Opacity = 1;
+            this.cursed = false;
         }
     }
 }

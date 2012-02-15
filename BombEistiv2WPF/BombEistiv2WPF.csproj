@@ -61,7 +61,10 @@
     </ApplicationDefinition>
     <Compile Include="Control\GifImage.cs" />
     <Compile Include="Control\Wizard.cs" />
+    <Compile Include="Environment\BombType.cs" />
     <Compile Include="Environment\EntityOfDeath.cs" />
+    <Compile Include="Environment\GestionExplosion.cs" />
+    <Compile Include="Environment\UpgradeBomb.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="TimerEvent.cs" />
     <Compile Include="TimerManager.cs" />

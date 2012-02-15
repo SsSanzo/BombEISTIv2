@@ -11,7 +11,6 @@ namespace BombEistiv2WPF.Control
 
         public static void Move(string direction, Player p)
         {
-
             if (direction == Direction.Up.ToString())
             {
                 p.Percenty -= p.Speed;
@@ -34,6 +33,35 @@ namespace BombEistiv2WPF.Control
             }
         }
 
+        public static void MoveBomb(string direction, Player p)
+        {
+            var b = p.MyBombTeleguide;
+            if(b != null)
+            {
+                if (direction == Direction.Up.ToString())
+                {
+                    b.Percenty -= 5;
+                    //p.NewSens = Direction.Up;
+                }
+                else if (direction == Direction.Down.ToString())
+                {
+                    b.Percenty += 5;
+                    //p.NewSens = Direction.Down;
+                }
+                else if (direction == Direction.Right.ToString())
+                {
+                    b.Percentx += 5;
+                    //p.NewSens = Direction.Right;
+                }
+                else if (direction == Direction.Left.ToString())
+                {
+                    b.Percentx -= 5;
+                    //p.NewSens = Direction.Left;
+                }
+            }
+            
+        }
+
         public static void ChangeFace(List<Player> p)
         {
             try
@@ -51,9 +79,14 @@ namespace BombEistiv2WPF.Control
 
         }
 
-        public static Bomb PutABomb(Player p)
+        public static Bomb PutABomb(Player p, bool spec)
         {
-            return p.PutABomb();
+            return p.PutABomb(spec);
+        }
+
+        public static void PutMultipleBomb(Player p)
+        {
+            p.PutMultipleBomb();
         }
     }
 }

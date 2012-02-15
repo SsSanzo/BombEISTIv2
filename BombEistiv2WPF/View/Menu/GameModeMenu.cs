@@ -24,6 +24,8 @@ namespace BombEistiv2WPF.View.Menu
         private bool thisistheend;
         private bool alreadyloaded;
         private bool movelocked;
+        private string mySelectedOption;
+        private bool optionmode;
 
         public Dictionary<string, Image> MenuDataList
         {
@@ -42,9 +44,20 @@ namespace BombEistiv2WPF.View.Menu
                 thisistheend = false;
                 movelocked = true;
                 var pressstart = (MainMenuScreen) oldscreen;
+                optionmode = false;
                 _wizard = w;
                 OptionMoved = new Dictionary<string, string>();
                 OptionSelected = "Classic";
+                mySelectedOption = "Classic";
+                if (GameParameters._.Type == GameType.Crazy)
+                {
+                    mySelectedOption = "Crazy";
+                }
+                else if (GameParameters._.Type == GameType.Hardcore)
+                {
+                    mySelectedOption = "Hardcore";
+                }
+                OptionSelected = mySelectedOption;
                 alreadyloaded = false;
                 if (_menuDataList == null)
                 {
@@ -81,16 +94,27 @@ namespace BombEistiv2WPF.View.Menu
                 thisistheend = false;
                 movelocked = true;
                 var pressstart = (PlayerSelectMenu)oldscreen;
+                optionmode = false;
                 _wizard = w;
                 OptionMoved = new Dictionary<string, string>();
                 OptionSelected = "Classic";
+                mySelectedOption = "Classic";
+                if (GameParameters._.Type == GameType.Crazy)
+                {
+                    mySelectedOption = "Crazy";
+                }
+                else if (GameParameters._.Type == GameType.Hardcore)
+                {
+                    mySelectedOption = "Hardcore";
+                }
+                OptionSelected = mySelectedOption;
                 alreadyloaded = false;
                 if (_menuDataList == null)
                 {
                     _menuDataList = new Dictionary<string, Image>();
                     _menuLabelList = new Dictionary<string, Label>();
                     _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal,
-                                                    new Action(() => LoadMenuImagePrevious(pressstart)));
+                                                    new Action(() => LoadMenuImagePrevious(pressstart, mySelectedOption)));
                     //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                 }
                 for (var i = w.Grid.Children.Count - 1; i > -1; i--)
@@ -115,6 +139,48 @@ namespace BombEistiv2WPF.View.Menu
                 TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
                 TimerManager._.AddNewTimer(true, 15, true, null, FadeOut);
             }
+            else if (oldscreen is OptionMenu)
+            {
+                thisistheend = false;
+                movelocked = true;
+                var pressstart = (OptionMenu)oldscreen;
+                optionmode = true;
+                _wizard = w;
+                OptionMoved = new Dictionary<string, string>();
+                OptionSelected = "Classic";
+                mySelectedOption = "Classic";
+                OptionSelected = mySelectedOption;
+                alreadyloaded = false;
+                if (_menuDataList == null)
+                {
+                    _menuDataList = new Dictionary<string, Image>();
+                    _menuLabelList = new Dictionary<string, Label>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal,
+                                                    new Action(() => LoadMenuImagePrevious(pressstart, mySelectedOption)));
+                    //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                }
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                //var lt = new ScaleTransform { ScaleX = 1.1, ScaleY = 1.1, CenterX = 134, CenterY = 50 };
+                //MenuDataList[OptionSelected].Margin = new Thickness(MenuDataList[OptionSelected].Margin.Left - 10, MenuDataList[OptionSelected].Margin.Top - 10, 0,0);
+                //MenuDataList[OptionSelected].LayoutTransform = lt;
+                //MenuDataList[OptionSelected].Opacity = 1;
+                TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeInModeOption);
+            }
 
         }
 
@@ -124,7 +190,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 OptionMoved[OptionSelected] = s;
                 OptionSelected = s;
-                MenuLabelList["Indisponible"].Opacity = OptionSelected == "Classic" ? 0 : 1;
+                MenuLabelList["Indisponible"].Opacity = OptionSelected != "Hardcore" ? 0 : 1;
             }
         }
 
@@ -174,9 +240,19 @@ namespace BombEistiv2WPF.View.Menu
                     {
                         movelocked = true;
                         PlaySound._.TypeSoundList["Valid"].Play();
+                        GameParameters._.Type = GameType.Classic;
                         thisistheend = true;
-                        _wizard.NextScreen(ScreenType.PlayerCound);
-                    }else
+                        _wizard.NextScreen(optionmode ? ScreenType.GeneralOptions : ScreenType.PlayerCound);
+                    }
+                    else if (OptionSelected == "Crazy")
+                    {
+                        movelocked = true;
+                        PlaySound._.TypeSoundList["Valid"].Play();
+                        GameParameters._.Type = GameType.Crazy;
+                        thisistheend = true;
+                        _wizard.NextScreen(optionmode ? ScreenType.GeneralOptions : ScreenType.PlayerCound);
+                    }
+                    else
                     {
                         PlaySound._.TypeSoundList["Error"].Play();
                     }
@@ -186,7 +262,7 @@ namespace BombEistiv2WPF.View.Menu
                     movelocked = true;
                     PlaySound._.TypeSoundList["Cancel"].Play();
                     thisistheend = true;
-                    _wizard.NextScreen(ScreenType.MainMenu);
+                    _wizard.NextScreen(optionmode ? ScreenType.Options : ScreenType.MainMenu);
                 }
             }
         }
@@ -208,7 +284,20 @@ namespace BombEistiv2WPF.View.Menu
             MenuLabelList.Add("BoxGame", old.MenuLabelList["BoxGame"]);
         }
 
-        public void LoadMenuImagePrevious(PlayerSelectMenu old)
+        public void LoadMenuImagePrevious(OptionMenu old, string mySelectedOption)
+        {
+            MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
+            MenuDataList.Add("Black", old.MenuDataList["Black"]);
+            MenuDataList.Add("Bomb", old.MenuDataList["Bomb"]);
+            MenuDataList.Add("Eisti", old.MenuDataList["Eisti"]);
+            MenuDataList.Add("2", old.MenuDataList["2"]);
+            MenuDataList.Add("BoxOption", old.MenuDataList["BoxOption"]);
+            MenuLabelList.Add("BoxOption", old.MenuLabelList["BoxOption"]);
+            MenuDataList.Add("BoxGeneral", old.MenuDataList["BoxGeneral"]);
+            MenuLabelList.Add("BoxGeneral", old.MenuLabelList["BoxGeneral"]);
+        }
+
+        public void LoadMenuImagePrevious(PlayerSelectMenu old, string mySelectedOption)
         {
             MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
             MenuDataList.Add("Black", old.MenuDataList["Black"]);
@@ -217,13 +306,35 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList.Add("2", old.MenuDataList["2"]);
             MenuDataList.Add("BoxGame", old.MenuDataList["BoxGame"]);
             MenuLabelList.Add("BoxGame", old.MenuLabelList["BoxGame"]);
-            MenuDataList.Add("BoxDClassic", old.MenuDataList["BoxDClassic"]);
-            MenuDataList.Add("BoxGClassic", old.MenuDataList["BoxGClassic"]);
-            MenuLabelList.Add("BoxClassic", old.MenuLabelList["BoxClassic"]);
+            MenuDataList.Add("BoxD" + mySelectedOption, old.MenuDataList["BoxD" + mySelectedOption]);
+            MenuDataList.Add("BoxG" + mySelectedOption, old.MenuDataList["BoxG" + mySelectedOption]);
+            MenuLabelList.Add("Box" + mySelectedOption, old.MenuLabelList["Box" + mySelectedOption]);
         }
 
         public void LoadMenuImage()
         {
+            var theMiddle = "";
+            var theLeft = "";
+            var theRight = "";
+            switch (mySelectedOption)
+            {
+                case "Classic":
+                    theMiddle = "Classic";
+                    theRight = "Crazy";
+                    theLeft = "Hardcore";
+                    break;
+                case "Crazy":
+                    theMiddle = "Crazy";
+                    theRight = "Hardcore";
+                    theLeft = "Classic";
+                    break;
+                case "Hardcore":
+                    theMiddle = "Hardcore";
+                    theRight = "Classic";
+                    theLeft = "Crazy";
+                    break;
+
+            }
             for(var i = 0; i < 3; i++)
             {
                 var g2 = new Image
@@ -240,15 +351,15 @@ namespace BombEistiv2WPF.View.Menu
                 g2.LayoutTransform = lt;
                 if (i == 0)
                 {
-                    MenuDataList.Add("BoxGClassic", g2);
+                    MenuDataList.Add("BoxG" + theMiddle, g2);
                 }
                 else if (i == 1)
                 {
-                    MenuDataList.Add("BoxGHardcore", g2);
+                    MenuDataList.Add("BoxG" + theLeft, g2);
                 }
                 else
                 {
-                    MenuDataList.Add("BoxGCrazy", g2);
+                    MenuDataList.Add("BoxG" + theRight, g2);
                 }
 
                 var g3 = new Image
@@ -265,13 +376,13 @@ namespace BombEistiv2WPF.View.Menu
                 g3.LayoutTransform = lt2;
                 if(i == 0)
                 {
-                    MenuDataList.Add("BoxDClassic", g3);
+                    MenuDataList.Add("BoxD" + theMiddle, g3);
                 }else if(i == 1)
                 {
-                    MenuDataList.Add("BoxDHardcore", g3);
+                    MenuDataList.Add("BoxD" + theLeft, g3);
                 }else
                 {
-                    MenuDataList.Add("BoxDCrazy", g3);
+                    MenuDataList.Add("BoxD" + theRight, g3);
                 }
                 
             }
@@ -302,7 +413,7 @@ namespace BombEistiv2WPF.View.Menu
 
             var gc1 = new Image
             {
-                Source = GameParameters._.MenutextureList["Classic"],
+                Source = GameParameters._.MenutextureList[theMiddle],
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(0.0, 200, 0.0, 0.0),
@@ -310,11 +421,11 @@ namespace BombEistiv2WPF.View.Menu
                 Width = 150,
                 Height = 150
             };
-            MenuDataList.Add("PClassic", gc1);
+            MenuDataList.Add("P" + theMiddle, gc1);
 
             var gc2 = new Image
             {
-                Source = GameParameters._.MenutextureList["Crazy"],
+                Source = GameParameters._.MenutextureList[theRight],
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(370.0, 420, 0.0, 0.0),
@@ -322,11 +433,11 @@ namespace BombEistiv2WPF.View.Menu
                 Width = 150,
                 Height = 150
             };
-            MenuDataList.Add("PCrazy", gc2);
+            MenuDataList.Add("P" + theRight, gc2);
 
             var gc3 = new Image
             {
-                Source = GameParameters._.MenutextureList["Hardcore"],
+                Source = GameParameters._.MenutextureList[theLeft],
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(-370.0, 420, 0.0, 0.0),
@@ -334,7 +445,7 @@ namespace BombEistiv2WPF.View.Menu
                 Width = 150,
                 Height = 150
             };
-            MenuDataList.Add("PHardcore", gc3);
+            MenuDataList.Add("P" + theLeft, gc3);
 
             OptionMoved.Add("Classic", "");
             OptionMoved.Add("Crazy", "");
@@ -344,15 +455,37 @@ namespace BombEistiv2WPF.View.Menu
 
         public void LoadMenuLabel()
         {
-            var l = new Label { Content = "Classic", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0.0, 320, 0, 0) };
-            MenuLabelList.Add("BoxClassic", l);
-            var l2 = new Label { Content = "Crazy", FontSize = 30, Foreground = new SolidColorBrush(Colors.Gray), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(350.0, 550, 0, 0) };
-            MenuLabelList.Add("BoxCrazy", l2);
-            var l3 = new Label { Content = "Hardcore", FontSize = 30, Foreground = new SolidColorBrush(Colors.Gray), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(-350.0, 550, 0, 0) };
-            MenuLabelList.Add("BoxHardcore", l3);
-            var l4 = new Label { Content = "Indisponible", FontSize = 35, Opacity = 0, Foreground = new SolidColorBrush(Colors.Red), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0.0, 150, 0, 0) };
+            var theMiddle = "";
+            var theLeft = "";
+            var theRight = "";
+            switch (mySelectedOption)
+            {
+                case "Classic":
+                    theMiddle = "Classic";
+                    theRight = "Crazy";
+                    theLeft = "Hardcore";
+                    break;
+                case "Crazy":
+                    theMiddle = "Crazy";
+                    theRight = "Hardcore";
+                    theLeft = "Classic";
+                    break;
+                case "Hardcore":
+                    theMiddle = "Hardcore";
+                    theRight = "Classic";
+                    theLeft = "Crazy";
+                    break;
+
+            }
+            var l = new Label { Content = theMiddle, FontSize = 30, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0.0, 320, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
+            MenuLabelList.Add("Box" + theMiddle, l);
+            var l2 = new Label { Content = theRight, FontSize = 30, Foreground = new SolidColorBrush(Colors.Gray), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(350.0, 550, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
+            MenuLabelList.Add("Box" + theRight, l2);
+            var l3 = new Label { Content = theLeft, FontSize = 30, Foreground = new SolidColorBrush(Colors.Gray), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(-350.0, 550, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
+            MenuLabelList.Add("Box" + theLeft, l3);
+            var l4 = new Label { Content = "Indisponible", FontSize = 35, Opacity = 0, Foreground = new SolidColorBrush(Colors.Red), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0.0, 150, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("Indisponible", l4);
-            var l5 = new Label { Content = "Entrée pour confirmer / Echap pour retour", FontSize = 28, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0.0, 600, 0, 0) };
+            var l5 = new Label { Content = "Entrée pour confirmer / Echap pour retour", FontSize = 28, Foreground = new SolidColorBrush(Colors.White), HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0.0, 600, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("Confirm", l5);
         }
 
@@ -433,20 +566,20 @@ namespace BombEistiv2WPF.View.Menu
 
         public void FadeOutOption(Timer t)
         {
-            Canvas.SetZIndex(MenuDataList["BoxDClassic"], 0);
-            Canvas.SetZIndex(MenuDataList["BoxGClassic"], 0);
-            Canvas.SetZIndex(MenuLabelList["BoxClassic"], 0);
-            var lt = (ScaleTransform)MenuDataList["BoxDClassic"].LayoutTransform;
-            var lt2 = (ScaleTransform)MenuDataList["BoxGClassic"].LayoutTransform;
+            Canvas.SetZIndex(MenuDataList["BoxD" + mySelectedOption], 0);
+            Canvas.SetZIndex(MenuDataList["BoxG" + mySelectedOption], 0);
+            Canvas.SetZIndex(MenuLabelList["Box" + mySelectedOption], 0);
+            var lt = (ScaleTransform)MenuDataList["BoxD" + mySelectedOption].LayoutTransform;
+            var lt2 = (ScaleTransform)MenuDataList["BoxG" + mySelectedOption].LayoutTransform;
             if (lt.ScaleY < 0.69)
             {
-                MenuDataList["BoxDClassic"].Margin = new Thickness(MenuDataList["BoxDClassic"].Margin.Left + 540.0 / 20.0, MenuDataList["BoxDClassic"].Margin.Top + 70.0 / 20.0, 0, 0);
-                MenuDataList["BoxGClassic"].Margin = new Thickness(MenuDataList["BoxGClassic"].Margin.Left + 350.0 / 20.0, MenuDataList["BoxGClassic"].Margin.Top + 70.0 / 20.0, 0, 0);
+                MenuDataList["BoxD" + mySelectedOption].Margin = new Thickness(MenuDataList["BoxD" + mySelectedOption].Margin.Left + 540.0 / 20.0, MenuDataList["BoxD" + mySelectedOption].Margin.Top + 70.0 / 20.0, 0, 0);
+                MenuDataList["BoxG" + mySelectedOption].Margin = new Thickness(MenuDataList["BoxG" + mySelectedOption].Margin.Left + 350.0 / 20.0, MenuDataList["BoxG" + mySelectedOption].Margin.Top + 70.0 / 20.0, 0, 0);
 
                 lt.ScaleY = lt.ScaleY + 0.5 / 20.0;
                 lt2.ScaleY = lt2.ScaleY + 0.5 / 20.0;
-                MenuLabelList["BoxClassic"].Margin = new Thickness(MenuLabelList["BoxClassic"].Margin.Left + 445.0 / 20.0, MenuLabelList["BoxClassic"].Margin.Top + 220.0 / 20.0, 0, 0);
-                MenuLabelList["BoxClassic"].FontSize += 0.3;
+                MenuLabelList["Box" + mySelectedOption].Margin = new Thickness(MenuLabelList["Box" + mySelectedOption].Margin.Left + 445.0 / 20.0, MenuLabelList["Box" + mySelectedOption].Margin.Top + 220.0 / 20.0, 0, 0);
+                MenuLabelList["Box" + mySelectedOption].FontSize += 0.3;
             }
             else
             {
@@ -454,9 +587,9 @@ namespace BombEistiv2WPF.View.Menu
                 if (!alreadyloaded)
                 {
                     alreadyloaded = true;
-                    MenuDataList.Remove("BoxDClassic");
-                    MenuDataList.Remove("BoxGClassic");
-                    MenuLabelList.Remove("BoxClassic");
+                    MenuDataList.Remove("BoxD" + mySelectedOption);
+                    MenuDataList.Remove("BoxG" + mySelectedOption);
+                    MenuLabelList.Remove("Box" + mySelectedOption);
                     _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
                     _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                     for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
@@ -476,6 +609,53 @@ namespace BombEistiv2WPF.View.Menu
                     }
                     movelocked = false;
                 }
+            }
+
+        }
+
+        private void FadeInModeOption(object sender, ElapsedEventArgs e)
+        {
+            _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => FadeInModeOptionT((Timer)sender)));
+
+        }
+
+        public void FadeInModeOptionT(Timer t)
+        {
+            MenuDataList["BoxGeneral"].Opacity = 1;
+            var lt = (ScaleTransform)MenuDataList["BoxGeneral"].LayoutTransform;
+            if (lt.ScaleX > 0.81)
+            {
+                MenuDataList["BoxGeneral"].Margin = new Thickness(MenuDataList["BoxGeneral"].Margin.Left - 240.0 / 20.0, MenuDataList["BoxGeneral"].Margin.Top - 170.0 / 20.0, 0, 0);
+
+                lt.ScaleX = lt.ScaleX - 0.4 / 20.0;
+                lt.ScaleY = lt.ScaleY - 0.4 / 20.0;
+                MenuLabelList["BoxGeneral"].Margin = new Thickness(MenuLabelList["BoxGeneral"].Margin.Left - 250.0 / 20.0, MenuLabelList["BoxGeneral"].Margin.Top - 180.0 / 20.0, 0, 0);
+                MenuLabelList["BoxGeneral"].FontSize -= 0.7;
+            }
+            else if (!alreadyloaded)
+            {
+                t.AutoReset = false;
+                alreadyloaded = true;
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
+                    {
+                        _wizard.Grid.Children.RemoveAt(i);
+                    }
+                }
+                //MenuLabelList.Remove("Loading");
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                //SwitchOption("Time", true);
+                movelocked = false;
             }
 
         }

@@ -402,13 +402,13 @@ namespace BombEistiv2WPF.View.Menu
 
         public void LoadMenuLabel()
         {
-            var l = new Label { Content = "Jouer !", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(360, 300, 0, 0) };
+            var l = new Label { Content = "Jouer !", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(360, 300, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxGame",l);
-            var l2 = new Label { Content = "Jouer en ligne", FontSize = 30, Foreground = new SolidColorBrush(Colors.LightSlateGray), Margin = new Thickness(260, 370, 0, 0) };
+            var l2 = new Label { Content = "Jouer en ligne", FontSize = 30, Foreground = new SolidColorBrush(Colors.LightSlateGray), Margin = new Thickness(260, 370, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxGameLan", l2);
-            var l4 = new Label { Content = "Option", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(190, 450, 0, 0) };
+            var l4 = new Label { Content = "Option", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(190, 450, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxOption", l4);
-            var l3 = new Label { Content = "Quitter", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(105, 525, 0, 0) };
+            var l3 = new Label { Content = "Quitter", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(105, 525, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxQuit", l3);
         }
 

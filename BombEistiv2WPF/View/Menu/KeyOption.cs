@@ -103,6 +103,10 @@ namespace BombEistiv2WPF.View.Menu
                             {
                                 case "None":
                                     PlaySound._.TypeSoundList["Selection"].Play();
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Switch");
+                                    break;
+                                case "Switch":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_Up");
                                     break;
                                 case "Up":
@@ -131,9 +135,13 @@ namespace BombEistiv2WPF.View.Menu
                         {
                             switch (OptionSelected.Split('_')[1])
                             {
-                                case "Up":
+                                case "Switch":
                                     PlaySound._.TypeSoundList["Selection"].Play();
                                     SwitchOption(OptionSelected.Split('_')[0] + "_None");
+                                    break;
+                                case "Up":
+                                    PlaySound._.TypeSoundList["Selection"].Play();
+                                    SwitchOption(OptionSelected.Split('_')[0] + "_Switch");
                                     break;
                                 case "Down":
                                     PlaySound._.TypeSoundList["Selection"].Play();
@@ -324,21 +332,25 @@ namespace BombEistiv2WPF.View.Menu
             var l = new Label { Content = "Chargement...", FontSize = 40, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(150, 500, 0, 0) };
             MenuLabelList.Add("Loading", l);
             OptionMoved.Add("1_None", "");
+            OptionMoved.Add("1_Switch", "");
             OptionMoved.Add("1_Right", "");
             OptionMoved.Add("1_Left", "");
             OptionMoved.Add("1_Up", "");
             OptionMoved.Add("1_Down", "");
             OptionMoved.Add("2_None", "");
+            OptionMoved.Add("2_Switch", "");
             OptionMoved.Add("2_Right", "");
             OptionMoved.Add("2_Left", "");
             OptionMoved.Add("2_Up", "");
             OptionMoved.Add("2_Down", "");
             OptionMoved.Add("3_None", "");
+            OptionMoved.Add("3_Switch", "");
             OptionMoved.Add("3_Right", "");
             OptionMoved.Add("3_Left", "");
             OptionMoved.Add("3_Up", "");
             OptionMoved.Add("3_Down", "");
             OptionMoved.Add("4_None", "");
+            OptionMoved.Add("4_Switch", "");
             OptionMoved.Add("4_Right", "");
             OptionMoved.Add("4_Left", "");
             OptionMoved.Add("4_Up", "");
@@ -439,7 +451,7 @@ namespace BombEistiv2WPF.View.Menu
                 Source = GameParameters._.MenutextureList["Box"],
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(95, 340, 0.0, 0.0),
+                Margin = new Thickness(95, 300, 0.0, 0.0),
                 Opacity = 0.7,
                 Width = 268,
                 Height = 100
@@ -484,38 +496,42 @@ namespace BombEistiv2WPF.View.Menu
         {
             const int seedleft = 20;
             const int seedtop = 200;
-            var l = new Label { Content = "Appuyez sur entrée pour modifier une touche", FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 60, seedtop, 0, 0) };
+            var l = new Label { Content = "Appuyez sur entrée pour modifier une touche", FontSize = 22, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 60, seedtop, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelInfo", l);
-            var lp1 = new Label { Content = "Joueur 1", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 15, seedtop + 100, 0, 0) };
+            var lp1 = new Label { Content = "Joueur 1", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 15, seedtop + 40, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelJoueur1", lp1);
-            var lp2 = new Label { Content = "Joueur 2", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 165, seedtop + 100, 0, 0) };
+            var lp2 = new Label { Content = "Joueur 2", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 165, seedtop + 40, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelJoueur2", lp2);
-            var lp3 = new Label { Content = "Joueur 3", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 315, seedtop + 100, 0, 0) };
+            var lp3 = new Label { Content = "Joueur 3", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 315, seedtop + 40, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelJoueur3", lp3);
-            var lp4 = new Label { Content = "Joueur 4", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 465, seedtop + 100, 0, 0) };
+            var lp4 = new Label { Content = "Joueur 4", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 465, seedtop + 40, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelJoueur4", lp4);
             
             for(var i=0;i<4;i++)
             {
-                var lac1 = new Label { Content = "Bombe :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150*i, seedtop + 140, 0, 0) };
+                var lac1 = new Label { Content = "Bombe :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 100, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Label" + (i + 1) + "_None", lac1);
-                var ltou1 = new Label { Content = KeyAction._.GetKey((i + 1) + "_None"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 140, 0, 0)};
+                var ltou1 = new Label { Content = KeyAction._.GetKey((i + 1) + "_None"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 100, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Value" + (i + 1) + "_None", ltou1);
-                var lac3 = new Label { Content = "Haut :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 180, 0, 0) };
+                var lac6 = new Label { Content = "Spec :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 140, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
+                MenuLabelList.Add("Label" + (i + 1) + "_Switch", lac6);
+                var ltou6 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Switch"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 140, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
+                MenuLabelList.Add("Value" + (i + 1) + "_Switch", ltou6);
+                var lac3 = new Label { Content = "Haut :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 180, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Label" + (i + 1) + "_Up", lac3);
-                var ltou3 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Up"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 180, 0, 0) };
+                var ltou3 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Up"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 180, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Value" + (i + 1) + "_Up", ltou3);
-                var lac2 = new Label { Content = "Bas :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 220, 0, 0) };
+                var lac2 = new Label { Content = "Bas :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 220, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Label" + (i + 1) + "_Down", lac2);
-                var ltou2 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Down"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 220, 0, 0)};
+                var ltou2 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Down"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 220, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Value" + (i + 1) + "_Down", ltou2);
-                var lac4 = new Label { Content = "Droite :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 260, 0, 0) };
+                var lac4 = new Label { Content = "Droite :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 260, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Label" + (i + 1) + "_Right", lac4);
-                var ltou4 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Right"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 260, 0, 0)};
+                var ltou4 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Right"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 260, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Value" + (i + 1) + "_Right", ltou4);
-                var lac5 = new Label { Content = "Gauche :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 300, 0, 0) };
+                var lac5 = new Label { Content = "Gauche :", FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 0 + 150 * i, seedtop + 300, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Label" + (i + 1) + "_Left", lac5);
-                var ltou5 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Left"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 300, 0, 0)};
+                var ltou5 = new Label { Content = KeyAction._.GetKey((i + 1) + "_Left"), FontSize = 18, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(seedleft + 75 + 150 * i, seedtop + 300, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
                 MenuLabelList.Add("Value" + (i + 1) + "_Left", ltou5);
             }
 
@@ -528,13 +544,13 @@ namespace BombEistiv2WPF.View.Menu
                 }
             }
 
-            var conf = new Label { Content = "Confirmer", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(130, 585, 0.0, 0.0) };
+            var conf = new Label { Content = "Confirmer", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(130, 585, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("ValueConfirm", conf);
 
-            var quit = new Label { Content = "Par défaut", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(380, 585, 0.0, 0.0) };
+            var quit = new Label { Content = "Par défaut", FontSize = 20, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(380, 585, 0.0, 0.0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("ValueQuit", quit);
 
-            var la = new Label { Content = "Appuyez sur une touche", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(150, 300, 0, 0), Opacity = 0};
+            var la = new Label { Content = "Appuyez sur une touche", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(150, 300, 0, 0), Opacity = 0, FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelActive", la);
         }
 

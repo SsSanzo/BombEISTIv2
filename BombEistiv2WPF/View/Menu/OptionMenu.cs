@@ -111,7 +111,46 @@ namespace BombEistiv2WPF.View.Menu
                 //MenuDataList[OptionSelected].Opacity = 1;
                 TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
                 TimerManager._.AddNewTimer(true, 15, true, null, FadeOut);
-            }else if(oldscreen is KeyOption)
+            }
+            else if (oldscreen is GameModeMenu)
+            {
+                thisistheend = false;
+                movelocked = true;
+                alreadyloaded = false;
+                var pressstart = (GameModeMenu)oldscreen;
+                _wizard = w;
+                OptionZommed = new Dictionary<string, int>();
+                OptionSelected = "BoxGeneral";
+                if (_menuDataList == null)
+                {
+                    _menuDataList = new Dictionary<string, Image>();
+                    _menuLabelList = new Dictionary<string, Label>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => LoadMenuImagePrevious(pressstart)));
+                    //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
+                }
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.Grid.Children.Add(img.Value);
+                }
+                foreach (var lab in MenuLabelList)
+                {
+                    _wizard.Grid.Children.Add(lab.Value);
+                }
+                //var lt = new ScaleTransform { ScaleX = 1.1, ScaleY = 1.1, CenterX = 134, CenterY = 50 };
+                //MenuDataList[OptionSelected].Margin = new Thickness(MenuDataList[OptionSelected].Margin.Left - 10, MenuDataList[OptionSelected].Margin.Top - 10, 0,0);
+                //MenuDataList[OptionSelected].LayoutTransform = lt;
+                //MenuDataList[OptionSelected].Opacity = 1;
+                TimerManager._.AddNewTimer(true, 15, true, null, ActionDefil);
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeOut);
+            }
+            else if (oldscreen is KeyOption)
             {
                 thisistheend = false;
                 movelocked = true;
@@ -259,7 +298,7 @@ namespace BombEistiv2WPF.View.Menu
                         case "BoxGeneral":
                             movelocked = true;
                             PlaySound._.TypeSoundList["Valid"].Play();
-                            _wizard.NextScreen(ScreenType.GeneralOptions);
+                            _wizard.NextScreen(ScreenType.GameMode);
                             break;
                         case "BoxTouche":
                             movelocked = true;
@@ -318,6 +357,19 @@ namespace BombEistiv2WPF.View.Menu
             MenuLabelList.Add("BoxGeneral", old.MenuLabelList["BoxGeneral"]);
         }
 
+        public void LoadMenuImagePrevious(GameModeMenu old)
+        {
+            MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
+            MenuDataList.Add("Black", old.MenuDataList["Black"]);
+            MenuDataList.Add("Bomb", old.MenuDataList["Bomb"]);
+            MenuDataList.Add("Eisti", old.MenuDataList["Eisti"]);
+            MenuDataList.Add("2", old.MenuDataList["2"]);
+            MenuDataList.Add("BoxOption", old.MenuDataList["BoxOption"]);
+            MenuLabelList.Add("BoxOption", old.MenuLabelList["BoxOption"]);
+            MenuDataList.Add("BoxGeneral", old.MenuDataList["BoxGeneral"]);
+            MenuLabelList.Add("BoxGeneral", old.MenuLabelList["BoxGeneral"]);
+        }
+
         public void LoadMenuImagePrevious(KeyOption old)
         {
             MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
@@ -343,7 +395,7 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList.Add("BoxTheme", old.MenuDataList["BoxTheme"]);
             MenuLabelList.Add("BoxTheme", old.MenuLabelList["BoxTheme"]);
         }
-
+         
         public void LoadMenuImage()
         {
 
@@ -416,13 +468,13 @@ namespace BombEistiv2WPF.View.Menu
 
         public void LoadMenuLabel()
         {
-            var l = new Label { Content = "Paramètres", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(360, 300, 0, 0) };
+            var l = new Label { Content = "Paramètres", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(360, 300, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxGeneral", l);
-            var l2 = new Label { Content = "Commandes", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(260, 370, 0, 0) };
+            var l2 = new Label { Content = "Commandes", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(260, 370, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxTouche", l2);
-            var l4 = new Label { Content = "Theme", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(190, 450, 0, 0) };
+            var l4 = new Label { Content = "Theme", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(190, 450, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxTheme", l4);
-            var l3 = new Label { Content = "Retour", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(45, 575, 0, 0) };
+            var l3 = new Label { Content = "Retour", FontSize = 30, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(45, 575, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("BoxCancel", l3);
         }
 
@@ -515,7 +567,7 @@ namespace BombEistiv2WPF.View.Menu
         {
             MenuDataList["BoxGeneral"].Opacity = 1;
             var lt = (ScaleTransform)MenuDataList["BoxGeneral"].LayoutTransform;
-            if (lt.ScaleX < 1.19)
+            if (Math.Abs(MenuDataList["BoxGeneral"].Margin.Left) - 280 <= 0.5)
             {
                 MenuDataList["BoxGeneral"].Margin = new Thickness(MenuDataList["BoxGeneral"].Margin.Left + 240.0 / 20.0, MenuDataList["BoxGeneral"].Margin.Top + 170.0 / 20.0, 0, 0);
 
@@ -532,8 +584,6 @@ namespace BombEistiv2WPF.View.Menu
                     MenuDataList.Remove("BoxGeneral");
                     MenuLabelList.Remove("BoxGeneral");
                     alreadyloaded = true;
-                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
-                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                     for (var i = _wizard.Grid.Children.Count - 1; i > -1; i--)
                     {
                         if (!(_wizard.Grid.Children[i] is Grid || _wizard.Grid.Children[i] is MediaElement))
@@ -541,6 +591,8 @@ namespace BombEistiv2WPF.View.Menu
                             _wizard.Grid.Children.RemoveAt(i);
                         }
                     }
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
                     foreach (var img in MenuDataList)
                     {
                         _wizard.Grid.Children.Add(img.Value);
@@ -560,7 +612,7 @@ namespace BombEistiv2WPF.View.Menu
         {
             MenuDataList["BoxTouche"].Opacity = 1;
             var lt = (ScaleTransform)MenuDataList["BoxTouche"].LayoutTransform;
-            if (lt.ScaleX < 1.19)
+            if (Math.Abs(MenuDataList["BoxTouche"].Margin.Left) - 195 <= 0.5)
             {
                 MenuDataList["BoxTouche"].Margin = new Thickness(MenuDataList["BoxTouche"].Margin.Left + 165.0 / 20.0, MenuDataList["BoxTouche"].Margin.Top + 245.0 / 20.0, 0, 0);
 
@@ -605,9 +657,9 @@ namespace BombEistiv2WPF.View.Menu
         {
             MenuDataList["BoxTheme"].Opacity = 1;
             var lt = (ScaleTransform)MenuDataList["BoxTheme"].LayoutTransform;
-            if (lt.ScaleX < 1.19)
+            if (Math.Abs(MenuDataList["BoxTheme"].Margin.Left) - 130 <= 0.5)
             {
-                MenuDataList["BoxTheme"].Margin = new Thickness(MenuDataList["BoxTheme"].Margin.Left + 95.0 / 20.0, MenuDataList["BoxTheme"].Margin.Top + 320.0 / 20.0, 0, 0);
+                MenuDataList["BoxTheme"].Margin = new Thickness(MenuDataList["BoxTheme"].Margin.Left + 90.0 / 20.0, MenuDataList["BoxTheme"].Margin.Top + 320.0 / 20.0, 0, 0);
 
                 lt.ScaleX = lt.ScaleX + 0.4 / 20.0;
                 lt.ScaleY = lt.ScaleY + 0.4 / 20.0;

@@ -13,3 +13,16 @@ D:\My Documents\BombEISTIv2\BombEistiv2WPF\bin\Debug\BombEisti2.exe
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\bin\Debug\BombEisti2.pdb
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEisti2.exe
 D:\My Documents\BombEISTIv2\BombEistiv2WPF\obj\x86\Debug\BombEisti2.pdb
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\BombEisti2.exe
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\BombEisti2.pdb
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\bin\Debug\BombEisti2.exe
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\bin\Debug\BombEisti2.pdb
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\MainWindow.baml
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\MainWindow.g.cs
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\App.g.cs
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\BombEisti2_MarkupCompile.cache
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\BombEisti2.g.resources
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\BombEistiv2WPF.Properties.Resources.resources
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\My Documents\BombEistiv2Crazy\BombEistiv2WPF\obj\x86\Debug\GenerateResource.write.1.tlog

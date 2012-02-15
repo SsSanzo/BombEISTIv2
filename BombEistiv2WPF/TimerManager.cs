@@ -193,7 +193,7 @@ namespace BombEistiv2WPF
         public void removeTime(Timer t)
         {
             bool fail = false;
-            int index = 0;
+            //int index = 0;
             do
             {
                 try
@@ -234,6 +234,8 @@ namespace BombEistiv2WPF
         None,
         BombExplode,
         BombMove,
+        BombTeleport,
+        BombReturns,
         Malediction
     }
 }

@@ -6,7 +6,6 @@
         <Texture object="Background" source="Background.png" />
         <Texture object="SoftBloc" source="SoftBlock.png" />
         <Texture object="HardBloc" source="HardBlock.png" />
-        <Texture object="Bomb" source="Bomb.png" />
         <Texture object="Upgrade.PowerUp" source="PowerUp.png" />
         <Texture object="Upgrade.PowerMax" source="PowerMax.png" />
         <Texture object="Upgrade.BombUp" source="BombUp.png" />
@@ -19,8 +18,36 @@
         <Texture object="Upgrade.BombDown" source="BombDown.png" />
         <Texture object="Upgrade.SpeedDown" source="SpeedDown.png" />
         <Texture object="Upgrade.ChangeDirection" source="ChangeDirection.png" />
+        <Texture object="Bomb.Normal" source="Bomb.png" />
+        <Texture object="Bomb.Move" source="BombMove.png" />
+        <Texture object="Bomb.Mine" source="BombMine.png" />
+        <Texture object="Bomb.Fly" source="BombFly.png" />
+        <Texture object="Bomb.Teleport" source="BombTeleport.png" />
+        <Texture object="Bomb.Ghost" source="BombGhost.png" />
+        <Texture object="Bomb.Teleguide" source="BombTeleguide.png" />
+        <Texture object="Bomb.Cataclysm" source="BombCataclysm.png" />
+        <Texture object="Bomb.Dark" source="BombDark.png" />
+        <Texture object="Bomb.Freeze" source="BombFreeze.png" />
+        <Texture object="Bomb.Flower" source="BombFlower.png" />
+        <Texture object="UpgradeBomb.Move" source="Move.png" />
+        <Texture object="UpgradeBomb.Ninja" source="Ninja.png" />
+        <Texture object="UpgradeBomb.Mine" source="Mine.png" />
+        <Texture object="UpgradeBomb.Fly" source="Fly.png" />
+        <Texture object="UpgradeBomb.Teleport" source="Teleport.png" />
+        <Texture object="UpgradeBomb.Ghost" source="Ghost.png" />
+        <Texture object="UpgradeBomb.Teleguide" source="Teleguide.png" />
+        <Texture object="UpgradeBomb.Cataclysm" source="Cataclysm.png" />
+        <Texture object="UpgradeBomb.Flower" source="Flower.png" />
+        <Texture object="UpgradeBomb.Freeze" source="Freeze.png" />
+        <Texture object="UpgradeBomb.Dark" source="Dark.png" />
         <Texture object="EndBlock" source="Metal.png" />
         <Texture object="Explosion" source="explosion.gif" />
+        <Texture object="Ice" source="Ice.png" />
+        <Texture object="IceCube" source="IceCube.png" />
+        <Texture object="Smoke" source="Smoke.png" />
+        <Texture object="Stack_8" source="Stack_8.png" />
+        <Texture object="Stack_4" source="Stack_4.png" />
+        <Texture object="Stack_2" source="Stack_2.png" />
         <Music object="Menu" source="menu.mp3" />
         <Music object="Ouverturemenu" source="ouverturemenu.mp3" />
         <Music object="Select" source="select.mp3" />
@@ -108,8 +135,9 @@
       <Texture object="Over" source="over.png" />
       <Texture object="Score" source="score.png" />
       <Texture object="Ray" source="ray.png" />
+      <Font object="Font" source="#Tahoma" />
     </Menu>
-    <SoftBlock count="135" />
+    <SoftBlock count="130" />
     <GameTime count="180" />
     <ExplosionDelay count="3" />
     <keysMap>
@@ -118,34 +146,38 @@
       <Map key="Left" action="Left" player="1" />
       <Map key="Right" action="Right" player="1" />
       <Map key="RightShift" action="None" player="1" />
+      <Map key="RightCtrl" action="Switch" player="1" />
       <Map key="Z" action="Up" player="2" />
       <Map key="S" action="Down" player="2" />
       <Map key="Q" action="Left" player="2" />
       <Map key="D" action="Right" player="2" />
       <Map key="A" action="None" player="2" />
+      <Map key="E" action="Switch" player="2" />
       <Map key="O" action="Up" player="3" />
       <Map key="L" action="Down" player="3" />
       <Map key="K" action="Left" player="3" />
       <Map key="M" action="Right" player="3" />
       <Map key="I" action="None" player="3" />
-      <Map key="Y" action="Up" player="4" />
-      <Map key="H" action="Down" player="4" />
-      <Map key="G" action="Left" player="4" />
-      <Map key="J" action="Right" player="4" />
-      <Map key="T" action="None" player="4" />
+      <Map key="U" action="Switch" player="3" />
+      <Map key="T" action="Up" player="4" />
+      <Map key="G" action="Down" player="4" />
+      <Map key="F" action="Left" player="4" />
+      <Map key="H" action="Right" player="4" />
+      <Map key="R" action="None" player="4" />
+      <Map key="Y" action="Switch" player="4" />
     </keysMap>
   </CommonParameter>
   <Game type="Classic">
     <Player lives="3" />
     <Upgrades>
-      <Upgrade defaultFreq="15" currentFreq="25">PowerUp</Upgrade>
+      <Upgrade defaultFreq="15" currentFreq="30">PowerUp</Upgrade>
       <Upgrade defaultFreq="3" currentFreq="3">PowerMax</Upgrade>
-      <Upgrade defaultFreq="20" currentFreq="25">BombUp</Upgrade>
-      <Upgrade defaultFreq="4" currentFreq="4">Kick</Upgrade>
-      <Upgrade defaultFreq="8" currentFreq="9">SpeedUp</Upgrade>
+      <Upgrade defaultFreq="20" currentFreq="30">BombUp</Upgrade>
+      <Upgrade defaultFreq="4" currentFreq="5">Kick</Upgrade>
+      <Upgrade defaultFreq="8" currentFreq="15">SpeedUp</Upgrade>
       <Upgrade defaultFreq="2" currentFreq="3">SpeedMax</Upgrade>
-      <Upgrade defaultFreq="4" currentFreq="3">Life</Upgrade>
-      <Upgrade defaultFreq="8" currentFreq="5">Teleport</Upgrade>
+      <Upgrade defaultFreq="4" currentFreq="4">Life</Upgrade>
+      <Upgrade defaultFreq="8" currentFreq="8">Teleport</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">PowerDown</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">BombDown</Upgrade>
       <Upgrade defaultFreq="5" currentFreq="5">SpeedDown</Upgrade>
@@ -170,20 +202,20 @@
     </Updrades>
   </Game>
   <Game type="Crazy">
-    <Player lives="7" />
+    <Player lives="5" />
     <Upgrades>
-      <Upgrade defaultFreq="3" currentFreq="3">Kick</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="7">PowerUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">SpeedUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="6">PowerMax</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">BombUp</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">BombDown</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">PowerDown</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">SpeedDown</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">ChangeDirection</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">Teleport</Upgrade>
-      <Upgrade defaultFreq="3" currentFreq="3">SpeedMax</Upgrade>
-      <Upgrade defaultFreq="1" currentFreq="6">Life</Upgrade>
+      <Upgrade defaultFreq="40" currentFreq="40">PowerUp</Upgrade>
+      <BombType defaultFreq="3" currentFreq="3">Move</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Ninja</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Mine</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Fly</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Teleport</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Ghost</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Teleguide</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Cataclysm</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Flower</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Dark</BombType>
+      <BombType defaultFreq="3" currentFreq="3">Freeze</BombType>
     </Upgrades>
   </Game>
 </GameParameters>

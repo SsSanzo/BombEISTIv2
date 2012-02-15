@@ -20,7 +20,7 @@ namespace BombEistiv2WPF.View.Menu
         private Dictionary<string, Image> _menuDataList;
         private Dictionary<string, Label> _menuLabelList;
         private bool thisistheend;
-        private bool alreadyloaded;
+        //private bool alreadyloaded;
         private bool onthepop;
 
         public Dictionary<string, Image> MenuDataList
@@ -41,7 +41,7 @@ namespace BombEistiv2WPF.View.Menu
             onthepop = false;
             var pressstart = (SkinSelectMenu)oldscreen;
             _wizard = w;
-            alreadyloaded = false;
+            //alreadyloaded = false;
             if (_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();

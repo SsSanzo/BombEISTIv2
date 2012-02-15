@@ -16,6 +16,7 @@ namespace BombEistiv2WPF.View
         private Dictionary<string, string> _themeData;
         private Dictionary<string, BitmapImage> _typetextureList;
         private Dictionary<string, BitmapImage> _typebonusList;
+        private Dictionary<string, BitmapImage> _typebombList;
         private Dictionary<string, BitmapImage> _typeavatarList;
         private MainWindow mw;
         private int offsetglobal = 20;
@@ -33,6 +34,7 @@ namespace BombEistiv2WPF.View
             _typetextureList = new Dictionary<string, BitmapImage>();
             _typebonusList = new Dictionary<string, BitmapImage>();
             _typeavatarList = new Dictionary<string, BitmapImage>();
+            _typebombList = new Dictionary<string, BitmapImage>();
         }
 
         public MainWindow Mw
@@ -70,6 +72,11 @@ namespace BombEistiv2WPF.View
         public Dictionary<string, BitmapImage> TypebonusList
         {
             get { return _typebonusList; }
+        }
+
+        public Dictionary<string, BitmapImage> TypebombList
+        {
+            get { return _typebombList; }
         }
 
         public Dictionary<string, BitmapImage> TypeavatarList
@@ -351,6 +358,782 @@ namespace BombEistiv2WPF.View
             
         }
 
+        public void ExplosionFreeze(Bomb b2, Game game, Entity Left, Entity Up, Entity Right, Entity Down, Entity None)
+        {
+            var b = new Bomb(b2.X, b2.Y, b2.Power, b2.Owner, false);
+            //var g = newgif();
+            //g.Margin = new Thickness(b.X * 40, b.Y * 40, 0.0, 0.0);
+            //Mw.explosion(g);
+            
+            InsertTextureEntity(new EntityOfDeath(b.X, b.Y, game, b2.Owner, true, 1));
+            if (Left == null)
+            {
+                if (b.X - b.Power < 0)
+                {
+                    Left = new HardBlock(-1, 0);
+                }
+                else
+                {
+                    Left = new SoftBlock(b.X - b.Power, 0);
+                }
+            }
+            if (Right == null)
+            {
+                if (b.X + b.Power >= Game.Length)
+                {
+                    Right = new HardBlock(Game.Length, 0);
+                }
+                else
+                {
+                    Right = new SoftBlock(b.X + b.Power, 0);
+                }
+
+            }
+            if (Down == null)
+            {
+                if (b.Y + b.Power >= Game.Length)
+                {
+                    Down = new HardBlock(0, Game.Length);
+                }
+                else
+                {
+                    Down = new SoftBlock(0, b.Y + b.Power);
+                }
+
+            }
+            if (Up == null)
+            {
+                if (b.Y - b.Power < 0)
+                {
+                    Up = new HardBlock(0, -1);
+                }
+                else
+                {
+                    Up = new SoftBlock(0, b.Y - b.Power);
+                }
+
+            }
+            if (!(Left is HardBlock && b.X == Left.X + 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                    {
+                        Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                            ExplosionFreeze(b, game, Left, Direction.Left, offsetglobal
+                            )));
+                    });
+
+            }
+            if (!(Right is HardBlock && b.X == Right.X - 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                    {
+                        Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                            ExplosionFreeze(b, game, Right, Direction.Right, offsetglobal
+                            )));
+                    });
+
+            }
+            if (!(Up is HardBlock && b.Y == Up.Y + 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             ExplosionFreeze(b, game, Up, Direction.Up, offsetglobal
+                             )));
+                     });
+
+            }
+            if (!(Down is HardBlock && b.Y == Down.Y - 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             ExplosionFreeze(b, game, Down, Direction.Down, offsetglobal
+                             )));
+                     });
+            }
+        }
+
+        public void ExplosionFreeze(Bomb b, Game game, Entity e, Direction d, int offset)
+        {
+            //var g = newgif();
+
+            switch (d)
+            {
+                case Direction.Left:
+                    //g.Margin = new Thickness(b.X * 40 - offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        InsertTextureEntity(new EntityOfDeath(b.X - offset / 40, b.Y, game, b.Owner, false, 1));
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X + 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+
+                        }
+                    }
+
+                    break;
+                case Direction.Right:
+                    //g.Margin = new Thickness(b.X * 40 + offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        InsertTextureEntity(new EntityOfDeath(b.X + offset / 40, b.Y, game, b.Owner, false, 1));
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)(e.X - 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)e.X))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+                case Direction.Up:
+                    //g.Margin = new Thickness(b.X * 40, b.Y * 40 - offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                         InsertTextureEntity(new EntityOfDeath(b.X, b.Y - offset / 40, game, b.Owner, false, 1));
+                    }
+                   // Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y + 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+                case Direction.Down:
+                    //g.Margin = new Thickness(b.X * 40, b.Y * 40 + offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                         InsertTextureEntity(new EntityOfDeath(b.X, b.Y + offset / 40, game, b.Owner, false, 1));
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)(e.Y - 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)e.Y))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFreeze(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+            }
+
+
+
+        }
+
+        public void ExplosionDark(Bomb b2, Game game, Entity Left, Entity Up, Entity Right, Entity Down, Entity None)
+        {
+            var b = new Bomb(b2.X, b2.Y, b2.Power, b2.Owner, false);
+            //var g = newgif();
+            //g.Margin = new Thickness(b.X * 40, b.Y * 40, 0.0, 0.0);
+            //Mw.explosion(g);
+
+            InsertTextureEntity(new EntityOfDeath(b.X, b.Y, game, b2.Owner, true, 2));
+            if (Left == null)
+            {
+                if (b.X - b.Power < 0)
+                {
+                    Left = new HardBlock(-1, 0);
+                }
+                else
+                {
+                    Left = new SoftBlock(b.X - b.Power, 0);
+                }
+            }
+            if (Right == null)
+            {
+                if (b.X + b.Power >= Game.Length)
+                {
+                    Right = new HardBlock(Game.Length, 0);
+                }
+                else
+                {
+                    Right = new SoftBlock(b.X + b.Power, 0);
+                }
+
+            }
+            if (Down == null)
+            {
+                if (b.Y + b.Power >= Game.Length)
+                {
+                    Down = new HardBlock(0, Game.Length);
+                }
+                else
+                {
+                    Down = new SoftBlock(0, b.Y + b.Power);
+                }
+
+            }
+            if (Up == null)
+            {
+                if (b.Y - b.Power < 0)
+                {
+                    Up = new HardBlock(0, -1);
+                }
+                else
+                {
+                    Up = new SoftBlock(0, b.Y - b.Power);
+                }
+
+            }
+            if (!(Left is HardBlock && b.X == Left.X + 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                    {
+                        Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                            ExplosionDark(b, game, Left, Direction.Left, offsetglobal
+                            )));
+                    });
+
+            }
+            if (!(Right is HardBlock && b.X == Right.X - 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                    {
+                        Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                            ExplosionDark(b, game, Right, Direction.Right, offsetglobal
+                            )));
+                    });
+
+            }
+            if (!(Up is HardBlock && b.Y == Up.Y + 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             ExplosionDark(b, game, Up, Direction.Up, offsetglobal
+                             )));
+                     });
+
+            }
+            if (!(Down is HardBlock && b.Y == Down.Y - 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             ExplosionDark(b, game, Down, Direction.Down, offsetglobal
+                             )));
+                     });
+            }
+        }
+
+        public void ExplosionDark(Bomb b, Game game, Entity e, Direction d, int offset)
+        {
+            //var g = newgif();
+
+            switch (d)
+            {
+                case Direction.Left:
+                    //g.Margin = new Thickness(b.X * 40 - offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        InsertTextureEntity(new EntityOfDeath(b.X - offset / 40, b.Y, game, b.Owner, false, 2));
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X + 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+
+                        }
+                    }
+
+                    break;
+                case Direction.Right:
+                    //g.Margin = new Thickness(b.X * 40 + offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        InsertTextureEntity(new EntityOfDeath(b.X + offset / 40, b.Y, game, b.Owner, false, 2));
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)(e.X - 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)e.X))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+                case Direction.Up:
+                    //g.Margin = new Thickness(b.X * 40, b.Y * 40 - offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        InsertTextureEntity(new EntityOfDeath(b.X, b.Y - offset / 40, game, b.Owner, false, 2));
+                    }
+                    // Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y + 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+                case Direction.Down:
+                    //g.Margin = new Thickness(b.X * 40, b.Y * 40 + offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        InsertTextureEntity(new EntityOfDeath(b.X, b.Y + offset / 40, game, b.Owner, false, 2));
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)(e.Y - 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)e.Y))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionDark(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+            }
+
+
+
+        }
+
+        public void ExplosionFlower(Bomb b2, Game game, Entity Left, Entity Up, Entity Right, Entity Down, Entity None)
+        {
+            var b = new Bomb(b2.X, b2.Y, b2.Power, b2.Owner, false);
+            //var g = newgif();
+            //g.Margin = new Thickness(b.X * 40, b.Y * 40, 0.0, 0.0);
+            //Mw.explosion(g);
+            //new EntityOfDeath(b.X, b.Y, game, b2.Owner, true);
+            if (ListenerGame._.GameInProgress.TheCurrentMap.GetPlayer(b.X, b.Y) == null)
+            {
+                var sf = new SoftBlock(b.X, b.Y);
+                Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => ListenerGame._.GameInProgress.TheCurrentMap.ListOfSoftBlock.Add(sf)));
+                InsertTextureEntity(sf);
+            }
+            if (Left == null)
+            {
+                if (b.X - b.Power < 0)
+                {
+                    Left = new HardBlock(-1, 0);
+                }
+                else
+                {
+                    Left = new SoftBlock(b.X - b.Power, 0);
+                }
+            }
+            if (Right == null)
+            {
+                if (b.X + b.Power >= Game.Length)
+                {
+                    Right = new HardBlock(Game.Length, 0);
+                }
+                else
+                {
+                    Right = new SoftBlock(b.X + b.Power, 0);
+                }
+
+            }
+            if (Down == null)
+            {
+                if (b.Y + b.Power >= Game.Length)
+                {
+                    Down = new HardBlock(0, Game.Length);
+                }
+                else
+                {
+                    Down = new SoftBlock(0, b.Y + b.Power);
+                }
+
+            }
+            if (Up == null)
+            {
+                if (b.Y - b.Power < 0)
+                {
+                    Up = new HardBlock(0, -1);
+                }
+                else
+                {
+                    Up = new SoftBlock(0, b.Y - b.Power);
+                }
+
+            }
+            if (!(Left is HardBlock && b.X == Left.X + 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                    {
+                        Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                            ExplosionFlower(b, game, Left, Direction.Left, offsetglobal
+                            )));
+                    });
+
+            }
+            if (!(Right is HardBlock && b.X == Right.X - 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                    delegate
+                    {
+                        Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                            ExplosionFlower(b, game, Right, Direction.Right, offsetglobal
+                            )));
+                    });
+
+            }
+            if (!(Up is HardBlock && b.Y == Up.Y + 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             ExplosionFlower(b, game, Up, Direction.Up, offsetglobal
+                             )));
+                     });
+
+            }
+            if (!(Down is HardBlock && b.Y == Down.Y - 1))
+            {
+                TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                     delegate
+                     {
+                         Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                             ExplosionFlower(b, game, Down, Direction.Down, offsetglobal
+                             )));
+                     });
+            }
+        }
+
+        public void ExplosionFlower(Bomb b, Game game, Entity e, Direction d, int offset)
+        {
+            //var g = newgif();
+
+            switch (d)
+            {
+                case Direction.Left:
+                    //g.Margin = new Thickness(b.X * 40 - offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        //new EntityOfDeath(b.X - offset / 40, b.Y, game, b.Owner);
+                        if (ListenerGame._.GameInProgress.TheCurrentMap.GetPlayer(b.X - offset / 40, b.Y) == null)
+                        {
+                            var sf = new SoftBlock(b.X - offset/40, b.Y);
+                            Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => ListenerGame._.GameInProgress.TheCurrentMap.ListOfSoftBlock.Add(sf)));
+                            InsertTextureEntity(sf);
+                        }
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X + 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.X - ((double)offset) / 40.0) <= (double)(e.X)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+
+                        }
+                    }
+
+                    break;
+                case Direction.Right:
+                    //g.Margin = new Thickness(b.X * 40 + offset, b.Y * 40, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        if (ListenerGame._.GameInProgress.TheCurrentMap.GetPlayer(b.X + offset / 40, b.Y) == null)
+                        {
+                            var sf = new SoftBlock(b.X + offset / 40, b.Y);
+                            Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => ListenerGame._.GameInProgress.TheCurrentMap.ListOfSoftBlock.Add(sf)));
+                            InsertTextureEntity(sf);
+                        }
+                        //new EntityOfDeath(b.X + offset / 40, b.Y, game, b.Owner);
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)(e.X - 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.X + ((double)offset) / 40.0) >= (double)e.X))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+                case Direction.Up:
+                    //g.Margin = new Thickness(b.X * 40, b.Y * 40 - offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        if (ListenerGame._.GameInProgress.TheCurrentMap.GetPlayer(b.X, b.Y - offset / 40) == null)
+                        {
+                            var sf = new SoftBlock(b.X, b.Y - offset / 40);
+                            Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => ListenerGame._.GameInProgress.TheCurrentMap.ListOfSoftBlock.Add(sf)));
+                            InsertTextureEntity(sf);
+                        }
+                        //new EntityOfDeath(b.X, b.Y - offset / 40, game, b.Owner);
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y + 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.Y - ((double)offset) / 40.0) <= (double)(e.Y)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+                case Direction.Down:
+                    //g.Margin = new Thickness(b.X * 40, b.Y * 40 + offset, 0.0, 0.0);
+                    if (offset % 40 == 0)
+                    {
+                        if (ListenerGame._.GameInProgress.TheCurrentMap.GetPlayer(b.X, b.Y + offset / 40) == null)
+                        {
+                            var sf = new SoftBlock(b.X, b.Y + offset / 40);
+                            Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => ListenerGame._.GameInProgress.TheCurrentMap.ListOfSoftBlock.Add(sf)));
+                            InsertTextureEntity(sf);
+                        }
+                        //new EntityOfDeath(b.X, b.Y + offset / 40, game, b.Owner);
+                    }
+                    //Mw.explosion(g);
+                    if (e is HardBlock)
+                    {
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)(e.Y - 1)))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    else
+                    {
+                        if (!(((double)b.Y + ((double)offset) / 40.0) >= (double)e.Y))
+                        {
+                            TimerManager._.AddNewTimer(false, timeoffset, true, null,
+                             delegate
+                             {
+                                 Mw.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+                                     ExplosionFlower(b, game, e, d, offset + offsetglobal
+                                     )));
+                             });
+                        }
+                    }
+                    break;
+            }
+        }
+
         public List<Image> LoadBackground()
         {
             var l = new List<Image>();
@@ -397,7 +1180,23 @@ namespace BombEistiv2WPF.View
             }
             if(e is Bomb)
             {
-                return "Bomb";
+                
+                var b = (Bomb) e;
+                if (b.Type != BombType.Ninja)
+                {
+                    return "Bomb." + b.Type.ToString();
+                }
+                return "SoftBloc";
+            }
+            if (e is EntityOfDeath)
+            {
+                var ed = (EntityOfDeath)e;
+                return ed.Mode == 1 ? "Ice" : "Smoke";
+            }
+            if (e is UpgradeBomb)
+            {
+                var b = (UpgradeBomb)e;
+                return "UpgradeBomb." + b.Type.ToString();
             }
             if(e is Player)
             {
@@ -435,7 +1234,7 @@ namespace BombEistiv2WPF.View
             TypebonusList.Clear();
             foreach (var td in ThemeData)
             {
-                if (td.Value.EndsWith(".png") || td.Value.EndsWith(".gif") || td.Key.StartsWith("Upgrade"))
+                if ((td.Value.EndsWith(".png") || td.Value.EndsWith(".gif")) && td.Key.StartsWith("Upgrade"))
                 {
                     var u = new Uri(GameParameters.Path + td.Value);
                     var bitmanimg = new BitmapImage();
@@ -443,6 +1242,24 @@ namespace BombEistiv2WPF.View
                     bitmanimg.UriSource = u;
                     bitmanimg.EndInit();
                     TypebonusList.Add(td.Key, bitmanimg);
+                }
+
+            }
+        }
+
+        public void LoadBombTypeTextures()
+        {
+            TypebombList.Clear();
+            foreach (var td in ThemeData)
+            {
+                if ((td.Value.EndsWith(".png") || td.Value.EndsWith(".gif")) && td.Key.StartsWith("UpgradeBomb"))
+                {
+                    var u = new Uri(GameParameters.Path + td.Value);
+                    var bitmanimg = new BitmapImage();
+                    bitmanimg.BeginInit();
+                    bitmanimg.UriSource = u;
+                    bitmanimg.EndInit();
+                    TypebombList.Add(td.Key, bitmanimg);
                 }
 
             }

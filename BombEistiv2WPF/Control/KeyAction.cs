@@ -100,7 +100,7 @@ namespace BombEistiv2WPF.Control
         {
             for(var i=1;i<5;i++)
             {
-                if (!(KeysPlayer.ContainsValue(i + "_None") && KeysPlayer.ContainsValue(i + "_Up") && KeysPlayer.ContainsValue(i + "_Down") && KeysPlayer.ContainsValue(i + "_Right") && KeysPlayer.ContainsValue(i + "_Left")))
+                if (!(KeysPlayer.ContainsValue(i + "_Switch") && KeysPlayer.ContainsValue(i + "_None") && KeysPlayer.ContainsValue(i + "_Up") && KeysPlayer.ContainsValue(i + "_Down") && KeysPlayer.ContainsValue(i + "_Right") && KeysPlayer.ContainsValue(i + "_Left")))
                 {
                     return false;
                 }
@@ -116,21 +116,25 @@ namespace BombEistiv2WPF.Control
             KeysPlayer.Add(Key.Down, "1_Down");
             KeysPlayer.Add(Key.Left, "1_Left");
             KeysPlayer.Add(Key.RightShift, "1_None");
+            KeysPlayer.Add(Key.RightCtrl, "1_Switch");
             KeysPlayer.Add(Key.Z, "2_Up");
             KeysPlayer.Add(Key.D, "2_Right");
             KeysPlayer.Add(Key.S, "2_Down");
             KeysPlayer.Add(Key.Q, "2_Left");
             KeysPlayer.Add(Key.A, "2_None");
+            KeysPlayer.Add(Key.E, "2_Switch");
             KeysPlayer.Add(Key.O, "3_Up");
             KeysPlayer.Add(Key.M, "3_Right");
             KeysPlayer.Add(Key.L, "3_Down");
             KeysPlayer.Add(Key.K, "3_Left");
             KeysPlayer.Add(Key.I, "3_None");
+            KeysPlayer.Add(Key.P, "3_Switch");
             KeysPlayer.Add(Key.Y, "4_Up");
             KeysPlayer.Add(Key.J, "4_Right");
             KeysPlayer.Add(Key.H, "4_Down");
             KeysPlayer.Add(Key.G, "4_Left");
             KeysPlayer.Add(Key.T, "4_None");
+            KeysPlayer.Add(Key.U, "4_Switch");
         }
 
         public Key GetKey(Player p, Direction d)

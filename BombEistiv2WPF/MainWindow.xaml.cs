@@ -26,8 +26,8 @@ namespace BombEistiv2WPF
     public partial class MainWindow : Window
     {
         private Game _gameInProgress;
-        private Screen menu;
-        private Action action;
+        //private Screen menu;
+        //private Action action;
 
 
         public MainWindow()
@@ -40,17 +40,17 @@ namespace BombEistiv2WPF
             bitmanimg.UriSource = u;
             bitmanimg.EndInit();
             Icon = bitmanimg;
-
+            GameParameters._.LoadTheFont();
             MainGrid.Children.RemoveAt(0);
             var w = new Wizard(this);
             w.Init();
             w.LaunchScreen();
         }
 
-        public Screen Menu
-        {
-            get { return menu; }
-        }
+        //public Screen Menu
+        //{
+        //    get { return menu; }
+        //}
 
         public Game GameInProgress
         {
@@ -58,15 +58,15 @@ namespace BombEistiv2WPF
             set { _gameInProgress = value; }
         }
 
-        public void InvokeThread(object sender, ElapsedEventArgs elapsedEventArgs)
-        {
-            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, action);
-        }
+        //public void InvokeThread(object sender, ElapsedEventArgs elapsedEventArgs)
+        //{
+        //    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, action);
+        //}
 
-        public void InvokeThread()
-        {
-            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, action);
-        }
+        //public void InvokeThread()
+        //{
+        //    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, action);
+        //}
 
         public void InvokeThread(Action a)
         {
@@ -99,6 +99,7 @@ namespace BombEistiv2WPF
             entity.Width = 40;
             entity.Height = 40;
             MainGrid.Children.Insert(MainGrid.Children.Count - 1 - GameParameters._.PlayerCount, entity);
+            
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

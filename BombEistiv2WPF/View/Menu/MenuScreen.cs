@@ -18,6 +18,7 @@ namespace BombEistiv2WPF.View.Menu
     {
         private Wizard _wizard;
         private Dictionary<string, Image> _menuDataList;
+        private Dictionary<string, Label> _menuLabelList;
         private Action _actionInProgress;
         private Timer time;
         private bool triggerOk;
@@ -26,6 +27,11 @@ namespace BombEistiv2WPF.View.Menu
         public Dictionary<string, Image> MenuDataList
         {
             get { return _menuDataList; }
+        }
+
+        public Dictionary<string, Label> MenuLabelList
+        {
+            get { return _menuLabelList; }
         }
 
         public override void Show(Control.Wizard w, Screenv2 screen)
@@ -57,9 +63,15 @@ namespace BombEistiv2WPF.View.Menu
             if(_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
+                _menuLabelList = new Dictionary<string, Label>();
                 _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuImage));
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
             }
             foreach (var img in MenuDataList)
+            {
+                _wizard.Grid.Children.Add(img.Value);
+            }
+            foreach (var img in MenuLabelList)
             {
                 _wizard.Grid.Children.Add(img.Value);
             }
@@ -169,6 +181,23 @@ namespace BombEistiv2WPF.View.Menu
             
         }
 
+        public void LoadMenuLabel()
+        {
+            
+            var g5 = new Label
+            {
+                Content = "Team Blui © Version 1.3",
+                FontSize = 14,
+                Foreground = new SolidColorBrush(Colors.White),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(0.0, 620, 0.0, 0.0),
+                Opacity = 0,
+                FontFamily = new FontFamily(GameParameters._.Font)
+            };
+            MenuLabelList.Add("Version", g5);
+        }
+
         private void ActionDefil(object sender, ElapsedEventArgs e)
         {
             _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(defileSky));
@@ -233,6 +262,7 @@ namespace BombEistiv2WPF.View.Menu
             {
                 MenuDataList["White"].Opacity = 1;
                 MenuDataList["2"].Opacity = 1;
+                MenuLabelList["Version"].Opacity = 1;
                 time.Interval = 50;
                 _actionInProgress = flash;
                 PlaySound._.LireBoucle("PressStart");
@@ -285,6 +315,7 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList["Bomb"].Margin = new Thickness(-130, -70, 0.0, 0.0);
             MenuDataList["Eisti"].Margin = new Thickness(100, 120 + 10, 0.0, 0.0);
             MenuDataList["2"].Opacity = 1;
+            MenuLabelList["Version"].Opacity = 1;
             PlaySound._.TypeSoundList["OpenPressStart"].Stop();
             PlaySound._.LireBoucle("PressStart");
         }

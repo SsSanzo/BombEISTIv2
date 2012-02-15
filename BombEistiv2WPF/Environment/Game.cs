@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Threading;
 using BombEistiv2WPF.Properties;
 using BombEistiv2WPF.View;
 
@@ -34,8 +35,27 @@ namespace BombEistiv2WPF.Environment
                         var b = (Bomb)timerEvent.InvolvedObject;
                         if (TheCurrentMap.GetBomb(b.X, b.Y) != null)
                         {
-                            b.Explode(this);
-                            //EmptyTheTrash(TheCurrentMap);
+                            switch(b.Type)
+                            {
+                                case BombType.Normal:
+                                    b.Explode(this);
+                                    break;
+                                case BombType.Cataclysm:
+                                    b.ExplodeCata(this);
+                                    break;
+                                case BombType.Flower:
+                                    b.ExplodeFlower(this);
+                                    break;
+                                case BombType.Freeze:
+                                    b.ExplodeFreeze(this);
+                                    break;
+                                case BombType.Dark:
+                                    b.ExplodeDark(this);
+                                    break;
+                                default:
+                                    b.Explode(this);
+                                    break;
+                            }
                         }
                         break;
                     case EventType.BombMove:
@@ -44,6 +64,25 @@ namespace BombEistiv2WPF.Environment
                         {
                             timerEvent.Timer.Stop();
                         }
+                        break;
+                    case EventType.BombTeleport:
+                        var bo = (Bomb)timerEvent.InvolvedObject;
+                        if (TheCurrentMap.GetBomb(bo.X, bo.Y) != null)
+                        {
+                            var bt = bo.Teleport(TheCurrentMap);
+                            if(!bt)
+                            {
+                                timerEvent.Timer.AutoReset = false;
+                            }
+                        }else
+                        {
+                            timerEvent.Timer.AutoReset = false;
+                        }
+                        break;
+                    case EventType.BombReturns:
+                        var br = (Bomb)timerEvent.InvolvedObject;
+                        Texture._.Mw.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => br.Opacity = 1));
+                        TimerManager._.AddNewTimer(true, 15, true, null, br.LandBomb);
                         break;
                     case EventType.Malediction:
                         var p = (Player)timerEvent.InvolvedObject;
@@ -74,6 +113,42 @@ namespace BombEistiv2WPF.Environment
                 if (GameParameters._.PlayerCount > 3)
                 {
                     TheCurrentMap.ListOfPlayer.Add(new Player(4, GameParameters._.PlayerSkin[4], Length - 1, 0, TheCurrentMap));
+                }
+            }
+            else
+            {
+                throw new Exception("Problem : Map is not initialized");
+            }
+
+        }
+
+        public void InitPlayersCrazy()
+        {
+            if (TheCurrentMap != null)
+            {
+                if (GameParameters._.PlayerCount > 0)
+                {
+                    var p = new Player(1, GameParameters._.PlayerSkin[1], 0, 0, TheCurrentMap);
+                    p.InitCrazySkills();
+                    TheCurrentMap.ListOfPlayer.Add(p);
+                }
+                if (GameParameters._.PlayerCount > 1)
+                {
+                    var p = new Player(2, GameParameters._.PlayerSkin[2], Length - 1, Length - 1, TheCurrentMap);
+                    p.InitCrazySkills();
+                    TheCurrentMap.ListOfPlayer.Add(p);
+                }
+                if (GameParameters._.PlayerCount > 2)
+                {
+                    var p = new Player(3, GameParameters._.PlayerSkin[3], 0, Length - 1, TheCurrentMap);
+                    p.InitCrazySkills();
+                    TheCurrentMap.ListOfPlayer.Add(p);
+                }
+                if (GameParameters._.PlayerCount > 3)
+                {
+                    var p = new Player(4, GameParameters._.PlayerSkin[4], Length - 1, 0, TheCurrentMap);
+                    p.InitCrazySkills();
+                    TheCurrentMap.ListOfPlayer.Add(p);
                 }
             }
             else

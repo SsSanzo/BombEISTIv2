@@ -67,12 +67,21 @@ namespace BombEistiv2WPF.View.Menu
                 OptionValidate.Add(4, 0);
                 GameParameters._.PlayerSkin.Add(4, 4);
             }
+            var mySelectedOption = "Classic";
+            if (GameParameters._.Type == GameType.Crazy)
+            {
+                mySelectedOption = "Crazy";
+            }
+            else if (GameParameters._.Type == GameType.Hardcore)
+            {
+                mySelectedOption = "Hardcore";
+            }
             alreadyloaded = false;
             if (_menuDataList == null)
             {
                 _menuDataList = new Dictionary<string, Image>();
                 _menuLabelList = new Dictionary<string, Label>();
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => LoadMenuImagePrevious(pressstart)));
+                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(() => LoadMenuImagePrevious(pressstart, mySelectedOption)));
                 //_wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal, new Action(LoadMenuLabel));
             }
             for (var i = w.Grid.Children.Count - 1; i > -1; i--)
@@ -212,7 +221,7 @@ namespace BombEistiv2WPF.View.Menu
 
         }
 
-        public void LoadMenuImagePrevious(PlayerSelectMenu old)
+        public void LoadMenuImagePrevious(PlayerSelectMenu old, string mySelectedOption)
         {
             MenuDataList.Add("Sky", old.MenuDataList["Sky"]);
             MenuDataList.Add("Black", old.MenuDataList["Black"]);
@@ -221,9 +230,9 @@ namespace BombEistiv2WPF.View.Menu
             MenuDataList.Add("2", old.MenuDataList["2"]);
             MenuDataList.Add("BoxGame", old.MenuDataList["BoxGame"]);
             MenuLabelList.Add("BoxGame", old.MenuLabelList["BoxGame"]);
-            MenuDataList.Add("BoxDClassic", old.MenuDataList["BoxDClassic"]);
-            MenuDataList.Add("BoxGClassic", old.MenuDataList["BoxGClassic"]);
-            MenuLabelList.Add("BoxClassic", old.MenuLabelList["BoxClassic"]);
+            MenuDataList.Add("BoxD" + mySelectedOption, old.MenuDataList["BoxD" + mySelectedOption]);
+            MenuDataList.Add("BoxG" + mySelectedOption, old.MenuDataList["BoxG" + mySelectedOption]);
+            MenuLabelList.Add("Box" + mySelectedOption, old.MenuLabelList["Box" + mySelectedOption]);
             var togo = "";
             if(old.MenuDataList["BoxD2P"].Opacity >= 0.8)
             {
@@ -304,20 +313,20 @@ namespace BombEistiv2WPF.View.Menu
         public void LoadMenuLabel()
         {
 
-            var l = new Label { Content = "P1", FontSize = 30, Foreground = new SolidColorBrush(Colors.Red), Margin = new Thickness(100, 270, 0, 0) };
+            var l = new Label { Content = "P1", FontSize = 30, Foreground = new SolidColorBrush(Colors.Red), Margin = new Thickness(100, 270, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelP1", l);
-            var l2 = new Label { Content = "P2", FontSize = 30, Foreground = new SolidColorBrush(Colors.Blue), Margin = new Thickness(220, 270, 0, 0) };
+            var l2 = new Label { Content = "P2", FontSize = 30, Foreground = new SolidColorBrush(Colors.Blue), Margin = new Thickness(220, 270, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelP2", l2);
-            var l3 = new Label { Content = "P3", FontSize = 30, Foreground = new SolidColorBrush(Colors.LimeGreen), Margin = new Thickness(340, 270, 0, 0), Opacity = (GameParameters._.PlayerCount > 2) ? 1 : 0 };
+            var l3 = new Label { Content = "P3", FontSize = 30, Foreground = new SolidColorBrush(Colors.LimeGreen), Margin = new Thickness(340, 270, 0, 0), Opacity = (GameParameters._.PlayerCount > 2) ? 1 : 0, FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelP3", l3);
-            var l4 = new Label { Content = "P4", FontSize = 30, Foreground = new SolidColorBrush(Colors.Orange), Margin = new Thickness(460, 270, 0, 0), Opacity = (GameParameters._.PlayerCount > 3) ? 1 : 0 };
+            var l4 = new Label { Content = "P4", FontSize = 30, Foreground = new SolidColorBrush(Colors.Orange), Margin = new Thickness(460, 270, 0, 0), Opacity = (GameParameters._.PlayerCount > 3) ? 1 : 0, FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelP4", l4);
             var d = KeyAction._.GetKey("1_Down").ToString();
             var u = KeyAction._.GetKey("1_Up").ToString();
             var r = KeyAction._.GetKey("1_Right").ToString();
             var le = KeyAction._.GetKey("1_Left").ToString();
             var b = KeyAction._.GetKey("1_None").ToString();
-            var l5 = new Label { Content = "Utilisez les touches de jeu pour naviguer ! \\ Touche bombe : Valider\n\nExemple : Joueur 1 : " + u + ", " + d + ", " + r + ", " + le + ", bombe : " + b, FontSize = 18, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0, 570, 0, 0) };
+            var l5 = new Label { Content = "Utilisez les touches de jeu pour naviguer ! \\ Touche bombe : Valider\n\nExemple : Joueur 1 : " + u + ", " + d + ", " + r + ", " + le + ", bombe : " + b, FontSize = 18, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0, 570, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("Info", l5);
         }
 

@@ -12,6 +12,7 @@ namespace BombEistiv2WPF.Environment
         private readonly List<Player> _listOfPlayer;
         private readonly List<Bomb> _listOfBomb;
         private readonly List<Upgrade> _listOfUpgrade;
+        private readonly List<UpgradeBomb> _listOfUpgradeBomb;
         private readonly List<EntityOfDeath> _listOfEntityOfDeath;
         private Random rand;
 
@@ -22,6 +23,7 @@ namespace BombEistiv2WPF.Environment
             _listOfPlayer = new List<Player>();
             _listOfBomb = new List<Bomb>();
             _listOfUpgrade = new List<Upgrade>();
+            _listOfUpgradeBomb = new List<UpgradeBomb>();
             _listOfEntityOfDeath = new List<EntityOfDeath>();
             rand = new Random();
         }
@@ -29,6 +31,11 @@ namespace BombEistiv2WPF.Environment
         public List<Upgrade> ListOfUpgrade
         {
             get { return _listOfUpgrade; }
+        }
+
+        public List<UpgradeBomb> ListOfUpgradeBomb
+        {
+            get { return _listOfUpgradeBomb; }
         }
 
         public List<Bomb> ListOfBomb
@@ -128,6 +135,89 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
+        public void SetSoftBlockOnMapCrazy()
+        {
+            var numberOfCaseEmpty = (Game.Length * Game.Length) - ListOfHardBlock.Count;
+            if (numberOfCaseEmpty < 0)
+            {
+                throw new Exception("Empty case are negative");
+            }
+            var allupgrades = GameParameters._.GetAllUpgrades();
+            var allBombType = GameParameters._.GetAllBombType();
+            for (var i = allupgrades.Count - 1; i >= 0; i--)
+            {
+                if (allupgrades.ElementAt(i).Value <= 0)
+                {
+                    allupgrades.Remove(allupgrades.ElementAt(i).Key);
+                }
+            }
+            for (var i = allBombType.Count - 1; i >= 0; i--)
+            {
+                if (allBombType.ElementAt(i).Value <= 0)
+                {
+                    allBombType.Remove(allBombType.ElementAt(i).Key);
+                }
+            }
+
+            var theListOfEntityEmptry = new List<Entity>();
+            for (var i = 0; i < Game.Length; i++)
+            {
+                for (var j = 0; j < Game.Length; j++)
+                {
+                    if (!(((i <= 1 || i >= Game.Length - 2) && (j <= 1 || j >= Game.Length - 2))))
+                    {
+                        if ((i % 2 == 0) || (j % 2 == 0))
+                        {
+                            theListOfEntityEmptry.Add(new HardBlock(i, j));
+                        }
+
+                    }
+                }
+            }
+
+            var rand = new Random();
+            for (var i = GameParameters._.SoftBlocCount; i > 0; i--)
+            {
+                var selectionPick = rand.Next(theListOfEntityEmptry.Count);
+                var thePick = theListOfEntityEmptry.ElementAt(selectionPick);
+                if (allupgrades.Count > 0)
+                {
+                    var selectionUp = rand.Next(allupgrades.Count);
+                    var theUp = allupgrades.ElementAt(selectionUp);
+                    ListOfSoftBlock.Add(new SoftBlock(thePick.X, thePick.Y, new Upgrade(thePick.X, thePick.Y, theUp.Key)));
+                    var key = theUp.Key;
+                    var value = theUp.Value - 1;
+                    allupgrades.Remove(key);
+                    if (value != 0)
+                    {
+                        allupgrades.Add(key, value);
+                    }
+                }
+                else
+                {
+                    if (allBombType.Count > 0)
+                    {
+                        var selectionUp = rand.Next(allBombType.Count);
+                        var theUp = allBombType.ElementAt(selectionUp);
+                        ListOfSoftBlock.Add(new SoftBlock(thePick.X, thePick.Y, null, new UpgradeBomb(thePick.X, thePick.Y, theUp.Key)));
+                        var key = theUp.Key;
+                        var value = theUp.Value - 1;
+                        allBombType.Remove(key);
+                        if (value != 0)
+                        {
+                            allBombType.Add(key, value);
+                        }
+                    }
+                    else
+                    {
+                        ListOfSoftBlock.Add(new SoftBlock(thePick.X, thePick.Y));
+                    }
+                }
+                theListOfEntityEmptry.RemoveAt(selectionPick);
+
+            }
+        }
+
         
 
         public Upgrade PickupUpgrade(int x, int y)
@@ -142,6 +232,11 @@ namespace BombEistiv2WPF.Environment
             return ListOfUpgrade.Remove(upgrade);
         }
 
+        public bool PickupUpgrade(UpgradeBomb upgrade)
+        {
+            return ListOfUpgradeBomb.Remove(upgrade);
+        }
+
         //Ancienne version
         //public List<Entity> GetCompleteList(bool withoutplayer = false)
         //{
@@ -154,7 +249,7 @@ namespace BombEistiv2WPF.Environment
         //    return thecompletelist;
         //}
 
-        public List<Entity> GetCompleteList(bool withoutplayer = false)
+        public List<Entity> GetCompleteList(bool withoutplayer = false, bool withoutminebomb = false)
         {
             var thecompletelist = new List<Entity>();
             for (var i = 0; i < ListOfHardBlock.Count;i++)
@@ -165,13 +260,30 @@ namespace BombEistiv2WPF.Environment
             {
                 thecompletelist.Add(ListOfSoftBlock[i]);
             }
-            for (var i = 0; i < ListOfBomb.Count; i++)
+            if(withoutminebomb)
             {
-                thecompletelist.Add(ListOfBomb[i]);
+                for (var i = 0; i < ListOfBomb.Count; i++)
+                {
+                    if (ListOfBomb[i].Type != BombType.Mine)
+                    {
+                        thecompletelist.Add(ListOfBomb[i]);
+                    }
+                }
+            }else
+            {
+                for (var i = 0; i < ListOfBomb.Count; i++)
+                {
+                    thecompletelist.Add(ListOfBomb[i]);
+                }
             }
+            
             for (var i = 0; i < ListOfUpgrade.Count; i++)
             {
                 thecompletelist.Add(ListOfUpgrade[i]);
+            }
+            for (var i = 0; i < ListOfUpgradeBomb.Count; i++)
+            {
+                thecompletelist.Add(ListOfUpgradeBomb[i]);
             }
             if (!withoutplayer)
             {
@@ -186,7 +298,27 @@ namespace BombEistiv2WPF.Environment
         public Entity GetEntity(int x,int y)
         {
             var list = GetCompleteList();
-            return list.FirstOrDefault(c => c.X == x && c.Y == y);
+            return list.FirstOrDefault(c => c != null && c.X == x && c.Y == y);
+        }
+
+        public Entity GetEntityWithoutMine(int x, int y)
+        {
+            var list = GetCompleteList();
+            return list.FirstOrDefault(c => c != null && c.X == x && c.Y == y);
+        }
+
+        public List<Entity> GetAroundEntity(int x, int y)
+        {
+            var list = GetCompleteList(true);
+            return list.Where(c => c != null && ((c.X == x - 1 && c.Y == y) || (c.X == x + 1 && c.Y == y) || (c.X == x && c.Y == y - 1) || (c.X == x && c.Y == y + 1))).ToList();
+            
+        }
+
+
+        public Entity GetPlayer(int x, int y)
+        {
+            var list = ListOfPlayer.ToList();
+            return list.FirstOrDefault(c => c != null && c.X == x && c.Y == y);
         }
 
         public EntityOfDeath GetEntityOfDeath(int x, int y)
@@ -201,11 +333,16 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
-        public Upgrade GetUpgrade(int x, int y)
+        public Entity GetUpgrade(int x, int y)
         {
             try
             {
-                return ListOfUpgrade.FirstOrDefault(c => c != null && (c.X == x && c.Y == y));
+                var u = ListOfUpgrade.FirstOrDefault(c => c != null && (c.X == x && c.Y == y));
+                if (GameParameters._.Type == GameType.Crazy && u == null)
+                {
+                    return ListOfUpgradeBomb.FirstOrDefault(c => c != null && (c.X == x && c.Y == y));
+                }
+                return u;
             }
             catch
             {
@@ -252,6 +389,11 @@ namespace BombEistiv2WPF.Environment
             if (u != null)
             {
                 ListOfUpgrade.Remove(u);
+            }
+            var bt = ListOfUpgradeBomb.FirstOrDefault(c => c.X == x && c.Y == y);
+            if (bt != null)
+            {
+                ListOfUpgradeBomb.Remove(bt);
             }
         }
 
@@ -334,8 +476,16 @@ namespace BombEistiv2WPF.Environment
             var l = ListOfPlayer.Where(c => c != null && c.Lives > 0).Count();
             if(l <= 1)
             {
-                var g = (ClassicGame) Texture._.Mw.GameInProgress;
-                g.EndOfTheGameUntimed();
+                if (Texture._.Mw.GameInProgress is ClassicGame)
+                {
+                    var g = (ClassicGame)Texture._.Mw.GameInProgress;
+                    g.EndOfTheGameUntimed();
+                }else
+                {
+                    var g = (CrazyGame)Texture._.Mw.GameInProgress;
+                    g.EndOfTheGameUntimed();
+                }
+                
             }
         }
 

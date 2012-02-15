@@ -37,6 +37,8 @@ namespace BombEistiv2WPF.Environment
         private int _gameTime; // en secondes
         private int _explosionDelay;
 
+        private string _font;
+
         private Dictionary<string, BitmapImage> _menutextureList;
 
         private GameParameters()
@@ -83,6 +85,15 @@ namespace BombEistiv2WPF.Environment
             set
             {
                 _playerSkin = value;
+            }
+        }
+
+        public string Font
+        {
+            get { return _font; }
+            set
+            {
+                _font = value;
             }
         }
 
@@ -141,13 +152,29 @@ namespace BombEistiv2WPF.Environment
             return upgrades;
         }
 
+        public Dictionary<BombType, int> GetAllBombType()
+        {
+            var bts = new Dictionary<BombType, int>();
+            var d = _root.Descendants("Game").Where(c => c.Attribute("type").Value == Type.ToString());
+            var e = d.Descendants("Upgrades").Elements("BombType");
+            foreach (var element in e)
+            {
+                BombType ut;
+                if (Enum.TryParse(element.Value, out ut))
+                {
+                    var i = Convert.ToInt32(element.Attribute("currentFreq").Value);
+                    bts.Add(ut, i);
+                }
+            }
+            return bts;
+        }
+
         public Dictionary<string, string> GetMenuTemplate()
         {
             var menu = _root.Descendants("CommonParameter").Elements("Menu").FirstOrDefault();
             var e = menu.Descendants();
             var folder = menu.Attribute("folder").Value;
             return e.ToDictionary(element => element.Attribute("object").Value, element => @"\" + folder + element.Attribute("source").Value);
-
         }
 
         public void LoadAllSystemResources()
@@ -166,10 +193,30 @@ namespace BombEistiv2WPF.Environment
             }
         }
 
+        public void LoadTheFont()
+        {
+            foreach (var td in GetMenuTemplate())
+            {
+                if (td.Value.Contains("#"))
+                {
+                    Font = Path + td.Value;
+                }
+            }
+        }
+
         public void ResetUpgradeFrequence()
         {
             var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");
             foreach (var element in e.Elements("Upgrade"))
+            {
+                element.Attribute("currentFreq").Value = element.Attribute("defaultFreq").Value;
+            }
+        }
+
+        public void ResetBombTypeFrequence()
+        {
+            var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");
+            foreach (var element in e.Elements("BombType"))
             {
                 element.Attribute("currentFreq").Value = element.Attribute("defaultFreq").Value;
             }
@@ -188,6 +235,21 @@ namespace BombEistiv2WPF.Environment
                 theut.Attribute("currentFreq").Value = freq + "";
             }
             
+        }
+
+        public void ChangeBombTypeFrequence(BombType ut, int freq)
+        {
+            var e = _root.Elements("Game").Where(c => String.Compare(Type.ToString(), c.Attribute("type").Value) == 0).Descendants("Upgrades");//.FirstOrDefault(c => String.Compare(ut.ToString(), c.Element("Upgrade").Value) == 0);
+            XElement theut = null;
+            foreach (var element in e.Elements("BombType").Where(element => String.Compare(ut.ToString(), element.Value) == 0))
+            {
+                theut = element;
+            }
+            if (theut != null)
+            {
+                theut.Attribute("currentFreq").Value = freq + "";
+            }
+
         }
 
         public Dictionary<string, string> GetThemeData(string Theme)

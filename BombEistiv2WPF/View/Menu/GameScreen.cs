@@ -18,86 +18,157 @@ namespace BombEistiv2WPF.View.Menu
     {
         private Wizard _wizard;
         private Dictionary<string, Image> _menuDataList;
-        private Dictionary<string, Label> _menuLabelList;
+        //private Dictionary<string, Label> _menuLabelList;
         private Key lastKey;
         private Key lastReleaseKey;
         private int start;
         private bool movelocked;
         private int animbomb;
+        private int animcurse;
         private int sens;
         private bool openedanim;
+        private bool openedanimcurse;
 
         public Dictionary<string, Image> MenuDataList
         {
             get { return _menuDataList; }
         }
 
-        public Dictionary<string, Label> MenuLabelList
-        {
-            get { return _menuLabelList; }
-        }
+        //public Dictionary<string, Label> MenuLabelList
+        //{
+        //    get { return _menuLabelList; }
+        //}
 
         public override void Show(Control.Wizard w, Screenv2 oldscreen)
         {
-            PlaySound._.Stop("Result");
-            animbomb = 0;
-            sens = 1;
-            openedanim = true;
-            lastKey = Key.None;
-            lastReleaseKey = Key.None;
-            _wizard = w;
-            movelocked = true;
-            TimerManager._.Reset();
-            for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+            if(GameParameters._.Type == GameType.Classic)
             {
-                if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
+                PlaySound._.Stop("Result");
+                animbomb = 0;
+                animcurse = 0;
+                sens = 1;
+                openedanim = true;
+                openedanimcurse = true;
+                lastKey = Key.None;
+                lastReleaseKey = Key.None;
+                _wizard = w;
+                movelocked = true;
+                TimerManager._.Reset();
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
                 {
-                    w.Grid.Children.RemoveAt(i);
+                    if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
                 }
-            }
-            if(Texture._.IsRandom)
-            {
-                var listDir = Directory.EnumerateDirectories(GameParameters.Path + @"\" + GameParameters._.GetThemeFolder());
-                var listScreen = new List<String>();
-                foreach (var dir in listDir)
+                if (Texture._.IsRandom)
                 {
-                    listScreen.Add(dir.Split('\\')[dir.Split('\\').Length - 1]);
+                    var listDir = Directory.EnumerateDirectories(GameParameters.Path + @"\" + GameParameters._.GetThemeFolder());
+                    var listScreen = new List<String>();
+                    foreach (var dir in listDir)
+                    {
+                        listScreen.Add(dir.Split('\\')[dir.Split('\\').Length - 1]);
+                    }
+                    var rand = new Random();
+                    var theint = rand.Next(listScreen.Count - 1);
+                    Texture._.SetTheme(listScreen.ElementAt(theint));
+                    PlaySound._.SetTheme(listScreen.ElementAt(theint));
+                    PlaySound._.ClearEverything(_wizard.TheWindow);
+                    PlaySound._.LoadAllMusic();
+                    foreach (var mus in PlaySound._.TypeMusicList)
+                    {
+                        _wizard.Grid.Children.Add(mus.Value);
+                    }
                 }
-                var rand = new Random();
-                var theint = rand.Next(listScreen.Count - 1);
-                Texture._.SetTheme(listScreen.ElementAt(theint));
-                PlaySound._.SetTheme(listScreen.ElementAt(theint));
-                PlaySound._.ClearEverything(_wizard.TheWindow);
-                PlaySound._.LoadAllMusic();
-                foreach (var mus in PlaySound._.TypeMusicList)
-                {
-                    _wizard.Grid.Children.Add(mus.Value);
-                }
-            }
 
-            if (_menuDataList == null)
+                if (_menuDataList == null)
+                {
+                    _menuDataList = new Dictionary<string, Image>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal,
+                                                    new Action(LoadImage));
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.TheWindow.MainGrid.Children.Add(img.Value);
+                    Canvas.SetZIndex(img.Value, 2);
+                }
+                Canvas.SetZIndex(MenuDataList["Hurry"], 3);
+                Canvas.SetZIndex(MenuDataList["Over"], 4);
+                _wizard.TheWindow.GameInProgress = new ClassicGame(this);
+                TimerManager._.Game = _wizard.TheWindow.GameInProgress;
+                ListenerGame._.GameInProgress = _wizard.TheWindow.GameInProgress;
+                InitTextureGame();
+                InitInGameMenu();
+                ListenerGame._.EmptyTheCache();
+                Score._.ResetSurvived();
+                start = 4;
+                PlaySound._.LireBoucle("Game");
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeIn);
+            }else if(GameParameters._.Type == GameType.Crazy)
             {
-                _menuDataList = new Dictionary<string, Image>();
-                _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal,
-                                                new Action(LoadImage));
+                PlaySound._.Stop("Result");
+                animbomb = 0;
+                animcurse = 0;
+                sens = 1;
+                openedanim = true;
+                openedanimcurse = true;
+                lastKey = Key.None;
+                lastReleaseKey = Key.None;
+                _wizard = w;
+                movelocked = true;
+                TimerManager._.Reset();
+                for (var i = w.Grid.Children.Count - 1; i > -1; i--)
+                {
+                    if (!(w.Grid.Children[i] is Grid || w.Grid.Children[i] is MediaElement))
+                    {
+                        w.Grid.Children.RemoveAt(i);
+                    }
+                }
+                if (Texture._.IsRandom)
+                {
+                    var listDir = Directory.EnumerateDirectories(GameParameters.Path + @"\" + GameParameters._.GetThemeFolder());
+                    var listScreen = new List<String>();
+                    foreach (var dir in listDir)
+                    {
+                        listScreen.Add(dir.Split('\\')[dir.Split('\\').Length - 1]);
+                    }
+                    var rand = new Random();
+                    var theint = rand.Next(listScreen.Count - 1);
+                    Texture._.SetTheme(listScreen.ElementAt(theint));
+                    PlaySound._.SetTheme(listScreen.ElementAt(theint));
+                    PlaySound._.ClearEverything(_wizard.TheWindow);
+                    PlaySound._.LoadAllMusic();
+                    foreach (var mus in PlaySound._.TypeMusicList)
+                    {
+                        _wizard.Grid.Children.Add(mus.Value);
+                    }
+                }
+
+                if (_menuDataList == null)
+                {
+                    _menuDataList = new Dictionary<string, Image>();
+                    _wizard.WindowDispatcher.Invoke(DispatcherPriority.Normal,
+                                                    new Action(LoadImage));
+                }
+                foreach (var img in MenuDataList)
+                {
+                    _wizard.TheWindow.MainGrid.Children.Add(img.Value);
+                    Canvas.SetZIndex(img.Value, 2);
+                }
+                Canvas.SetZIndex(MenuDataList["Hurry"], 3);
+                Canvas.SetZIndex(MenuDataList["Over"], 4);
+                _wizard.TheWindow.GameInProgress = new CrazyGame(this);
+                TimerManager._.Game = _wizard.TheWindow.GameInProgress;
+                ListenerGame._.GameInProgress = _wizard.TheWindow.GameInProgress;
+                InitTextureGame();
+                InitInGameMenuCrazy();
+                ListenerGame._.EmptyTheCache();
+                Score._.ResetSurvived();
+                start = 4;
+                PlaySound._.LireBoucle("Game");
+                TimerManager._.AddNewTimer(true, 15, true, null, FadeIn);
             }
-            foreach (var img in MenuDataList)
-            {
-                _wizard.TheWindow.MainGrid.Children.Add(img.Value);
-                Canvas.SetZIndex(img.Value,2);
-            }
-            Canvas.SetZIndex(MenuDataList["Hurry"], 3);
-            Canvas.SetZIndex(MenuDataList["Over"], 4);
-            _wizard.TheWindow.GameInProgress = new ClassicGame(this);
-            TimerManager._.Game = _wizard.TheWindow.GameInProgress;
-            ListenerGame._.GameInProgress = _wizard.TheWindow.GameInProgress;
-            InitTextureGame();
-            InitInGameMenu();
-            ListenerGame._.EmptyTheCache();
-            Score._.ResetSurvived();
-            start = 4;
-            PlaySound._.LireBoucle("Game");
-            TimerManager._.AddNewTimer(true, 15, true, null, FadeIn);
+            
         }
 
         public void InitTextureGame()
@@ -121,6 +192,31 @@ namespace BombEistiv2WPF.View.Menu
             foreach (var face in InGameMenu._.AllTheFace(_wizard.TheWindow.GameInProgress))
             {
                 _wizard.TheWindow.MenuGrid.Children.Add(face);
+            }
+        }
+
+        public void InitInGameMenuCrazy()
+        {
+            InGameMenu._.InitInGameMenu(_wizard.TheWindow.GameInProgress);
+            foreach (var lab in InGameMenu._.AllTheLabel())
+            {
+                _wizard.TheWindow.MenuGrid.Children.Add(lab);
+            }
+            foreach (var face in InGameMenu._.AllTheFace(_wizard.TheWindow.GameInProgress))
+            {
+                _wizard.TheWindow.MenuGrid.Children.Add(face);
+            }
+            foreach (var bomb in InGameMenu._.AllTheBomb(_wizard.TheWindow.GameInProgress))
+            {
+                _wizard.TheWindow.MenuGrid.Children.Add(bomb);
+            }
+            foreach (var stack in InGameMenu._.AllTheStack(_wizard.TheWindow.GameInProgress))
+            {
+                _wizard.TheWindow.MenuGrid.Children.Add(stack);
+            }
+            foreach (var cd in InGameMenu._.AllTheLabelCD())
+            {
+                _wizard.TheWindow.MenuGrid.Children.Add(cd);
             }
         }
 
@@ -251,6 +347,25 @@ namespace BombEistiv2WPF.View.Menu
 
         }
 
+        private void CurseAnim(object sender, ElapsedEventArgs e)
+        {
+            if (openedanimcurse)
+            {
+                openedanimcurse = false;
+                try
+                {
+                    _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                    new Action(AnimCurse));
+                }
+                catch
+                {
+
+                }
+            }
+
+
+        }
+
         public void Hurry(object sender, ElapsedEventArgs e)
         {
             _wizard.WindowDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => HurryUp((Timer)sender)));
@@ -268,22 +383,23 @@ namespace BombEistiv2WPF.View.Menu
         {
             try
             {
+
                 var copy = _wizard.TheWindow.GameInProgress.TheCurrentMap.ListOfBomb;
-            
+
                 for (var i = 0; i < copy.Count; i++)
                 {
                     var b = copy.ElementAt(i);
-                    if (b != null)
+                    if (b != null && b.Type != BombType.Mine && b.Type != BombType.Ninja)
                     {
                         if (!(b.LayoutTransform is ScaleTransform))
                         {
-                            var lol = new ScaleTransform {CenterX = 20, CenterY = 20, ScaleX = 1.0, ScaleY = 1.0};
+                            var lol = new ScaleTransform { CenterX = 20, CenterY = 20, ScaleX = 1.0, ScaleY = 1.0 };
                             b.LayoutTransform = lol;
                         }
-                        var rt = (ScaleTransform) b.LayoutTransform;
-                        rt.ScaleX = rt.ScaleX + sens*(0.002);
-                        rt.ScaleY = rt.ScaleY + sens*(0.002);
-                        b.Margin = new Thickness(b.Margin.Left - sens*0.05, b.Margin.Top - sens*0.05, 0.0, 0.0);
+                        var rt = (ScaleTransform)b.LayoutTransform;
+                        rt.ScaleX = rt.ScaleX + sens * (0.002);
+                        rt.ScaleY = rt.ScaleY + sens * (0.002);
+                        b.Margin = new Thickness(b.Margin.Left - sens * 0.05, b.Margin.Top - sens * 0.05, 0.0, 0.0);
                     }
                 }
             
@@ -300,6 +416,37 @@ namespace BombEistiv2WPF.View.Menu
                 }
                 openedanim = true;
                 }
+            catch { }
+        }
+
+        public void AnimCurse()
+        {
+            try
+            {
+                var copy = _wizard.TheWindow.GameInProgress.TheCurrentMap.ListOfPlayer;
+
+                for (var i = 0; i < copy.Count; i++)
+                {
+                    var b = copy.ElementAt(i);
+                    if (b != null && b.Cursed)
+                    {
+                        b.Opacity = b.Opacity - sens * 0.037;
+                    }
+                }
+
+                animcurse += sens;
+                if (animcurse > 20)
+                {
+                    sens = -1;
+                    animcurse = 20;
+                }
+                else if (animcurse < 0)
+                {
+                    sens = 1;
+                    animcurse = 0;
+                }
+                openedanimcurse = true;
+            }
             catch { }
         }
 
@@ -340,9 +487,19 @@ namespace BombEistiv2WPF.View.Menu
                 start = 0;
             }else if(start == 0)
             {
-                ListenerGame._.StartTimers();
-                var g = (ClassicGame) _wizard.TheWindow.GameInProgress;
-                g.Start();
+                ListenerGame._.StartTimers(GameParameters._.Type);
+                if(GameParameters._.Type == GameType.Classic)
+                {
+                    var g = (ClassicGame)_wizard.TheWindow.GameInProgress;
+                    g.Start();
+                }
+                else if (GameParameters._.Type == GameType.Crazy)
+                {
+                    var g = (CrazyGame)_wizard.TheWindow.GameInProgress;
+                    g.Start();
+                    TimerManager._.AddNewTimer(true, 15, true, null, CurseAnim);
+                }
+                
                 TimerManager._.AddNewTimer(true, 15, true, null, BombAnim);
                 movelocked = false;
                 start--;

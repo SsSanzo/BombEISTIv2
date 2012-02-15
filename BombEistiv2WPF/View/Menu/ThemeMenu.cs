@@ -312,9 +312,9 @@ namespace BombEistiv2WPF.View.Menu
 
         public void LoadMenuLabel()
         {
-            var l = new Label { Content = PreviewSelected.Substring(6), FontSize = 32, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 500, 0, 0) };
+            var l = new Label { Content = PreviewSelected.Substring(6), FontSize = 32, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 500, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelScreen", l);
-            var l2 = new Label { Content = "(Appuyez sur entrée pour valider un thème)", FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 570, 0, 0) };
+            var l2 = new Label { Content = "(Appuyez sur entrée pour valider un thème)", FontSize = 25, HorizontalAlignment = HorizontalAlignment.Center, Foreground = new SolidColorBrush(Colors.White), Margin = new Thickness(0.0, 570, 0, 0), FontFamily = new FontFamily(GameParameters._.Font) };
             MenuLabelList.Add("LabelInfo", l2);
         }
 

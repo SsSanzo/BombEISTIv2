@@ -14,11 +14,18 @@ namespace BombEistiv2WPF.Environment
         private bool hurt;
         private Player owner;
         private bool thereIsOne;
+        private int mode;
 
         public bool Blocus
         {
             get { return blocus; }
             set { blocus = value; }
+        }
+
+        public int Mode
+        {
+            get { return mode; }
+            set { mode = value; }
         }
 
         public bool IsHurting
@@ -33,13 +40,14 @@ namespace BombEistiv2WPF.Environment
             set { owner = value; }
         }
 
-        public EntityOfDeath(int x, int y, Game g, Player o, bool b = false) : base(x, y)
+        public EntityOfDeath(int x, int y, Game g, Player o, bool b = false, int mod = 0) : base(x, y)
         {
             thereIsOne = false;
             blocus = b;
             hurt = true;
             G = g;
             owner = o;
+            mode = mod;
             if (G.TheCurrentMap.GetEntityOfDeath(x,y) == null || (G.TheCurrentMap.GetEntityOfDeath(x,y) != null && !G.TheCurrentMap.GetEntityOfDeath(x,y).Blocus))
             {
                 if(G.TheCurrentMap.GetEntityOfDeath(x,y) != null)
@@ -59,8 +67,53 @@ namespace BombEistiv2WPF.Environment
                 {
                     if (e is Bomb)
                     {
-                        var theBomb = G.TheCurrentMap.ListOfBomb.First(c => c.X == e.X && c.Y == e.Y);
-                        theBomb.Explode(G);
+                        var bt = (Bomb) e;
+                        if(GameParameters._.Type == GameType.Classic)
+                        {
+                            var theBomb = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                            if (theBomb != null) theBomb.Explode(G);
+                        }else
+                        if(bt.Type != BombType.Mine)
+                        {
+                            switch (bt.Type)
+                            {
+                                case BombType.Normal:
+                                    var theBomb = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                                    if (theBomb != null) theBomb.Explode(G);
+                                    break;
+                                case BombType.Teleguide:
+                                    var theBomb7 = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                                    if (theBomb7 != null)
+                                    {
+                                        theBomb7.Owner.MyBombTeleguide = null;
+                                        theBomb7.Owner.beAvaliableLag();
+                                        theBomb7.Explode(G);
+                                    }
+                                    break;
+                                case BombType.Cataclysm:
+                                    var theBomb2 = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                                    if (theBomb2 != null) theBomb2.ExplodeCata(G);
+                                    break;
+                                case BombType.Flower:
+                                    var theBomb3 = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                                    if (theBomb3 != null) theBomb3.ExplodeFlower(G);
+                                    break;
+                                case BombType.Freeze:
+                                    var theBomb4 = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                                    if (theBomb4 != null) theBomb4.ExplodeFreeze(G);
+                                    break;
+                                case BombType.Dark:
+                                    var theBomb6 = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                                    if (theBomb6 != null) theBomb6.ExplodeDark(G);
+                                    break;
+                                default:
+                                    var theBomb5 = G.TheCurrentMap.ListOfBomb.FirstOrDefault(c => c.X == e.X && c.Y == e.Y);
+                                    if (theBomb5 != null) theBomb5.Explode(G);
+                                    break;
+                            }
+                            
+                        }
+                        
                     }
                     else
                         if (e is SoftBlock)
@@ -77,27 +130,54 @@ namespace BombEistiv2WPF.Environment
                             G.TheCurrentMap.ListOfUpgrade.Remove(theUpgrade);
                             Texture._.DeleteTextureEntity(e);
                         }
+                        else if (e is UpgradeBomb)
+                        {
+                            var theUpgradeBomb = G.TheCurrentMap.ListOfUpgradeBomb.First(c => c.X == e.X && c.Y == e.Y);
+                            theUpgradeBomb.Burn();
+                            G.TheCurrentMap.ListOfUpgradeBomb.Remove(theUpgradeBomb);
+                            Texture._.DeleteTextureEntity(e);
+                        }
                         else if (e is Player)
                         {
-                            var play = (Player)e;
-                            if (!(play.Invincible))
+                            if(mode == 0)
                             {
-                                Score._.KilledBy(owner, play);
-                                if (play.Die())
+                                var play = (Player)e;
+                                if (!(play.Invincible))
                                 {
-                                    var thePlayer = G.TheCurrentMap.ListOfPlayer.FirstOrDefault(c => c.X == play.X && c.Y == play.Y);
-                                    if (thePlayer != null)
+                                    Score._.KilledBy(owner, play);
+                                    if (play.Die())
                                     {
-                                        G.TheCurrentMap.ListOfPlayer.Remove(thePlayer);
-                                        Texture._.DeleteTextureEntity(thePlayer);
-                                        thereIsOne = true;
+                                        var thePlayer = G.TheCurrentMap.ListOfPlayer.FirstOrDefault(c => c.X == play.X && c.Y == play.Y);
+                                        if (thePlayer != null)
+                                        {
+                                            G.TheCurrentMap.ListOfPlayer.Remove(thePlayer);
+                                            Texture._.DeleteTextureEntity(thePlayer);
+                                            thereIsOne = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        play.cling();
                                     }
                                 }
-                                else
+                            }
+                            else if (mode == 1)
+                            {
+                                var play = (Player)e;
+                                if (e != null)
                                 {
-                                    play.cling();
+                                    play.freezePlayer();
                                 }
                             }
+                            else if (mode == 2)
+                            {
+                                var play = (Player)e;
+                                if (e != null)
+                                {
+                                    play.cursePlayer();
+                                }
+                            }
+                            
                         }
                 }
                 if (thereIsOne)
@@ -117,6 +197,10 @@ namespace BombEistiv2WPF.Environment
         public void Supress(object sender, ElapsedEventArgs elapsedEventArgs)
         {
             hurt = false;
+            if(mode != 0)
+            {
+                Texture._.DeleteTextureEntity(this);
+            }
             try
             {
                 G.TheCurrentMap.ListOfEntityOfDeath.Remove(this);
